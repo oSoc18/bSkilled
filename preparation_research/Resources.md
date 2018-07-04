@@ -17,6 +17,7 @@
 ## Which stack are we going to use
 
 - as frontend as possible ([serverless?](https://en.wikipedia.org/wiki/Serverless_computing))
+- Based on some simple examples from the early days of Open Badges : [Badges via twitter](https://github.com/toolness/tweep-badger) , [Bake badges in the browser](https://github.com/toolness/openbadges-instabaker.js) ... more to find if you query [Toolness github on badges](https://github.com/toolness?utf8=%E2%9C%93&tab=repositories&q=open+badges&type=&language=)
 - [Google Firebase](https://firebase.google.com/) : for quick development with serverless google functions (nodejs) when necessary , an easy db for storage & build in authentication mechanisms 
 - [vue js](https://vuejs.org/) : frontend framework...  [Quasar-Framework](https://quasar-framework.org/) which is vuejs based and easy to use... but comes with a lot of boilerplate  
 - Make it into an [Progressive Web App](https://en.wikipedia.org/wiki/Progressive_Web_Apps) ? Quasar-Framework has an introduction and easy template for that: [here](https://quasar-framework.org/guide/pwa-introduction.html) 
