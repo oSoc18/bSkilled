@@ -9,6 +9,7 @@
 - [Open Badges.org](https://openbadges.org/) : but also have a look at the more recent [Badge.wiki](https://badge.wiki/wiki/Main_Page) and there is also a [Badge.news](http://badge.news/) that you can sign up to or read into past issues
 - [Verifiable Claims](https://www.w3.org/TR/verifiable-claims-data-model/) : W3C Verifiable claims working draft
 - [Decentralized Identifier specs (DIDs)](https://w3c-ccg.github.io/did-spec/) : A standard based on digital signatures for "self-sovereign" digital identity
+- [Validbook](http://futurama1x.validbook.org/) : prototype services following DID & verifiable claims standard - work in progress
 - [EscoBadges](http://escobadges.eu/) : last year's Open Badges project in which we aligned the [ESCO framework](https://ec.europa.eu/esco/portal/api) with open badges with a focus on adaptable design based on the skill / competence that was chosen
 - [A Badge Builder](https://badgebuilder.cogni.zone/) : A Badge Builder made with Angular by Cognizone , [code is here](https://bitbucket.org/cognizone/badgebuilder/src/master/) 
 - [Kick-off document Summer of Code](https://hackmd.io/X1WQ9skBQuKnodq1iHpRyg?view)
