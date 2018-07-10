@@ -9,6 +9,7 @@ info:
   version: "1.0.0"
   title: ""
 
+# TODO: Fill out
 #   termsOfService: "http://swagger.io/terms/"
 #   contact:
 #     email: "apiteam@swagger.io"
@@ -29,7 +30,7 @@ schemes:
 - "http"
 
 paths:
-  /share:
+  /shares:
     post:
       tags:
       - "assertion"
@@ -44,6 +45,7 @@ paths:
         required: true
         schema:
           $ref: "#/definitions/Assertion"
+      # TODO: Check error codes
       responses:
         405: 
           description: "Invalid input"
@@ -52,86 +54,101 @@ paths:
           schema:
             $ref: "#/definitions/Share"
             
-  /share/{shareId}:
+  /shares/{shareId}:
     get:
       tags:
       - "assertion"
-      summary: "Request a share by it's id"
+      summary: "Request an Assertion by it's id"
       operationId: "getAssertion"
       parameters:
       - name: "shareId"
+        description: "The id of the Assertion you want to request"
         in: "path"
         required: true
         type: "string"
+      # TODO: Check error codes
       responses:
         200: 
           description: "The requested Assertion"
           schema: 
             $ref: "#/definitions/Share"
             
-  /endorse:
+  /shares/{shareId}/endorse:
     post:
       tags:
       - "assertion"
       summary: "Submit an endorsment/signature"
       operationId: "submitSignedAssertion"
-      responses:
-        200:
-          description: "Endorse an Assertion"
-            
-  /class:
-    post:
-      tags:
-      - "class"
-      summary: "Create a Badge Class"
-      operationId: "createBadgeClass"
-      consumes:
-      - "application/json"
-      responses:
-        200:
-          description: "The created badgle class"
-          schema:
-            $ref: "#/definitions/BadgeClass"
-            
-  /class/{classId}:
-    get:
-      tags:
-      - "class"
-      summary: "Request the Badge Class with a specific id"
-      operationId: "getBadgeClass"
       parameters:
-      - name: "classId"
+      - name: "shareId"
+        description: "The id of the Assertion you want to endorse"
         in: "path"
         required: true
         type: "string"
+      - name: "endorsment"
+        description: "Endorsment data"
+        in: "body"
+        required: true
+        schema:
+          $ref: '#/definitions/Endorsment'
+      # TODO: Check error codes
       responses:
         200:
-          description: "The requested Badge Class"
+          description: "Succesful endorsment"
+        # TODO: Check possible return value
+            
+  /classes:
+    get:
+      tags:
+      - "class"
+      summary: "Request the collection of Badge Classes"
+      operationId: "getBadgeClasses"
+      consumes:
+      - "application/json"
+      # TODO: Check error codes
+      responses:
+        200:
+          description: "The collection of Badge Classes"
           schema:
-            $ref: "#/definitions/BadgeClass"
+            type: "array"
+            items:
+              $ref: "#/definitions/BadgeClassId"
+        
 
 definitions:
   Share:
     type: "object"
     properties:
       id:
-        type: "string"
-        example: "45ab8ced"
+        $ref: "#/definitions/HashId"
       assertion:
         $ref: "#/definitions/Assertion"
         
+  # TODO: Check required data
   Assertion:
     type: "object"
     properties:
-      skill: 
+      email:
+        example: "example@email.com"
         type: "string"
-        example: "Writing RESTful API descriptions"
+        format: "mail"
       badgeClassId:
-        type: "string"
-        example: ""
+        $ref: "#/definitions/BadgeClassId"
         
-  BadgeClass: 
+  BadgeClassId: 
+    type: "string"
+    format: "url"
+    example: "https://badgeframework/classes/coolclass"
+    description: "Link to the Badge Class (skill)."
+
+  # TODO: Check required data
+  Endorsment:
     type: "object"
     properties:
-      criteria:
+      signature: 
         type: "string"
+
+  HashId:
+    type: "string"
+    example: "fe3bb9ac"
+    description: "A representation of the resource ID that is not just an incrementing number"
