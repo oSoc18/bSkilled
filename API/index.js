@@ -6,9 +6,6 @@ const FileSync = require('lowdb/adapters/FileSync');
 
 const adapter = new FileSync('db.json');
 const db = low(adapter);
-const Hashids = require('hashids');
-const hashids = new Hashids();
-//TODO implement hashID's
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,19 +16,19 @@ const port = process.env.PORT || 8081;
 const router = express.Router();
 
 router.get('/', function(req, res) {
-    res.json({ status: 'success' });   
+  res.json({ status: 'success' });
 });
 
 router.get('/badgeclasses', function(req, res) {
-    res.json({
-            status: 'success', 
-            badgeclasses: db.get('badgeclasses').value() 
+  res.json({
+    status: 'success',
+    badgeclasses: db.get('badgeclasses').value()
 
-        });
+  });
 });
 
-router.post('/assertion', function(request, response){
-     response.send(request.body);    // echo the result back
+router.post('/assertion', function(request, response) {
+  response.send(request.body); // echo the result back
 });
 
 
