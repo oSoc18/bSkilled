@@ -28,11 +28,14 @@ router.get('/badgeclasses', function(req, res) {
 });
 
 router.post('/assertion', function(request, response){
-    let assertion = {};
+    let assertion = {"@context": "https://w3id.org/openbadges/v2"};
     assertion.id = uuidv1();
     assertion.type = "Assertion"
     let date = new Date();
     assertion.issuedOn = date.toISOString();
+    assertion.badge = request.body.badge;
+    assertion.recipient = request.body.recipient;
+        
     response.send(request.body);
 });
 
