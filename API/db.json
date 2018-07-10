@@ -1,0 +1,6 @@
+{
+  "badgeclasses": [
+    "http://localhost/badgeClassA.json",
+    "http://localhost/badgeClassB.json"
+  ]
+}
