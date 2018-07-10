@@ -1,0 +1,137 @@
+###
+### Open Badges Peer Endorsment API Spec
+###
+### Note: WIP
+
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: ""
+
+#   termsOfService: "http://swagger.io/terms/"
+#   contact:
+#     email: "apiteam@swagger.io"
+#   license:
+#     name: "Apache 2.0"
+#     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+# host: "petstore.swagger.io"
+# basePath: "/v1"
+
+tags:
+- name: "assertion"
+  description: "Everything about Badge Assertions"
+- name: "class"
+  description: "Everything about Badge Classes"
+
+schemes:
+- "https"
+- "http"
+
+paths:
+  /share:
+    post:
+      tags:
+      - "assertion"
+      summary: "Share an Assertion"
+      operationId: "shareAssertion"
+      consumes:
+      - "appliction/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Assertion"
+      responses:
+        405: 
+          description: "Invalid input"
+        200:
+          description: "The shared Assertion"
+          schema:
+            $ref: "#/definitions/Share"
+            
+  /share/{shareId}:
+    get:
+      tags:
+      - "assertion"
+      summary: "Request a share by it's id"
+      operationId: "getAssertion"
+      parameters:
+      - name: "shareId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200: 
+          description: "The requested Assertion"
+          schema: 
+            $ref: "#/definitions/Share"
+            
+  /endorse:
+    post:
+      tags:
+      - "assertion"
+      summary: "Submit an endorsment/signature"
+      operationId: "submitSignedAssertion"
+      responses:
+        200:
+          description: "Endorse an Assertion"
+            
+  /class:
+    post:
+      tags:
+      - "class"
+      summary: "Create a Badge Class"
+      operationId: "createBadgeClass"
+      consumes:
+      - "application/json"
+      responses:
+        200:
+          description: "The created badgle class"
+          schema:
+            $ref: "#/definitions/BadgeClass"
+            
+  /class/{classId}:
+    get:
+      tags:
+      - "class"
+      summary: "Request the Badge Class with a specific id"
+      operationId: "getBadgeClass"
+      parameters:
+      - name: "classId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "The requested Badge Class"
+          schema:
+            $ref: "#/definitions/BadgeClass"
+
+definitions:
+  Share:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "45ab8ced"
+      assertion:
+        $ref: "#/definitions/Assertion"
+        
+  Assertion:
+    type: "object"
+    properties:
+      skill: 
+        type: "string"
+        example: "Writing RESTful API descriptions"
+      badgeClassId:
+        type: "string"
+        example: ""
+        
+  BadgeClass: 
+    type: "object"
+    properties:
+      criteria:
+        type: "string"
