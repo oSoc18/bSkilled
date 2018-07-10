@@ -1,3 +1,36 @@
 {
-  "badgeclasses": []
+  "badgeclasses": [
+     {
+        "id": "https://bitsoftrust.org/exampleBadge1.json",
+        "type": "BadgeClass",
+        "name": "Awesome Example Badge",
+        "description": "For doing awesome.",
+        "image": "http://icons.iconarchive.com/icons/seanau/fresh-web/512/Badge-icon.png",
+        "criteria": "https://bitsoftrust.org/exampleBadge1.html",
+        "issuer": {
+          "type": "Profile",
+          "id": "https://bitsoftrust.org/organization.json",
+          "name": "bitsoftrust",
+          "image": "https://example.org/logo.png",
+          "url": "https://bitsoftrust.org",
+          "email": "bitsoftrust@bitsoftrust.org"
+        }
+      },
+      {
+        "id": "https://bitsoftrust.org/exampleBadge2.json",
+        "type": "BadgeClass",
+        "name": "Cool Badge",
+        "description": "For being cool.",
+        "image": "http://icons.iconarchive.com/icons/seanau/fresh-web/512/Badge-icon.png",
+        "criteria": "https://bitsoftrust.org/exampleBadge2.html",
+        "issuer": {
+          "type": "Profile",
+          "id": "https://bitsoftrust.org/organization.json",
+          "name": "bitsoftrust",
+          "image": "https://example.org/logo.png",
+          "url": "https://bitsoftrust.org",
+          "email": "bitsoftrust@bitsoftrust.org"
+        }
+      }
+  ]
 }
