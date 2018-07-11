@@ -1,0 +1,154 @@
+###
+### Open Badges Peer Endorsment API Spec
+###
+### Note: WIP
+
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: ""
+
+# TODO: Fill out
+#   termsOfService: "http://swagger.io/terms/"
+#   contact:
+#     email: "apiteam@swagger.io"
+#   license:
+#     name: "Apache 2.0"
+#     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+# host: "petstore.swagger.io"
+# basePath: "/v1"
+
+tags:
+- name: "assertion"
+  description: "Everything about Badge Assertions"
+- name: "class"
+  description: "Everything about Badge Classes"
+
+schemes:
+- "https"
+- "http"
+
+paths:
+  /shares:
+    post:
+      tags:
+      - "assertion"
+      summary: "Share an Assertion"
+      operationId: "shareAssertion"
+      consumes:
+      - "appliction/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Assertion"
+      # TODO: Check error codes
+      responses:
+        405: 
+          description: "Invalid input"
+        200:
+          description: "The shared Assertion"
+          schema:
+            $ref: "#/definitions/Share"
+            
+  /shares/{shareId}:
+    get:
+      tags:
+      - "assertion"
+      summary: "Request an Assertion by it's id"
+      operationId: "getAssertion"
+      parameters:
+      - name: "shareId"
+        description: "The id of the Assertion you want to request"
+        in: "path"
+        required: true
+        type: "string"
+      # TODO: Check error codes
+      responses:
+        200: 
+          description: "The requested Assertion"
+          schema: 
+            $ref: "#/definitions/Share"
+            
+  /shares/{shareId}/endorse:
+    post:
+      tags:
+      - "assertion"
+      summary: "Submit an endorsment/signature"
+      operationId: "submitSignedAssertion"
+      parameters:
+      - name: "shareId"
+        description: "The id of the Assertion you want to endorse"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "endorsment"
+        description: "Endorsment data"
+        in: "body"
+        required: true
+        schema:
+          $ref: '#/definitions/Endorsment'
+      # TODO: Check error codes
+      responses:
+        200:
+          description: "Succesful endorsment"
+        # TODO: Check possible return value
+            
+  /classes:
+    get:
+      tags:
+      - "class"
+      summary: "Request the collection of Badge Classes"
+      operationId: "getBadgeClasses"
+      consumes:
+      - "application/json"
+      # TODO: Check error codes
+      responses:
+        200:
+          description: "The collection of Badge Classes"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BadgeClassId"
+        
+
+definitions:
+  Share:
+    type: "object"
+    properties:
+      id:
+        $ref: "#/definitions/HashId"
+      assertion:
+        $ref: "#/definitions/Assertion"
+        
+  # TODO: Check required data
+  Assertion:
+    type: "object"
+    properties:
+      email:
+        example: "example@email.com"
+        type: "string"
+        format: "mail"
+      badgeClassId:
+        $ref: "#/definitions/BadgeClassId"
+        
+  BadgeClassId: 
+    type: "string"
+    format: "url"
+    example: "https://badgeframework/classes/coolclass"
+    description: "Link to the Badge Class (skill)."
+
+  # TODO: Check required data
+  Endorsment:
+    type: "object"
+    properties:
+      signature: 
+        type: "string"
+
+  HashId:
+    type: "string"
+    example: "fe3bb9ac"
+    description: "A representation of the resource ID that is not just an incrementing number"

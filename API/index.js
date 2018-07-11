@@ -17,6 +17,7 @@ const port = process.env.PORT || 8081;
 
 const router = express.Router();
 
+
 router.get('/', function (req, res) {
   res.json({ status: 'success' });
 });
@@ -39,6 +40,7 @@ router.post('/implication', function (request, response) {
   let sid = shortid.generate();
   db.get('implication').set(sid, implication).write();
   response.send({sid,implication});
+
 });
 
 router.get('/implication/:id', function (req, res) {

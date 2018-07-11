@@ -13,6 +13,7 @@
 - [EscoBadges](http://escobadges.eu/) : last year's Open Badges project in which we aligned the [ESCO framework](https://ec.europa.eu/esco/portal/api) with open badges with a focus on adaptable design based on the skill / competence that was chosen
 - [A Badge Builder](https://badgebuilder.cogni.zone/) : A Badge Builder made with Angular by Cognizone , [code is here](https://bitbucket.org/cognizone/badgebuilder/src/master/) 
 - [Kick-off document Summer of Code](https://hackmd.io/X1WQ9skBQuKnodq1iHpRyg?view)
+- [My Etherwallet](https://www.myetherwallet.com/) : as UX example for keystorage
 - ..
 
 ## Which stack are we going to use
