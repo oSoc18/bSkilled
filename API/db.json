@@ -1,6 +1,66 @@
 {
-  "badgeclasses": [
-    "http://localhost/badgeClassA.json",
-    "http://localhost/badgeClassB.json"
-  ]
+  "badgeTemplate": {
+    "ogh5txW7I": {
+      "id": "http://localhost/badgeClassA.json",
+      "type": "BadgeClass",
+      "name": "Awesome Example Badge",
+      "description": "For doing awesome.",
+      "image": "http://icons.iconarchive.com/icons/seanau/fresh-web/512/Badge-icon.png"
+    }
+  },
+  "implication": {
+    "ogh4txW7I": {
+      "@context": "https://w3id.org/openbadges/v2",
+      "id": "50b70c50-850e-11e8-895e-5f20346aa63b",
+      "type": "Assertion",
+      "badgetemplate": "ExampleBadgeTemplate",
+      "recipient": "niels@larmuseau.org"
+    }
+  },
+  "assertion": {
+    "MYVrImZe7": {
+      "@context": "https://w3id.org/openbadges/v2",
+      "type": "Assertion",
+      "id": "urn:uuid:uuid1",
+      "recipient": {
+        "type": "email",
+        "hashed": true,
+        "salt": "deadsea",
+        "identity": "sha256$c7ef86405ba71b85acd8e2e95166c4b111448089f2e1599f42fe1bba46e865c5"
+      },
+      "issuedOn": "2018-12-31T23:59:59Z",
+      "badge": {
+        "id": "urn:uuid:uuid3",
+        "type": "BadgeClass",
+        "name": "badge name",
+        "description": "badge description",
+        "image": "https://example.org/badge.png",
+        "issuer": {
+          "@context": "https://w3id.org/openbadges/v2",
+          "type": "Profile",
+          "id": "urn:uuid:uuid4",
+          "name": "YYY",
+          "url": "https://YYY.YY",
+          "email": "YYY@YYY.YY",
+          "publicKey": {
+            "@context": "https://w3id.org/openbadges/v2",
+            "type": "CryptographicKey",
+            "id": "urn:uuid:uuid5",
+            "owner": "urn:uuid:uuid4",
+            "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBG0BA...OClDQAB\n-----END PUBLIC KEY-----\n"
+          }
+        }
+      },
+      "verification": {
+        "type": "SignedBadge",
+        "creator": {
+          "@context": "https://w3id.org/openbadges/v2",
+          "type": "CryptographicKey",
+          "id": "urn:uuid:uuid5",
+          "owner": "urn:uuid:uuid4",
+          "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBG0BA...OClDQAB\n-----END PUBLIC KEY-----\n"
+        }
+      }
+    }
+  }
 }
