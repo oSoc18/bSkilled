@@ -14,7 +14,8 @@ module.exports = {
       name: 'Awesome Example Badge',
       description: 'For doing awesome'
     }
-  }
+  },
+  props: ['img','name','description']
 }
 </script>
 
