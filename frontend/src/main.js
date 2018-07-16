@@ -5,13 +5,15 @@ import store from './store.js';
 
 import Landing from './Landing.vue';
 import Share from './Share.vue';
+import Sign from './Sign.vue';
 import App from './App.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   { path: '/', component: Landing },
-  { path: '/share', component: Share }
+  { path: '/share', component: Share },
+  { path: '/sign', component: Sign }
 ];
 
 const router = new VueRouter({ routes });
