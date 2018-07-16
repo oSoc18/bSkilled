@@ -17,58 +17,64 @@ const port = process.env.PORT || 8081;
 
 const router = express.Router();
 
+router.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
-router.get('/', function (req, res) {
+router.get('/', function(req, res) {
   res.json({ status: 'success' });
 });
 
-router.get('/badgeTemplate', function (req, res) {
+router.get('/badgeTemplate', function(req, res) {
   res.send(db.get('badgeTemplate').value());
 });
 
-router.get('/badgeTemplate/:id', function (req, res) {
-    res.send(db.get('badgeTemplate').value()[req.params.id]);
-  });
+router.get('/badgeTemplate/:id', function(req, res) {
+  res.send(db.get('badgeTemplate').value()[req.params.id]);
+});
 
-router.post('/implication', function (request, response) {
-  let implication = { "@context": "https://w3id.org/openbadges/v2",
-    "id" : uuidv1(),
+router.post('/implication', function(request, response) {
+  let implication = {
+    "@context": "https://w3id.org/openbadges/v2",
+    "id": uuidv1(),
     "type": "Assertion",
-    "badgetemplate": request.body.badgetemplate,
+    "badgeTemplate": request.body.badgeTemplate,
     "recipient": request.body.recipient
-    };
+  };
   let sid = shortid.generate();
   db.get('implication').set(sid, implication).write();
-  response.send({sid,implication});
+  response.send({ sid, implication });
 
 });
 
-router.get('/implication/:id', function (req, res) {
-    res.send(db.get('implication').value()[req.params.id]);
-  });
+router.get('/implication/:id', function(req, res) {
+  res.send(db.get('implication').value()[req.params.id]);
+});
 
-router.post('/assertion', function (request, response) {
-    let assertion = request.body;
-    let sid = shortid.generate();
-    db.get('assertion').set(sid, assertion).write();
-    response.send({sid,assertion});
-  });
+router.post('/assertion', function(request, response) {
+  let assertion = request.body;
+  let sid = shortid.generate();
+  db.get('assertion').set(sid, assertion).write();
+  response.send({ sid, assertion });
+});
 
-router.get('/assertion/:id', function (req, res) {
-    res.send(db.get('assertion').value()[req.params.id]);
-  });
+router.get('/assertion/:id', function(req, res) {
+  res.send(db.get('assertion').value()[req.params.id]);
+});
 
 
-router.post('/profile', function (request, response) {//TODO test
-    let profile = request.body;
-    let sid = request.body.publickey;//validate
-    db.get('profile').set(sid, assertion).write();
-    response.send({sid,assertion});
-  });
+router.post('/profile', function(request, response) { //TODO test
+  let profile = request.body;
+  let sid = request.body.publickey; //validate
+  db.get('profile').set(sid, assertion).write();
+  response.send({ sid, assertion });
+});
 
-router.get('/profile/:identifier', function (req, res) {//TODO test
-    res.send(db.get('profile').value()[req.params.identifier]);
-  });
+router.get('/profile/:identifier', function(req, res) { //TODO test
+  res.send(db.get('profile').value()[req.params.identifier]);
+});
 app.use('/api', router);
 app.listen(port);
 console.log('API running on port:' + port);
