@@ -6,27 +6,24 @@
 </template>
 
 <script>
-import Header from 'Components/Header'
-import Button from 'Components/Button'
+  import Header from 'Components/Header'
+  import Button from 'Components/Button'
 
-export default {
-  name: 'app',
-  components: {
-    'v-header': Header,
-    'v-button': Button
-  },
-  methods: {
-    consoleClick() {
-      console.log('Button clicked')
+  export default {
+    name: 'app',
+    components: {
+      'v-header': Header,
+      'v-button': Button
+    },
+    methods: {
+      consoleClick() {
+        console.log('Button clicked')
+      }
     }
   }
-}
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
-@import url('https://fonts.googleapis.com/css?family=Questrial');
-
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
