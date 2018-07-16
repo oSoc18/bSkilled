@@ -58,6 +58,17 @@ router.get('/assertion/:id', function (req, res) {
     res.send(db.get('assertion').value()[req.params.id]);
   });
 
+
+router.post('/profile', function (request, response) {//TODO test
+    let profile = request.body;
+    let sid = request.body.publickey;//validate
+    db.get('profile').set(sid, assertion).write();
+    response.send({sid,assertion});
+  });
+
+router.get('/profile/:identifier', function (req, res) {//TODO test
+    res.send(db.get('profile').value()[req.params.identifier]);
+  });
 app.use('/api', router);
 app.listen(port);
 console.log('API running on port:' + port);
