@@ -2,6 +2,7 @@
   <div id="app">
     <v-header>Seems like you want to sign a badge</v-header>
     <v-button :onClick="consoleClick">Sign the badge</v-button>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -89,5 +90,4 @@ html {
   height: 100vh;
   width: 100vw;
 }
-
 </style>
