@@ -2,16 +2,6 @@
   <div class="form_generate-key">
     <v-header>Let's get a profile key</v-header>
     <form v-if="!submitted">
-      <label>First name</label>
-      <input type="text" v-model.lazy="profile.firstName"  />
-      <label>Last name</label>
-      <input type="text" v-model.lazy="profile.lastName" />
-      <label>E-mail adress</label>
-      <input type="text" v-model.lazy="profile.email" />
-      <label>Company name</label>
-      <input type="text" v-model.lazy="profile.company" required />
-      <label>Website url</label>
-      <input type="text" v-model.lazy="profile.url" required />
       <label>password</label>
       <input type="password" v-model.lazy="password" required />
       <button v-on:click.prevent="post">Get your personal key</button>
@@ -36,14 +26,6 @@
     },
     data () {
         return {
-            profile: {
-                firstName: '',
-                lastName: '',
-                email: '',
-                company: '',
-                url: ''
-
-            },
             submitted: false,
             password: null,
         }
@@ -53,15 +35,7 @@
             console.log("generating");
             
             this.generate(this);
-            /*
-            this.$http.post('http://jsonplaceholder.typicode.com/posts', {
-                title: this.profile.firstName,
-                body: this.profile.lastName,
-                userId: 1
-            }).then(function(data){
-                console.log(data);
-                this.submitted = true;
-            });*/
+            
         },
         generate: function(context){
           var F = kbpgp["const"].openpgp;

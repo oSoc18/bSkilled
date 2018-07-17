@@ -9,6 +9,7 @@ import Share from './Share.vue';
 import Sign from './components/Sign/Sign.vue';
 import GenerateKey from './components/Sign/Generate/Generate.vue';
 import UploadKey from './components/Sign/Upload/Upload.vue';
+import Profile from './components/Sign/Profile/profile.vue';
 import App from './App.vue';
 
 Vue.use(VueRouter);
@@ -19,6 +20,7 @@ const routes = [
   { path: '/share', component: Share },
   { path: '/sign', component: Sign },
   { path: '/generateKey', component: GenerateKey },
+  { path: '/profile', component: Profile },
   { path: '/uploadKey', component: UploadKey }
 ];
 
