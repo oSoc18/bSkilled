@@ -62,7 +62,7 @@ router.post('/implication', function(request, response) {
 
 });
 
-router.get('/implication/:id', function(req, res) {
+router.get('/share/:id', function(req, res) {
   res.send(db.get('implication').value()[req.params.id]);
 });
 

@@ -4,7 +4,7 @@
     <p>Receiver</p>
     <p>{{share.implication.recipient}}</p>
     <p>Here be a share link!</p>
-    <p>{{"http://localhost:8080/shares/" + share.sid}}</p>
+    <p>{{"http://localhost:8080/share/" + share.sid}}</p>
   </div>
 </template>
 
