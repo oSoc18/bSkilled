@@ -10,6 +10,7 @@ export default {
 };
 </script>
 
+
 <style lang="scss">
 
 html, body, div, span, applet, object, iframe,
@@ -65,7 +66,7 @@ html {
   outline: none;
 }
 
-#app {
+#app, .app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
@@ -74,6 +75,5 @@ html {
   align-items: center;
   color: #000;
   height: 100vh;
-  width: 100vw;
 }
 </style>
