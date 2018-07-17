@@ -13,19 +13,27 @@ Vue.use(VueRouter);
 Vue.use(VueResource);
 
 const routes = [
-  { path: '/', component: Recipient },
-  { path: '/recipient', component: Recipient },
+  { path: '/', name: 'landing', component: Landing },
+  {
+    path: '/recipient',
+    name: 'recipient',
+    component: Recipient,
+    props: true,
+    beforeEnter: (to, from, next) => {
+      if (from.name != 'landing') { next('/'); }
+      next();
+    }
+  },
   {
     path: '/share',
     name: 'share',
     component: Share,
     props: true,
     beforeEnter: (to, from, next) => {
-      if (from.name != 'share') { next('/'); }
+      if (from.name != 'recipient') { next('/'); }
       next();
     }
   },
-  { path: '/search', component: Search }
 ];
 
 const router = new VueRouter({ routes });

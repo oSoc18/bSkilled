@@ -3,7 +3,7 @@
     <v-badgeclass-view :badge-class="badgeClass"/>
     <p>Recipient email:</p>
     <input v-model="recipient" placeholder="you@email.com">
-    <button v-on:click="submit">Let's finish</button>
+    <button @click="submit">Let's finish</button>
   </div>
 </template>
 
@@ -15,17 +15,18 @@ export default {
   components: {
     "v-badgeclass-view": BadgeClassView
   },
+  props: {
+    badgeClass: {
+      name: String,
+      description: String,
+      image: String
+    }
+  },
   data() {
     return {
       recipient: ""
     };
   },
-  computed: mapState({
-    badgeClass: state => ({
-      name: "Fake badge creator",
-      description: "You can create fake badges!"
-    })
-  }),
   methods: {
     submit: function(event) {
       const recipient = this.recipient;
