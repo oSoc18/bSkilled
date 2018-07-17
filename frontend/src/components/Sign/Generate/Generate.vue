@@ -12,6 +12,8 @@
       <input type="text" v-model.lazy="profile.company" required />
       <label>Website url</label>
       <input type="text" v-model.lazy="profile.url" required />
+      <label>password</label>
+      <input type="password" v-model.lazy="profile.url" required />
       <button v-on:click.prevent="post">Get your personal key</button>
     </form>
     <div v-if="submitted">
@@ -78,9 +80,8 @@
 
           kbpgp.KeyManager.generate(opts, function(err, theKeyManager) {
             if (!err) {
-              // sign alice's subkeys
               theKeyManager.sign({}, function(err) {
-                console.log(theKeyManager);
+                //console.log(theKeyManager);
                 // export demo; dump the private with a passphrase
                 theKeyManager.export_pgp_private ({
                   passphrase: pass
@@ -88,7 +89,7 @@
                   console.log("private key: ", pgp_private);
                 });
                 theKeyManager.export_pgp_public({}, function(err, pgp_public) {
-                  console.log("public key: ", pgp_public);
+                  //console.log("public key: ", pgp_public);
                 });
               });
             }
