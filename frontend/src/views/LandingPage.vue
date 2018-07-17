@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import BadgeClassSearch from "./Search";
+import BadgeClassSearch from "../components/Search.vue";
 
 export default {
   components: {

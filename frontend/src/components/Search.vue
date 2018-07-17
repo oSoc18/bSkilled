@@ -5,18 +5,18 @@
       <li v-for="(badge, key) in foundBadges"
         v-bind:key="key"
         @click="onClick(key)">
-        <v-badgeclass-view :badge-class="badge"/>
+        <v-badgeclass-card :badge-class="badge"/>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import BadgeClassView from "./BadgeClassView.vue";
+import BadgeClassCard from "./BadgeClassCard.vue";
 
 export default {
   components: {
-    "v-badgeclass-view": BadgeClassView
+    "v-badgeclass-card": BadgeClassCard
   },
   props: {
     selectBadgeClass: Function
