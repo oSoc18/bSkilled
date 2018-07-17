@@ -2,10 +2,13 @@
   <div class="container">
     <input type="text"   v-model="query"/>
     <ul>
-      <li v-for="(badge, key) in foundBadges"
-        v-bind:key="key"
-        @click="onClick(key)">
-        <BadgeClassCard :badge-class="badge"/>
+      <!-- TODO: Use unique ID for :key here -->
+      <li v-for="(match, index) in matches"
+        v-bind:key="match.item.name"
+        @click="onClick(index)">
+        <BadgeClassCard
+          :badge-class="match.item"
+          :matches="match.matches"/>
       </li>
     </ul>
   </div>
@@ -13,6 +16,20 @@
 
 <script>
 import BadgeClassCard from "@/components/BadgeClassCard";
+import Fuse from "fuse.js";
+
+const searchOptions = {
+  minMatchCharLength: 2,
+  threshold: 0.3,
+  tokenize: true,
+  matchAllTokens: true,
+  findAllMatches: true,
+  includeMatches: true,
+  keys: [
+    { name: "name", weight: "0.7" },
+    { name: "description", weight: "0.3" }
+  ]
+};
 
 export default {
   components: {
@@ -24,34 +41,30 @@ export default {
   data() {
     return {
       query: "",
-      badgeClasses: {
-        ogh5txW7I: {
-          id: "http://localhost/badgeClassA.json",
-          type: "BadgeClass",
-          name: "Awesome Example Badge",
-          description: "For doing awesome.",
-          image:
-            "http://icons.iconarchive.com/icons/icons8/windows-8/512/City-Police-Badge-icon.png"
-        }
-      },
-      foundBadges: {}
+      matches: []
     };
   },
   methods: {
-    onClick(key) {
-      this.selectBadgeClass(this.badgeClasses[key]);
+    onClick(index) {
+      this.selectBadgeClass(this.matches[index].item);
     }
   },
   watch: {
-    query: function(val, oldVal) {
-      this.foundBadges = {};
-      for (var key in this.badgeClasses) {
-        if (this.badgeClasses.hasOwnProperty(key)) {
-          if (this.badgeClasses[key].name.search(val) >= 0) {
-            this.foundBadges[key] = this.badgeClasses[key];
-          }
-        }
-      }
+    query: function(queryString) {
+      // TODO Add api server to config somewhere
+      // TODO Configure search options
+      // TODO Add time-out functionality
+      // TODO Add match highlighting
+      this.$http
+        .get("http://localhost:8081/api/badgeTemplate")
+        .then(resp => resp.body)
+        .then(templates => {
+          const list = Object.keys(templates).map(sid => templates[sid]);
+          const fuse = new Fuse(list, searchOptions);
+          return fuse.search(queryString);
+        })
+        .then(matches => (this.matches = matches))
+        .catch(err => console.log(err));
     }
   }
 };

@@ -9,6 +9,12 @@ const db = low(adapter);
 const uuidv1 = require('uuid/v1');
 const shortid = require('shortid');
 
+db.defaults({
+  version: 'v0.1',
+  badgeTemplate: {},
+  implication: {},
+  assertion: {},
+})
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -17,9 +23,16 @@ const port = process.env.PORT || 8081;
 
 const router = express.Router();
 
+// Set CORS
 router.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+// Set Content-Type always be JSON
+router.use(function(req, res, next) {
+  res.set({ 'Content-Type': 'application/json; charset=utf-8' });
   next();
 });
 
@@ -75,6 +88,8 @@ router.post('/profile', function(request, response) { //TODO test
 router.get('/profile/:identifier', function(req, res) { //TODO test
   res.send(db.get('profile').value()[req.params.identifier]);
 });
+
 app.use('/api', router);
 app.listen(port);
-console.log('API running on port:' + port);
+
+console.log(`API running on http://localhost:${port}/api`);
