@@ -24,7 +24,7 @@ const routes = [
       if (from.name != 'share') { next('/'); }
       next();
     }
-  }
+  },
   { path: '/search', component: Search }
 ];
 
