@@ -13,7 +13,8 @@
     "file-saver": "^1.3.8",
     "kbpgp": "^2.0.77",
     "vue": "^2.5.11",
-    "vue-resource": "^1.2.1",
+
+    "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },

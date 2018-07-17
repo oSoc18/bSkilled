@@ -24,7 +24,6 @@ tags:
   description: "Everything about Badge Assertions"
 - name: "class"
   description: "Everything about Badge Classes"
-
 schemes:
 - "https"
 - "http"
@@ -112,12 +111,12 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/BadgeClassId"
+              $ref: "#/definitions/BadgeClass"
         
 
 definitions:
   Share:
-    type: "object"
+    type: object
     properties:
       id:
         $ref: "#/definitions/HashId"
@@ -126,29 +125,65 @@ definitions:
         
   # TODO: Check required data
   Assertion:
-    type: "object"
+    type: object
     properties:
-      email:
-        example: "example@email.com"
-        type: "string"
-        format: "mail"
-      badgeClassId:
-        $ref: "#/definitions/BadgeClassId"
+      id:
+        type: string
+        format: uuid
+      type:
+        type: string
+        enum: [Assertion]
+      identity:
+        $ref: "#/definitions/IdentityObject"
+      badge:
+        $ref: "#/definitions/BadgeClass"
         
-  BadgeClassId: 
-    type: "string"
-    format: "url"
-    example: "https://badgeframework/classes/coolclass"
-    description: "Link to the Badge Class (skill)."
+  BadgeClass: 
+    type: object
+    properties:
+      type:
+        type: string
+        enum: [BadgeClass]
+      image:
+        type: string
+        format: url
+        example: "https://badgeframework/classes/coolclass"
+      name:
+        type: string
+        example: "Demo Badge Creator"
+      description:
+        type: string
+        example: "You can fluently create demo badges for demo purposes."
+      issuer:
+        type: string
+        format: url
+        example: "https://bskilled.com/profiles/abcd45a"
+      criteria:
+        type: string
+        example: "You need to have created at least one demo badge."
+
+  IdentityObject:
+    type: object
+    properties:
+      identity:
+        type: string
+        format: email
+      type:
+        type: string
+        enum: [email]
+      hashed:
+        type: boolean
+        enum: [false]
+
 
   # TODO: Check required data
   Endorsment:
-    type: "object"
+    type: object
     properties:
       signature: 
-        type: "string"
+        type: string
 
   HashId:
-    type: "string"
+    type: string
     example: "fe3bb9ac"
     description: "A representation of the resource ID that is not just an incrementing number"
