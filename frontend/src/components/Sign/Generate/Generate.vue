@@ -13,7 +13,7 @@
       <label>Website url</label>
       <input type="text" v-model.lazy="profile.url" required />
       <label>password</label>
-      <input type="password" v-model.lazy="profile.url" required />
+      <input type="password" v-model.lazy="password" required />
       <button v-on:click.prevent="post">Get your personal key</button>
     </form>
     <div v-if="submitted">
@@ -25,6 +25,7 @@
 <script>
   import Header from 'Components/Header';
   import Button from 'Components/Button';
+  import FileSaver from 'file-saver';
   import kbpgp from 'kbpgp';
 
   export default {
@@ -43,13 +44,15 @@
                 url: ''
 
             },
-            submitted: false
+            submitted: false,
+            password: null,
         }
     },
     methods: {
         post: function(){
             console.log("generating");
-            this.generate();
+            
+            this.generate(this);
             /*
             this.$http.post('http://jsonplaceholder.typicode.com/posts', {
                 title: this.profile.firstName,
@@ -60,10 +63,10 @@
                 this.submitted = true;
             });*/
         },
-        generate: function(useridentifier,pass){
+        generate: function(context){
           var F = kbpgp["const"].openpgp;
           var opts = {
-            userid: useridentifier,
+            userid: "idkwhatissupposedtobeinthisid",
             primary: {
               nbits: 2048,
               flags: F.certify_keys | F.sign_data | F.auth,
@@ -84,9 +87,10 @@
                 //console.log(theKeyManager);
                 // export demo; dump the private with a passphrase
                 theKeyManager.export_pgp_private ({
-                  passphrase: pass
+                  passphrase: context.password
                 }, function(err, pgp_private) {
                   console.log("private key: ", pgp_private);
+                  context.makefile(pgp_private);
                 });
                 theKeyManager.export_pgp_public({}, function(err, pgp_public) {
                   //console.log("public key: ", pgp_public);
@@ -97,6 +101,10 @@
               console.log('error' + err);
             }
           });
+        },
+        makefile: function(text){
+            let blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+            FileSaver.saveAs(blob, "privateKey.asc");
         }
     }
   }
