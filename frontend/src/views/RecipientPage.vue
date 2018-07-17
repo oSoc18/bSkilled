@@ -34,17 +34,15 @@ export default {
       this.$store.dispatch("submitImplication", { recipient, badgeClass });
 
       const implication = { recipient, badgeTemplate: badgeClass };
-      this.$http
-        .post("http://localhost:8081/api/implication", implication)
-        .then(
-          resp => {
-            console.log(resp);
-            this.$router.push({ name: "share", params: { share: resp.body } });
-          },
-          err => {
-            console.log(err);
-          }
-        );
+      this.$http.post(process.env.API + "implication", implication).then(
+        resp => {
+          console.log(resp);
+          this.$router.push({ name: "share", params: { share: resp.body } });
+        },
+        err => {
+          console.log(err);
+        }
+      );
     }
   }
 };

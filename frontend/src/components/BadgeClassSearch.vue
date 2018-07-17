@@ -51,12 +51,14 @@ export default {
   },
   watch: {
     query: function(queryString) {
-      // TODO Add api server to config somewhere
+      // TODO Abstract api calls away from here
       // TODO Configure search options
       // TODO Add time-out functionality
       // TODO Add match highlighting
+      console.log(process.env.API);
+
       this.$http
-        .get("http://localhost:8081/api/badgeTemplate")
+        .get(process.env.API + "badgeTemplate")
         .then(resp => resp.body)
         .then(templates => {
           const list = Object.keys(templates).map(sid => templates[sid]);

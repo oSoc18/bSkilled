@@ -4,7 +4,7 @@
     <p>Receiver</p>
     <p>{{share.implication.recipient}}</p>
     <p>Here be a share link!</p>
-    <p>{{"http://localhost:8080/share/" + share.sid}}</p>
+    <p>{{location + "share/" + share.sid}}</p>
   </div>
 </template>
 
@@ -12,6 +12,11 @@
 import BadgeClassCard from "@/components/BadgeClassCard";
 
 export default {
+  data() {
+    return {
+      location: process.env.LOCATION
+    };
+  },
   components: {
     BadgeClassCard
   },
