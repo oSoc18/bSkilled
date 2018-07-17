@@ -1,9 +1,10 @@
 <template>
   <div class="app">
-    <v-header>Upload your keyfile</v-header>
-    <input type="file" @change="loadTextFromFile">
     <label for="passphrase">passphrase</label>
     <input type="password" id="passphrase" v-model="passphrase">
+    <v-header>Upload your keyfile</v-header>
+    <input type="file" @change="loadTextFromFile">
+    
   </div>
 </template>
 
