@@ -1,0 +1,52 @@
+<template>
+  <div>
+    <v-badgeclass-view :badge-class="badgeClass"/>
+    <p>Recipient email:</p>
+    <input v-model="recipient" placeholder="you@email.com">
+    <button v-on:click="submit">Let's finish</button>
+  </div>
+</template>
+
+<script>
+import { mapState } from "vuex";
+import BadgeClassView from "./BadgeClassView.vue";
+
+export default {
+  components: {
+    "v-badgeclass-view": BadgeClassView
+  },
+  data() {
+    return {
+      recipient: ""
+    };
+  },
+  computed: mapState({
+    badgeClass: state => ({
+      name: "Fake badge creator",
+      description: "You can create fake badges!"
+    })
+  }),
+  methods: {
+    submit: function(event) {
+      const recipient = this.recipient;
+      const badgeClass = this.badgeClass;
+      console.log(`Submitting badge for ${recipient}`);
+      this.$store.dispatch("submitImplication", { recipient, badgeClass });
+
+      const implication = { recipient, badgeTemplate: badgeClass };
+      this.$http
+        .post("http://localhost:8081/api/implication", implication)
+        .then(
+          resp => {
+            console.log(resp);
+            this.$router.push({ name: "share", params: { share: resp.body } });
+          },
+          err => {
+            console.log(err);
+          }
+        );
+    }
+  }
+};
+</script>
+
