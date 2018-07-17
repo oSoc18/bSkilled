@@ -3,16 +3,16 @@
     <h1>Welcome on bSkilled!</h1>
     <h2>Bee connected!</h2>
     <p>zzzzooooeeeemmm</p>
-    <v-badgeclass-search :selectBadgeClass="selectBadgeClass"/>
+    <BadgeClassSearch :selectBadgeClass="selectBadgeClass"/>
   </div>
 </template>
 
 <script>
-import BadgeClassSearch from "../components/Search.vue";
+import BadgeClassSearch from "@/components/BadgeClassSearch";
 
 export default {
   components: {
-    "v-badgeclass-search": BadgeClassSearch
+    BadgeClassSearch
   },
   methods: {
     selectBadgeClass(badgeClass) {

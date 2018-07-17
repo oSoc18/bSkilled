@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-badgeclass-card :badge-class="share.implication.badgeTemplate"/>
+    <BadgeClassCard :badge-class="share.implication.badgeTemplate"/>
     <p>Receiver</p>
     <p>{{share.implication.recipient}}</p>
     <p>Here be a share link!</p>
@@ -9,9 +9,12 @@
 </template>
 
 <script>
-import BadgeClassCard from "../components/BadgeClassCard.vue";
+import BadgeClassCard from "@/components/BadgeClassCard";
 
 export default {
+  components: {
+    BadgeClassCard
+  },
   props: {
     share: {
       sid: String,
@@ -21,9 +24,6 @@ export default {
         badgeTemplate: Object
       }
     }
-  },
-  components: {
-    "v-badgeclass-card": BadgeClassCard
   }
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-badgeclass-card :badge-class="badgeClass"/>
+    <BadgeClassCard :badge-class="badgeClass"/>
     <p>Recipient email:</p>
     <input v-model="recipient" placeholder="you@email.com">
     <button @click="submit">Let's finish</button>
@@ -8,12 +8,11 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import BadgeClassCard from "../components/BadgeClassCard.vue";
+import BadgeClassCard from "@/components/BadgeClassCard";
 
 export default {
   components: {
-    "v-badgeclass-card": BadgeClassCard
+    BadgeClassCard
   },
   props: {
     badgeClass: {
