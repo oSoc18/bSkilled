@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import BadgeClassCard from "@/components/BadgeClassCard";
+import BadgeClassCard from "Components/BadgeClassCard";
 import Fuse from "fuse.js";
 
 const searchOptions = {

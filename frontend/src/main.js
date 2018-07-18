@@ -6,7 +6,6 @@ import router from './router/index.js'
 
 import App from './App.vue';
 
-
 Vue.use(VueResource);
 
 new Vue({
