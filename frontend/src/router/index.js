@@ -40,7 +40,7 @@ const routes = [{
     beforeEnter: flow('recipient', undefined)
   },
 
-  { path: '/sign', component: Sign },
+  { path: '/sign/:sid', component: Sign },
   { path: '/generateKey', component: GenerateKey },
   { path: '/profile', name: "profile", component: Profile },
   // TODO Upload is maybe not the right word?
