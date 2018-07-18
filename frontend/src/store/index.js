@@ -4,14 +4,14 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const state = {
-  implication: {
-    skill: "demo skill"
-  },
-
-  descriptionBadge: `Teamwork means someone has the interests of the team at heart, working for the good of the team.`
+  implication: undefined
 };
 
-const mutations = {};
+const mutations = {
+  saveImplication(state, implication) {
+    state.implication = implication;
+  }
+};
 
 const actions = {
   submitImplication({ commit }, { recipient, badgeClass }) {
@@ -19,11 +19,19 @@ const actions = {
     console.log(badgeClass);
     const implication = { recipient, badgeTemplate: badgeClass };
     Vue.http
-      .post('http://localhost:8081/api/implication', implication)
+      .post(process.env.API + "implication", implication)
       .then(
         (resp) => { console.log(resp); },
         (err) => { console.log(err); }
       );
+  },
+  fetchImplication({ commit }, sid) {
+    console.log(sid);
+    Vue.http
+      .get(`${process.env.API}share/${sid}`)
+      .then(resp => resp.body)
+      .then(implication => commit('saveImplication', implication))
+      .catch(err => console.log(err));
   }
 };
 
