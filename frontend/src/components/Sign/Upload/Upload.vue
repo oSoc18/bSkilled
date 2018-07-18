@@ -69,3 +69,38 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+$buttonBgColor: #f6c060;
+
+.upload_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dropbox {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $buttonBgColor;
+  border-radius: 75px;
+  min-height: 75px;
+  width: 75px;
+  position: relative;
+  cursor: pointer;
+ }
+
+ .input-file {
+   opacity: 0;
+   height: 75px;
+   position: absolute;
+   cursor: pointer;
+ }
+
+ .dropbox:hover {
+  background: darken($buttonBgColor, 20);
+ }
+
+</style>

@@ -2,7 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 
-import store from './store.js';
+import store from './store/index.js';
+import router from './router/index.js'
 
 import Landing from './Landing.vue';
 import Share from './Share.vue';
