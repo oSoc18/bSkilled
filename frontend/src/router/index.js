@@ -42,8 +42,9 @@ const routes = [{
 
   { path: '/sign', component: Sign },
   { path: '/generateKey', component: GenerateKey },
-  { path: '/profile', component: Profile },
-  { path: '/uploadKey', component: UploadKey }
+  { path: '/profile', name: "profile", component: Profile },
+  // TODO Upload is maybe not the right word?
+  { path: '/uploadKey', name: "upload", component: UploadKey }
 
 ];
 

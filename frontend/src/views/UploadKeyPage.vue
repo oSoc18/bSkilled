@@ -1,29 +1,80 @@
 <template>
-  <div class="app">
-    <label for="passphrase">passphrase</label>
-    <input type="password" id="passphrase" v-model="passphrase">
-    <v-header>Upload your keyfile</v-header>
-    <input type="file" @change="loadTextFromFile">
+  <div>
+    <div v-if="state === 'start'">
+      <p>Here be a description about private keys and such.</p>
+      <FileUploadButton
+        id="uploadKeyButton"
+        :onResult="onKeyLoad"/>
+    </div>
 
+    <div v-if="state === 'askPassphrase'">
+      <form @submit.prevent="handleSubmitPassphrase">
+        <label>Passphrase</label>
+        <input
+          type="password"
+          v-model="passphrase"
+          placeholder="reallysecurephassprase3"/>
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+
 import Header from "Components/TheHeader";
+import FileUploadButton from "Components/FileUploadButton";
 import kbpgp from "kbpgp";
 
 export default {
-  name: "app",
+  components: {
+    FileUploadButton,
+    Header
+  },
   data() {
     return {
-      passphrase: ""
+      passphrase: "",
+      state: "start",
+      keyfile: ""
     };
   },
-  components: {
-    "v-header": Header
-  },
   methods: {
+    onKeyLoad(keyfile) {
+      this.keyfile = keyfile;
+      kbpgp.KeyManager.import_from_armored_pgp(
+        { armored: this.keyfile },
+        (err, key) => {
+          this.key = key;
+          if (err) {
+            return this.handleKeyError(err);
+          }
+          if (!key.is_pgp_locked()) {
+            this.unlockKey();
+          } else {
+            this.state = "askPassphrase";
+          }
+        }
+      );
+    },
+    unlockKey() {
+      this.key.unlock_pgp({ passphrase: this.passphrase }, err => {
+        if (err) {
+          return this.handleUnlockError(err);
+        }
+        this.$router.push({ name: "profile" });
+      });
+    },
+    handleSubmitPassphrase() {
+      this.unlockKey();
+    },
+    handleKeyError(err) {
+      console.log(err);
+      alert(err);
+    },
+    handleUnlockError(err) {
+      console.log(err);
+      alert(err);
+    },
     loadTextFromFile(ev) {
       let context = this;
       const file = ev.target.files[0];
@@ -31,40 +82,6 @@ export default {
 
       reader.onload = e => context.loadkey(e.target.result, context);
       reader.readAsText(file);
-    },
-    loadkey(keyfile, context) {
-      kbpgp.KeyManager.import_from_armored_pgp(
-        {
-          armored: keyfile
-        },
-        function(err, KeyManager) {
-          if (!err) {
-            if (KeyManager.is_pgp_locked()) {
-              KeyManager.unlock_pgp(
-                {
-                  passphrase: context.passphrase
-                },
-                function(err) {
-                  if (!err) {
-                    console.log("Loaded private key with passphrase");
-                    console.log(KeyManager);
-                    //extract public key
-                    KeyManager.export_pgp_public({}, function(err, pgp_public) {
-                      console.log("public key: ", pgp_public);
-                    });
-                  } else {
-                    alert(err);
-                  }
-                }
-              );
-            } else {
-              console.log("Loaded private key w/o passphrase");
-            }
-          } else {
-            alert(err);
-          }
-        }
-      );
     }
   }
 };
