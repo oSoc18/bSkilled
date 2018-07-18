@@ -1,14 +1,15 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
 
 <script>
-export default {
-  name: "app"
-};
+export default { name: "app" };
 </script>
+<<<<<<< HEAD
 
 
 <style lang="scss">
@@ -77,3 +78,5 @@ html {
   height: 100vh;
 }
 </style>
+=======
+>>>>>>> development
