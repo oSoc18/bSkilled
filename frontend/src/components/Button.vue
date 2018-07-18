@@ -16,7 +16,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$buttonBgColor: #f6c060;
+@import "~Vars";
+
 .Button {
   background: $buttonBgColor;
   border: none;

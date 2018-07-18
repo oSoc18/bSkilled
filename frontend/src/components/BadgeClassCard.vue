@@ -19,6 +19,7 @@ module.exports = {
 </script>
 
 <style lang="scss">
+@import "~Vars";
 .badgetemp {
   margin: 5px;
   width: 550px;

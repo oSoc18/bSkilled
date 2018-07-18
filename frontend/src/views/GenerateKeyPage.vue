@@ -86,6 +86,7 @@ export default {
 </script>
 
 <style>
+@import "~Vars";
 label {
   display: block;
   margin: 20px 0 10px;

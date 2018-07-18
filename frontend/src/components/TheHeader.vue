@@ -7,6 +7,7 @@
 </template>
 
 <style scoped>
+@import "~Vars";
 .Header {
   margin-bottom: 15px;
 }
