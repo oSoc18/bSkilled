@@ -19,6 +19,7 @@
     "vue-form-wizard": "^0.8.4",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
+    "vue-clipboard2": "^0.2.0",
     "vuex": "^3.0.1",
     "element-ui": "2.0.8"
   },
