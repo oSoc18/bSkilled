@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import BadgeClassSearch from "@/components/BadgeClassSearch";
+import BadgeClassSearch from "Components/BadgeClassSearch";
 
 export default {
   components: {

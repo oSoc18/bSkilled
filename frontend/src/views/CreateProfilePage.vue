@@ -21,34 +21,34 @@
 </template>
 
 <script>
-  import Header from 'Components/Header';
-  import Button from 'Components/Button';
-  import FileSaver from 'file-saver';
-  import kbpgp from 'kbpgp';
+import Header from "Components/TheHeader";
+import Button from "Components/Button";
+import FileSaver from "file-saver";
+import kbpgp from "kbpgp";
 
-  export default {
-    name: 'app',
-    components: {
-      'v-header': Header,
-      'v-button': Button
-    },
-    data () {
-        return {
-            profile: {
-                firstName: '',
-                lastName: '',
-                email: '',
-                company: '',
-                url: ''
-            },
-            submitted: false
-        }
-    },
-    methods: {
-        post: function(){
-            console.log("profile posting");
-            
-            /* TODO Post profile to backend
+export default {
+  name: "app",
+  components: {
+    "v-header": Header,
+    "v-button": Button
+  },
+  data() {
+    return {
+      profile: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        company: "",
+        url: ""
+      },
+      submitted: false
+    };
+  },
+  methods: {
+    post: function() {
+      console.log("profile posting");
+
+      /* TODO Post profile to backend
             this.$http.post('http://jsonplaceholder.typicode.com/posts', {
                 title: this.profile.firstName,
                 body: this.profile.lastName,
@@ -57,26 +57,23 @@
                 console.log(data);
                 this.submitted = true;
             });*/
-        }
     }
   }
-
+};
 </script>
 
 <style>
+label {
+  display: block;
+  margin: 20px 0 10px;
+}
+input[type="text"] {
+  display: block;
+  width: 100%;
+  padding: 8px;
+}
 
-  label{
-    display: block;
-    margin: 20px 0 10px;
-  }
-  input[type="text"]{
-      display: block;
-      width: 100%;
-      padding: 8px;
-  }
-
-  .form_generate-key {
-    width: 500px;
-  }
-
+.form_generate-key {
+  width: 500px;
+}
 </style>

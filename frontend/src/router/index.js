@@ -1,14 +1,14 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Landing from '../views/LandingPage.vue';
-import Recipient from '../views/RecipientPage.vue';
-import Share from '../views/SharePage.vue';
+import Landing from 'Views/LandingPage.vue';
+import Recipient from 'Views/FillInRecipientPage.vue';
+import Share from 'Views/ShareBadgeLinkPage.vue';
 
-import Sign from './components/Sign/Sign.vue';
-import GenerateKey from './components/Sign/Generate/Generate.vue';
-import UploadKey from './components/Sign/Upload/Upload.vue';
-import Profile from './components/Sign/Profile/profile.vue';
+import Sign from 'Views/SignBadgePage.vue';
+import GenerateKey from 'Views/GenerateKeyPage.vue';
+import UploadKey from 'Views/UploadKeyPage.vue';
+import Profile from 'Views/CreateProfilePage.vue';
 
 Vue.use(VueRouter);
 

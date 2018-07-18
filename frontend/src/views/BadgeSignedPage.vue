@@ -10,20 +10,20 @@
 </template>
 
 <script>
-  import { mapState } from "vuex";
-  import Header from 'Components/Header'
-  import Button from 'Components/Button'
+import { mapState } from "vuex";
+import Header from "Components/TheHeader";
+import Button from "Components/Button";
 
-  export default {
-    name: 'app',
-    components: {
-      'v-header': Header,
-      'v-button': Button,
-    },
-    methods: {
-      consoleClick() {
-        console.log(`clicked`);
-      }
-    },
+export default {
+  name: "app",
+  components: {
+    "v-header": Header,
+    "v-button": Button
+  },
+  methods: {
+    consoleClick() {
+      console.log(`clicked`);
+    }
   }
+};
 </script>

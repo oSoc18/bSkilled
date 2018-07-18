@@ -4,13 +4,13 @@
     <input type="password" id="passphrase" v-model="passphrase">
     <v-header>Upload your keyfile</v-header>
     <input type="file" @change="loadTextFromFile">
-    
+
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import Header from "Components/Header";
+import Header from "Components/TheHeader";
 import kbpgp from "kbpgp";
 
 export default {
@@ -28,11 +28,11 @@ export default {
       let context = this;
       const file = ev.target.files[0];
       const reader = new FileReader();
-      
-      reader.onload = e => context.loadkey(e.target.result,context);
+
+      reader.onload = e => context.loadkey(e.target.result, context);
       reader.readAsText(file);
     },
-    loadkey(keyfile,context) {
+    loadkey(keyfile, context) {
       kbpgp.KeyManager.import_from_armored_pgp(
         {
           armored: keyfile
@@ -90,17 +90,16 @@ $buttonBgColor: #f6c060;
   width: 75px;
   position: relative;
   cursor: pointer;
- }
+}
 
- .input-file {
-   opacity: 0;
-   height: 75px;
-   position: absolute;
-   cursor: pointer;
- }
+.input-file {
+  opacity: 0;
+  height: 75px;
+  position: absolute;
+  cursor: pointer;
+}
 
- .dropbox:hover {
+.dropbox:hover {
   background: darken($buttonBgColor, 20);
- }
-
+}
 </style>
