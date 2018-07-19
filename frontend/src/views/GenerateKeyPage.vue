@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       generating: false,
-      password: null,
+      password: "",
       progress: 0,
       currentaction: ""
     };
@@ -53,12 +53,13 @@ export default {
           context.progress = 100;
           console.log("finsihed");
           let pem;
+          /*
           if(context.password == null){
             pem = forge.pki.privateKeyToPem(state.keys.privateKey);
           }
-          else{
+          else{*/
             pem = forge.pki.encryptRsaPrivateKey(state.keys.privateKey, context.password);
-          }
+          //}
           context.makefile(pem);
         }
       };

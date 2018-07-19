@@ -4,14 +4,16 @@
     <input type="password" id="passphrase" v-model="passphrase">
     <v-header>Upload your keyfile</v-header>
     <input type="file" @change="loadTextFromFile">
-
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import Header from "Components/TheHeader";
-import kbpgp from "kbpgp";
+import forge from "node-forge";
+//TODO move to signing page, added for testing 
+import jws from 'jws';
+
 
 export default {
   name: "app",
@@ -33,38 +35,12 @@ export default {
       reader.readAsText(file);
     },
     loadkey(keyfile, context) {
-      kbpgp.KeyManager.import_from_armored_pgp(
-        {
-          armored: keyfile
-        },
-        function(err, KeyManager) {
-          if (!err) {
-            if (KeyManager.is_pgp_locked()) {
-              KeyManager.unlock_pgp(
-                {
-                  passphrase: context.passphrase
-                },
-                function(err) {
-                  if (!err) {
-                    console.log("Loaded private key with passphrase");
-                    console.log(KeyManager);
-                    //extract public key
-                    KeyManager.export_pgp_public({}, function(err, pgp_public) {
-                      console.log("public key: ", pgp_public);
-                    });
-                  } else {
-                    alert(err);
-                  }
-                }
-              );
-            } else {
-              console.log("Loaded private key w/o passphrase");
-            }
-          } else {
-            alert(err);
-          }
-        }
-      );
+      let privateKey = forge.pki.decryptRsaPrivateKey(keyfile, context.passphrase);
+      let publicKey = forge.pki.setRsaPublicKey(privateKey.n, privateKey.e);
+      //TODO get profile from publickey
+    },
+    signjsonweb(privateKey,payload){
+
     }
   }
 };
