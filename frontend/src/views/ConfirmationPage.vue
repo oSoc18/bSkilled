@@ -1,10 +1,10 @@
 <template>
   <div class="app">
-    <BadgeClassCard :badge-class="assertion.badge" />
-    <pre>badge: {{JSON.stringify(assertion, undefined, 4)}}</pre>
-    <router-link to="/">
-      <v-button :onClick="consoleClick">Go to main app</v-button>
-    </router-link>
+    <BadgeClassCard :badge-class="implication.badgeTemplate" />
+    <!-- <p>profile: {{implication.profile}}</p> -->
+    <p>{{implication.recipient}}</p>
+    <p>Wan't to sign this badge?</p>
+    <v-button :onClick="sign">Sign</v-button>
 
   </div>
 </template>
@@ -16,18 +16,17 @@ import Button from "Components/Button";
 import BadgeClassCard from "Components/BadgeClassCard";
 
 export default {
-  name: "app",
   components: {
     "v-header": Header,
     "v-button": Button,
     BadgeClassCard
   },
   computed: {
-    ...mapState(["assertion"])
+    ...mapState(["implication"])
   },
   methods: {
-    consoleClick() {
-      console.log(`clicked`);
+    sign() {
+      this.$store.dispatch("createSignedBadge", this.implication);
     }
   }
 };

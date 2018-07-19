@@ -1,21 +1,22 @@
 <template>
-  <div class="form_generate-key">
-    <v-header>Let's get a profile key</v-header>
-    <form v-if="!submitted">
-      <label>First name</label>
-      <input type="text" v-model.lazy="profile.firstName"  />
-      <label>Last name</label>
-      <input type="text" v-model.lazy="profile.lastName" />
-      <label>E-mail adress</label>
-      <input type="text" v-model.lazy="profile.email" />
-      <label>Company name</label>
-      <input type="text" v-model.lazy="profile.company" required />
-      <label>Website url</label>
-      <input type="text" v-model.lazy="profile.url" required />
-      <button v-on:click.prevent="post">Submit your profile</button>
-    </form>
-    <div v-if="submitted">
-      <h1>Lorem Ipsum.</h1>
+  <div>
+    <BadgeClassCard :badge-class="implication.badgeTemplate" />
+    <div class="form_generate-key">
+      <v-header>Let's get a profile key</v-header>
+      <form v-if="!submitted">
+        <label>Name</label>
+        <input type="text" v-model.lazy="profile.name" />
+        <label>E-mail adress</label>
+        <input type="text" v-model.lazy="profile.email" />
+        <label>Company name</label>
+        <input type="text" v-model.lazy="profile.company" required />
+        <label>Website url</label>
+        <input type="text" v-model.lazy="profile.url" required />
+        <button v-on:click.prevent="post">Submit your profile</button>
+      </form>
+      <div v-if="submitted">
+        <h1>Lorem Ipsum.</h1>
+      </div>
     </div>
   </div>
 </template>
@@ -23,20 +24,21 @@
 <script>
 import Header from "Components/TheHeader";
 import Button from "Components/Button";
+import BadgeClassCard from "Components/BadgeClassCard";
 import FileSaver from "file-saver";
 import kbpgp from "kbpgp";
 
 export default {
-  name: "app",
   components: {
     "v-header": Header,
-    "v-button": Button
+    "v-button": Button,
+    BadgeClassCard
   },
   data() {
+    // TODO: Fetch profile
     return {
       profile: {
-        firstName: "",
-        lastName: "",
+        name: "",
         email: "",
         company: "",
         url: ""
@@ -44,19 +46,16 @@ export default {
       submitted: false
     };
   },
+  computed: {
+    implication() {
+      return this.$store.state.implication;
+    }
+  },
   methods: {
     post: function() {
       console.log("profile posting");
-
-      /* TODO Post profile to backend
-            this.$http.post('http://jsonplaceholder.typicode.com/posts', {
-                title: this.profile.firstName,
-                body: this.profile.lastName,
-                userId: 1
-            }).then(function(data){
-                console.log(data);
-                this.submitted = true;
-            });*/
+      // TODO: Post profile to backend
+      this.$store.dispatch("addIssuer", this.profile);
     }
   }
 };
