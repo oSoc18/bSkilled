@@ -1,13 +1,16 @@
 <template>
   <div class="form_generate-key">
-    <v-header>Let's get a profile key</v-header>
-    <form v-if="!submitted">
+    <form v-if="!generating">
+      <v-header>Let's get a profile key</v-header>
       <label>password</label>
       <input type="password" v-model.lazy="password" required />
       <button v-on:click.prevent="post">Get your personal key</button>
     </form>
-    <div v-if="submitted">
-      <h1>You can download your personal key and use it to sign andy badge.</h1>
+    <div v-if="generating">
+      <v-header>your Key Pair is currently generating</v-header>
+      <progress :value="progress" max="44"></progress> 
+      <p>{{currentaction}}</p>
+
     </div>
   </div>
 </template>
@@ -26,20 +29,38 @@ export default {
   },
   data() {
     return {
-      submitted: false,
-      password: null
+      generating: false,
+      password: null,
+      progress: 0,
+      currentaction: ""
     };
   },
   methods: {
     post: function() {
-      console.log("generating");
-
+      this.generating = true;
       this.generate(this);
     },
     generate: function(context) {
+      var my_asp = new kbpgp.ASP({
+        progress_hook: function(o) {
+          switch (o.what) {
+                case "fermat":
+                    context.currentaction = "hunting for a prime ..."+ o.p.toString().slice(-3)
+                    break;
+                case "mr":
+                    context.currentaction = "confirming prime candidate " + ~~(100 * o.i / o.total) + "%";
+                    context.progress++; 
+                    break;
+                case "found":
+                    context.currentaction = "found a prime";
+                    break;
+            }
+        }
+      });
       var F = kbpgp["const"].openpgp;
       var opts = {
-        userid: "idkwhatissupposedtobeinthisid",
+        asp: my_asp,
+        userid: "idkwhatissupposedtobeinthisid",//FIXME: TODO: Whats in this ID?
         primary: {
           nbits: 2048,
           flags: F.certify_keys | F.sign_data | F.auth,
