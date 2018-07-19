@@ -8,9 +8,11 @@
     </form>
     <div v-if="generating">
       <v-header>your Key Pair is currently generating</v-header>
-      <progress :value="progress" max="44"></progress> 
+      <progress :value="progress" max="44"></progress>
       <p>{{currentaction}}</p>
-
+    </div>
+    <div v-if="generated">
+      <v-button :onClick="goBack">Go back</v-button>
     </div>
   </div>
 </template>
@@ -30,6 +32,7 @@ export default {
   data() {
     return {
       generating: false,
+      generated: false,
       password: null,
       progress: 0,
       currentaction: ""
@@ -44,23 +47,25 @@ export default {
       var my_asp = new kbpgp.ASP({
         progress_hook: function(o) {
           switch (o.what) {
-                case "fermat":
-                    context.currentaction = "hunting for a prime ..."+ o.p.toString().slice(-3)
-                    break;
-                case "mr":
-                    context.currentaction = "confirming prime candidate " + ~~(100 * o.i / o.total) + "%";
-                    context.progress++; 
-                    break;
-                case "found":
-                    context.currentaction = "found a prime";
-                    break;
-            }
+            case "fermat":
+              context.currentaction =
+                "hunting for a prime ..." + o.p.toString().slice(-3);
+              break;
+            case "mr":
+              context.currentaction =
+                "confirming prime candidate " + ~~(100 * o.i / o.total) + "%";
+              context.progress++;
+              break;
+            case "found":
+              context.currentaction = "found a prime";
+              break;
+          }
         }
       });
       var F = kbpgp["const"].openpgp;
       var opts = {
         asp: my_asp,
-        userid: "idkwhatissupposedtobeinthisid",//FIXME: TODO: Whats in this ID?
+        userid: "idkwhatissupposedtobeinthisid", //FIXME: TODO: Whats in this ID?
         primary: {
           nbits: 2048,
           flags: F.certify_keys | F.sign_data | F.auth,
@@ -101,6 +106,10 @@ export default {
     makefile: function(text) {
       let blob = new Blob([text], { type: "text/plain;charset=utf-8" });
       FileSaver.saveAs(blob, "privateKey.asc");
+      this.generated = true;
+    },
+    goBack() {
+      this.$router.go(-1);
     }
   }
 };
