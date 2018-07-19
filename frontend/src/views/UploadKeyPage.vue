@@ -61,7 +61,7 @@ export default {
         if (err) {
           return this.handleUnlockError(err);
         }
-        this.$router.push({ name: "profile" });
+        this.$store.dispatch("addPubKey", this.key);
       });
     },
     handleSubmitPassphrase() {
