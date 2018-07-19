@@ -35,12 +35,28 @@ export default {
       reader.readAsText(file);
     },
     loadkey(keyfile, context) {
-      let privateKey = forge.pki.decryptRsaPrivateKey(keyfile, context.passphrase);
-      let publicKey = forge.pki.setRsaPublicKey(privateKey.n, privateKey.e);
-      //TODO get profile from publickey
+      let privateKeyForge = forge.pki.decryptRsaPrivateKey(keyfile, context.passphrase);
+      let publicKeyForge = forge.pki.setRsaPublicKey(privateKeyForge.n, privateKeyForge.e);
+      let privateKeyPEM = forge.pki.privateKeyToPem(privateKeyForge);//TODO send to confirmation page
+      let publicKeyPEM = forge.pki.publicKeyToPem(publicKeyForge);//TODO doe we 
+      let fingerprint = forge.pki.getPublicKeyFingerprint(publicKeyForge);
+      console.log(Buffer.from(fingerprint.data).toString('base64'));
+      //TODO get profile from public key fingerprint
+      //TESTS
+      let signature = jws.sign({
+        header: { alg: 'RS256' },
+        privateKey: privateKeyPEM,
+        payload: 'niels larmuseau'
+      });
+      console.log(signature);
     },
-    signjsonweb(privateKey,payload){
-
+    signjsonweb(privateKeyPEM,payload){
+      const signature = jws.sign({
+        header: { alg: 'RS256' },
+        privateKey: privateKeyPEM,
+        payload: payload,
+        secret: 'has a van',
+      });
     }
   }
 };
