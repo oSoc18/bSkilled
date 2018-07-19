@@ -10,7 +10,9 @@
       <v-header>your Key Pair is currently generating</v-header>
       <progress :value="progress" max="100"></progress> 
       <p>{{currentaction}}</p>
-
+    </div>
+    <div v-if="generated">
+      <v-button :onClick="goBack">Go back</v-button>
     </div>
   </div>
 </template>
@@ -64,12 +66,16 @@ export default {
     makefile: function(text) {
       let blob = new Blob([text], { type: "text/plain;charset=utf-8" });
       FileSaver.saveAs(blob, "privateKey.asc");
+      this.generated = true;
+    },
+    goBack() {
+      this.$router.go(-1);
     }
   }
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 @import "~Vars";
 label {
   display: block;

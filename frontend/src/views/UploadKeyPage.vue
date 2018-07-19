@@ -16,13 +16,18 @@
 
 <script>
 import { mapState } from "vuex";
+
 import Header from "Components/TheHeader";
 import forge from "node-forge";
 //TODO move to signing page, added for testing
 import jws from "jws";
 
+
 export default {
-  name: "app",
+  components: {
+    FileUploadButton,
+    Header
+  },
   data() {
     return {
       passphrase: "",
@@ -30,10 +35,43 @@ export default {
       getPassword: false
     };
   },
-  components: {
-    "v-header": Header
-  },
   methods: {
+    onKeyLoad(keyfile) {
+      this.keyfile = keyfile;
+      kbpgp.KeyManager.import_from_armored_pgp(
+        { armored: this.keyfile },
+        (err, key) => {
+          this.key = key;
+          if (err) {
+            return this.handleKeyError(err);
+          }
+          if (!key.is_pgp_locked()) {
+            this.unlockKey();
+          } else {
+            this.state = "askPassphrase";
+          }
+        }
+      );
+    },
+    unlockKey() {
+      this.key.unlock_pgp({ passphrase: this.passphrase }, err => {
+        if (err) {
+          return this.handleUnlockError(err);
+        }
+        this.$store.dispatch("addPubKey", this.key);
+      });
+    },
+    handleSubmitPassphrase() {
+      this.unlockKey();
+    },
+    handleKeyError(err) {
+      console.log(err);
+      alert(err);
+    },
+    handleUnlockError(err) {
+      console.log(err);
+      alert(err);
+    },
     loadTextFromFile(ev) {
       let context = this;
       const file = ev.target.files[0];
