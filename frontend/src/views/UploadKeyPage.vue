@@ -1,9 +1,16 @@
 <template>
   <div class="app">
-    <label for="passphrase">passphrase</label>
-    <input type="password" id="passphrase" v-model="passphrase">
-    <v-header>Upload your keyfile</v-header>
-    <input type="file" @change="loadTextFromFile">
+    <div v-if="!getPassword">
+      <v-header>Upload your keyfile</v-header>
+      <input type="file" @change="loadTextFromFile">
+    </div>
+    <div v-if="getPassword">
+      <form @submit.prevent="handleSubmitPassphrase">
+      <label for="passphrase">passphrase</label>
+        <input type="password" id="passphrase" v-model="passphrase">
+        <input type="submit">
+      </form>
+    </div>
   </div>
 </template>
 
@@ -11,15 +18,16 @@
 import { mapState } from "vuex";
 import Header from "Components/TheHeader";
 import forge from "node-forge";
-//TODO move to signing page, added for testing 
-import jws from 'jws';
-
+//TODO move to signing page, added for testing
+import jws from "jws";
 
 export default {
   name: "app",
   data() {
     return {
-      passphrase: ""
+      passphrase: "",
+      keyFile: null,
+      getPassword: false
     };
   },
   components: {
@@ -34,28 +42,47 @@ export default {
       reader.onload = e => context.loadkey(e.target.result, context);
       reader.readAsText(file);
     },
-    loadkey(keyfile, context) {
-      let privateKeyForge = forge.pki.decryptRsaPrivateKey(keyfile, context.passphrase);
-      let publicKeyForge = forge.pki.setRsaPublicKey(privateKeyForge.n, privateKeyForge.e);
-      let privateKeyPEM = forge.pki.privateKeyToPem(privateKeyForge);//TODO send to confirmation page
-      let publicKeyPEM = forge.pki.publicKeyToPem(publicKeyForge);//TODO doe we 
+    loadkey(keyFile, context) {
+      try {
+        let privateKeyForge = forge.pki.decryptRsaPrivateKey(
+          keyFile,
+          context.passphrase
+        );
+        context.keyFound(privateKeyForge, context);
+      } catch (error) {
+        context.keyFile = keyFile;
+        context.getPassword = true;
+      }
+    },
+    handleSubmitPassphrase() {
+      try {
+        let privateKeyForge = forge.pki.decryptRsaPrivateKey(
+          this.keyFile,
+          this.passphrase
+        );
+        this.keyFound(privateKeyForge, this);
+      } catch (error) {
+        //TODO wrong key feedback
+        console.log(error);
+        alert("Wrong Key!");
+      }
+    },
+    keyFound(privateKeyForge, context) {
+      let publicKeyForge = forge.pki.setRsaPublicKey(
+        privateKeyForge.n,
+        privateKeyForge.e
+      );
+      let privateKeyPEM = forge.pki.privateKeyToPem(privateKeyForge); //TODO send to confirmation page
+      let publicKeyPEM = forge.pki.publicKeyToPem(publicKeyForge); //TODO doe we
       let fingerprint = forge.pki.getPublicKeyFingerprint(publicKeyForge);
-      console.log(Buffer.from(fingerprint.data).toString('base64'));
+      console.log(Buffer.from(fingerprint.data).toString("base64"));
       //TODO get profile from public key fingerprint
+      //TODO move to next page
       //TESTS
       let signature = jws.sign({
-        header: { alg: 'RS256' },
+        header: { alg: "RS256" },
         privateKey: privateKeyPEM,
-        payload: 'niels larmuseau'
-      });
-      console.log(signature);
-    },
-    signjsonweb(privateKeyPEM,payload){
-      const signature = jws.sign({
-        header: { alg: 'RS256' },
-        privateKey: privateKeyPEM,
-        payload: payload,
-        secret: 'has a van',
+        payload: "niels larmuseau"
       });
     }
   }
