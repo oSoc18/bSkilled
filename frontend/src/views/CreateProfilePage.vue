@@ -26,7 +26,6 @@ import Header from "Components/TheHeader";
 import Button from "Components/Button";
 import BadgeClassCard from "Components/BadgeClassCard";
 import FileSaver from "file-saver";
-import kbpgp from "kbpgp";
 
 export default {
   components: {

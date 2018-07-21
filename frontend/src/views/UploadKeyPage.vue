@@ -1,19 +1,14 @@
 <template>
-  <div>
-    <div v-if="state === 'start'">
-      <p>Here be a description about private keys and such.</p>
-      <FileUploadButton
-        id="uploadKeyButton"
-        :onResult="onKeyLoad"/>
+  <div class="app">
+    <div v-if="!getPassword">
+      <Header>Upload your keyfile</Header>
+      <FileUploadButton id="uploadKey" :onResult="loadKey"/>
     </div>
-
-    <div v-if="state === 'askPassphrase'">
+    <div v-if="getPassword">
       <form @submit.prevent="handleSubmitPassphrase">
-        <label>Passphrase</label>
-        <input
-          type="password"
-          v-model="passphrase"
-          placeholder="reallysecurephassprase3"/>
+      <label for="passphrase">passphrase</label>
+        <input type="password" id="passphrase" v-model="passphrase">
+        <input type="submit">
       </form>
     </div>
   </div>
@@ -24,7 +19,9 @@ import { mapState } from "vuex";
 
 import Header from "Components/TheHeader";
 import FileUploadButton from "Components/FileUploadButton";
-import kbpgp from "kbpgp";
+import forge from "node-forge";
+//TODO move to signing page, added for testing
+import jws from "jws";
 
 export default {
   components: {
@@ -34,28 +31,11 @@ export default {
   data() {
     return {
       passphrase: "",
-      state: "start",
-      keyfile: ""
+      keyFile: null,
+      getPassword: false
     };
   },
   methods: {
-    onKeyLoad(keyfile) {
-      this.keyfile = keyfile;
-      kbpgp.KeyManager.import_from_armored_pgp(
-        { armored: this.keyfile },
-        (err, key) => {
-          this.key = key;
-          if (err) {
-            return this.handleKeyError(err);
-          }
-          if (!key.is_pgp_locked()) {
-            this.unlockKey();
-          } else {
-            this.state = "askPassphrase";
-          }
-        }
-      );
-    },
     unlockKey() {
       this.key.unlock_pgp({ passphrase: this.passphrase }, err => {
         if (err) {
@@ -75,13 +55,50 @@ export default {
       console.log(err);
       alert(err);
     },
-    loadTextFromFile(ev) {
-      let context = this;
-      const file = ev.target.files[0];
-      const reader = new FileReader();
+    loadKey(keyFile) {
+      try {
+        let privateKeyForge = forge.pki.decryptRsaPrivateKey(
+          keyFile,
+          this.passphrase
+        );
+        this.keyFound(privateKeyForge, context);
+      } catch (error) {
+        this.keyFile = keyFile;
+        this.getPassword = true;
+      }
+    },
+    handleSubmitPassphrase() {
+      try {
+        let privateKeyForge = forge.pki.decryptRsaPrivateKey(
+          this.keyFile,
+          this.passphrase
+        );
+        this.keyFound(privateKeyForge, this);
+      } catch (error) {
+        //TODO wrong key feedback
+        console.log(error);
+        alert("Wrong Key!");
+      }
+    },
+    keyFound(privateKeyForge, context) {
+      this.$router.push("/profile");
 
-      reader.onload = e => context.loadkey(e.target.result, context);
-      reader.readAsText(file);
+      let publicKeyForge = forge.pki.setRsaPublicKey(
+        privateKeyForge.n,
+        privateKeyForge.e
+      );
+      let privateKeyPEM = forge.pki.privateKeyToPem(privateKeyForge); //TODO send to confirmation page
+      let publicKeyPEM = forge.pki.publicKeyToPem(publicKeyForge); //TODO doe we
+      let fingerprint = forge.pki.getPublicKeyFingerprint(publicKeyForge);
+      console.log(Buffer.from(fingerprint.data).toString("base64"));
+      //TODO get profile from public key fingerprint
+      //TODO move to next page
+      //TESTS
+      let signature = jws.sign({
+        header: { alg: "RS256" },
+        privateKey: privateKeyPEM,
+        payload: "niels larmuseau"
+      });
     }
   }
 };
