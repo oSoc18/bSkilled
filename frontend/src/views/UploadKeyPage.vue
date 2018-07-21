@@ -1,8 +1,8 @@
 <template>
   <div class="app">
     <div v-if="!getPassword">
-      <v-header>Upload your keyfile</v-header>
-      <input type="file" @change="loadTextFromFile">
+      <Header>Upload your keyfile</Header>
+      <FileUploadButton id="uploadKey" :onResult="loadKey"/>
     </div>
     <div v-if="getPassword">
       <form @submit.prevent="handleSubmitPassphrase">
@@ -18,10 +18,10 @@
 import { mapState } from "vuex";
 
 import Header from "Components/TheHeader";
+import FileUploadButton from "Components/FileUploadButton";
 import forge from "node-forge";
 //TODO move to signing page, added for testing
 import jws from "jws";
-
 
 export default {
   components: {
@@ -36,23 +36,6 @@ export default {
     };
   },
   methods: {
-    onKeyLoad(keyfile) {
-      this.keyfile = keyfile;
-      kbpgp.KeyManager.import_from_armored_pgp(
-        { armored: this.keyfile },
-        (err, key) => {
-          this.key = key;
-          if (err) {
-            return this.handleKeyError(err);
-          }
-          if (!key.is_pgp_locked()) {
-            this.unlockKey();
-          } else {
-            this.state = "askPassphrase";
-          }
-        }
-      );
-    },
     unlockKey() {
       this.key.unlock_pgp({ passphrase: this.passphrase }, err => {
         if (err) {
@@ -72,24 +55,16 @@ export default {
       console.log(err);
       alert(err);
     },
-    loadTextFromFile(ev) {
-      let context = this;
-      const file = ev.target.files[0];
-      const reader = new FileReader();
-
-      reader.onload = e => context.loadkey(e.target.result, context);
-      reader.readAsText(file);
-    },
-    loadkey(keyFile, context) {
+    loadKey(keyFile) {
       try {
         let privateKeyForge = forge.pki.decryptRsaPrivateKey(
           keyFile,
-          context.passphrase
+          this.passphrase
         );
-        context.keyFound(privateKeyForge, context);
+        this.keyFound(privateKeyForge, context);
       } catch (error) {
-        context.keyFile = keyFile;
-        context.getPassword = true;
+        this.keyFile = keyFile;
+        this.getPassword = true;
       }
     },
     handleSubmitPassphrase() {
@@ -106,6 +81,8 @@ export default {
       }
     },
     keyFound(privateKeyForge, context) {
+      this.$router.push("/profile");
+
       let publicKeyForge = forge.pki.setRsaPublicKey(
         privateKeyForge.n,
         privateKeyForge.e

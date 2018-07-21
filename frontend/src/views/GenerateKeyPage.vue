@@ -8,7 +8,7 @@
     </form>
     <div v-if="generating">
       <v-header>your Key Pair is currently generating</v-header>
-      <progress :value="progress" max="100"></progress> 
+      <progress :value="progress" max="100"></progress>
       <p>{{currentaction}}</p>
     </div>
     <div v-if="generated">
@@ -32,6 +32,7 @@ export default {
   data() {
     return {
       generating: false,
+      generated: false,
       password: "",
       progress: 0,
       currentaction: ""
@@ -55,7 +56,10 @@ export default {
           context.progress = 100;
           console.log("finsihed");
           let pem;
-          pem = forge.pki.encryptRsaPrivateKey(state.keys.privateKey, context.password);
+          pem = forge.pki.encryptRsaPrivateKey(
+            state.keys.privateKey,
+            context.password
+          );
           context.makefile(pem);
         }
       };
