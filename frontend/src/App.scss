@@ -110,3 +110,68 @@ input {
 .is-hidden {
   display: none;
 }
+
+.row-page {
+  display: flex;
+}
+
+.section-right {
+  width: 63%;
+}
+
+.section-right_container{
+  display: flex;
+}
+
+.section-right_container-center{
+  justify-content: center;
+  min-height: 100vh;
+  align-items: center;
+}
+
+.section-right_container-margin{
+  margin-left: 70px;
+  margin-top: 253px;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 370px;
+  margin-left: 80px;
+}
+
+.container-margin {
+  margin-left: 240px;
+  margin-top: 90px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.error, .mark-error {
+  color: #ff6b36;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.container-animation {
+    animation-duration:.3s;
+    animation-name:show;
+    animation-iteration-count:1;
+    animation-timing-function:ease-out;
+}
+
+@-webkit-keyframes show {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,18 +1,56 @@
 <template>
-  <nav class="">
+  <nav class="nav-progressbar">
     <ul class="progressbar">
-      <li class="progressbar_item current"><a class="progressbar_item_link" href="#">Search for your skill</a></li></li>
-      <li class="progressbar_item"><a class="progressbar_item_link link--disabled" href="#">Some personal information</a></li>
-      <li class="progressbar_item"><a class="progressbar_item_link link--disabled" href="#">Save your badge</a></li>
+      <li class="progressbar_item" v-bind:class="{'current': currentPage.search, 'visited': visitedPage.search, 'visited-animation': checkVisitedSearch(pageVisited)}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPage.search}" href="#" @click="$router.go(-1)">Search for your skill</a></li></li>
+      <li class="progressbar_item" v-bind:class="{'current': currentPage.information, 'visited': visitedPage.information, 'visited-animation': checkVisitedInformation(pageVisited), 'visited-delay': checkVisitedSearch(pageVisited)}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPage.information}" href="#" @click="$router.go(-1)">Some personal information</a></li>
+      <li class="progressbar_item" v-bind:class="{'current': currentPage.save, 'visited': visitedPage.save}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPage.save}" href="#" @click="$router.go(-1)">Save your badge</a></li>
     </ul>
+
+    <div class="content">
+  <div class="line"></div>
+  <div class="line2"></div>
+  <div class="circle"></div>
+</div>
   </nav>
 </template>
+
+<script>
+
+export default {
+  props: {
+    visitedPage: {
+      search: Boolean,
+      information: Boolean,
+      save: Boolean,
+    },
+    currentPage: {
+      search: Boolean,
+      information: Boolean,
+      save: Boolean,
+    },
+    pageVisited: Number
+  },
+  methods: {
+    checkVisitedSearch(int) {
+      return int === 1
+    },
+    checkVisitedInformation(int) {
+      return int === 2
+    }
+  }
+};
+
+</script>
 
 <style lang="scss" scoped>
 @import "~Vars";
 
-.progressbar {
+.nav-progressbar {
   position: fixed;
+  left: 42%;
+}
+
+.progressbar {
   width: 150px;
   counter-reset: step;
   padding-left: 30px;
@@ -70,10 +108,17 @@
     background: #F99D23;
   }
 
+  & a {
+    color: #30355C;
+  }
+
   & a::after {
     background-color: #F99D23;
   }
+}
 
+.visited-animation::before {
+  animation: visitedAnimation .75s 1 forwards;
 }
 
 .current {
@@ -81,9 +126,10 @@
     content: '';
     position: absolute;
     left: -13px;
-    height: 55%;
+    height: 0%;
     width: 3px;
     background: #F99D23;
+    animation: currentAnimation .75s 1 forwards;
   }
 
   & a {
@@ -97,7 +143,23 @@
   }
 }
 
+.visited-delay::before {
+  animation-delay: .5s;
+}
+
 .link--disabled {
   pointer-events: none;
 }
+
+
+@keyframes currentAnimation {
+  0%   { height: 0; }
+  100% { height: 55%; }
+}
+
+@keyframes visitedAnimation {
+  0%   { height: 55%; }
+  100% { height: 100%; }
+}
+
 </style>

@@ -1,11 +1,25 @@
 <template>
   <section class="section-introduction">
-    <div class="is-fixed">
-      <h1>Search for your skill</h1>
-      <h2>What skill do you want to verify?</h2>
+    <div class="is-fixed introduction-container">
+      <h1>{{introductionContent.title}}</h1>
+      <p>{{introductionContent.text}}</p>
     </div>
   </section>
 </template>
+
+<script>
+
+export default {
+  props: {
+    introductionContent: {
+      title: String,
+      text: String,
+    },
+  }
+};
+
+</script>
+
 
 <style lang="scss" scoped>
 @import "~Vars";
@@ -16,8 +30,16 @@
   background: #fccd77 url(../assets/skill_illustration.png) -7% 100% no-repeat;
   background-attachment: fixed;
   background-size: 50%;
-  padding-top: 205px;
+  padding-top: 175px;
   padding-left: 75px;
+}
+
+.introduction-container {
+  width: 330px;
+
+  & p  {
+    line-height: 1.4;
+  }
 }
 
 </style>

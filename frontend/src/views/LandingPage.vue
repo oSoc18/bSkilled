@@ -1,9 +1,9 @@
 <template>
   <div class="row-page">
-    <v-introduction></v-introduction>
+    <v-introduction :introductionContent="introductionContent"></v-introduction>
     <section class="section-right">
-      <div class="section-right_container">
-        <v-indicator></v-indicator>
+      <div class="section-right_container section-right_container-margin">
+        <v-indicator :visitedPage="visitedPage" :currentPage="currentPage" :pageVisited="pageVisited" ></v-indicator>
         <BadgeClassSearch :selectBadgeClass="selectBadgeClass"/>
       </div>
     </section>
@@ -21,6 +21,25 @@ export default {
     "v-introduction": Introduction,
     "v-indicator": Indicator
   },
+  data() {
+    return {
+      introductionContent: {
+        title: 'Search for your skill',
+        text: 'What skill do you want to verify?',
+      },
+      visitedPage: {
+        search: false,
+        information: false,
+        save: false,
+      },
+      currentPage: {
+        search: true,
+        information: false,
+        save: false,
+      },
+      pageVisited: 0
+    }
+  },
   methods: {
     selectBadgeClass(badgeClass) {
       this.$router.push({ name: "recipient", params: { badgeClass } });
@@ -30,18 +49,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .row-page {
-    display: flex;
-  }
-
-  .section-right {
-    width: 63%;
-
-    &_container {
-      display: flex;
-      padding-left: 70px;
-      margin-top: 250px;
-    }
-  }
 
 </style>

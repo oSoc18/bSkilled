@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container container-margin">
     <div class="input-container">
       <label for="skill">What skill do you want to verify?</label>
       <input class="search" id="skill" type="text" placeholder="Search for a skill" v-model="query" required/>
@@ -71,20 +71,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.container {
-  margin-left: 240px;
-  margin-top: 90px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 370px;
-}
-
-.input-container {
-  display: flex;
-  flex-direction: column;
-}
 
 .search {
   background-size: 5%;

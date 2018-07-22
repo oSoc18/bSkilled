@@ -8,7 +8,7 @@
    <vue-slide-up-down :active="!active">
      <div class="badge-description">
        <p id="description">{{ badgeClass.description }}</p>
-       <v-button :onClick="clickHandlerSaveSkill" class="badge-button" v-bind:class="{'is-hidden': isSelected}">Safe skill</v-button>
+       <v-button :onClick="clickHandlerSaveSkill" class="badge-button button--small" v-bind:class="{'is-hidden': isSelected}">Safe skill</v-button>
      </div>
     </vue-slide-up-down>
   </div>
@@ -58,17 +58,24 @@ export default {
         badgeElement.style.height=`${height}px`
         this.haveHeight = true;
       }
-
-      if(this.isSelected === true && !this.haveHeightSelected) {
-        const height = heightBadgeElement + 12;
-        badgeElement.style.height=`${height}px`
-        this.haveHeightSelected = true;
-      }
     },
     clickHandlerSaveSkill() {
       this.selectBadgeClass(this.badgeClass);
+      console.log(this.badgeClass);
     }
-  }
+  },
+  mounted(){
+    if(this.isSelected){
+      this.active = false
+      const badgeElement = this.$el.querySelector('.badge-description');
+      const arrowSvg = this.$el.querySelector('.arrow_down');
+      arrowSvg.style.transform = `scale(1, -1)`;
+      const heightBadgeElement = badgeElement.offsetHeight;
+      const height = heightBadgeElement + 12;
+      this.haveHeightSelected = true;
+      badgeElement.style.height=`${height}px`
+    }
+ }
 };
 
 </script>
