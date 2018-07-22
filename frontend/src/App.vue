@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <v-header></v-header>
     <keep-alive>
       <router-view/>
     </keep-alive>
@@ -7,7 +8,14 @@
 </template>
 
 <script>
-export default { name: "app" };
+import Header from "Components/TheHeader";
+
+export default {
+  name: "app",
+  components: {
+    "v-header": Header
+  },
+};
 </script>
 
 <style>
