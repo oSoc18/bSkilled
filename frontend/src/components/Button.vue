@@ -1,5 +1,5 @@
 <template>
-  <button @click="onClick" class="Button">
+  <button @click="onClick || noop" class="Button">
     <slot>Button</slot>
   </button>
 </template>
@@ -11,6 +11,9 @@ export default {
       type: Function,
       required: false
     }
+  },
+  methods: {
+    noop() {}
   }
 };
 </script>

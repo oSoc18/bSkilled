@@ -2,9 +2,13 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Landing from 'Views/LandingPage.vue';
+
+import BaseCreation from 'Components/BaseCreation.vue';
+import SearchBadgePage from 'Views/SearchBadgePage.vue';
 import Recipient from 'Views/FillInRecipientPage.vue';
 import Share from 'Views/ShareBadgeLinkPage.vue';
 
+import BaseSigning from 'Components/BaseSigning.vue';
 import Sign from 'Views/SignBadgePage.vue';
 import GenerateKey from 'Views/GenerateKeyPage.vue';
 import UploadKey from 'Views/UploadKeyPage.vue';
@@ -24,62 +28,75 @@ const flow = (pred, succ, redirect = '/') => (to, from, next) => {
 
 const routes = [{
     path: '/',
-    name: 'landing',
     component: Landing,
+    name: 'landing'
+  }, {
+    path: '/create',
+    component: BaseCreation,
+    children: [{
+      path: '/',
+      name: 'search',
+      component: SearchBadgePage,
+    }, {
+      path: '/create/recipient',
+      name: 'recipient',
+      component: Recipient,
+      props: true,
+      // beforeEnter: flow('landing', 'share')
+    }, {
+      path: '/share',
+      name: 'share',
+      component: Share,
+      props: true,
+      beforeEnter: flow('recipient', undefined)
+    }]
   },
   {
-    path: '/recipient',
-    name: 'recipient',
-    component: Recipient,
-    props: true,
-    beforeEnter: flow('landing', 'share')
+    path: '/sign',
+    component: BaseSigning,
+    children: [{
+        path: '/:sid',
+        name: "sign",
+        component: Sign
+      },
+      {
+        path: '/generateKey',
+        name: "generate",
+        component: GenerateKey,
+        beforeEnter: flow('sign', 'upload')
+      },
+      // TODO Upload is maybe not the right word?
+      {
+        path: '/upload',
+        name: "upload",
+        component: UploadKey,
+        beforeEnter: flow('sign', 'profile')
+      },
+      {
+        path: '/profile',
+        name: "profile",
+        component: Profile,
+        beforeEnter: flow('upload', 'confirm')
+      },
+      {
+        path: '/confirm',
+        name: "confirm",
+        component: Confirmation,
+        beforeEnter: flow('profile', 'signed')
+      },
+      {
+        path: '/done',
+        name: "signed",
+        component: Signed,
+        // This allows you to go back after going to main app again
+        beforeEnter: flow('confirm', 'landing')
+      }
+    ]
   },
   {
-    path: '/share',
-    name: 'share',
-    component: Share,
-    props: true,
-    beforeEnter: flow('recipient', undefined)
-  },
-
-  {
-    path: '/sign/:sid',
-    name: "sign",
-    component: Sign
-  },
-  {
-    path: '/generateKey',
-    name: "generate",
-    component: GenerateKey,
-    beforeEnter: flow('sign', 'upload')
-  },
-  // TODO Upload is maybe not the right word?
-  {
-    path: '/uploadKey',
-    name: "upload",
-    component: UploadKey,
-    beforeEnter: flow('sign', 'profile')
-  },
-  {
-    path: '/profile',
-    name: "profile",
-    component: Profile,
-    beforeEnter: flow('upload', 'confirm')
-  },
-  {
-    path: '/confirm',
-    name: "confirm",
-    component: Confirmation,
-    beforeEnter: flow('profile', 'signed')
-  },
-  {
-    path: '/signed',
-    name: "signed",
-    component: Signed,
-    // This allows you to go back after going to main app again
-    beforeEnter: flow('confirm', 'landing')
+    path: '*',
+    redirect: '/landing'
   }
-
 ];
 
 export default new VueRouter({ routes });
