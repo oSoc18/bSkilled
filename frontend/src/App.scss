@@ -75,3 +75,38 @@ h1 {
 a {
   text-decoration: none;
 }
+
+label {
+  color: #30355c;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+input {
+  background: #fff;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 8px 0 rgba(48,53,92,0.25);
+  color: #30355c;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  margin-bottom: 15px;
+  padding-left: 15px;
+  width: 340px;
+}
+
+::placeholder {
+  color: #c0c2ce;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.is-fixed {
+ position: fixed;
+}
+
+.is-hidden {
+  display: none;
+}

@@ -1,5 +1,5 @@
 <template>
-  <button @click="onClick" class="Button">
+  <button @click="onClick" class="button">
     <slot>Button</slot>
   </button>
 </template>
@@ -18,7 +18,7 @@ export default {
 <style lang="scss" scoped>
 @import "~Vars";
 
-.Button {
+.button {
   background: $buttonBgColor;
   border: none;
   border-radius: 20px;
@@ -32,4 +32,13 @@ export default {
     background: darken($buttonBgColor, 20);
   }
 }
+
+// .button--disabled,
+// .button--disabled:hover {
+//   background: white;
+//   color: #C0C2CE;
+//   border: 1px solid #C0C2CE;
+//   padding: 10px 35px;
+//   pointer-events:none
+// }
 </style>

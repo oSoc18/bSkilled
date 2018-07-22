@@ -1,12 +1,15 @@
 <template>
   <div class="container">
-    <input type="text"   v-model="query"/>
+    <div class="input-container">
+      <label for="skill">What skill do you want to verify?</label>
+      <input class="search" id="skill" type="text" placeholder="Search for a skill" v-model="query" required/>
+    </div>
     <ul>
       <!-- TODO: Use unique ID for :key here -->
       <li v-for="(match, index) in matches"
-        v-bind:key="match.item.name"
-        @click="onClick(index)">
+        v-bind:key="match.item.name">
         <BadgeClassCard
+          :selectBadgeClass="selectBadgeClass"
           :badge-class="match.item"
           :matches="match.matches"/>
       </li>
@@ -44,11 +47,6 @@ export default {
       matches: []
     };
   },
-  methods: {
-    onClick(index) {
-      this.selectBadgeClass(this.matches[index].item);
-    }
-  },
   watch: {
     query: function(queryString) {
       // TODO Abstract api calls away from here
@@ -71,3 +69,34 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+
+.container {
+  margin-left: 240px;
+  margin-top: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 370px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.search {
+  background-size: 5%;
+  background-repeat: no-repeat;
+  background-position: 90% center;
+}
+
+.search {
+  background-image: url(../assets/search_icon_placeholder.svg);
+}
+
+.search:valid {
+  background-image: url(../assets/search_icon.svg);
+}
+</style>

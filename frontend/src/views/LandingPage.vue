@@ -1,12 +1,15 @@
 <template>
   <div>
     <v-header></v-header>
-    <v-introduction></v-introduction>
-    <v-indicator></v-indicator>
-    <h1>Welcome on bSkilled!</h1>
-    <h2>Bee connected!</h2>
-    <p>zzzzooooeeeemmm</p>
-    <BadgeClassSearch :selectBadgeClass="selectBadgeClass"/>
+    <div class="row-page">
+      <v-introduction></v-introduction>
+      <section class="section-right">
+        <div class="section-right_container">
+          <v-indicator></v-indicator>
+          <BadgeClassSearch :selectBadgeClass="selectBadgeClass"/>
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -30,3 +33,20 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+  .row-page {
+    display: flex;
+  }
+
+  .section-right {
+    width: 63%;
+
+    &_container {
+      display: flex;
+      padding-left: 70px;
+      margin-top: 250px;
+    }
+  }
+
+</style>

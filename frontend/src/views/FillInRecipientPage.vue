@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BadgeClassCard :badge-class="badgeClass"/>
+    <BadgeClassCard :badge-class="badgeClass" :isSelected="selectedBoolean"/>
     <p>Recipient email:</p>
     <input v-model="recipient" placeholder="you@email.com">
     <button @click="submit">Let's finish</button>
@@ -23,7 +23,8 @@ export default {
   },
   data() {
     return {
-      recipient: ""
+      recipient: "",
+      selectedBoolean: true
     };
   },
   methods: {
@@ -47,4 +48,3 @@ export default {
   }
 };
 </script>
-
