@@ -25,6 +25,7 @@ export default {
   },
   data() {
     return {
+      flowStep: "search",
       introductionContent: {
         title: "Search for your skill",
         text: "What skill do you want to verify?"
@@ -49,7 +50,7 @@ export default {
     }
   },
   activated() {
-    this.$store.commit("SET_CURRENT_FLOW_STEP", "search");
+    this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
   }
 };
 </script>

@@ -21,17 +21,20 @@ import Confirmation from 'Views/ConfirmationPage.vue';
 
 Vue.use(VueRouter);
 
-// Little helper for modeling the flow in the pages
-const flow = (pred, succ, redirect = '/') => (to, from, next) => {
-  if (from.name !== pred && from.name !== succ) {
-    return next(redirect);
-  }
-  return next();
-}
-
 const flowGuard = (to, from, next) => {
   if (store.state.currentFlowStep == 'search') {
+    store.commit('SET_FLOW_MODE', 'sharing');
     next('/');
+  } else {
+    next();
+  }
+}
+
+const flowGuardSign = (to, from, next) => {
+  if (store.state.currentFlowStep == 'search') {
+    store.commit('SET_FLOW_MODE', 'signing');
+    store.commit('SET_CURRENT_FLOW_STEP', 'sign');
+    next({ name: 'sign', params: { sid: to.params.sid } })
   } else {
     next();
   }
@@ -71,42 +74,42 @@ const routes = [{
     path: '/sign',
     component: BaseSigning,
     children: [{
-        path: '/:sid',
+        path: '/share/:sid',
         name: "sign",
         component: Sign
       },
       {
         // TODO: Add sid everywhere
-        path: '/generateKey',
+        // TODO: Generate page should be available everywhere i guess?
+        path: '/sign/:sid/generate',
         name: "generate",
         component: GenerateKey,
-        beforeEnter: flow('sign', 'upload')
+        beforeEnter: flowGuardSign
       },
       // TODO Upload is maybe not the right word?
       {
-        path: '/upload',
+        path: '/sign/:sid/upload',
         name: "upload",
         component: UploadKey,
-        beforeEnter: flow('sign', 'profile')
+        beforeEnter: flowGuardSign
       },
       {
-        path: '/profile',
+        path: '/sign/:sid/profile',
         name: "profile",
         component: Profile,
-        beforeEnter: flow('upload', 'confirm')
+        beforeEnter: flowGuardSign
       },
       {
-        path: '/confirm',
+        path: '/sign/:sid/confirm',
         name: "confirm",
         component: Confirmation,
-        beforeEnter: flow('profile', 'signed')
+        beforeEnter: flowGuardSign
       },
       {
-        path: '/done',
+        path: '/sign/:sid/done',
         name: "signed",
         component: Signed,
-        // This allows you to go back after going to main app again
-        beforeEnter: flow('confirm', 'landing')
+        beforeEnter: flowGuardSign
       }
     ]
   },

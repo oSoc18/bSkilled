@@ -55,6 +55,7 @@ export default {
   },
   data() {
     return {
+      flowStep: "share",
       location: process.env.LOCATION,
       copySucceeded: null,
       selectedBoolean: true,
@@ -90,11 +91,11 @@ export default {
   computed: {
     ...mapState(["share", "badgeTemplate", "recipient"]),
     thingToCopy() {
-      return process.env.LOCATION + "#/sign/" + this.share.sid;
+      return process.env.LOCATION + "#/share/" + this.share.sid;
     }
   },
   activated() {
-    this.$store.commit("SET_CURRENT_FLOW_STEP", "share");
+    this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
   }
 };
 </script>
