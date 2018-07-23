@@ -25,13 +25,9 @@ export default {
   },
   methods: {
     submit: function(event) {
-      this.$store.commit("SAVE_RECIPIENT", this.recipient);
-      this.$store.dispatch("postImplication").then(() =>
-        this.$store.dispatch("stepFlow", {
-          nextStep: "share",
-          nextRoute: { name: "share" }
-        })
-      );
+      this.$store.dispatch("createImplication", this.recipient).then(() => {
+        this.$store.dispatch("stepFlow", "share");
+      });
     }
   }
 };

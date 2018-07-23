@@ -15,33 +15,35 @@ const state = {
   furthestFlowSep: "search",
   publicKey: undefined,
   implication: undefined,
-  assertion: undefined
+  assertion: undefined,
+  share: undefined
 };
 
 
-const SET_FLOW_STEP = "SET_FLOW_STEP";
+const SET_CURRENT_FLOW_STEP = "SET_CURRENT_FLOW_STEP";
 const SAVE_BADGE_TEMPLATE = "SAVE_BADGE_TEMPLATE";
 const SAVE_RECIPIENT = "SAVE_RECIPIENT";
 const SAVE_IMPLICATION = "SAVE_IMPLICATION";
 const SAVE_ASSERTION = "SAVE_ASSERTION";
+const SAVE_SHARE = "SAVE_SHARE";
 const ADD_ISSUER = "ADD_ISSUER";
 const ADD_PUBKEY = "ADD_PUBKEY";
 
 
 const mutations = {
   // General
-  [SET_FLOW_STEP](state, flowStep) {
-    state.flowStep = flowStep;
+  [SET_CURRENT_FLOW_STEP](state, currentFlowStep) {
+    state.currentFlowStep = currentFlowStep;
   },
   // Creating
-  [SAVE_IMPLICATION](state, implication) {
-    state.implication = implication;
-  },
   [SAVE_BADGE_TEMPLATE](state, badgeTemplate) {
     state.badgeTemplate = badgeTemplate;
   },
   [SAVE_RECIPIENT](state, recipient) {
     state.recipient = recipient;
+  },
+  [SAVE_SHARE](state, share) {
+    state.share = share;
   },
   // Signing
   [SAVE_ASSERTION](state, assertion) {
@@ -57,6 +59,7 @@ const mutations = {
   }
 };
 
+// TODO: Create action types
 const actions = {
   // General
   stepFlow({ commit, state }) {
@@ -66,19 +69,20 @@ const actions = {
         'recipient': 'share'
       }
     };
-    const next = steps[state.flowMode][state.flowStep];
-    console.log(next);
-    commit(SET_FLOW_STEP, next);
-    router.push(next);
+    const next = steps[state.flowMode][state.currentFlowStep];
+    commit(SET_CURRENT_FLOW_STEP, next);
+    router.push({ name: next });
   },
-  // Creating
-  postImplication({ commit, state }) {
+  // Submit
+  createImplication({ commit, state }, recipient) {
     console.log(`Submitting badge for ${recipient}`);
-    const recipient = state.recipient;
     const badgeTemplate = state.badgeClass;
     const implication = { recipient, badgeTemplate };
-    commit(SAVE_IMPLICATION, implication);
-    return Vue.http.post(process.env.API + "implication", implication);
+    commit(SAVE_RECIPIENT, recipient);
+    return Vue.http
+      .post(process.env.API + "implication", implication)
+      .then(resp => resp.body)
+      .then(share => this.commit(SAVE_SHARE, share));
   },
   // Signing
   fetchImplication({ commit }, sid) {

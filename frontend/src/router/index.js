@@ -4,7 +4,7 @@ import VueRouter from 'vue-router';
 import Landing from 'Views/LandingPage.vue';
 
 import BaseCreation from 'Components/BaseCreation.vue';
-import SearchBadgePage from 'Views/SearchBadgePage.vue';
+import SearchBadge from 'Views/SearchBadgePage.vue';
 import Recipient from 'Views/FillInRecipientPage.vue';
 import Share from 'Views/ShareBadgeLinkPage.vue';
 
@@ -36,19 +36,15 @@ const routes = [{
     children: [{
       path: '/',
       name: 'search',
-      component: SearchBadgePage,
+      component: SearchBadge,
     }, {
       path: '/create/recipient',
       name: 'recipient',
-      component: Recipient,
-      props: true,
-      // beforeEnter: flow('landing', 'share')
+      component: Recipient
     }, {
-      path: '/share',
+      path: '/create/share',
       name: 'share',
       component: Share,
-      props: true,
-      beforeEnter: flow('recipient', undefined)
     }]
   },
   {
@@ -60,6 +56,7 @@ const routes = [{
         component: Sign
       },
       {
+        // TODO: Add sid everywhere
         path: '/generateKey',
         name: "generate",
         component: GenerateKey,

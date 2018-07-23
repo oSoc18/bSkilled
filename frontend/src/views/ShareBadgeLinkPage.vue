@@ -1,8 +1,8 @@
 <template>
   <div>
-    <BadgeClassCard :badge-class="share.implication.badgeTemplate"/>
+    <BadgeClassCard :badge-class="badgeTemplate"/>
     <p>Receiver</p>
-    <p>{{share.implication.recipient}}</p>
+    <p>{{recipient}}</p>
     <p>Here be a share link!</p>
     <p v-clipboard:copy="thingToCopy"
     v-clipboard:success="onCopy"
@@ -17,34 +17,31 @@
 
 <script>
 import BadgeClassCard from "@/components/BadgeClassCard";
+import { mapState } from "vuex";
 
 export default {
-  data() {
-    return {
-      location: process.env.LOCATION,
-      copySucceeded: null,
-      thingToCopy: process.env.LOCATION + "#/sign/" + this.share.sid
-    };
-  },
-  methods: {
-    onCopy: function (e) {
-      this.copySucceeded = true;
-    },
-    onError: function (e) {
-      this.copySucceeded = false;
-    }
-  },
   components: {
     BadgeClassCard
   },
-  props: {
-    share: {
-      sid: String,
-      implication: {
-        // TODO: Recipient should be IdentityObject
-        recipient: String,
-        badgeTemplate: Object
-      }
+  data() {
+    return {
+      location: process.env.LOCATION,
+      copySucceeded: null
+    };
+  },
+  methods: {
+    onCopy: function(e) {
+      this.copySucceeded = true;
+    },
+    onError: function(e) {
+      this.copySucceeded = false;
+    }
+  },
+  computed: {
+    ...mapState(["share", "badgeTemplate", "recipient"]),
+    thingToCopy() {
+      console.log(this.share);
+      return process.env.LOCATION + "#/sign/" + this.share.sid;
     }
   }
 };
