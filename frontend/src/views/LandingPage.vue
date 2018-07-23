@@ -3,7 +3,7 @@
     <h1>Welcome on bSkilled!</h1>
     <h2>Bee connected!</h2>
     <p>zzzzooooeeeemmm</p>
-    <router-link to="/create">
+    <router-link to="/create/search">
       <Button>Create and share badge</Button>
     </router-link>
   </div>

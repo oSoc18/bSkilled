@@ -34,7 +34,7 @@ const routes = [{
     path: '/create',
     component: BaseCreation,
     children: [{
-      path: '/',
+      path: '/create/search',
       name: 'search',
       component: SearchBadge,
     }, {
@@ -42,7 +42,8 @@ const routes = [{
       name: 'recipient',
       component: Recipient
     }, {
-      path: '/create/share',
+      // URL is different here for UX
+      path: '/share/:sid',
       name: 'share',
       component: Share,
     }]
@@ -92,7 +93,7 @@ const routes = [{
   },
   {
     path: '*',
-    redirect: '/landing'
+    redirect: '/'
   }
 ];
 

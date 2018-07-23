@@ -65,13 +65,19 @@ const actions = {
   stepFlow({ commit, state }) {
     const steps = {
       'sharing': {
-        'search': 'recipient',
-        'recipient': 'share'
-      }
+        'search': (state) => ({
+          nextFlowStep: 'recipient',
+          nextRoute: { name: 'recipient' }
+        }),
+        'recipient': (state) => ({
+          nextFlowStep: 'share',
+          nextRoute: { name: 'share', params: { sid: state.share.sid } }
+        })
+      },
     };
-    const next = steps[state.flowMode][state.currentFlowStep];
-    commit(SET_CURRENT_FLOW_STEP, next);
-    router.push({ name: next });
+    const next = steps[state.flowMode][state.currentFlowStep](state);
+    commit(SET_CURRENT_FLOW_STEP, next.nextFlowStep);
+    router.push(next.nextRoute);
   },
   // Submit
   createImplication({ commit, state }, recipient) {
