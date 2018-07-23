@@ -1,5 +1,5 @@
 <template>
-  <button @click="onClick" class="button">
+  <button @click="click" class="button">
     <slot>Button</slot>
   </button>
 </template>
@@ -8,8 +8,14 @@
 export default {
   props: {
     onClick: {
-      type: Function,
-      required: false
+      type: Function
+    }
+  },
+  methods: {
+    click() {
+      if (this.onClick) {
+        this.onClick();
+      }
     }
   }
 };
@@ -40,7 +46,6 @@ export default {
 
   &:hover {
     background: darken($buttonlight, 20);
-
   }
 }
 
@@ -49,7 +54,7 @@ export default {
   background: white;
   color: $lightgrey;
   border: 1px solid $lightgrey;
-  pointer-events:none
+  pointer-events: none;
 }
 
 .button--high-margin {

@@ -1,10 +1,17 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import store from '../store';
+
 import Landing from 'Views/LandingPage.vue';
+import Download from 'Views/DownloadBadgePage.vue';
+
+import BaseCreation from 'Components/BaseCreation.vue';
+import SearchBadge from 'Views/SearchBadgePage.vue';
 import Recipient from 'Views/FillInRecipientPage.vue';
 import Share from 'Views/ShareBadgeLinkPage.vue';
 
+import BaseSigning from 'Components/BaseSigning.vue';
 import Sign from 'Views/SignBadgePage.vue';
 import GenerateKey from 'Views/GenerateKeyPage.vue';
 import UploadKey from 'Views/UploadKeyPage.vue';
@@ -22,64 +29,91 @@ const flow = (pred, succ, redirect = '/') => (to, from, next) => {
   return next();
 }
 
+const flowGuard = (to, from, next) => {
+  if (store.state.currentFlowStep == 'search') {
+    next('/');
+  } else {
+    next();
+  }
+}
+
 const routes = [{
     path: '/',
-    name: 'landing',
     component: Landing,
+    name: 'landing'
+  }, {
+    path: '/download/:sid',
+    component: Download,
+    name: 'download',
+  }, {
+    path: '/create',
+    component: BaseCreation,
+    children: [{
+      path: '/create/search',
+      name: 'search',
+      component: SearchBadge,
+    }, {
+      path: '/create/recipient',
+      name: 'recipient',
+      component: Recipient,
+      beforeEnter: flowGuard
+    }, {
+      // URL is different here for UX (dirty hax, cause other download URL will actually load first on refresh, which what we want)
+      // TODO: The page will have to load some
+      // TODO Consistent naming
+      path: '/download/:sid',
+      name: 'share',
+      component: Share,
+      beforeEnter: flowGuard
+    }]
   },
   {
-    path: '/recipient',
-    name: 'recipient',
-    component: Recipient,
-    props: true,
-    beforeEnter: flow('landing', 'created')
+    path: '/sign',
+    component: BaseSigning,
+    children: [{
+        path: '/:sid',
+        name: "sign",
+        component: Sign
+      },
+      {
+        // TODO: Add sid everywhere
+        path: '/generateKey',
+        name: "generate",
+        component: GenerateKey,
+        beforeEnter: flow('sign', 'upload')
+      },
+      // TODO Upload is maybe not the right word?
+      {
+        path: '/upload',
+        name: "upload",
+        component: UploadKey,
+        beforeEnter: flow('sign', 'profile')
+      },
+      {
+        path: '/profile',
+        name: "profile",
+        component: Profile,
+        beforeEnter: flow('upload', 'confirm')
+      },
+      {
+        path: '/confirm',
+        name: "confirm",
+        component: Confirmation,
+        beforeEnter: flow('profile', 'signed')
+      },
+      {
+        path: '/done',
+        name: "signed",
+        component: Signed,
+        // This allows you to go back after going to main app again
+        beforeEnter: flow('confirm', 'landing')
+      }
+    ]
   },
   {
-    path: '/share',
-    name: 'share',
-    component: Share,
-    props: true,
-    beforeEnter: flow('recipient', undefined)
-  },
-
-  {
-    path: '/sign/:sid',
-    name: "sign",
-    component: Sign
-  },
-  {
-    path: '/generateKey',
-    name: "generate",
-    component: GenerateKey,
-    beforeEnter: flow('sign', 'upload')
-  },
-  // TODO Upload is maybe not the right word?
-  {
-    path: '/uploadKey',
-    name: "upload",
-    component: UploadKey,
-    beforeEnter: flow('sign', 'profile')
-  },
-  {
-    path: '/profile',
-    name: "profile",
-    component: Profile,
-    beforeEnter: flow('upload', 'confirm')
-  },
-  {
-    path: '/confirm',
-    name: "confirm",
-    component: Confirmation,
-    beforeEnter: flow('profile', 'signed')
-  },
-  {
-    path: '/signed',
-    name: "signed",
-    component: Signed,
-    // This allows you to go back after going to main app again
-    beforeEnter: flow('confirm', 'landing')
+    path: '*',
+    redirect: '/'
   }
-
 ];
 
 export default new VueRouter({ routes });

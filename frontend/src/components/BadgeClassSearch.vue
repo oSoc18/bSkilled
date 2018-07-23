@@ -6,7 +6,7 @@
     </div>
     <ul>
       <!-- TODO: Use unique ID for :key here -->
-      <li v-for="(match, index) in matches"
+      <li v-for="(match) in matches"
         v-bind:key="match.item.name">
         <BadgeClassCard
           :selectBadgeClass="selectBadgeClass"
@@ -71,7 +71,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .search {
   background-size: 5%;
   background-repeat: no-repeat;

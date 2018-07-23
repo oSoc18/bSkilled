@@ -8,15 +8,15 @@
    <vue-slide-up-down :active="!active">
      <div class="badge-description">
        <p id="description">{{ badgeClass.description }}</p>
-       <v-button :onClick="clickHandlerSaveSkill" class="badge-button button--small" v-bind:class="{'is-hidden': isSelected}">Safe skill</v-button>
+       <v-button :onClick="clickHandlerSaveSkill" class="badge-button button--small" v-bind:class="{'is-hidden': isSelected}">Save skill</v-button>
      </div>
     </vue-slide-up-down>
   </div>
 </template>
 
 <script>
-import VueSlideUpDown from 'vue-slide-up-down'
-import Button from 'Components/Button'
+import VueSlideUpDown from "vue-slide-up-down";
+import Button from "Components/Button";
 
 export default {
   props: {
@@ -30,30 +30,30 @@ export default {
   },
   components: {
     "vue-slide-up-down": VueSlideUpDown,
-    "v-button": Button,
+    "v-button": Button
   },
   data: () => ({
     active: true,
     haveHeight: false,
     haveHeightSelected: false
   }),
-
   methods: {
-    toggle (e) {
-      this.active = !this.active
+    toggle(e) {
+      this.active = !this.active;
 
-      const badgeElement = e.currentTarget.nextSibling.nextSibling.childNodes[0]
-      const heightBadgeElement = badgeElement.offsetHeight
+      const badgeElement =
+        e.currentTarget.nextSibling.nextSibling.childNodes[0];
+      const heightBadgeElement = badgeElement.offsetHeight;
 
-      if(!this.active) {
+      if (!this.active) {
         e.currentTarget.childNodes[4].style.transform = `scale(1, -1)`;
       } else {
         e.currentTarget.childNodes[4].style.transform = `scale(1, 1)`;
       }
 
-      if(!this.haveHeight) {
+      if (!this.haveHeight) {
         const height = heightBadgeElement - 5;
-        badgeElement.style.height=`${height}px`
+        badgeElement.style.height = `${height}px`;
         this.haveHeight = true;
       }
     },
@@ -62,20 +62,19 @@ export default {
       console.log(this.badgeClass);
     }
   },
-  mounted(){
-    if(this.isSelected){
-      this.active = false
-      const badgeElement = this.$el.querySelector('.badge-description');
-      const arrowSvg = this.$el.querySelector('.arrow_down');
+  mounted() {
+    if (this.isSelected) {
+      this.active = false;
+      const badgeElement = this.$el.querySelector(".badge-description");
+      const arrowSvg = this.$el.querySelector(".arrow_down");
       arrowSvg.style.transform = `scale(1, -1)`;
       const heightBadgeElement = badgeElement.offsetHeight;
       const height = heightBadgeElement + 12;
       this.haveHeightSelected = true;
-      badgeElement.style.height=`${height}px`
+      badgeElement.style.height = `${height}px`;
     }
- }
+  }
 };
-
 </script>
 
 <style lang="scss" scoped>
@@ -98,7 +97,7 @@ export default {
   cursor: pointer;
   display: flex;
   align-items: center;
-  box-shadow: 0 0 8px 0 rgba($darkblue,0.25);
+  box-shadow: 0 0 8px 0 rgba($darkblue, 0.25);
   border-radius: 5px 5px 0 0;
   padding: 20px 30px;
   width: 310px;
@@ -117,7 +116,7 @@ export default {
 .badge-description {
   font-size: 14px;
   padding: 5px 30px 15px;
-  box-shadow: 0 0 8px 0 rgba($darkblue,0.25);
+  box-shadow: 0 0 8px 0 rgba($darkblue, 0.25);
   position: relative;
   z-index: 2;
   line-height: 1.4;
@@ -132,7 +131,7 @@ export default {
   }
 
   &:after {
-    content: '';
+    content: "";
     width: 100%;
     border-bottom: solid 20px white;
     position: absolute;
@@ -148,7 +147,6 @@ export default {
 
 .arrow_down {
   margin-top: 4px;
-  transition: all .2s;
+  transition: all 0.2s;
 }
-
 </style>
