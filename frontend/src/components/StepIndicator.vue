@@ -2,7 +2,7 @@
   <nav class="nav-progressbar">
     <ul class="progressbar">
       <li class="progressbar_item" v-bind:class="{'current': currentPage.search, 'visited': visitedPage.search, 'visited-animation': checkVisitedSearch(pageVisited)}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPage.search}" href="#" @click="$router.go(-1)">Search for your skill</a></li>
-      <li class="progressbar_item" v-bind:class="{'current': currentPage.information, 'visited': visitedPage.information, 'visited-animation': checkVisitedInformation(pageVisited), 'visited-delay': checkVisitedSearch(pageVisited)}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPage.search}"  href="#" @click="$router.go(-1)">Some personal information</a></li>
+      <li class="progressbar_item" v-bind:class="{'current': currentPage.information, 'visited': visitedPage.information, 'visited-animation': checkVisitedInformation(pageVisited), 'visited-delay': checkVisitedSearch(pageVisited)}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPage.information}"  href="#" @click="$router.go(-1)">Some personal information</a></li>
       <li class="progressbar_item" v-bind:class="{'current': currentPage.save, 'visited': visitedPage.save}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPage.save}" href="#">Save your badge</a></li>
     </ul>
 

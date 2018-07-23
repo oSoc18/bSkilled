@@ -12,9 +12,6 @@
             <input name="recipient" v-model="recipient" v-validate="'required|email'" :class="{'input': true, 'is-danger': errors.has('recipient') }" type="text" placeholder="you@email.com">
           </div>
           <v-button :onClick="validate">Save personal information</v-button>
-          <img src="../assets/teaching.svg" alt="">
-          <img src="../assets/teamwork.svg" alt="">
-          <img src="../assets/teamleader.svg" alt="">
         </div>
       </div>
     </section>
