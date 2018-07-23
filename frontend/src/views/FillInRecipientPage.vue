@@ -6,12 +6,21 @@
         <v-indicator :visitedPage="visitedPage" :currentPage="currentPage" :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
           <BadgeClassCard :badge-class="badgeClass" :isSelected="selectedBoolean"/>
-          <div class="input-container">
-            <label for="recipientEmail">E-mail address recipient<span v-show="errors.has('recipient')" class="mark-error is-hidden" ref="errorMark">*</span></label>
-            <p v-show="errors.has('recipient')" class="error is-hidden" ref="errorMessage">{{ errors.first('recipient') }}</p>
-            <input name="recipient" v-model="recipient" v-validate="'required|email'" :class="{'input': true, 'is-danger': errors.has('recipient') }" type="text" placeholder="you@email.com" data-vv-validate-on="none" @input="handlerInputChange">
-          </div>
-          <v-button :onClick="validate">Save personal information</v-button>
+          <form @submit.prevent="validate">
+            <div class="input-container">
+              <label for="recipientEmail">E-mail address recipient<span v-show="errors.has('recipient')" class="mark-error is-hidden" ref="errorMark">*</span></label>
+              <p v-show="errors.has('recipient')" class="error is-hidden" ref="errorMessage">{{ errors.first('recipient') }}</p>
+              <input name="recipient"
+                     v-model="recipient"
+                     v-validate="'required|email'"
+                     :class="{'input': true, 'is-danger': errors.has('recipient') }"
+                     type="text"
+                     placeholder="you@email.com"
+                     data-vv-validate-on="none"
+                     @input="handlerInputChange">
+            </div>
+            <v-button :onClick="validate">Save personal information</v-button>
+          </form>
         </div>
       </div>
     </section>
@@ -19,7 +28,6 @@
 </template>
 
 <script>
-
 import BadgeClassCard from "Components/BadgeClassCard";
 import Introduction from "Components/IntroductionOfPage";
 import Indicator from "Components/StepIndicator";
@@ -42,33 +50,34 @@ export default {
   data() {
     return {
       selectedBoolean: true,
-      recipient: '',
+      recipient: "",
       introductionContent: {
-        title: 'Fill in your personal information',
-        text: 'We only use your personal information to create your badge and mail it to you.',
+        title: "Fill in your personal information",
+        text:
+          "We only use your personal information to create your badge and mail it to you."
       },
       visitedPage: {
         search: true,
         information: false,
-        save: false,
+        save: false
       },
       currentPage: {
         search: false,
         information: true,
-        save: false,
+        save: false
       },
       pageVisited: 1
-    }
+    };
   },
   methods: {
     validate() {
-      this.$validator.validateAll().then((result) => {
+      this.$validator.validateAll().then(result => {
         if (result) {
           this.submitForm();
           return;
         } else {
-          this.$refs.errorMessage.classList.remove('is-hidden');
-          this.$refs.errorMark.classList.remove('is-hidden');
+          this.$refs.errorMessage.classList.remove("is-hidden");
+          this.$refs.errorMark.classList.remove("is-hidden");
         }
       });
     },
@@ -90,13 +99,12 @@ export default {
       );
     },
     handlerInputChange() {
-      this.$refs.errorMessage.classList.add('is-hidden');
-      this.$refs.errorMark.classList.add('is-hidden');
+      this.$refs.errorMessage.classList.add("is-hidden");
+      this.$refs.errorMark.classList.add("is-hidden");
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-
 </style>

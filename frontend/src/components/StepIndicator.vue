@@ -3,7 +3,7 @@
     <ul class="progressbar">
       <li class="progressbar_item" v-bind:class="{'current': currentPage.search, 'visited': visitedPage.search, 'visited-animation': checkVisitedSearch(pageVisited)}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPage.search}" href="#" @click="$router.go(-1)">Search for your skill</a></li>
       <li class="progressbar_item" v-bind:class="{'current': currentPage.information, 'visited': visitedPage.information, 'visited-animation': checkVisitedInformation(pageVisited), 'visited-delay': checkVisitedSearch(pageVisited)}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPage.information}"  href="#" @click="$router.go(-1)">Some personal information</a></li>
-      <li class="progressbar_item" v-bind:class="{'current': currentPage.save, 'visited': visitedPage.save}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPage.save}" href="#">Save your badge</a></li>
+      <li class="progressbar_item" v-bind:class="{'current': currentPage.save, 'visited': visitedPage.save}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPage.save}" href="#">Share your badge</a></li>
     </ul>
 
     <div class="content">
@@ -15,31 +15,29 @@
 </template>
 
 <script>
-
 export default {
   props: {
     visitedPage: {
       search: Boolean,
       information: Boolean,
-      save: Boolean,
+      save: Boolean
     },
     currentPage: {
       search: Boolean,
       information: Boolean,
-      save: Boolean,
+      save: Boolean
     },
     pageVisited: Number
   },
   methods: {
     checkVisitedSearch(int) {
-      return int === 1
+      return int === 1;
     },
     checkVisitedInformation(int) {
-      return int === 2
+      return int === 2;
     }
   }
 };
-
 </script>
 
 <style lang="scss" scoped>
@@ -57,7 +55,7 @@ export default {
 
   &::before {
     display: inline-block;
-    content: '';
+    content: "";
     position: absolute;
     left: 17px;
     height: 90%;
@@ -100,7 +98,7 @@ export default {
 
 .visited {
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: -13px;
     height: 100%;
@@ -118,18 +116,18 @@ export default {
 }
 
 .visited-animation::before {
-  animation: visitedAnimation .75s 1 forwards;
+  animation: visitedAnimation 0.75s 1 forwards;
 }
 
 .current {
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: -13px;
     height: 0%;
     width: 3px;
     background: $baseyellow;
-    animation: currentAnimation .75s 1 forwards;
+    animation: currentAnimation 0.75s 1 forwards;
   }
 
   & a {
@@ -144,22 +142,28 @@ export default {
 }
 
 .visited-delay::before {
-  animation-delay: .5s;
+  animation-delay: 0.5s;
 }
 
 .link--disabled {
   pointer-events: none;
 }
 
-
 @keyframes currentAnimation {
-  0%   { height: 0; }
-  100% { height: 55%; }
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 55%;
+  }
 }
 
 @keyframes visitedAnimation {
-  0%   { height: 55%; }
-  100% { height: 100%; }
+  0% {
+    height: 55%;
+  }
+  100% {
+    height: 100%;
+  }
 }
-
 </style>
