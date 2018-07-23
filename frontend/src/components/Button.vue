@@ -44,12 +44,15 @@ export default {
   }
 }
 
-
 .button--disabled,
 .button--disabled:hover {
   background: white;
   color: $lightgrey;
   border: 1px solid $lightgrey;
   pointer-events:none
+}
+
+.button--high-margin {
+  padding: 13px 60px;
 }
 </style>

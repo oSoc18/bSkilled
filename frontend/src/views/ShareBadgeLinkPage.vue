@@ -5,21 +5,7 @@
       <div class="section-right_container section-right_container-center">
         <v-indicator :visitedPage="visitedPage" :currentPage="currentPage" :pageVisited="pageVisited"></v-indicator>
         <div class="container">
-          <div class="badge">
-            <img src="../assets/badge.svg" alt="" width="179" height="157">
-            <img class="badge-icon":src="share.implication.badgeTemplate.image" alt="" width="70" height="70">
-            <svg class="is-hidden">
-              <filter id="linear">
-                <feColorMatrix
-                  type="matrix"
-                  values="0.1 -0.5 0 1.8 1.7
-                          0 1 0 0 2.4
-                          0 0 1 0 2
-                          0 0 0 1 0 "/>
-              </filter>
-            </svg>
-          </div>
-          <p class="created-badge-name">{{share.implication.badgeTemplate.name}}</p>
+          <Badge :badge-class="share.implication.badgeTemplate" />
           <h1 class="create-badge-title">You created a badge!</h1>
           <p class="link-description">Share this link with your connections. You’ll get an e-mail once your badge is signed. Then you’ll be able to download your signed badge!</p>
           <div class="container-link">
@@ -44,6 +30,7 @@
 import Introduction from "Components/IntroductionOfPage";
 import Indicator from "Components/StepIndicator";
 import Button from "Components/Button";
+import Badge from "Components/Badge";
 
 export default {
   data() {
@@ -83,7 +70,8 @@ export default {
   components: {
     "v-introduction": Introduction,
     "v-indicator": Indicator,
-    "v-button": Button
+    "v-button": Button,
+    Badge
   },
   props: {
     share: {

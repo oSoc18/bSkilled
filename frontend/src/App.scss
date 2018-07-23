@@ -73,7 +73,13 @@ h1 {
 }
 
 a {
+  font-size: 14px;
+  margin-top: 8px;
   text-decoration: none;
+}
+
+.a--underline {
+  text-decoration: underline;
 }
 
 label {
@@ -176,4 +182,8 @@ input {
   100% {
     opacity: 1;
   }
+}
+
+.h1--blue {
+  color: #30355c;
 }
