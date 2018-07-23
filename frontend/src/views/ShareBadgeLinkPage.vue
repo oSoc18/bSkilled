@@ -102,8 +102,8 @@ export default {
   background: #fff;
   border: 0;
   border-radius: 5px 0 0 5px;
-  box-shadow: 0 0 8px 0 rgba(48,53,92,0.25);
-  color: rgba(48, 53, 92, .5);
+  box-shadow: 0 0 8px 0 rgba($darkblue,0.25);
+  color: rgba($darkblue, .5);
   font-weight: 400;
   font-size: 13px;
   height: 40px;
@@ -123,7 +123,7 @@ export default {
   cursor: pointer;
   font-size: 13px;
   border: none;
-  background-color: #30355c;
+  background-color: $darkblue;
   color: white;
   border-radius: 0 5px 5px 0;
   width: 110px;
@@ -147,7 +147,7 @@ export default {
   stroke-dashoffset: 166;
   stroke-width: 2;
   stroke-miterlimit: 10;
-  stroke: #63C56A;
+  stroke: $green;
   fill: none;
   animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
@@ -160,7 +160,7 @@ export default {
   stroke-width: 2;
   stroke: #fff;
   stroke-miterlimit: 10;
-  box-shadow: inset 0px 0px 0px #63C56A;
+  box-shadow: inset 0px 0px 0px $green;
   animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
 }
 
@@ -186,7 +186,7 @@ export default {
 }
 @keyframes fill {
   100% {
-    box-shadow: inset 0px 0px 0px 30px #63C56A;
+    box-shadow: inset 0px 0px 0px 30px $green;
   }
 }
 </style>

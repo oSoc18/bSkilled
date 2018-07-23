@@ -84,11 +84,11 @@ export default {
 @import "~Vars";
 
 .badge-temp {
-  color: #30355C;
+  color: $darkblue;
   display: block;
   width: 340px;
   margin: 20px;
-  background: #FFFFFF;
+  background: $white;
 }
 .badge-temp::after {
   content: "";
@@ -100,7 +100,7 @@ export default {
   cursor: pointer;
   display: flex;
   align-items: center;
-  box-shadow: 0 0 8px 0 rgba(48,53,92,0.25);
+  box-shadow: 0 0 8px 0 rgba($darkblue,0.25);
   border-radius: 5px 5px 0 0;
   padding: 20px 30px;
   width: 310px;
@@ -119,7 +119,7 @@ export default {
 .badge-description {
   font-size: 14px;
   padding: 5px 30px 15px;
-  box-shadow: 0 0 8px 0 rgba(48,53,92,0.25);
+  box-shadow: 0 0 8px 0 rgba($darkblue,0.25);
   position: relative;
   z-index: 2;
   line-height: 1.4;

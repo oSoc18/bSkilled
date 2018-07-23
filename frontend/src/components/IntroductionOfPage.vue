@@ -27,7 +27,7 @@ export default {
 .section-introduction {
   width: 37%;
   min-height: 100vh;
-  background: #fccd77 url(../assets/skill_illustration.png) -7% 100% no-repeat;
+  background: $bgyellow url(../assets/skill_illustration.png) -7% 100% no-repeat;
   background-attachment: fixed;
   background-size: 50%;
   padding-top: 175px;

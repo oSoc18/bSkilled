@@ -62,7 +62,7 @@ export default {
     left: 17px;
     height: 90%;
     width: 3px;
-    background: #DEDFE6;
+    background: $progressbargrey;
   }
 
   &_item {
@@ -76,7 +76,7 @@ export default {
 
     &_link {
       font-size: 13px;
-      color: #DEDFE6;
+      color: $progressbargrey;
       font-weight: 700;
       &::after {
         content: counter(step);
@@ -90,7 +90,7 @@ export default {
         width: 35px;
         height: 35px;
         border-radius: 50%;
-        background-color: #DEDFE6;
+        background-color: $progressbargrey;
         color: white;
         font-size: 10px;
       }
@@ -105,15 +105,15 @@ export default {
     left: -13px;
     height: 100%;
     width: 3px;
-    background: #F99D23;
+    background: $baseyellow;
   }
 
   & a {
-    color: #30355C;
+    color: $darkblue;
   }
 
   & a::after {
-    background-color: #F99D23;
+    background-color: $baseyellow;
   }
 }
 
@@ -128,17 +128,17 @@ export default {
     left: -13px;
     height: 0%;
     width: 3px;
-    background: #F99D23;
+    background: $baseyellow;
     animation: currentAnimation .75s 1 forwards;
   }
 
   & a {
-    color: #30355C;
+    color: $darkblue;
 
     &::after {
-      background-color: #F99D23;
+      background-color: $baseyellow;
       border: 4px solid #fff;
-      box-shadow: 0 0 0 3px #F99D23;
+      box-shadow: 0 0 0 3px $baseyellow;
     }
   }
 }

@@ -19,6 +19,7 @@
 
 <style lang="scss" scoped>
 @import "~Vars";
+
 .l-header {
   position: absolute;
   display: flex;
@@ -51,14 +52,14 @@
 
   & a {
     padding: 10px 25px;
-    color: #30355C;
+    color: $darkblue;
   }
 
   &--state-current, &:hover   {
-    background-color: #ff6b36;
+    background-color: $orange;
 
     & a {
-      color: #ffffff;
+      color: $white;
     }
   }
 }
