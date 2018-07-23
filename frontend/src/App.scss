@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin:400,500,600,700');
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -23,20 +25,31 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
+
 body {
-  line-height: 1.4;
+  background-size: 100%;
+  font-family: 'Cabin', sans-serif;
+  font-size: 16px;
 }
-ol, ul {
+
+ol,
+ul {
   list-style: none;
 }
-blockquote, q {
+
+blockquote,
+q {
   quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
   content: '';
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -46,11 +59,121 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
   outline: none;
 }
 
-#app, .app {
+h1 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
 
+a {
+  text-decoration: none;
+}
+
+label {
+  color: #30355c;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+input {
+  background: #fff;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 8px 0 rgba(48, 53, 92, .25);
+  color: #30355c;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  margin-bottom: 15px;
+  padding-left: 15px;
+  width: 340px;
+}
+
+::placeholder {
+  color: #c0c2ce;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.is-fixed {
+  position: fixed;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.row-page {
+  display: flex;
+}
+
+.section-right {
+  width: 63%;
+}
+
+.section-right_container {
+  display: flex;
+}
+
+.section-right_container-center {
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.section-right_container-margin {
+  margin-left: 70px;
+  margin-top: 253px;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: 80px;
+  width: 370px;
+}
+
+.container-margin {
+  margin-left: 240px;
+  margin-top: 90px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.error,
+.mark-error {
+  color: #ff6b36;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.container-animation {
+  animation-duration: .3s;
+  animation-iteration-count: 1;
+  animation-name: show;
+  animation-timing-function: ease-out;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

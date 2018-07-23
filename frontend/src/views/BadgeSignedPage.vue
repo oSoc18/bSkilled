@@ -11,14 +11,12 @@
 
 <script>
 import { mapState } from "vuex";
-import Header from "Components/TheHeader";
 import Button from "Components/Button";
 import BadgeClassCard from "Components/BadgeClassCard";
 
 export default {
   name: "app",
   components: {
-    "v-header": Header,
     "v-button": Button,
     BadgeClassCard
   },

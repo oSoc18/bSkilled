@@ -32,7 +32,7 @@ const routes = [{
     name: 'recipient',
     component: Recipient,
     props: true,
-    beforeEnter: flow('landing', 'share')
+    beforeEnter: flow('landing', 'created')
   },
   {
     path: '/share',

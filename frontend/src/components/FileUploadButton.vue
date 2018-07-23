@@ -38,7 +38,7 @@ input {
 }
 
 label {
-  background: $buttonBgColor;
+  background: $buttonlight;
   border: none;
   border-radius: 20px;
   color: #fff;
@@ -48,7 +48,7 @@ label {
   transition: background 0.2s ease-in-out;
 
   &:hover {
-    background: darken($buttonBgColor, 20);
+    background: darken($buttonlight, 20);
   }
   &:focus {
     outline: 1px dotted #000;
@@ -56,4 +56,3 @@ label {
   }
 }
 </style>
-
