@@ -60,4 +60,9 @@ export default {
 .button--high-margin {
   padding: 13px 60px;
 }
+
+.button--landing {
+  padding: 15px 45px;
+  font-size: 15px;
+}
 </style>
