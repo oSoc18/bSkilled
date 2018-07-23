@@ -80,13 +80,13 @@ router.get('/assertion/:id', function(req, res) {
 
 router.post('/profile', function(request, response) { //TODO test
   let profile = request.body;
-  let sid = request.body.publickey; //validate
+  let sid = request.body.fingerprint; 
   db.get('profile').set(sid, assertion).write();
-  response.send({ sid, assertion });
+  response.send({ sid, profile });
 });
 
 router.get('/profile/:identifier', function(req, res) { //TODO test
-  res.send(db.get('profile').value()[req.params.identifier]);
+  res.send(db.get('profile').value()[req.params.fingerprint]);
 });
 
 app.use('/api', router);

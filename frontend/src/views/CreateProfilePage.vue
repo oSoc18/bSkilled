@@ -35,6 +35,27 @@ export default {
   },
   data() {
     // TODO: Fetch profile
+    //TODO get key from vuex!
+    let name = "";
+    let email = "";
+    let company = "";
+    let url = "";
+    let fingerprint =  "";
+      this.$http.get(process.env.API + "profile", fingerprint).then(
+        resp => {
+          console.log(resp);
+          name = resp.name;
+          email = resp.email;
+          company = resp.company;
+          url =  resp.url;
+          fingerprint = resp.fingerprint;
+        },
+        err => {
+          console.log(err);
+          //profile not found set as empty
+
+        }
+      );
     return {
       profile: {
         name: "",
@@ -55,6 +76,23 @@ export default {
       console.log("profile posting");
       // TODO: Post profile to backend
       this.$store.dispatch("addIssuer", this.profile);
+    },
+    submitForm() {
+      const profile = this.profile;
+      const fingerprint = "";//TODO get fingerprint from vuex
+      profile.fingerprint = fingerprint;
+      console.log(`Submitting profile at ${fingerprint}`);
+      this.$http.post(process.env.API + "profile", profile).then(
+        resp => {
+          console.log(resp);
+          //TODO contunue 
+        },
+        err => {
+          console.log(err);
+          //TODO error
+          alert("Oops! there was an issue uploading your profile: " + err);
+        }
+      );
     }
   }
 };
