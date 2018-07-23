@@ -58,10 +58,10 @@ export default {
       );
     return {
       profile: {
-        name: "",
-        email: "",
-        company: "",
-        url: ""
+        name: name,
+        email: email,
+        company: company,
+        url: url
       },
       submitted: false
     };
