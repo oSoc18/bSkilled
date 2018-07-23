@@ -44,8 +44,12 @@ export default {
   },
   methods: {
     selectBadgeClass(badgeClass) {
-      this.$router.push({ name: "recipient", params: { badgeClass } });
+      this.$store.commit("SAVE_BADGE_TEMPLATE", badgeClass);
+      this.$store.dispatch("stepFlow");
     }
+  },
+  activated() {
+    this.$store.commit("SET_CURRENT_FLOW_STEP", "search");
   }
 };
 </script>

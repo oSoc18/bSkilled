@@ -39,7 +39,6 @@ export default {
     haveHeight: false,
     haveHeightSelected: false
   }),
-
   methods: {
     toggle(e) {
       this.active = !this.active;

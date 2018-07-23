@@ -1,5 +1,5 @@
 <template>
-  <button @click="onClick || noop" class="button">
+  <button @click="click" class="button">
     <slot>Button</slot>
   </button>
 </template>
@@ -8,12 +8,15 @@
 export default {
   props: {
     onClick: {
-      type: Function,
-      required: false
+      type: Function
     }
   },
   methods: {
-    noop() {}
+    click() {
+      if (this.onClick) {
+        this.onClick();
+      }
+    }
   }
 };
 </script>

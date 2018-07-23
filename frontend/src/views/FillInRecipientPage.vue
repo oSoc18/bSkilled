@@ -6,7 +6,7 @@
         <v-indicator :visitedPage="visitedPage" :currentPage="currentPage" :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
           <BadgeClassCard :badge-class="badgeTemplate" :isSelected="selectedBoolean"/>
-          <form @submit.prevent="validate">
+          <form @submit.prevent>
             <div class="input-container">
               <label for="recipientEmail">E-mail address recipient<span v-show="errors.has('recipient')" class="mark-error is-hidden" ref="errorMark">*</span></label>
               <p v-show="errors.has('recipient')" class="error is-hidden" ref="errorMessage">{{ errors.first('recipient') }}</p>
@@ -88,6 +88,9 @@ export default {
       this.$refs.errorMessage.classList.add("is-hidden");
       this.$refs.errorMark.classList.add("is-hidden");
     }
+  },
+  activated() {
+    this.$store.commit("SET_CURRENT_FLOW_STEP", "recipient");
   }
 };
 </script>
