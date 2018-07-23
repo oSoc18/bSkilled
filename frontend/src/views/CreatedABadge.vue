@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <v-header class="header-white"></v-header>
     <div class="created_bg">
@@ -104,4 +104,4 @@ export default {
 }
 
 
-</style>
+</style> -->

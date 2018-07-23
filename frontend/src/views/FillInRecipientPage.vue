@@ -7,11 +7,14 @@
         <div class="container container-animation">
           <BadgeClassCard :badge-class="badgeClass" :isSelected="selectedBoolean"/>
           <div class="input-container">
-            <label for="recipientEmail">E-mail address recipient<span class="mark-error" v-bind:class="{'is-hidden': isValid}">*</span></label>
-            <p class="error"></p>
-            <input v-model.lazy="recipient" type="email" placeholder="you@email.com" id="recipientEmail" required @input="onEmailChange" @blur="onEmailChange">
+            <label for="recipientEmail">E-mail address recipient<span v-show="errors.has('recipient')" class="mark-error">*</span></label>
+            <p v-show="errors.has('recipient')" class="error">{{ errors.first('recipient') }}</p>
+            <input name="recipient" v-model="recipient" v-validate="'required|email'" :class="{'input': true, 'is-danger': errors.has('recipient') }" type="text" placeholder="you@email.com">
           </div>
           <v-button :onClick="validate">Save personal information</v-button>
+          <img src="../assets/teaching.svg" alt="">
+          <img src="../assets/teamwork.svg" alt="">
+          <img src="../assets/teamleader.svg" alt="">
         </div>
       </div>
     </section>
@@ -43,8 +46,6 @@ export default {
     return {
       selectedBoolean: true,
       recipient: '',
-      isValid: true,
-      submitBoolean: false,
       introductionContent: {
         title: 'Fill in your personal information',
         text: 'We only use your personal information to create your badge and mail it to you.',
@@ -64,62 +65,29 @@ export default {
   },
   methods: {
     validate() {
-      this.checkEmail(document.getElementById('recipientEmail'));
-      this.submitBoolean = true;
-      this.submitForm()
-    },
-    checkEmail($veld) {
-      if(this.valueMissing($veld)){
-        $veld.parentNode.querySelector('.error').innerHTML = this.valueMissing($veld);
-      }else if(this.typeMismatch($veld)){
-        $veld.parentNode.querySelector('.error').innerHTML = this.typeMismatch($veld);
-      }
-    },
-    valueMissing ($veld)  {
-      if($veld.validity.valueMissing){
-        this.isValid= false
-        return 'Please fill in an e-mail address';
-      }
-      this.isValid= true
-      return '';
-    },
-    typeMismatch ($veld) {
-      if($veld.validity.typeMismatch){
-        this.isValid= false
-        return 'This e-mail address is not valid';
-      }
-      this.isValid= true
-      return '';
-    },
-    onEmailChange (e) {
-      let $veld = e.currentTarget;
-      if(e.type==='blur'){
-        this.checkEmail($veld)
-      }else if(e.type==='input'){
-        if($veld.validity.valid){
-          this.isValid= true
-          $veld.parentNode.querySelector('.error').innerHTML='';
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.submitForm();
+          return;
         }
-      }
+      });
     },
     submitForm() {
-      if(this.submitBoolean && this.isValid) {
-        const recipient = this.recipient;
-        const badgeClass = this.badgeClass;
-        console.log(`Submitting badge for ${recipient}`);
-        this.$store.dispatch("submitImplication", { recipient, badgeClass });
+      const recipient = this.recipient;
+      const badgeClass = this.badgeClass;
+      console.log(`Submitting badge for ${recipient}`);
+      this.$store.dispatch("submitImplication", { recipient, badgeClass });
 
-        const implication = { recipient, badgeTemplate: badgeClass };
-        this.$http.post(process.env.API + "implication", implication).then(
-          resp => {
-            console.log(resp);
-            this.$router.push({ name: "created", params: { share: resp.body } });
-          },
-          err => {
-            console.log(err);
-          }
-        );
-      }
+      const implication = { recipient, badgeTemplate: badgeClass };
+      this.$http.post(process.env.API + "implication", implication).then(
+        resp => {
+          console.log(resp);
+          this.$router.push({ name: "share", params: { share: resp.body } });
+        },
+        err => {
+          console.log(err);
+        }
+      );
     }
   }
 };

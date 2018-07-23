@@ -11,7 +11,6 @@ import UploadKey from 'Views/UploadKeyPage.vue';
 import Profile from 'Views/CreateProfilePage.vue';
 import Signed from 'Views/BadgeSignedPage.vue';
 import Confirmation from 'Views/ConfirmationPage.vue';
-import Created from 'Views/createdABadge.vue';
 
 Vue.use(VueRouter);
 
@@ -36,18 +35,11 @@ const routes = [{
     beforeEnter: flow('landing', 'created')
   },
   {
-    path: '/created',
-    name: 'created',
-    component: Created,
-    props: true,
-    beforeEnter: flow('recipient', 'share')
-  },
-  {
     path: '/share',
     name: 'share',
     component: Share,
     props: true,
-    beforeEnter: flow('created', undefined)
+    beforeEnter: flow('recipient', undefined)
   },
 
   {
