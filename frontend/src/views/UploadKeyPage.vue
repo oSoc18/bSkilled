@@ -89,11 +89,14 @@ export default {
       );
       let privateKeyPEM = forge.pki.privateKeyToPem(privateKeyForge); //TODO send to confirmation page
       let publicKeyPEM = forge.pki.publicKeyToPem(publicKeyForge); //TODO doe we
-      let fingerprint = forge.pki.getPublicKeyFingerprint(publicKeyForge);
-      console.log(Buffer.from(fingerprint.data).toString("base64"));
-      //TODO get profile from public key fingerprint
+      let fingerPrint = forge.pki.getPublicKeyFingerPrint(publicKeyForge);
+      let usablefingerprint = Buffer.from(fingerPrint.data).toString("base64");
+      context.$store.commit("saveFingerPrint", usablefingerprint);
+      console.log(usablefingerprint);
+      //TODO get profile from public key fingerPrint
       //TODO move to next page
       //TESTS
+
       let signature = jws.sign({
         header: { alg: "RS256" },
         privateKey: privateKeyPEM,

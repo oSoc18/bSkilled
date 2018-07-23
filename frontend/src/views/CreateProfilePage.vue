@@ -40,7 +40,7 @@ export default {
     let email = "";
     let company = "";
     let url = "";
-    let fingerprint =  "";
+    let fingerprint =  this.$store.state.fingerprint;
       this.$http.get(process.env.API + "profile", fingerprint).then(
         resp => {
           console.log(resp);

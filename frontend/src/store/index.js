@@ -25,6 +25,12 @@ const mutations = {
   // TODO: Should after profile post
   addPubKey(state, key) {
     state.implication.profile = { publicKey: key };
+  },
+  savePrivateKey(state, forgePrivateKey) {
+    state.key = forgePrivateKey;
+  },
+  saveFingerPrint(state, fingerPrint) {
+    state.fingerPrint = fingerPrint;
   }
 };
 
