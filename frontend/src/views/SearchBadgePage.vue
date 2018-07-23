@@ -1,25 +1,54 @@
 <template>
-  <div>
-    <BadgeClassSearch :selectBadgeClass="selectBadgeClass"/>
+  <div class="row-page">
+    <v-introduction :introductionContent="introductionContent"></v-introduction>
+    <section class="section-right">
+      <div class="section-right_container section-right_container-margin">
+        <v-indicator :visitedPage="visitedPage" :currentPage="currentPage" :pageVisited="pageVisited" ></v-indicator>
+        <BadgeClassSearch :selectBadgeClass="selectBadgeClass"/>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
+import Button from "Components/Button";
 import BadgeClassSearch from "Components/BadgeClassSearch";
+import Introduction from "Components/IntroductionOfPage";
+import Indicator from "Components/StepIndicator";
 
 export default {
   components: {
-    BadgeClassSearch
+    Button,
+    BadgeClassSearch,
+    "v-introduction": Introduction,
+    "v-indicator": Indicator
+  },
+  data() {
+    return {
+      introductionContent: {
+        title: "Search for your skill",
+        text: "What skill do you want to verify?"
+      },
+      visitedPage: {
+        search: false,
+        information: false,
+        save: false
+      },
+      currentPage: {
+        search: true,
+        information: false,
+        save: false
+      },
+      pageVisited: 0
+    };
   },
   methods: {
-    // TODO Rename to badge template
     selectBadgeClass(badgeClass) {
-      this.continue({ data: { badgeClass } });
-    },
-    continue({ data: { badgeClass } }) {
-      this.$store.commit("SAVE_BADGE_TEMPLATE", badgeClass);
-      this.$store.dispatch("stepFlow");
+      this.$router.push({ name: "recipient", params: { badgeClass } });
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+</style>

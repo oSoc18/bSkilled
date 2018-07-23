@@ -1,5 +1,5 @@
 <template>
-  <button @click="onClick || noop" class="Button">
+  <button @click="onClick || noop" class="button">
     <slot>Button</slot>
   </button>
 </template>
@@ -21,18 +21,36 @@ export default {
 <style lang="scss" scoped>
 @import "~Vars";
 
-.Button {
-  background: $buttonBgColor;
+.button {
+  background: $button;
   border: none;
-  border-radius: 20px;
+  border-radius: 100px;
   color: #fff;
   cursor: pointer;
-  font-size: 0.75rem;
-  padding: 10px 25px;
+  padding: 13px 30px;
+  font-size: 13px;
   transition: background 0.2s ease-in-out;
 
   &:hover {
-    background: darken($buttonBgColor, 20);
+    background: darken($button, 10);
   }
+}
+
+.button--small {
+  background: $buttonlight;
+  font-size: 12px;
+  padding: 10px 25px;
+
+  &:hover {
+    background: darken($buttonlight, 20);
+  }
+}
+
+.button--disabled,
+.button--disabled:hover {
+  background: white;
+  color: $lightgrey;
+  border: 1px solid $lightgrey;
+  pointer-events: none;
 }
 </style>
