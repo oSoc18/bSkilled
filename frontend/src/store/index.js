@@ -12,20 +12,23 @@ const state = {
   // sharing: search, recipient, share
   // signing: sign, upload, generate, profile, confirmation, signed
   currentFlowStep: "search",
-  furthestFlowSep: "search",
   publicKey: undefined,
   implication: undefined,
   assertion: undefined,
   share: undefined
 };
 
-
+// General
 const SET_CURRENT_FLOW_STEP = "SET_CURRENT_FLOW_STEP";
+
+// Creation
 const SAVE_BADGE_TEMPLATE = "SAVE_BADGE_TEMPLATE";
 const SAVE_RECIPIENT = "SAVE_RECIPIENT";
+const SAVE_SHARE = "SAVE_SHARE";
+
+// Signing
 const SAVE_IMPLICATION = "SAVE_IMPLICATION";
 const SAVE_ASSERTION = "SAVE_ASSERTION";
-const SAVE_SHARE = "SAVE_SHARE";
 const ADD_ISSUER = "ADD_ISSUER";
 const ADD_PUBKEY = "ADD_PUBKEY";
 
@@ -46,6 +49,9 @@ const mutations = {
     state.share = share;
   },
   // Signing
+  [SAVE_IMPLICATION](state, implication) {
+    state.implication = implication;
+  },
   [SAVE_ASSERTION](state, assertion) {
     state.assertion = assertion;
   },

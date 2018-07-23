@@ -26,7 +26,7 @@ export default {
   methods: {
     submit: function(event) {
       this.$store.dispatch("createImplication", this.recipient).then(() => {
-        this.$store.dispatch("stepFlow", "share");
+        this.$store.dispatch("stepFlow");
       });
     }
   }

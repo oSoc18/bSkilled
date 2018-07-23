@@ -1,7 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import store from '../store';
+
 import Landing from 'Views/LandingPage.vue';
+import Download from 'Views/DownloadBadgePage.vue';
 
 import BaseCreation from 'Components/BaseCreation.vue';
 import SearchBadge from 'Views/SearchBadgePage.vue';
@@ -26,10 +29,22 @@ const flow = (pred, succ, redirect = '/') => (to, from, next) => {
   return next();
 }
 
+const flowGuard = (to, from, next) => {
+  if (store.state.currentFlowStep == 'search') {
+    next('/');
+  } else {
+    next();
+  }
+}
+
 const routes = [{
     path: '/',
     component: Landing,
     name: 'landing'
+  }, {
+    path: '/download/:sid',
+    component: Download,
+    name: 'download',
   }, {
     path: '/create',
     component: BaseCreation,
@@ -40,12 +55,16 @@ const routes = [{
     }, {
       path: '/create/recipient',
       name: 'recipient',
-      component: Recipient
+      component: Recipient,
+      beforeEnter: flowGuard
     }, {
       // URL is different here for UX
-      path: '/share/:sid',
+      // TODO: The page will have to load some
+      // TODO Consistent naming
+      path: '/download/:sid',
       name: 'share',
       component: Share,
+      beforeEnter: flowGuard
     }]
   },
   {

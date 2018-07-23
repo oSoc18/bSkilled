@@ -4,6 +4,8 @@
     <p>Receiver</p>
     <p>{{recipient}}</p>
     <p>Here be a share link!</p>
+    <p>You can visit this link again when it's signed
+      (you'll need to refresh the page)</p>
     <p v-clipboard:copy="thingToCopy"
     v-clipboard:success="onCopy"
     v-clipboard:error="onError">
