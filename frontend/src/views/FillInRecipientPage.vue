@@ -7,9 +7,9 @@
         <div class="container container-animation">
           <BadgeClassCard :badge-class="badgeClass" :isSelected="selectedBoolean"/>
           <div class="input-container">
-            <label for="recipientEmail">E-mail address recipient<span v-show="errors.has('recipient')" class="mark-error">*</span></label>
-            <p v-show="errors.has('recipient')" class="error">{{ errors.first('recipient') }}</p>
-            <input name="recipient" v-model="recipient" v-validate="'required|email'" :class="{'input': true, 'is-danger': errors.has('recipient') }" type="text" placeholder="you@email.com">
+            <label for="recipientEmail">E-mail address recipient<span v-show="errors.has('recipient')" class="mark-error is-hidden" ref="errorMark">*</span></label>
+            <p v-show="errors.has('recipient')" class="error is-hidden" ref="errorMessage">{{ errors.first('recipient') }}</p>
+            <input name="recipient" v-model="recipient" v-validate="'required|email'" :class="{'input': true, 'is-danger': errors.has('recipient') }" type="text" placeholder="you@email.com" data-vv-validate-on="none" @input="handlerInputChange">
           </div>
           <v-button :onClick="validate">Save personal information</v-button>
         </div>
@@ -66,6 +66,9 @@ export default {
         if (result) {
           this.submitForm();
           return;
+        } else {
+          this.$refs.errorMessage.classList.remove('is-hidden');
+          this.$refs.errorMark.classList.remove('is-hidden');
         }
       });
     },
@@ -85,6 +88,10 @@ export default {
           console.log(err);
         }
       );
+    },
+    handlerInputChange() {
+      this.$refs.errorMessage.classList.add('is-hidden');
+      this.$refs.errorMark.classList.add('is-hidden');
     }
   }
 };

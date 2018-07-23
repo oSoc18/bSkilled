@@ -5,6 +5,22 @@
       <div class="section-right_container section-right_container-center">
         <v-indicator :visitedPage="visitedPage" :currentPage="currentPage" :pageVisited="pageVisited"></v-indicator>
         <div class="container">
+          <div class="badge">
+            <img src="../assets/badge.svg" alt="" width="179" height="157">
+            <img class="badge-icon":src="share.implication.badgeTemplate.image" alt="" width="70" height="70">
+            <svg class="is-hidden">
+              <filter id="linear">
+                <feColorMatrix
+                  type="matrix"
+                  values="0.1 -0.5 0 1.8 1.7
+                          0 1 0 0 2.4
+                          0 0 1 0 2
+                          0 0 0 1 0 "/>
+              </filter>
+            </svg>
+          </div>
+          <p class="created-badge-name">{{share.implication.badgeTemplate.name}}</p>
+          <h1 class="create-badge-title">You created a badge!</h1>
           <p class="link-description">Share this link with your connections. You’ll get an e-mail once your badge is signed. Then you’ll be able to download your signed badge!</p>
           <div class="container-link">
             <p class="link"> {{location + "sign/" + share.sid}}</p>
@@ -17,10 +33,7 @@
           <svg class="checkmark" v-if="copySucceeded === true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
           <p class="copy-status"v-if="copySucceeded === true">Link was copied</p>
           <p class="copy-status"v-if="copySucceeded === false">Press CTRL+C to copy.</p>
-          <div class="button-container">
-            <v-button :onClick="HandlerDownloadBadge" v-bind:class="{'button--disabled': !copySucceeded}">Download your badge</v-button>
-            <v-button :onClick="HandlerNewBadge">Make a new badge</v-button>
-          </div>
+          <v-button :onClick="HandlerNewBadge">Make a new badge</v-button>
         </div>
       </div>
     </section>
@@ -65,9 +78,6 @@ export default {
     },
     HandlerNewBadge () {
       this.$router.go(0);
-    },
-    HandlerDownloadBadge () {
-      console.log('Download badge');
     }
   },
   components: {
@@ -117,6 +127,8 @@ export default {
   width: 321px;
   line-height: 1.5;
   margin-bottom: 30px;
+  font-size: 15px;
+  color: $darkblue;
 }
 
 .button-copy {
@@ -127,13 +139,6 @@ export default {
   color: white;
   border-radius: 0 5px 5px 0;
   width: 110px;
-}
-
-.button-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 95px;
 }
 
 .copy-status {
@@ -153,6 +158,7 @@ export default {
 }
 
 .checkmark {
+  margin-top: -7px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -188,5 +194,30 @@ export default {
   100% {
     box-shadow: inset 0px 0px 0px 30px $green;
   }
+}
+
+.badge {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.badge-icon {
+  position: absolute;
+  filter: url('#linear');
+  opacity: 0.6;
+}
+
+.created-badge-name {
+  font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  text-transform: lowercase;
+  color: $darkblue;
+}
+
+.create-badge-title {
+  color: $darkblue;
 }
 </style>
