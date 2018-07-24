@@ -35,7 +35,10 @@ export default {
   },
   computed: {
     implication() {
-      return this.$store.state.implication;
+      const implication = this.$store.state.implication;
+      if (implication && implication.signed) {
+        this.$router.replace({ name: "download", params: this.$router.params });
+      }
     }
   },
   beforeMount() {
@@ -52,6 +55,9 @@ export default {
   },
   activated() {
     this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
+    if (implication && implication.signed) {
+      this.$router.replace({ name: "download", params: this.$router.params });
+    }
   }
 };
 </script>

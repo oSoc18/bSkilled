@@ -14,7 +14,7 @@ db.defaults({
   badgeTemplate: {},
   implication: {},
   assertion: {},
-  profile : {}
+  profile: {}
 })
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,6 +28,7 @@ const router = express.Router();
 router.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, HEAD, PUT, PATCH, DELETE, TRACE, CONNECT");
   next();
 });
 
@@ -50,17 +51,21 @@ router.get('/badgeTemplate/:id', function(req, res) {
 });
 
 router.post('/implication', function(request, response) {
-  let implication = {
-    "@context": "https://w3id.org/openbadges/v2",
-    "id": uuidv1(),
-    "type": "Assertion",
-    "badgeTemplate": request.body.badgeTemplate,
-    "recipient": request.body.recipient
-  };
-  let sid = shortid.generate();
+  const sid = shortid.generate();
+  const { badgeTemplate, recipient } = request.body;
+  const implication = { badgeTemplate, recipient, sid, signed: false };
   db.get('implication').set(sid, implication).write();
   response.send({ sid, implication });
 
+});
+
+router.patch('/share/:sid', function(req, res) {
+  console.log(req);
+  const sid = req.params.sid;
+  const { url, assertion } = req.body;
+  const badge = { signed: true, sid, url, assertion };
+  db.get('implication').set(req.params.sid, badge).write();
+  res.send();
 });
 
 router.get('/share/:id', function(req, res) {
@@ -74,14 +79,9 @@ router.post('/assertion', function(request, response) {
   response.send({ sid, assertion });
 });
 
-router.get('/assertion/:id', function(req, res) {
-  res.send(db.get('assertion').value()[req.params.id]);
-});
-
-
 router.post('/profile', function(request, response) { //TODO test
   let profile = request.body;
-  let sid = request.body.fingerprint; 
+  let sid = request.body.fingerprint;
   db.get('profile').set(sid, profile).write();
   response.send({ sid, profile });
 });
