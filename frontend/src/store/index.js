@@ -60,8 +60,8 @@ const mutations = {
   [SAVE_IMPLICATION](state, implication) {
     state.implication = implication;
   },
-  [SAVE_KEY](state, { keyForge, pubKey, fingerPrint }) {
-    state.key = { keyForge, pubKey, fingerPrint }
+  [SAVE_KEY](state, { keyForge, pubKey, fingerprint }) {
+    state.key = { keyForge, pubKey, fingerprint }
   },
   [SAVE_PROFILE](state, profile) {
     state.profile = profile;
@@ -69,16 +69,7 @@ const mutations = {
   [SAVE_ASSERTION](state, assertion) {
     state.assertion = assertion;
   },
-  // TODO: Should after profile post
-  addPubKey(state, key) {
-    state.implication.profile = { publicKey: key };
-  },
-  savePrivateKey(state, forgePrivateKey) {
-    state.key = forgePrivateKey;
-  },
-  saveFingerPrint(state, fingerPrint) {
-    state.fingerPrint = fingerPrint;
-  }
+
 };
 
 // TODO: Create action types
@@ -143,19 +134,58 @@ const actions = {
       keyForge.e
     );
     const pubKey = pki.privateKeyToPem(keyForge);
-    const fingerprint = pki.getPublicKeyFingerprint(pubKeyForge);
+    const fingerprint = Buffer.from(pki.getPublicKeyFingerprint(pubKeyForge).data).toString("base64");
     commit(SAVE_KEY, { keyForge, pubKey, fingerprint });
 
-    console.log("Niels fix me");
+    //console.log("Niels fix me");
+    //get profile
     // Vue.http.get(`${process.env.API}profile/`).then((resp) => {
     // })
+    //TODO get key from vuex!
+    console.log("Looking for profile at: " + fingerprint);
+    var profile = {};
+    profile.name = "";
+    profile.email = "";
+    profile.company = "";
+    profile.url = "";
+    return Vue.http.get(process.env.API + "profile" + "/" + fingerprint).then(
+      resp => {
+        console.log( "profile found");
+        profile.name = resp.body.name;
+        profile.email = resp.body.email;
+        profile.company = resp.body.company;
+        profile.url = resp.body.url;
+        console.log("commiting profile as: "+ profile);
+        commit(SAVE_PROFILE, profile);
+      },
+      err => {
+        console.log("profile not found commiting empty profile ");
+        commit(SAVE_PROFILE, profile);
+      }
+    );
+    
   },
   handleProfile({ commit }, profile) {
     console.log("profile posting");
     console.log(profile);
-    console.log("TODOTODO");
     commit(SAVE_PROFILE, profile);
     // TODO: Post profile to backend
+    
+    let actualprofile = Object.assign ({}, profile);
+    actualprofile.fingerprint = state.key.fingerprint;
+    console.log(state.key.fingerprint);
+    console.log(actualprofile);
+    console.log(`Submitting profile at ${actualprofile.fingerprint}`);
+    Vue.http.post(process.env.API + "profile", actualprofile).then(
+      resp => {
+        console.log(resp);
+        //TODO contunue 
+      },
+      err => {
+        console.log(err);
+        //TODO error
+        alert("Oops! there was an issue uploading your profile: " + err);
+      });
   },
   createSignedBadge({ commit }, implication) {
     console.log("Creating badge", implication);

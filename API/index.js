@@ -14,6 +14,7 @@ db.defaults({
   badgeTemplate: {},
   implication: {},
   assertion: {},
+  profile : {}
 })
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -81,7 +82,7 @@ router.get('/assertion/:id', function(req, res) {
 router.post('/profile', function(request, response) { //TODO test
   let profile = request.body;
   let sid = request.body.fingerprint; 
-  db.get('profile').set(sid, assertion).write();
+  db.get('profile').set(sid, profile).write();
   response.send({ sid, profile });
 });
 

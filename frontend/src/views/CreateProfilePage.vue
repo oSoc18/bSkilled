@@ -34,34 +34,14 @@ export default {
   },
   data() {
     // TODO: Fetch profile
-    //TODO get key from vuex!
-    let name = "";
-    let email = "";
-    let company = "";
-    let url = "";
-    let fingerprint =  this.$store.state.fingerprint;//TODO test if contains fingerprint
-      this.$http.get(process.env.API + "profile", fingerprint).then(
-        resp => {
-          console.log(resp);
-          name = resp.name;
-          email = resp.email;
-          company = resp.company;
-          url =  resp.url;
-          fingerprint = resp.fingerprint;
-        },
-        err => {
-          console.log(err);
-          //profile not found set as empty
-
-        }
-      );
+    let profile = this.$store.state.profile;
     return {
       flowStep: "profile",
       profile: {
-        name: name,
-        email: email,
-        company: company,
-        url: url
+        name: profile.name,
+        email: profile.email,
+        company: profile.company,
+        url: profile.url
       },
       submitted: false
     };
