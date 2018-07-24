@@ -74,8 +74,8 @@ const mutations = {
   [SAVE_IMPLICATION](state, implication) {
     state.implication = implication;
   },
-  [SAVE_KEY](state, { keyForge, pem, fingerprint }) {
-    state.key = { keyForge, pem, fingerprint }
+  [SAVE_KEY](state, { keyForge, pem, fingerprint, pubKey }) {
+    state.key = { keyForge, pem, fingerprint, pubKey }
   },
   [SAVE_PROFILE](state, profile) {
     state.profile = profile;
@@ -91,7 +91,6 @@ const mutations = {
   }
 };
 
-// TODO: Create action types
 const actions = {
   // General
   stepFlow({ commit, state }) {
@@ -156,24 +155,46 @@ const actions = {
       keyForge.n,
       keyForge.e
     );
+    const pubKey = pki.publicKeyToPem(pubKeyForge);
     const pem = pki.privateKeyToPem(keyForge);
     const fingerprintRaw = pki.getPublicKeyFingerprint(pubKeyForge);
     const fingerprint = Buffer.from(fingerprintRaw.data).toString("base64");
-    commit(SAVE_KEY, { keyForge, pem, fingerprint });
+    commit(SAVE_KEY, { keyForge, pem, fingerprint, pubKey });
 
     console.log("Looking for profile at: " + fingerprint);
-    return Vue.http
-      .get(process.env.API + "profile" + "/" + fingerprint)
-      .then(
-        (resp) => resp.body,
-        (err) => console.log(err, "profile not found"))
-      .then((profile) => commit(SAVE_PROFILE, profile));
+    var profile = {};
+    return Vue.http.get(process.env.API + "profile" + "/" + fingerprint).then(
+      resp => {
+        if (resp.body.id === undefined) {
+          console.log("profile not found commiting empty profile ");
+          profile.id = "urn:uuid:" +uuidv1();
+          profile.publicKey = {
+            "type": "CryptographicKey",
+            "id": "urn:uuid:" +uuidv1(),
+            "owner": profile.id,
+            "publicKeyPem": state.key.pubKey
+          };
+          profile.type = "Issuer";
+          console.log(profile);
+          commit(SAVE_PROFILE, profile);
+        } else {
+          console.log("profile found");
+          profile = resp.body;
+          console.log("commiting profile as: " + profile);
+          commit(SAVE_PROFILE, profile);
+        }
+
+      },
+      err => {
+
+      }
+    );
+
   },
   handleProfile({ commit }, profile) {
     console.log("profile posting");
     console.log(profile);
     commit(SAVE_PROFILE, profile);
-    // TODO: Post profile to backend
 
     let actualProfile = Object.assign({}, profile);
     actualProfile.fingerprint = state.key.fingerprint;
@@ -183,11 +204,9 @@ const actions = {
     Vue.http.post(process.env.API + "profile", actualProfile).then(
       resp => {
         console.log(resp);
-        //TODO continue
       },
       err => {
         console.log(err);
-        //TODO error
         alert("Oops! there was an issue uploading your profile: " + err);
       });
   },
