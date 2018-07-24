@@ -2,7 +2,6 @@
   <div>
     <BadgeClassCard :badge-class="implication.badgeTemplate" />
     <div class="form_generate-key">
-      <v-header>Let's get a profile key</v-header>
       <form v-if="!submitted">
         <label>Name</label>
         <input type="text" v-model.lazy="profile.name" />
@@ -57,6 +56,7 @@ export default {
         }
       );
     return {
+      flowStep: "profile",
       profile: {
         name: name,
         email: email,
@@ -73,27 +73,13 @@ export default {
   },
   methods: {
     post: function() {
-      console.log("profile posting");
-      // TODO: Post profile to backend
-      this.$store.dispatch("addIssuer", this.profile);
-    },
-    submitForm() {
-      const profile = this.profile;
-      const fingerprint = this.$store.state.fingerprint;//TODO test if contains fingerprint
-      profile.fingerprint = fingerprint;
-      console.log(`Submitting profile at ${fingerprint}`);
-      this.$http.post(process.env.API + "profile", profile).then(
-        resp => {
-          console.log(resp);
-          //TODO contunue 
-        },
-        err => {
-          console.log(err);
-          //TODO error
-          alert("Oops! there was an issue uploading your profile: " + err);
-        }
-      );
+      this.$store
+        .dispatch("handleProfile", this.profile)
+        .then(() => this.$store.dispatch("stepFlow"));
     }
+  },
+  activated() {
+    this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
   }
 };
 </script>

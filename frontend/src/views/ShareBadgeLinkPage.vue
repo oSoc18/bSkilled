@@ -7,7 +7,7 @@
         <div class="container">
           <div class="badge">
             <img src="../assets/badge.svg" alt="" width="179" height="157">
-            <img class="badge-icon" :src="share.implication.badgeTemplate.image" alt="" width="70" height="70">
+            <img class="badge-icon" :src="badgeTemplate.image" alt="" width="70" height="70">
             <svg class="is-hidden">
               <filter id="linear">
                 <feColorMatrix
@@ -19,7 +19,7 @@
               </filter>
             </svg>
           </div>
-          <p class="created-badge-name">{{share.implication.badgeTemplate.name}}</p>
+          <p class="created-badge-name">{{badgeTemplate.name}}</p>
           <h1 class="create-badge-title">You created a badge!</h1>
           <p class="link-description">Share this link with your connections. You’ll get an e-mail once your badge is signed. Then you’ll be able to download your signed badge!</p>
           <div class="container-link">
@@ -33,7 +33,7 @@
           <svg class="checkmark" v-if="copySucceeded === true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
           <p class="copy-status" v-if="copySucceeded === true">Link was copied</p>
           <p class="copy-status" v-if="copySucceeded === false">Press CTRL+C to copy.</p>
-          <v-button :onClick="HandlerNewBadge">Make a new badge</v-button>
+          <v-button :onClick="handlerNewBadge">Make a new badge</v-button>
         </div>
       </div>
     </section>
@@ -41,16 +41,23 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 import Introduction from "Components/IntroductionOfPage";
 import Indicator from "Components/StepIndicator";
 import Button from "Components/Button";
 
 export default {
+  components: {
+    "v-introduction": Introduction,
+    "v-indicator": Indicator,
+    "v-button": Button
+  },
   data() {
     return {
+      flowStep: "share",
       location: process.env.LOCATION,
       copySucceeded: null,
-      thingToCopy: process.env.LOCATION + "#/sign/" + this.share.sid,
       selectedBoolean: true,
       introductionContent: {
         title: "Share your badge",
@@ -77,24 +84,18 @@ export default {
     onError: function(e) {
       this.copySucceeded = false;
     },
-    HandlerNewBadge() {
-      this.$router.go(0);
+    handlerNewBadge() {
+      this.$router.push({ name: "search" });
     }
   },
-  components: {
-    "v-introduction": Introduction,
-    "v-indicator": Indicator,
-    "v-button": Button
-  },
-  props: {
-    share: {
-      sid: String,
-      implication: {
-        // TODO: Recipient should be IdentityObject
-        recipient: String,
-        badgeTemplate: Object
-      }
+  computed: {
+    ...mapState(["share", "badgeTemplate", "recipient"]),
+    thingToCopy() {
+      return process.env.LOCATION + "#/share/" + this.share.sid;
     }
+  },
+  activated() {
+    this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
   }
 };
 </script>
