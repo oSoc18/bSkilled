@@ -11,23 +11,27 @@ import router from '../router';
 Vue.use(Vuex);
 
 const state = {
+  // General
+
   // sharing / signing
   flowMode: "sharing",
   // sharing: search, recipient, share
   // signing: sign, upload, generate, profile, confirmation, signed
   currentFlowStep: "search",
+  badge: undefined,
 
   // Sharing
   badgeTemplate: undefined,
   recipient: undefined,
+  share: undefined,
 
   // Signing
   keyForge: undefined,
   implication: undefined,
   assertion: undefined,
   signedAssertion: undefined,
+  badge: undefined,
 
-  share: undefined
 };
 
 // General
@@ -45,7 +49,7 @@ const SAVE_KEY = "SAVE_KEY";
 const SAVE_PROFILE = "SAVE_PROFILE";
 const SAVE_ASSERTION = "SAVE_ASSERTION";
 const SAVE_SIGNED_ASSERTION = "SAVE_SIGNED_ASSERTION";
-const SAVE_BAKED_BADGE = "SAVE_BAKED_BADGE";
+const SAVE_BADGE = "SAVE_BAKED_BADGE";
 
 
 const mutations = {
@@ -82,8 +86,8 @@ const mutations = {
   [SAVE_SIGNED_ASSERTION](state, signedAssertion) {
     state.signedAssertion = signedAssertion;
   },
-  [SAVE_BAKED_BADGE](state, bakedBadge) {
-    state.bakedBadge = bakedBadge;
+  [SAVE_BADGE](state, badge) {
+    state.badge = badge;
   }
 };
 
@@ -210,20 +214,21 @@ const actions = {
     return Promise
       .resolve(dispatch('createSignedBadge'))
       .then((assertion) => {
-        console.log("Saving assertion", JSON.parse(JSON.stringify(assertion)));
         commit(SAVE_ASSERTION, assertion);
-        const signature = jws.sign({
+        const signedAssertion = jws.sign({
           header: { alg: "RS256" },
           privateKey: this.state.key.pem,
           payload: assertion
         });
-        commit(SAVE_SIGNED_ASSERTION, signature);
-        console.log(JSON.parse(JSON.stringify(signature)));
+        commit(SAVE_SIGNED_ASSERTION, signedAssertion);
       });
   },
-  bakeBadge({ commit, state }) {
-    console.log("TODO");
-    commit(SAVE_BAKED_BADGE, state.bakedBadge);
+  bakeBadge({ state }) {
+    const assertion = state.signedAssertion;
+    const image = state.implication.image;
+    const sid = state.implication.sid;
+    const req = { assertion, image };
+    return Vue.http.patch(`${process.env.API}share/${sid}`, req);
   },
   createSignedBadge() {
     const implication = state.implication;
@@ -246,6 +251,13 @@ const actions = {
       issuedOn,
       verification,
     };
+  },
+  fetchBadge({ commit }, sid) {
+    Vue.http
+      .get(`${process.env.API}share/${sid}`)
+      .then(resp => resp.body)
+      .then(badge => commit(SAVE_BADGE, badge))
+      .catch(err => console.log(err));
   }
 };
 
