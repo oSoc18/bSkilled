@@ -18,7 +18,6 @@
 
 <script>
 import forge from "node-forge";
-import jws from "jws";
 
 import { mapState } from "vuex";
 

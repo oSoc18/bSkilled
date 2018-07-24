@@ -14,6 +14,7 @@ db.defaults({
   badgeTemplate: {},
   implication: {},
   assertion: {},
+  profile : {}
 })
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,7 +46,11 @@ router.get('/badgeTemplate', function(req, res) {
 });
 
 router.get('/badgeTemplate/:id', function(req, res) {
-  res.send(db.get('badgeTemplate').value()[req.params.id]);
+  try {
+    res.send(db.get('badgeTemplate').value()[req.params.id]);
+  } catch (error) {
+    res.status(404).send('Not found');
+  }
 });
 
 router.post('/implication', function(request, response) {
@@ -63,7 +68,11 @@ router.post('/implication', function(request, response) {
 });
 
 router.get('/share/:id', function(req, res) {
-  res.send(db.get('implication').value()[req.params.id]);
+  try {
+    res.send(db.get('implication').value()[req.params.id]);
+  } catch (error) {
+    res.status(404).send('Not found');
+  }
 });
 
 router.post('/assertion', function(request, response) {
@@ -74,19 +83,29 @@ router.post('/assertion', function(request, response) {
 });
 
 router.get('/assertion/:id', function(req, res) {
-  res.send(db.get('assertion').value()[req.params.id]);
+  try {
+    res.send(db.get('assertion').value()[req.params.id]);
+  } catch (error) {
+    res.status(404).send('Not found');
+  }
+  
 });
 
 
 router.post('/profile', function(request, response) { //TODO test
   let profile = request.body;
-  let sid = request.body.publickey; //validate
-  db.get('profile').set(sid, assertion).write();
-  response.send({ sid, assertion });
+  let sid = profile.fingerprint; 
+  delete profile.fingerprint;
+  db.get('profile').set(sid, profile).write();
+  response.send({ sid, profile });
 });
 
 router.get('/profile/:identifier', function(req, res) { //TODO test
-  res.send(db.get('profile').value()[req.params.identifier]);
+  try {
+    res.send(db.get('profile').value()[req.params.identifier]);
+  } catch (error) {
+    res.status(404).send('Not found');
+  }
 });
 
 app.use('/api', router);

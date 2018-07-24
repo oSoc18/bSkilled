@@ -45,7 +45,7 @@ const routes = [{
     component: Landing,
     name: 'landing'
   }, {
-    path: '/download/:sid',
+    path: '/share/:sid/download',
     component: Download,
     name: 'download',
   }, {
@@ -61,10 +61,9 @@ const routes = [{
       component: Recipient,
       beforeEnter: flowGuard
     }, {
-      // URL is different here for UX (dirty hax, cause other download URL will actually load first on refresh, which what we want)
       // TODO: The page will have to load some
       // TODO Consistent naming
-      path: '/download/:sid',
+      path: '/create/:sid',
       name: 'share',
       component: Share,
       beforeEnter: flowGuard
