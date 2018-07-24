@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-header class="l-header-white"></v-header>
+      <!-- <h1>{{$t("landing.welcome")}}</h1> -->
     <section class="section-intro">
       <div class="intro-text-container">
         <p class="p-landing">My friend is amazing with a guitar, <br> I am good with communication,</p>

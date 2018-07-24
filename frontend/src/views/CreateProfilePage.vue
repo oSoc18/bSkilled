@@ -53,6 +53,12 @@ export default {
   },
   data() {
     // TODO: Fetch profile
+    const profile = this.$store.state.profile || {
+      name: "",
+      email: "",
+      company: "",
+      url: ""
+    };
     return {
       flowStep: "profile",
       profile: {
@@ -66,8 +72,10 @@ export default {
         title: 'Sign the badge with your profile key',
         text: 'We only use your personal information to create your badge and mail it to you.',
       },
-      pageVisited: 2
-    }
+      pageVisited: 2,
+      profile: profile,
+      submitted: false
+    };
   },
   computed: {
     implication() {

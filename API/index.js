@@ -6,7 +6,6 @@ const FileSync = require('lowdb/adapters/FileSync');
 
 const adapter = new FileSync('db.json');
 const db = low(adapter);
-const uuidv1 = require('uuid/v1');
 const shortid = require('shortid');
 
 db.defaults({
@@ -14,6 +13,7 @@ db.defaults({
   badgeTemplate: {},
   implication: {},
   assertion: {},
+  profile: {}
 })
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,6 +27,7 @@ const router = express.Router();
 router.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, HEAD, PUT, PATCH, DELETE, TRACE, CONNECT");
   next();
 });
 
@@ -41,52 +42,64 @@ router.get('/', function(req, res) {
 });
 
 router.get('/badgeTemplate', function(req, res) {
-  res.send(db.get('badgeTemplate').value());
+  const templates = db.get('badgeTemplate').value();
+  if (templates) {
+    res.send(templates);
+  } else {
+    res.status(404);
+  }
 });
 
 router.get('/badgeTemplate/:id', function(req, res) {
-  res.send(db.get('badgeTemplate').value()[req.params.id]);
+  const badgeTemplate = db.get('badgeTemplate').value()[req.params.sid];
+  if (badgeTemplate) {
+    res.send(badgeTemplate);
+  } else {
+    res.status(404);
+  }
 });
 
 router.post('/implication', function(request, response) {
-  let implication = {
-    "@context": "https://w3id.org/openbadges/v2",
-    "id": uuidv1(),
-    "type": "Assertion",
-    "badgeTemplate": request.body.badgeTemplate,
-    "recipient": request.body.recipient
-  };
-  let sid = shortid.generate();
+  const sid = shortid.generate();
+  const { badgeTemplate, recipient } = request.body;
+  const implication = { badgeTemplate, recipient, sid, signed: false };
   db.get('implication').set(sid, implication).write();
   response.send({ sid, implication });
-
 });
 
-router.get('/share/:id', function(req, res) {
-  res.send(db.get('implication').value()[req.params.id]);
+router.patch('/share/:sid', function(req, res) {
+  const sid = req.params.sid;
+  const { image, assertion } = req.body;
+  const badge = { signed: true, sid, image, assertion };
+  db.get('implication').set(req.params.sid, badge).write();
+  res.send();
 });
 
-router.post('/assertion', function(request, response) {
-  let assertion = request.body;
-  let sid = shortid.generate();
-  db.get('assertion').set(sid, assertion).write();
-  response.send({ sid, assertion });
-});
-
-router.get('/assertion/:id', function(req, res) {
-  res.send(db.get('assertion').value()[req.params.id]);
+router.get('/share/:sid', function(req, res) {
+  const implication = db.get('implication').value()[req.params.sid];
+  if (implication) {
+    res.send(implication);
+  } else {
+    res.status(404);
+  }
 });
 
 
 router.post('/profile', function(request, response) { //TODO test
   let profile = request.body;
-  let sid = request.body.publickey; //validate
-  db.get('profile').set(sid, assertion).write();
-  response.send({ sid, assertion });
+  let sid = profile.fingerprint;
+  delete profile.fingerprint;
+  db.get('profile').set(sid, profile).write();
+  response.send({ sid, profile });
 });
 
 router.get('/profile/:identifier', function(req, res) { //TODO test
-  res.send(db.get('profile').value()[req.params.identifier]);
+  const profile = db.get('profile').value()[req.params.identifier];
+  if (profile) {
+    res.send(profile);
+  } else {
+    res.status(404);
+  }
 });
 
 app.use('/api', router);
