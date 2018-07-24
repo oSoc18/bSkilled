@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-upload-button">
     <label :for="inputId"><slot>Upload file</slot></label>
     <input type="file" :id="inputId" :name="inputId" @change="fileChange"/>
   </div>
@@ -44,21 +44,29 @@ input {
 }
 
 label {
-  background: $buttonlight;
+  background: $button url(../assets/upload_icon.svg) center no-repeat;
+  background-size: 48%;
   border: none;
-  border-radius: 20px;
+  border-radius: 130px;
   color: #fff;
   cursor: pointer;
   font-size: 0.75rem;
-  padding: 10px 25px;
+  padding: 25px 5px;
   transition: background 0.2s ease-in-out;
+  color: transparent;
 
   &:hover {
-    background: darken($buttonlight, 20);
+    background: darken($button, 10) url(../assets/upload_icon.svg) center no-repeat;
+    background-size: 48%;
   }
   &:focus {
     outline: 1px dotted #000;
     outline: -webkit-focus-ring-color auto 5px;
   }
+}
+
+.container-upload-button {
+  margin-top: 40px;
+  margin-bottom: 30px;
 }
 </style>

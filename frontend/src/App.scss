@@ -72,6 +72,7 @@ h1 {
 }
 
 a {
+  color: #30355c;
   font-size: 14px;
   margin-top: 8px;
   text-decoration: none;
@@ -185,4 +186,11 @@ input {
 
 .h1--blue {
   color: #30355c;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 93px;
 }

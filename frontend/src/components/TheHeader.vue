@@ -3,10 +3,10 @@
     <a href="" class="l-header__brand-logo">bSkilled</a>
     <nav class="l-navigation">
       <ul class="l-navigation__menu">
-        <li class="l-navigation__menu__item is-hidden">
+        <li class="l-navigation__menu__item">
           <a href="/">Practical information</a>
         </li>
-        <li class=" l-navigation__menu__item is-hidden">
+        <li class=" l-navigation__menu__item">
           <a href="/">About the project</a>
         </li>
         <li class=" l-navigation__menu__item l-navigation__menu__item--state-current">

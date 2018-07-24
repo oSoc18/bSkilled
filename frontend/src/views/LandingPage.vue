@@ -101,6 +101,7 @@ export default {
 .l-header-white {
   background: $white;
   box-shadow: 0 0 40px 0 rgba(14,16,25,0.30);
+  position: fixed;
 }
 
 .section-intro {

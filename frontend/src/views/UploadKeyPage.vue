@@ -1,18 +1,27 @@
 <template>
-  <div>
-    <div v-if="!getPassword">
-      <FileUploadButton id="uploadKey" :onResult="handleKeyLoad"/>
-    </div>
-    <div v-if="getPassword">
-      <form @submit.prevent="handleSubmitPassphrase">
-      <label for="passphrase">passphrase</label>
-        <input type="password" id="passphrase" v-model="passphrase">
-        <input type="submit">
-      </form>
-    </div>
-    <router-link :to="{name: 'generate'}">
-      Don't have key yet? Generate one here.
-    </router-link>
+  <div class="row-page">
+    <v-introduction :introductionContent="introductionContent"></v-introduction>
+    <section class="section-right">
+      <div class="section-right_container section-right_container-center">
+        <v-indicator  :pageVisited="pageVisited"></v-indicator>
+        <div class="container container-animation">
+          <h1 class="h1--blue">Upload your profile key</h1>
+          <div v-if="!getPassword">
+            <FileUploadButton id="uploadKey" :onResult="handleKeyLoad"/>
+          </div>
+          <div v-if="getPassword">
+            <form @submit.prevent="handleSubmitPassphrase">
+            <label for="passphrase">passphrase</label>
+              <input type="password" id="passphrase" v-model="passphrase">
+              <input type="submit">
+            </form>
+          </div>
+          <router-link :to="{name: 'generate'}" class="a--underline">
+            Don't have key yet? Generate one here.
+          </router-link>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -24,19 +33,28 @@ import { mapState } from "vuex";
 
 import Header from "Components/TheHeader";
 import FileUploadButton from "Components/FileUploadButton";
+import Introduction from "Components/IntroductionOfPage";
+import Indicator from "Components/StepIndicator";
 //TODO move to signing page, added for testing
 
 export default {
   components: {
     FileUploadButton,
-    Header
+    Header,
+    "v-introduction": Introduction,
+    "v-indicator": Indicator,
   },
   data() {
     return {
       flowStep: "upload",
       passphrase: "",
       keyFile: null,
-      getPassword: false
+      getPassword: false,
+      introductionContent: {
+        title: 'Sign the badge with your profile key',
+        text: 'We only use your personal information to create your badge and mail it to you.',
+      },
+      pageVisited: 1
     };
   },
   methods: {

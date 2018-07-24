@@ -3,7 +3,7 @@
     <v-introduction :introductionContent="introductionContent"></v-introduction>
     <section class="section-right">
       <div class="section-right_container section-right_container-margin">
-        <v-indicator :visitedPage="visitedPage" :currentPage="currentPage" :pageVisited="pageVisited" ></v-indicator>
+        <v-indicator  :pageVisited="pageVisited" ></v-indicator>
         <BadgeClassSearch :selectBadgeClass="selectBadgeClass"/>
       </div>
     </section>
@@ -28,17 +28,7 @@ export default {
       flowStep: "search",
       introductionContent: {
         title: "Search for your skill",
-        text: "What skill do you want to verify?"
-      },
-      visitedPage: {
-        search: false,
-        information: false,
-        save: false
-      },
-      currentPage: {
-        search: true,
-        information: false,
-        save: false
+        text: "Get acknowledged for what you do best!"
       },
       pageVisited: 0
     };

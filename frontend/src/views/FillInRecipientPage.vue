@@ -3,7 +3,7 @@
     <v-introduction :introductionContent="introductionContent"></v-introduction>
     <section class="section-right">
       <div class="section-right_container section-right_container-center">
-        <v-indicator :visitedPage="visitedPage" :currentPage="currentPage" :pageVisited="pageVisited"></v-indicator>
+        <v-indicator  :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
           <BadgeClassCard :badge-class="badgeTemplate" :isSelected="selectedBoolean"/>
           <form @submit.prevent>
@@ -53,20 +53,10 @@ export default {
       introductionContent: {
         title: "Fill in your personal information",
         text:
-          "We only use your personal information to create your badge and mail it to you."
-      },
-      visitedPage: {
-        search: true,
-        information: false,
-        save: false
-      },
-      currentPage: {
-        search: false,
-        information: true,
-        save: false
+          "We only use your personal information to create your badge"
       },
       pageVisited: 1
-    };
+    }
   },
   methods: {
     submit: function(event) {

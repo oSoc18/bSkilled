@@ -3,7 +3,7 @@
     <v-introduction :introductionContent="introductionContent"></v-introduction>
     <section class="section-right">
       <div class="section-right_container section-right_container-center">
-        <v-indicator :visitedPage="visitedPage" :currentPage="currentPage" :pageVisited="pageVisited"></v-indicator>
+        <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container">
           <Badge :badge-class="share.implication.badgeTemplate" />
           <h1 class="create-badge-title">You created a badge!</h1>
@@ -51,16 +51,6 @@ export default {
         title: "Share your badge",
         text:
           "Copy the link and share it with your connections. Your connections can sign your badge by opening the link and filling in some information."
-      },
-      visitedPage: {
-        search: true,
-        information: true,
-        save: false
-      },
-      currentPage: {
-        search: false,
-        information: false,
-        save: true
       },
       pageVisited: 2
     };
