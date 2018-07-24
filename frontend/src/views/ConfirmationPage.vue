@@ -21,7 +21,7 @@ import text from "png-chunk-text";
 export default {
   data() {
     return {
-      flowStep: "confirmation"
+      flowStep: "confirm"
     };
   },
   components: {

@@ -153,27 +153,17 @@ const actions = {
       keyForge.e
     );
     const pem = pki.privateKeyToPem(keyForge);
-    const fingerprint = pki.getPublicKeyFingerprint(pubKeyForge);
-    const fingerprint64 = Buffer.from(fingerprint.data).toString("base64");
-    commit(SAVE_KEY, { keyForge, pem, fingerprint: fingerprint64 });
+    const fingerprintRaw = pki.getPublicKeyFingerprint(pubKeyForge);
+    const fingerprint = Buffer.from(fingerprintRaw.data).toString("base64");
+    commit(SAVE_KEY, { keyForge, pem, fingerprint });
 
     console.log("Looking for profile at: " + fingerprint);
-    return Vue.http.get(process.env.API + "profile" + "/" + fingerprint).then(
-      resp => {
-        console.log("profile found");
-        profile.name = resp.body.name;
-        profile.email = resp.body.email;
-        profile.company = resp.body.company;
-        profile.url = resp.body.url;
-        console.log("commiting profile as: " + profile);
-        commit(SAVE_PROFILE, profile);
-      },
-      err => {
-        console.log(err, "profile not found commiting empty profile ");
-        commit(SAVE_PROFILE, profile);
-      }
-    );
-
+    return Vue.http
+      .get(process.env.API + "profile" + "/" + fingerprint)
+      .then(
+        (resp) => resp.body,
+        (err) => console.log(err, "profile not found"))
+      .then((profile) => commit(SAVE_PROFILE, profile));
   },
   handleProfile({ commit }, profile) {
     console.log("profile posting");
