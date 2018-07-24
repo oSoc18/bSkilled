@@ -7,7 +7,7 @@
           <div v-if="badge.signed">
             <p>SIGNED</p>
             <p>URL: {{badge.url}}</p>
-            <p>ASSERTION: {{JSON.stringify(badge.assertion)}}</p>
+            <!-- <p>ASSERTION: {{JSON.stringify(badge.assertion)}}</p> -->
             <router-link to="/">
               <Button>Download (fix me)</Button>
             </router-link>
