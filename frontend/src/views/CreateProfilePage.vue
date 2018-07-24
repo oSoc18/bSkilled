@@ -40,7 +40,7 @@ export default {
     let email = "";
     let company = "";
     let url = "";
-    let fingerprint =  this.$store.state.fingerprint;
+    let fingerprint =  this.$store.state.fingerprint;//TODO test if contains fingerprint
       this.$http.get(process.env.API + "profile", fingerprint).then(
         resp => {
           console.log(resp);
@@ -79,7 +79,7 @@ export default {
     },
     submitForm() {
       const profile = this.profile;
-      const fingerprint = "";//TODO get fingerprint from vuex
+      const fingerprint = this.$store.state.fingerprint;//TODO test if contains fingerprint
       profile.fingerprint = fingerprint;
       console.log(`Submitting profile at ${fingerprint}`);
       this.$http.post(process.env.API + "profile", profile).then(

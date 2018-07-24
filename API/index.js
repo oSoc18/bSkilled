@@ -86,7 +86,7 @@ router.post('/profile', function(request, response) { //TODO test
 });
 
 router.get('/profile/:identifier', function(req, res) { //TODO test
-  res.send(db.get('profile').value()[req.params.fingerprint]);
+  res.send(db.get('profile').value()[req.params.identifier]);
 });
 
 app.use('/api', router);

@@ -93,7 +93,6 @@ export default {
       let usablefingerprint = Buffer.from(fingerPrint.data).toString("base64");
       context.$store.commit("saveFingerPrint", usablefingerprint);
       console.log(usablefingerprint);
-      //TODO get profile from public key fingerPrint
       //TODO move to next page
       //TESTS
 
