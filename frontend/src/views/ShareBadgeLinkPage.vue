@@ -6,7 +6,6 @@
         <v-indicator :visitedPage="visitedPage" :currentPage="currentPage" :pageVisited="pageVisited"></v-indicator>
         <div class="container">
           <Badge :badge-class="share.implication.badgeTemplate" />
-          <p class="created-badge-name">{{badgeTemplate.name}}</p>
           <h1 class="create-badge-title">You created a badge!</h1>
           <p class="link-description">Share this link with your connections. You’ll get an e-mail once your badge is signed. Then you’ll be able to download your signed badge!</p>
           <div class="container-link">
