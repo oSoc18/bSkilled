@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const request = require('request');
 const bodyParser = require('body-parser');
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
@@ -69,8 +70,16 @@ router.post('/implication', function(request, response) {
 
 router.patch('/share/:sid', function(req, res) {
   const sid = req.params.sid;
-  const { image, assertion } = req.body;
-  const badge = { signed: true, sid, image, assertion };
+  const { sourceImgUrl, imageBase64, signedAssertion } = req.body;
+  const implication = db.get('implication').value()[req.params.sid];
+  const badge = {
+    signed: true,
+    sid,
+    sourceImgUrl,
+    imageBase64,
+    signedAssertion,
+    implication
+  };
   db.get('implication').set(req.params.sid, badge).write();
   res.send();
 });
@@ -101,6 +110,13 @@ router.get('/profile/:identifier', function(req, res) { //TODO test
     res.status(404);
   }
 });
+
+router.use('/proxy/:url', function(req, res) {
+  const base64url = req.params.url;
+  const url = Buffer.from(base64url, 'base64').toString('utf-8');
+  req.pipe(request(url)).pipe(res);
+});
+
 
 app.use('/api', router);
 app.listen(port);
