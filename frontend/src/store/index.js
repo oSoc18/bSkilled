@@ -4,6 +4,9 @@ import uuidv1 from 'uuid/v1';
 
 import jws from "jws";
 import forge from "node-forge";
+import pngExtract from "png-chunks-extract";
+import pngEncode from "png-chunks-encode";
+import pngText from "png-chunk-text";
 const pki = forge.pki;
 
 import router from '../router';
@@ -167,10 +170,10 @@ const actions = {
       resp => {
         if (resp.body.id === undefined) {
           console.log("profile not found commiting empty profile ");
-          profile.id = "urn:uuid:" +uuidv1();
+          profile.id = "urn:uuid:" + uuidv1();
           profile.publicKey = {
             "type": "CryptographicKey",
-            "id": "urn:uuid:" +uuidv1(),
+            "id": "urn:uuid:" + uuidv1(),
             "owner": profile.id,
             "publicKeyPem": state.key.pubKey
           };
@@ -186,7 +189,7 @@ const actions = {
 
       },
       err => {
-
+        console.log(err);
       }
     );
 
@@ -223,12 +226,41 @@ const actions = {
         commit(SAVE_SIGNED_ASSERTION, signedAssertion);
       });
   },
-  bakeBadge({ state }) {
-    const assertion = state.signedAssertion;
-    const image = state.implication.image;
+  bakeBadge({ state, dispatch }) {
+    const signedAssertion = state.signedAssertion;
+    const sourceImgUrl = state.implication.badgeTemplate.image;
     const sid = state.implication.sid;
-    const req = { assertion, image };
-    return Vue.http.patch(`${process.env.API}share/${sid}`, req);
+
+    return dispatch('urlToBuffer', sourceImgUrl)
+      .then((buffer) => {
+        var chunks = pngExtract(buffer);
+        chunks.splice(-1, 0, pngText.encode("openbadge", signedAssertion));
+        const bakedImgBuffer = new Buffer(pngEncode(chunks));
+        const base64img = btoa(String.fromCharCode.apply(null, bakedImgBuffer));
+        // "data:image/png;base64," + base64Data;
+        return base64img;
+      }).then((imageBase64) => {
+        const req = { signedAssertion, sourceImgUrl, imageBase64 };
+        return Vue.http.patch(`${process.env.API}share/${sid}`, req);
+      });
+  },
+  urlToBuffer({}, url) {
+    return Vue.http.get(`${process.env.API}proxy/${btoa(url)}}`, { responseType: "blob" })
+      .then((resp) => resp.blob())
+      .then((blob) => {
+        return new Promise((resolve, reject) => {
+          try {
+            const fileReader = new FileReader();
+            fileReader.onload = (ev) => {
+              const arrayBuffer = ev.target.result;
+              const buffer = Buffer.from(arrayBuffer);
+              resolve(buffer);
+            };
+            fileReader.readAsArrayBuffer(blob);
+          } catch (err) { reject(err); }
+        })
+      })
+      .then((arrayBuffer) => Buffer.from(arrayBuffer));
   },
   createSignedBadge() {
     const implication = state.implication;

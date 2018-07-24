@@ -7,6 +7,7 @@
           <div v-if="badge.signed">
             <p>SIGNED</p>
             <p>URL: {{badge.url}}</p>
+            <img :src="imgUrl" alt="badge">
             <!-- <p>ASSERTION: {{JSON.stringify(badge.assertion)}}</p> -->
             <router-link to="/">
               <Button>Download (fix me)</Button>
@@ -41,6 +42,10 @@ export default {
   computed: {
     badge() {
       return this.$store.state.badge;
+    },
+    imgUrl() {
+      const badge = this.$store.state.badge;
+      return `data:image/png;base64,${badge.imageBase64}`;
     }
   },
   methods: {
