@@ -69,8 +69,8 @@ router.post('/implication', function(request, response) {
 
 router.patch('/share/:sid', function(req, res) {
   const sid = req.params.sid;
-  const { url, assertion } = req.body;
-  const badge = { signed: true, sid, url, assertion };
+  const { image, assertion } = req.body;
+  const badge = { signed: true, sid, image, assertion };
   db.get('implication').set(req.params.sid, badge).write();
   res.send();
 });
