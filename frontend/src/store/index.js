@@ -151,6 +151,8 @@ const actions = {
     return Vue.http.get(process.env.API + "profile" + "/" + fingerprint).then(
       resp => {
         console.log( "profile found");
+        profile.id = resp.body.id;
+        profile.type =  "Issuer";
         profile.name = resp.body.name;
         profile.email = resp.body.email;
         profile.company = resp.body.company;
@@ -160,6 +162,13 @@ const actions = {
       },
       err => {
         console.log("profile not found commiting empty profile ");
+        profile.id = uuidv1();
+        profile.publicKey = {
+          "type": "CryptographicKey",
+          "id": uuidv1(),
+          "owner": profile.id ,
+          "publicKeyPem": state.key.pubKey
+        };
         commit(SAVE_PROFILE, profile);
       }
     );
