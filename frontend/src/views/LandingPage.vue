@@ -20,15 +20,15 @@
     <section class="section-spotlight">
       <div class="spotlight">
         <div class="spotlight_item">
-          <img src="../assets/teamleader.svg" alt="" width="50" height="66">
+          <img src="../assets/badge_icon.svg" alt="" width="35" height="60">
           <p>You can get your own badge certified by an organisation itself.</p>
         </div>
         <div class="spotlight_item">
-          <img src="../assets/teamleader.svg" alt="" width="50" height="66">
+          <img src="../assets/save-money_icon.svg" alt="" width="80" height="56">
           <p>You can have your skills certified without spending one single dollar!</p>
         </div>
         <div class="spotlight_item">
-          <img src="../assets/teamleader.svg" alt="" width="50" height="66">
+          <img src="../assets/backpack_icon.svg" alt="" width="48" height="53">
           <p>All of you badges are decentralised, no need to depend on a website.</p>
         </div>
       </div>
@@ -65,6 +65,20 @@
           <Button class="button--landing">Create a badge</Button>
         </router-link>
       </div>
+    </section>
+    <section class="section-slogan">
+      <h1>bSkilled <br> bVerified <br> bConnected</h1>
+      <div class="social-media">
+        <p>Follow us on:</p>
+        <div class="social-media_icons">
+          <img src="../assets/twitter_logo.svg" alt="" width="auto" height="20">
+          <img src="../assets/facebook_logo.svg" alt=""  width="auto" height="20">
+          <img src="../assets/linkedin_logo.svg" alt=""  width="auto" height="20">
+        </div>
+      </div>
+    </section>
+    <section class="section-copyright">
+      <p>&copy; bSkilled </p>
     </section>
   </div>
 </template>
@@ -126,7 +140,7 @@ export default {
 }
 
 .section-landing {
-  padding-top: 170px;
+  padding-top: 100px;
   padding-left: 140px;
   display: flex;
 }
@@ -140,8 +154,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
-  margin-top: 165px;
+  margin-bottom: 100px;
+  margin-top: 235px;
 }
 
 .spotlight {
@@ -164,13 +178,14 @@ export default {
     font-weight: 700;
     line-height: 1.5;
     text-align: center;
+    margin-top: 20px;
   }
 }
 
 .section-cta {
   display: flex;
-  height: 575px;
-  margin-top: 145px;
+  height: 610px;
+  margin-top: 115px;
   background: $bgyellow;
   box-shadow: 0 0 40px 0 rgba(48,53,92,0.30);
   padding-top: 90px;
@@ -187,6 +202,50 @@ export default {
 
   & .button--landing {
     margin-top: 30px;
+  }
+}
+
+.section-slogan {
+  height: 405px;
+  background: #0E1019 url(../assets/bg_slogan.svg) right -112% no-repeat;
+  background-size: 54%;
+
+  & h1 {
+    color: #ffead9;
+    padding-top: 125px;
+    padding-left: 290px;
+    font-size: 40px;
+    line-height: 1.3;
+  }
+
+  .social-media {
+    color: #ffead9;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 55px;
+    margin-right: 165px;
+
+    &_icons {
+      width: 115px;
+      display: flex;
+      justify-content: space-between;
+      margin-left: 30px;
+    }
+  }
+}
+
+.section-copyright {
+  height: 110px;
+  display: flex;
+  align-items: center;
+
+  & p {
+    color: $lightgrey;
+    font-size: 18px;
+    padding-left: 135px;
   }
 }
 
