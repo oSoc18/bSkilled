@@ -70,8 +70,8 @@ const mutations = {
   [SAVE_IMPLICATION](state, implication) {
     state.implication = implication;
   },
-  [SAVE_KEY](state, { keyForge, pem, fingerprint,pubKey }) {
-    state.key = { keyForge, pem, fingerprint,pubKey }
+  [SAVE_KEY](state, { keyForge, pem, fingerprint, pubKey }) {
+    state.key = { keyForge, pem, fingerprint, pubKey }
   },
   [SAVE_PROFILE](state, profile) {
     state.profile = profile;
@@ -161,25 +161,31 @@ const actions = {
     var profile = {};
     return Vue.http.get(process.env.API + "profile" + "/" + fingerprint).then(
       resp => {
-        console.log( "profile found");
-        profile = resp.body;
-        console.log("commiting profile as: "+ profile);
-        commit(SAVE_PROFILE, profile);
+        if (resp.body.id === undefined) {
+          console.log("profile not found commiting empty profile ");
+          profile.id = "urn:uuid:" +uuidv1();
+          profile.publicKey = {
+            "type": "CryptographicKey",
+            "id": "urn:uuid:" +uuidv1(),
+            "owner": profile.id,
+            "publicKeyPem": state.key.pubKey
+          };
+          profile.type = "Issuer";
+          console.log(profile);
+          commit(SAVE_PROFILE, profile);
+        } else {
+          console.log("profile found");
+          profile = resp.body;
+          console.log("commiting profile as: " + profile);
+          commit(SAVE_PROFILE, profile);
+        }
+
       },
       err => {
-        console.log("profile not found commiting empty profile ");
-        profile.id = uuidv1();
-        profile.publicKey = {
-          "type": "CryptographicKey",
-          "id": uuidv1(),
-          "owner": profile.id ,
-          "publicKeyPem": state.key.pubKey
-        };
-        profile.type = "Issuer";
-        commit(SAVE_PROFILE, profile);
+
       }
     );
-    
+
   },
   handleProfile({ commit }, profile) {
     console.log("profile posting");
