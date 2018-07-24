@@ -21,29 +21,38 @@ import Confirmation from 'Views/ConfirmationPage.vue';
 
 Vue.use(VueRouter);
 
-const flowGuard = (to, from, next) => {
+const flowGuardShare = (to, from, next) => {
   if (store.state.currentFlowStep == 'search') {
     store.commit('SET_FLOW_MODE', 'sharing');
     next('/');
-  } else {
-    next();
   }
+  if (store.state.flowMode != 'sharing') {
+    store.commit('SET_FLOW_MODE', 'sharing');
+    next('/');
+  }
+  next();
 }
 
 const flowGuardSign = (to, from, next) => {
   if (store.state.currentFlowStep == 'search') {
     store.commit('SET_FLOW_MODE', 'signing');
     store.commit('SET_CURRENT_FLOW_STEP', 'sign');
-    next({ name: 'sign', params: { sid: to.params.sid } })
-  } else {
-    next();
+    next({ name: 'sign', params: { sid: to.params.sid } });
   }
+
+  if (store.state.flowMode != 'signing') {
+    store.commit('SET_FLOW_MODE', 'signing');
+    next({ name: 'sign', params: { sid: to.params.sid } });
+  }
+
+  next();
 }
 
 const routes = [{
     path: '/',
     component: Landing,
-    name: 'landing'
+    name: 'landing',
+    beforeEnter: flowGuardShare,
   }, {
     path: '/share/:sid/download',
     component: Download,
@@ -59,14 +68,14 @@ const routes = [{
       path: '/create/recipient',
       name: 'recipient',
       component: Recipient,
-      beforeEnter: flowGuard
+      beforeEnter: flowGuardShare
     }, {
       // TODO: The page will have to load some
       // TODO Consistent naming
       path: '/create/:sid',
       name: 'share',
       component: Share,
-      beforeEnter: flowGuard
+      beforeEnter: flowGuardShare
     }]
   },
   {

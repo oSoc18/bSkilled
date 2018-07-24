@@ -6,7 +6,7 @@
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
           <div class="form_generate-key">
-            <form v-if="!submitted">
+            <form @submit.prevent v-if="!submitted">
               <div class="input-container">
                 <label>Name</label>
                 <input type="text" v-model.lazy="profile.name" />
@@ -23,7 +23,7 @@
                 <label>Website url</label>
                 <input type="text" v-model.lazy="profile.url" required />
               </div>
-              <v-button v-on:click.prevent="post">Save personal information</v-button>
+              <v-button :onClick="post">Save personal information</v-button>
             </form>
             <div v-if="submitted">
               <h1>Lorem Ipsum.</h1>

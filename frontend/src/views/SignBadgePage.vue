@@ -4,7 +4,7 @@
     <section class="section-right">
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
-        <div v-if="implication">
+        <div v-if="implication && !implication.signed">
           <div class="container container-animation">
             <Badge :badge-class="implication.badgeTemplate" />
             <p class="created-badge-name">{{implication.badgeTemplate.description}}</p>
@@ -49,16 +49,17 @@ export default {
   },
   computed: {
     implication() {
-      const implication = this.$store.state.implication;
-      if (implication && implication.signed) {
-        this.$router.replace({ name: "download", params: this.$router.params });
-      } else {
-        return implication;
-      }
+      return this.$store.state.implication;
+    },
+    shouldRedirect() {
+      return this.implication && this.implication.signed;
     }
   },
   beforeMount() {
     this.$store.dispatch("prepareSigning", this.$route.params.sid);
+  },
+  created() {
+    this.checkAndRedirect();
   },
   methods: {
     sign() {
@@ -67,13 +68,22 @@ export default {
     dontSign() {
       console.log("fuckfuck");
       alert("TODO don't");
+    },
+    checkAndRedirect() {
+      if (this.shouldRedirect) {
+        this.$router.replace({ name: "download", params: this.$router.params });
+      }
+    }
+  },
+  watch: {
+    shouldRedirect(val) {
+      console.log("Test");
+      this.checkAndRedirect();
     }
   },
   activated() {
     this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
-    if (this.implication && this.implication.signed) {
-      this.$router.replace({ name: "download", params: this.$router.params });
-    }
+    this.checkAndRedirect();
   }
 };
 </script>
