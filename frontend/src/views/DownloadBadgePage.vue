@@ -1,12 +1,35 @@
 <template>
-  <div>
-    <h1>Badge is not yet signed!</h1>
-    <router-link to="/create/search">
-      <Button>Download</Button>
-    </router-link>
-    <router-link to="/">
-      <Button>Back to home</Button>
-    </router-link>
+  <div class="row-page">
+    <section class="section-right">
+      <div class="section-right_container section-right_container-center">
+        <div v-if="badge">
+          <p>SID: {{badge.sid}}</p>
+          <div v-if="badge.signed">
+            <p>SIGNED</p>
+            <p>URL: {{badge.url}}</p>
+            <!-- <p>ASSERTION: {{JSON.stringify(badge.assertion)}}</p> -->
+            <router-link to="/">
+              <Button>Download (fix me)</Button>
+            </router-link>
+            <router-link :to="`/`">
+              <Button>Back to home</Button>
+            </router-link>
+          </div>
+          <div v-else>
+            <p>NOT SIGNED YET</p>
+            <router-link :to="`{ name: 'sign', params: { sid: {badge.sid}}`">
+              <Button>Sign</Button>
+            </router-link>
+            <router-link :to="`/`">
+              <Button>Back to home</Button>
+            </router-link>
+          </div>
+        </div>
+        <div v-else>
+          Loading...
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -14,6 +37,19 @@
 import Button from "Components/Button";
 
 export default {
-  components: { Button }
+  components: { Button },
+  computed: {
+    badge() {
+      return this.$store.state.badge;
+    }
+  },
+  methods: {
+    fetchBadge() {
+      this.$store.dispatch("fetchBadge", this.$route.params.sid);
+    }
+  },
+  created() {
+    this.fetchBadge();
+  }
 };
 </script>
