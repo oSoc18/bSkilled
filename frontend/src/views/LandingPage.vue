@@ -79,6 +79,14 @@
     </section>
     <section class="section-copyright">
       <p>&copy; bSkilled </p>
+      <div class="partner-logos">
+        <a href="http://www.thelearninghub.be/"><img src="../assets/thelearninghub.svg" alt="" width="auto" height="40"></a>
+        <a href="https://www.vdab.be/"><img src="../assets/vdab.svg" alt="logo vdab" width="auto" height="35"></a>
+        <a href="https://cronos-groep.be/"><img src="../assets/compas.svg" alt="logo compas" width="auto" height="25"></a>
+        <a href="https://cronos-groep.be/"><img src="../assets/cronos.svg" alt="logo cronos" width="auto" height="55"></a>
+        <a href="https://www.poolstok.be/"><img src="../assets/poolstok.svg" alt="logo poolstok" width="auto" height="55"></a>
+        <a href="http://cogni.zone/"><img src="../assets/cognizone.svg" alt="logo cognizone" width="auto" height="55"></a>
+      </div>
     </section>
   </div>
 </template>
@@ -239,15 +247,24 @@ export default {
 }
 
 .section-copyright {
-  height: 110px;
+  height: 160px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   & p {
     color: $lightgrey;
     font-size: 18px;
     padding-left: 135px;
   }
+}
+
+.partner-logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 820px;
+  margin-right: 80px;
 }
 
 </style>
