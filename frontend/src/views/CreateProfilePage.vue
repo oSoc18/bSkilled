@@ -2,7 +2,6 @@
   <div>
     <BadgeClassCard :badge-class="implication.badgeTemplate" />
     <div class="form_generate-key">
-      <v-header>Let's get a profile key</v-header>
       <form v-if="!submitted">
         <label>Name</label>
         <input type="text" v-model.lazy="profile.name" />
@@ -36,6 +35,7 @@ export default {
   data() {
     // TODO: Fetch profile
     return {
+      flowStep: "profile",
       profile: {
         name: "",
         email: "",
@@ -52,10 +52,13 @@ export default {
   },
   methods: {
     post: function() {
-      console.log("profile posting");
-      // TODO: Post profile to backend
-      this.$store.dispatch("addIssuer", this.profile);
+      this.$store
+        .dispatch("handleProfile", this.profile)
+        .then(() => this.$store.dispatch("stepFlow"));
     }
+  },
+  activated() {
+    this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
   }
 };
 </script>

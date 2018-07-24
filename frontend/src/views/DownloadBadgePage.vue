@@ -1,10 +1,11 @@
 <template>
   <div>
-    <h1>Welcome on bSkilled!</h1>
-    <h2>Bee connected!</h2>
-    <p>zzzzooooeeeemmm</p>
+    <h1>Badge is not yet signed!</h1>
     <router-link to="/create/search">
-      <Button>Create and share badge</Button>
+      <Button>Download</Button>
+    </router-link>
+    <router-link to="/">
+      <Button>Back to home</Button>
     </router-link>
   </div>
 </template>
@@ -16,6 +17,3 @@ export default {
   components: { Button }
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

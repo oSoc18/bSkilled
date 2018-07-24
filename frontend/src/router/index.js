@@ -1,10 +1,17 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import store from '../store';
+
 import Landing from 'Views/LandingPage.vue';
+import Download from 'Views/DownloadBadgePage.vue';
+
+import BaseCreation from 'Components/BaseCreation.vue';
+import SearchBadge from 'Views/SearchBadgePage.vue';
 import Recipient from 'Views/FillInRecipientPage.vue';
 import Share from 'Views/ShareBadgeLinkPage.vue';
 
+import BaseSigning from 'Components/BaseSigning.vue';
 import Sign from 'Views/SignBadgePage.vue';
 import GenerateKey from 'Views/GenerateKeyPage.vue';
 import UploadKey from 'Views/UploadKeyPage.vue';
@@ -14,72 +21,102 @@ import Confirmation from 'Views/ConfirmationPage.vue';
 
 Vue.use(VueRouter);
 
-// Little helper for modeling the flow in the pages
-const flow = (pred, succ, redirect = '/') => (to, from, next) => {
-  if (from.name !== pred && from.name !== succ) {
-    return next(redirect);
+const flowGuard = (to, from, next) => {
+  if (store.state.currentFlowStep == 'search') {
+    store.commit('SET_FLOW_MODE', 'sharing');
+    next('/');
+  } else {
+    next();
   }
-  return next();
+}
+
+const flowGuardSign = (to, from, next) => {
+  if (store.state.currentFlowStep == 'search') {
+    store.commit('SET_FLOW_MODE', 'signing');
+    store.commit('SET_CURRENT_FLOW_STEP', 'sign');
+    next({ name: 'sign', params: { sid: to.params.sid } })
+  } else {
+    next();
+  }
 }
 
 const routes = [{
     path: '/',
-    name: 'landing',
     component: Landing,
+    name: 'landing'
+  }, {
+    path: '/download/:sid',
+    component: Download,
+    name: 'download',
+  }, {
+    path: '/create',
+    component: BaseCreation,
+    children: [{
+      path: '/create/search',
+      name: 'search',
+      component: SearchBadge,
+    }, {
+      path: '/create/recipient',
+      name: 'recipient',
+      component: Recipient,
+      beforeEnter: flowGuard
+    }, {
+      // URL is different here for UX (dirty hax, cause other download URL will actually load first on refresh, which what we want)
+      // TODO: The page will have to load some
+      // TODO Consistent naming
+      path: '/download/:sid',
+      name: 'share',
+      component: Share,
+      beforeEnter: flowGuard
+    }]
   },
   {
-    path: '/recipient',
-    name: 'recipient',
-    component: Recipient,
-    props: true,
-    beforeEnter: flow('landing', 'created')
+    path: '/sign',
+    component: BaseSigning,
+    children: [{
+        path: '/share/:sid',
+        name: "sign",
+        component: Sign
+      },
+      {
+        // TODO: Add sid everywhere
+        // TODO: Generate page should be available everywhere i guess?
+        path: '/sign/:sid/generate',
+        name: "generate",
+        component: GenerateKey,
+        beforeEnter: flowGuardSign
+      },
+      // TODO Upload is maybe not the right word?
+      {
+        path: '/sign/:sid/upload',
+        name: "upload",
+        component: UploadKey,
+        beforeEnter: flowGuardSign
+      },
+      {
+        path: '/sign/:sid/profile',
+        name: "profile",
+        component: Profile,
+        beforeEnter: flowGuardSign
+      },
+      {
+        path: '/sign/:sid/confirm',
+        name: "confirm",
+        component: Confirmation,
+        beforeEnter: flowGuardSign
+      },
+      {
+        path: '/sign/:sid/done',
+        name: "signed",
+        component: Signed,
+        beforeEnter: flowGuardSign
+      }
+    ]
   },
   {
-    path: '/share',
-    name: 'share',
-    component: Share,
-    props: true,
-    beforeEnter: flow('recipient', undefined)
-  },
-
-  {
-    path: '/sign/:sid',
-    name: "sign",
-    component: Sign
-  },
-  {
-    path: '/generateKey',
-    name: "generate",
-    component: GenerateKey,
-    beforeEnter: flow('sign', 'upload')
-  },
-  // TODO Upload is maybe not the right word?
-  {
-    path: '/uploadKey',
-    name: "upload",
-    component: UploadKey,
-    beforeEnter: flow('sign', 'profile')
-  },
-  {
-    path: '/profile',
-    name: "profile",
-    component: Profile,
-    beforeEnter: flow('upload', 'confirm')
-  },
-  {
-    path: '/confirm',
-    name: "confirm",
-    component: Confirmation,
-    beforeEnter: flow('profile', 'signed')
-  },
-  {
-    path: '/signed',
-    name: "signed",
-    component: Signed,
-    // This allows you to go back after going to main app again
-    beforeEnter: flow('confirm', 'landing')
+    path: '*',
+    redirect: '/'
   }
-
 ];
 
 export default new VueRouter({ routes });

@@ -2,50 +2,150 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import uuidv1 from 'uuid/v1';
 
+import forge from "node-forge";
+const pki = forge.pki;
+
 import router from '../router';
 
 Vue.use(Vuex);
 
 const state = {
+  // sharing / signing
+  flowMode: "sharing",
+  // sharing: search, recipient, share
+  // signing: sign, upload, generate, profile, confirmation, signed
+  currentFlowStep: "search",
+  badgeTemplate: undefined,
+  keyForge: undefined,
   implication: undefined,
-  assertion: undefined
+  assertion: undefined,
+  share: undefined
 };
+
+// General
+const SET_CURRENT_FLOW_STEP = "SET_CURRENT_FLOW_STEP";
+const SET_FLOW_MODE = "SET_FLOW_MODE";
+
+// Creation
+const SAVE_BADGE_TEMPLATE = "SAVE_BADGE_TEMPLATE";
+const SAVE_RECIPIENT = "SAVE_RECIPIENT";
+const SAVE_SHARE = "SAVE_SHARE";
+
+// Signing
+const SAVE_IMPLICATION = "SAVE_IMPLICATION";
+const SAVE_KEY = "SAVE_KEY";
+const SAVE_PROFILE = "SAVE_PROFILE";
+const SAVE_ASSERTION = "SAVE_ASSERTION";
+
 
 const mutations = {
-  saveImplication(state, implication) {
+  // General
+  [SET_CURRENT_FLOW_STEP](state, currentFlowStep) {
+    state.currentFlowStep = currentFlowStep;
+  },
+  [SET_FLOW_MODE](state, flowMode) {
+    state.flowMode = flowMode;
+  },
+  // Creating
+  [SAVE_BADGE_TEMPLATE](state, badgeTemplate) {
+    state.badgeTemplate = badgeTemplate;
+  },
+  [SAVE_RECIPIENT](state, recipient) {
+    state.recipient = recipient;
+  },
+  [SAVE_SHARE](state, share) {
+    state.share = share;
+  },
+  // Signing
+  [SAVE_IMPLICATION](state, implication) {
     state.implication = implication;
   },
-  saveAssertion(state, assertion) {
+  [SAVE_KEY](state, { keyForge, pubKey, fingerPrint }) {
+    state.key = { keyForge, pubKey, fingerPrint }
+  },
+  [SAVE_PROFILE](state, profile) {
+    state.profile = profile;
+  },
+  [SAVE_ASSERTION](state, assertion) {
     state.assertion = assertion;
   },
-  addIssuer(state, profile) {
-    state.implication.profile = profile;
-    state.implication.profile.publicKey = { pubkey: "TODOTODO" }
-  },
-  // TODO: Should after profile post
-  addPubKey(state, key) {
-    state.implication.profile = { publicKey: key };
-  }
 };
 
+// TODO: Create action types
 const actions = {
-  fetchImplication({ commit }, sid) {
+  // General
+  stepFlow({ commit, state }) {
+    const steps = {
+      'sharing': {
+        'search': (state) => ({
+          nextFlowStep: 'recipient',
+          nextRoute: { name: 'recipient' }
+        }),
+        'recipient': (state) => ({
+          nextFlowStep: 'share',
+          nextRoute: { name: 'share', params: { sid: state.share.sid } }
+        })
+      },
+      'signing': {
+        'sign': (state) => ({
+          nextFlowStep: 'upload',
+          nextRoute: { name: 'upload' }
+        }),
+        'upload': (state) => ({
+          nextFlowStep: 'profile',
+          nextRoute: { name: 'profile', }
+        }),
+        'profile': (state) => ({
+          nextFlowStep: 'confirm',
+          nextRoute: { name: 'confirm' }
+        })
+      }
+    };
+    const next = steps[state.flowMode][state.currentFlowStep](state);
+    commit(SET_CURRENT_FLOW_STEP, next.nextFlowStep);
+    router.push(next.nextRoute);
+  },
+  // Submit
+  createImplication({ commit, state }, recipient) {
+    console.log(`Submitting badge for ${recipient}`);
+    const badgeTemplate = state.badgeTemplate;
+    const implication = { recipient, badgeTemplate };
+    commit(SAVE_RECIPIENT, recipient);
+    return Vue.http
+      .post(process.env.API + "implication", implication)
+      .then(resp => resp.body)
+      .then(share => this.commit(SAVE_SHARE, share));
+  },
+  // Signing
+  prepareSigning({ commit }, sid) {
+    commit(SET_FLOW_MODE, "signing");
+    commit(SET_CURRENT_FLOW_STEP, "sign");
     console.log("Fetching implication", sid);
     Vue.http
       .get(`${process.env.API}share/${sid}`)
       .then(resp => resp.body)
-      .then(implication => commit('saveImplication', implication))
+      .then(implication => commit(SAVE_IMPLICATION, implication))
       .catch(err => console.log(err));
   },
-  addIssuer({ commit }, profile) {
-    console.log("Adding issuer", profile);
-    commit("addIssuer", profile);
-    router.push({ name: "confirm" });
+  handleKeyForge({ commit }, keyForge) {
+    const pubKeyForge = pki.setRsaPublicKey(
+      keyForge.n,
+      keyForge.e
+    );
+    const pubKey = pki.privateKeyToPem(keyForge);
+    const fingerprint = pki.getPublicKeyFingerprint(pubKeyForge);
+    commit(SAVE_KEY, { keyForge, pubKey, fingerprint });
+
+    console.log("Niels fix me");
+    // Vue.http.get(`${process.env.API}profile/`).then((resp) => {
+    // })
   },
-  addPubKey({ commit }, key) {
-    console.log("Adding key", key);
-    commit("addPubKey", key);
-    router.push({ name: "profile" });
+  handleProfile({ commit }, profile) {
+    console.log("profile posting");
+    console.log(profile);
+    console.log("TODOTODO");
+    commit(SAVE_PROFILE, profile);
+    // TODO: Post profile to backend
   },
   createSignedBadge({ commit }, implication) {
     console.log("Creating badge", implication);
@@ -83,7 +183,7 @@ const actions = {
       }
     }
 
-    commit("saveAssertion", assertion);
+    commit(SAVE_ASSERTION, assertion);
     console.log("Created badge:", assertion);
     router.push({ name: "signed" });
   }

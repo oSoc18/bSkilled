@@ -1,13 +1,14 @@
 <template>
   <div>
-    <label :for="id"><slot>Upload file</slot></label>
-    <input type="file" :id="id" :name="id" @change="fileChange"/>
+    <label :for="inputId"><slot>Upload file</slot></label>
+    <input type="file" :id="inputId" :name="inputId" @change="fileChange"/>
   </div>
 </template>
 
 <script>
 export default {
   props: {
+    // Don't forget this
     id: String,
     onResult: Function
   },
@@ -20,6 +21,11 @@ export default {
     },
     onload(ev) {
       this.onResult(ev.target.result);
+    }
+  },
+  computed: {
+    inputId() {
+      return this.id || "uploadButton";
     }
   }
 };

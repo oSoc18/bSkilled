@@ -1,13 +1,11 @@
 <template>
   <div class="form_generate-key">
     <form v-if="!generating">
-      <v-header>Let's get a profile key</v-header>
       <label>password</label>
       <input type="password" v-model.lazy="password" required />
       <button v-on:click.prevent="post">Get your personal key</button>
     </form>
     <div v-if="generating">
-      <v-header>your Key Pair is currently generating</v-header>
       <progress :value="progress" max="100"></progress>
       <p>{{currentaction}}</p>
     </div>
