@@ -1,8 +1,7 @@
 <template>
-  <div class="app">
+  <div>
     <div v-if="!getPassword">
-      <Header>Upload your keyfile</Header>
-      <FileUploadButton id="uploadKey" :onResult="loadKey"/>
+      <FileUploadButton id="uploadKey" :onResult="handleKeyLoad"/>
     </div>
     <div v-if="getPassword">
       <form @submit.prevent="handleSubmitPassphrase">
@@ -11,17 +10,21 @@
         <input type="submit">
       </form>
     </div>
+    <router-link :to="{name: 'generate'}">
+      Don't have key yet? Generate one here.
+    </router-link>
   </div>
 </template>
 
 <script>
+import forge from "node-forge";
+import jws from "jws";
+
 import { mapState } from "vuex";
 
 import Header from "Components/TheHeader";
 import FileUploadButton from "Components/FileUploadButton";
-import forge from "node-forge";
 //TODO move to signing page, added for testing
-import jws from "jws";
 
 export default {
   components: {
@@ -30,41 +33,27 @@ export default {
   },
   data() {
     return {
+      flowStep: "upload",
       passphrase: "",
       keyFile: null,
       getPassword: false
     };
   },
   methods: {
-    unlockKey() {
-      this.key.unlock_pgp({ passphrase: this.passphrase }, err => {
-        if (err) {
-          return this.handleUnlockError(err);
-        }
-        this.$store.dispatch("addPubKey", this.key);
-      });
-    },
-    handleSubmitPassphrase() {
-      this.unlockKey();
-    },
-    handleKeyError(err) {
-      console.log(err);
-      alert(err);
-    },
-    handleUnlockError(err) {
-      console.log(err);
-      alert(err);
-    },
-    loadKey(keyFile) {
+    handleKeyLoad(keyFile) {
       try {
-        let privateKeyForge = forge.pki.decryptRsaPrivateKey(
-          keyFile,
+        this.keyFile = keyFile;
+        const privateKeyForge = forge.pki.decryptRsaPrivateKey(
+          this.keyFile,
           this.passphrase
         );
-        this.keyFound(privateKeyForge, context);
-      } catch (error) {
-        this.keyFile = keyFile;
-        this.getPassword = true;
+        if (privateKeyForge) {
+          this.keyFound(privateKeyForge);
+        } else {
+          this.getPassword = true;
+        }
+      } catch (err) {
+        this.handleKeyError(err);
       }
     },
     handleSubmitPassphrase() {
@@ -74,32 +63,51 @@ export default {
           this.passphrase
         );
         this.keyFound(privateKeyForge, this);
-      } catch (error) {
-        //TODO wrong key feedback
-        console.log(error);
-        alert("Wrong Key!");
+        if (privateKeyForge) {
+          this.keyFound(privateKeyForge);
+        } else {
+          alert("Wrong password!");
+        }
+      } catch (err) {
+        this.handleKeyError(err);
       }
     },
-    keyFound(privateKeyForge, context) {
-      this.$router.push("/profile");
+    keyFound(privateKeyForge) {
+      console.log("Succesful decrypt!");
+      this.$store
+        .dispatch("handleKeyForge", privateKeyForge)
+        .then(() => this.$store.dispatch("stepFlow"));
 
-      let publicKeyForge = forge.pki.setRsaPublicKey(
-        privateKeyForge.n,
-        privateKeyForge.e
-      );
-      let privateKeyPEM = forge.pki.privateKeyToPem(privateKeyForge); //TODO send to confirmation page
-      let publicKeyPEM = forge.pki.publicKeyToPem(publicKeyForge); //TODO doe we
-      let fingerprint = forge.pki.getPublicKeyFingerprint(publicKeyForge);
-      console.log(Buffer.from(fingerprint.data).toString("base64"));
-      //TODO get profile from public key fingerprint
-      //TODO move to next page
-      //TESTS
-      let signature = jws.sign({
-        header: { alg: "RS256" },
-        privateKey: privateKeyPEM,
-        payload: "niels larmuseau"
-      });
+      // this.$router.push("/profile");
+
+      // let publicKeyForge = forge.pki.setRsaPublicKey(
+      //   privateKeyForge.n,
+      //   privateKeyForge.e
+      // );
+      // let privateKeyPEM = forge.pki.privateKeyToPem(privateKeyForge); //TODO send to confirmation page
+      // let publicKeyPEM = forge.pki.publicKeyToPem(publicKeyForge); //TODO doe we
+      // let fingerprint = forge.pki.getPublicKeyFingerprint(publicKeyForge);
+      // console.log(Buffer.from(fingerprint.data).toString("base64"));
+      // //TODO get profile from public key fingerprint
+      // //TODO move to next page
+      // //TESTS
+      // let signature = jws.sign({
+      //   header: { alg: "RS256" },
+      //   privateKey: privateKeyPEM,
+      //   payload: "niels larmuseau"
+      // });
+    },
+    handleKeyError(err) {
+      console.log(err);
+      alert(err);
+    },
+    handleUnlockError(err) {
+      console.log(err);
+      alert(err);
     }
+  },
+  activated() {
+    this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
   }
 };
 </script>

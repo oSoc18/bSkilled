@@ -4,7 +4,7 @@
     <section class="section-right">
       <div class="section-right_container section-right_container-center">
         <div class="container container-animation">
-          <form v-if="!generating">
+          <form class="form_generate-key" v-if="!generating">
             <h1 class="h1--blue">Let's get a profile key</h1>
             <p class="information">You can use this profile key to sign the badge.</p>
             <p class="allert-information">This key is your own responsability, keep it somewhere safe!</p>

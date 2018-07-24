@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div  v-if="implication" class="row-page">
     <v-introduction :introductionContent="introductionContent"></v-introduction>
     <section class="section-right">
@@ -13,7 +13,19 @@
           <router-link class="a--underline" to="/generateKey">Generate a personal key</router-link>
         </div>
       </div>
-    </section>
+    </section> -->
+<template id="intro">
+  <div v-if="implication">
+    <div>
+      <h1>
+        Seems like you want to sign a badge.
+      </h1>
+      <BadgeClassCard :badge-class="implication.badgeTemplate" />
+      <p>Signing means this!</p>
+      <Button :onClick="sign">Sign</Button>
+      <p>Not signing means this!</p>
+      <Button :onClick="dontSign">Don't sign the badge</Button>
+    </div>
   </div>
   <div v-else>
     <p>Loading...</p>
@@ -23,49 +35,69 @@
 <script>
 import { mapState } from "vuex";
 import Button from "Components/Button";
-import Badge from "Components/Badge";
-import Introduction from "Components/IntroductionOfPage";
-import Indicator from "Components/StepIndicator";
+// import Badge from "Components/Badge";
+// import Introduction from "Components/IntroductionOfPage";
+// import Indicator from "Components/StepIndicator";
+//
+// export default {
+//   components: {
+//     Badge,
+//     "v-introduction": Introduction,
+//     "v-indicator": Indicator,
+//     "v-button": Button,
+//   },
+//   data() {
+//     return {
+//       introductionContent: {
+//         title: 'Seems like you want to sign a badge',
+//         text: 'We only use your personal information to create your badge and mail it to you.',
+//       },
+//       visitedPage: {
+//         search: false,
+//         information: false,
+//         save: false,
+//       },
+//       currentPage: {
+//         search: true,
+//         information: false,
+//         save: false,
+//       },
+//       pageVisited: 1
+//     }
+// =======
+import FileUploadButton from "Components/FileUploadButton";
+import BadgeClassCard from "Components/BadgeClassCard";
 
 export default {
   components: {
-    Badge,
-    "v-introduction": Introduction,
-    "v-indicator": Indicator,
-    "v-button": Button,
+    Button,
+    FileUploadButton,
+    BadgeClassCard
   },
   data() {
     return {
-      introductionContent: {
-        title: 'Seems like you want to sign a badge',
-        text: 'We only use your personal information to create your badge and mail it to you.',
-      },
-      visitedPage: {
-        search: false,
-        information: false,
-        save: false,
-      },
-      currentPage: {
-        search: true,
-        information: false,
-        save: false,
-      },
-      pageVisited: 1
-    }
+      flowStep: "sign"
+    };
   },
   computed: {
     implication() {
-      console.log("impl:", this.$store.state.implication);
       return this.$store.state.implication;
     }
   },
   beforeMount() {
-    this.$store.dispatch("fetchImplication", this.$route.params.sid);
+    this.$store.dispatch("prepareSigning", this.$route.params.sid);
   },
   methods: {
-    todo() {
-      console.log("test todo");
+    sign() {
+      this.$store.dispatch("stepFlow");
+    },
+    dontSign() {
+      console.log("fuckfuck");
+      alert("TODO don't");
     }
+  },
+  activated() {
+    this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
   }
 };
 </script>

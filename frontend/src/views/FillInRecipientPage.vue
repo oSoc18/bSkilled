@@ -47,6 +47,7 @@ export default {
   },
   data() {
     return {
+      flowStep: "recipient",
       selectedBoolean: true,
       recipient: "",
       introductionContent: {
@@ -90,7 +91,7 @@ export default {
     }
   },
   activated() {
-    this.$store.commit("SET_CURRENT_FLOW_STEP", "recipient");
+    this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
   }
 };
 </script>
