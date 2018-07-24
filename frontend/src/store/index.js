@@ -188,7 +188,6 @@ const actions = {
           console.log("commiting profile as: " + profile);
           commit(SAVE_PROFILE, profile);
         }
-
       },
       err => {
         console.log(err);

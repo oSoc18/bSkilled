@@ -69,8 +69,9 @@ export default {
       },
       submitted: false,
       introductionContent: {
-        title: 'Sign the badge with your profile key',
-        text: 'We only use your personal information to create your badge and mail it to you.',
+        title: "Sign the badge with your profile key",
+        text:
+          "We only use your personal information to create your badge and mail it to you."
       },
       pageVisited: 2,
       profile: profile,

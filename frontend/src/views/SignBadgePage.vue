@@ -9,8 +9,8 @@
             <Badge :badge-class="implication.badgeTemplate" />
             <p class="created-badge-name">{{implication.badgeTemplate.description}}</p>
             <div class="button-container">
-              <Button class="button--blue":onClick="sign">Sign the badge</Button>
-              <Button class="button--line":onClick="dontSign">Go to the homepage</Button>
+              <Button class="button--blue" :onClick="sign">Sign the badge</Button>
+              <Button class="button--line" :onClick="dontSign">Go to the homepage</Button>
             </div>
           </div>
         </div>
@@ -34,17 +34,18 @@ export default {
     Button,
     Badge,
     "v-introduction": Introduction,
-    "v-indicator": Indicator,
-},
+    "v-indicator": Indicator
+  },
   data() {
     return {
       flowStep: "sign",
       introductionContent: {
-        title: 'Seems like you want to sign a badge',
-        text: 'We only use your personal information to create your badge and mail it to you.',
+        title: "Seems like you want to sign a badge",
+        text:
+          "We only use your personal information to create your badge and mail it to you."
       },
       pageVisited: 0
-    }
+    };
   },
   computed: {
     implication() {
@@ -94,6 +95,4 @@ export default {
   width: 310px;
   border-radius: 5px;
 }
-
-
 </style>
