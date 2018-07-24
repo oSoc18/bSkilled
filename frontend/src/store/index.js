@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import uuidv1 from 'uuid/v1';
 
+import jws from "jws";
 import forge from "node-forge";
 const pki = forge.pki;
 
@@ -15,10 +16,17 @@ const state = {
   // sharing: search, recipient, share
   // signing: sign, upload, generate, profile, confirmation, signed
   currentFlowStep: "search",
+
+  // Sharing
   badgeTemplate: undefined,
+  recipient: undefined,
+
+  // Signing
   keyForge: undefined,
   implication: undefined,
   assertion: undefined,
+  signedAssertion: undefined,
+
   share: undefined
 };
 
@@ -36,6 +44,8 @@ const SAVE_IMPLICATION = "SAVE_IMPLICATION";
 const SAVE_KEY = "SAVE_KEY";
 const SAVE_PROFILE = "SAVE_PROFILE";
 const SAVE_ASSERTION = "SAVE_ASSERTION";
+const SAVE_SIGNED_ASSERTION = "SAVE_SIGNED_ASSERTION";
+const SAVE_BAKED_BADGE = "SAVE_BAKED_BADGE";
 
 
 const mutations = {
@@ -60,8 +70,8 @@ const mutations = {
   [SAVE_IMPLICATION](state, implication) {
     state.implication = implication;
   },
-  [SAVE_KEY](state, { keyForge, pubKey, fingerprint }) {
-    state.key = { keyForge, pubKey, fingerprint }
+  [SAVE_KEY](state, { keyForge, pem, fingerprint }) {
+    state.key = { keyForge, pem, fingerprint }
   },
   [SAVE_PROFILE](state, profile) {
     state.profile = profile;
@@ -69,7 +79,12 @@ const mutations = {
   [SAVE_ASSERTION](state, assertion) {
     state.assertion = assertion;
   },
-
+  [SAVE_SIGNED_ASSERTION](state, signedAssertion) {
+    state.signedAssertion = signedAssertion;
+  },
+  [SAVE_BAKED_BADGE](state, bakedBadge) {
+    state.bakedBadge = bakedBadge;
+  }
 };
 
 // TODO: Create action types
@@ -99,6 +114,10 @@ const actions = {
         'profile': (state) => ({
           nextFlowStep: 'confirm',
           nextRoute: { name: 'confirm' }
+        }),
+        'confirm': (state) => ({
+          nextFlowStep: 'download',
+          nextRoute: { name: 'download' }
         })
       }
     };
@@ -106,7 +125,7 @@ const actions = {
     commit(SET_CURRENT_FLOW_STEP, next.nextFlowStep);
     router.push(next.nextRoute);
   },
-  // Submit
+  // Sharing
   createImplication({ commit, state }, recipient) {
     console.log(`Submitting badge for ${recipient}`);
     const badgeTemplate = state.badgeTemplate;
@@ -133,21 +152,13 @@ const actions = {
       keyForge.n,
       keyForge.e
     );
-    const pubKey = pki.privateKeyToPem(keyForge);
-    const fingerprint = Buffer.from(pki.getPublicKeyFingerprint(pubKeyForge).data).toString("base64");
-    commit(SAVE_KEY, { keyForge, pubKey, fingerprint });
+    const pem = pki.privateKeyToPem(keyForge);
+    const fingerprintRaw = pki.getPublicKeyFingerprint(pubKeyForge);
+    const fingerprint = Buffer.from(fingerprintRaw.data).toString("base64");
+    commit(SAVE_KEY, { keyForge, pem, fingerprint });
 
-    //console.log("Niels fix me");
-    //get profile
-    // Vue.http.get(`${process.env.API}profile/`).then((resp) => {
-    // })
-    //TODO get key from vuex!
     console.log("Looking for profile at: " + fingerprint);
     var profile = {};
-    profile.name = "";
-    profile.email = "";
-    profile.company = "";
-    profile.url = "";
     return Vue.http.get(process.env.API + "profile" + "/" + fingerprint).then(
       resp => {
         console.log( "profile found");
@@ -179,16 +190,16 @@ const actions = {
     console.log(profile);
     commit(SAVE_PROFILE, profile);
     // TODO: Post profile to backend
-    
-    let actualprofile = Object.assign ({}, profile);
-    actualprofile.fingerprint = state.key.fingerprint;
+
+    let actualProfile = Object.assign({}, profile);
+    actualProfile.fingerprint = state.key.fingerprint;
     console.log(state.key.fingerprint);
-    console.log(actualprofile);
-    console.log(`Submitting profile at ${actualprofile.fingerprint}`);
-    Vue.http.post(process.env.API + "profile", actualprofile).then(
+    console.log(actualProfile);
+    console.log(`Submitting profile at ${actualProfile.fingerprint}`);
+    Vue.http.post(process.env.API + "profile", actualProfile).then(
       resp => {
         console.log(resp);
-        //TODO contunue 
+        //TODO continue
       },
       err => {
         console.log(err);
@@ -196,45 +207,46 @@ const actions = {
         alert("Oops! there was an issue uploading your profile: " + err);
       });
   },
-  createSignedBadge({ commit }, implication) {
-    console.log("Creating badge", implication);
-    const badgeClass = {
-      type: "BadgeClass",
-      id: implication.badgeTemplate.id,
-      name: implication.badgeTemplate.name,
-      description: implication.badgeTemplate.description,
-      image: implication.badgeTemplate.image,
-      criteria: implication.badgeTemplate.criteria,
-      issuer: {
-        type: "Profile",
-        id: implication.profile.id,
-        name: implication.profile.name,
-        url: implication.profile.url,
-        email: implication.profile.email,
-        publicKey: implication.profile.publicKey
-      }
-    }
+  signBadge({ dispatch, commit }) {
+    return Promise
+      .resolve(dispatch('createSignedBadge'))
+      .then((assertion) => {
+        console.log("Saving assertion", JSON.parse(JSON.stringify(assertion)));
+        commit(SAVE_ASSERTION, assertion);
+        const signature = jws.sign({
+          header: { alg: "RS256" },
+          privateKey: this.state.key.pem,
+          payload: assertion
+        });
+        commit(SAVE_SIGNED_ASSERTION, signature);
+        console.log(JSON.parse(JSON.stringify(signature)));
+      });
+  },
+  bakeBadge({ commit, state }) {
+    console.log("TODO");
+    commit(SAVE_BAKED_BADGE, state.bakedBadge);
+  },
+  createSignedBadge() {
+    const implication = state.implication;
+    const badgeTemplate = implication.badgeTemplate;
+    const profile = state.profile;
 
-    const assertion = {
+    const issuer = { type: 'Profile', ...profile };
+    const badge = { type: "BadgeClass", ...badgeTemplate, issuer };
+    const recipient = { type: 'email', hashed: false, identity: implication.recipient };
+    // TODO: Check badge compliance
+    const verification = { type: 'SignedBadge', creator: profile.publicKey };
+    const issuedOn = new Date(Date.now()).toISOString();
+
+    return {
       "@context": "https://w3id.org/openbadges/v2",
       type: "Assertion",
       id: `urn:uuid:${uuidv1()}`,
-      badge: badgeClass,
-      recipient: {
-        type: "email",
-        hashed: false,
-        identity: implication.recipient
-      },
-      issuedOn: new Date(Date.now()).toISOString(),
-      verification: {
-        type: "SignedBadge",
-        creator: implication.profile.publicKey
-      }
-    }
-
-    commit(SAVE_ASSERTION, assertion);
-    console.log("Created badge:", assertion);
-    router.push({ name: "signed" });
+      badge,
+      recipient,
+      issuedOn,
+      verification,
+    };
   }
 };
 
