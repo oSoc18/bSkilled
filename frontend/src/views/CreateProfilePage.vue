@@ -34,13 +34,14 @@ export default {
   },
   data() {
     // TODO: Fetch profile
+    let profile = this.$store.state.profile;
     return {
       flowStep: "profile",
       profile: {
-        name: "",
-        email: "",
-        company: "",
-        url: ""
+        name: profile.name,
+        email: profile.email,
+        company: profile.company,
+        url: profile.url
       },
       submitted: false
     };

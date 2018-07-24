@@ -70,8 +70,8 @@ const mutations = {
   [SAVE_IMPLICATION](state, implication) {
     state.implication = implication;
   },
-  [SAVE_KEY](state, { keyForge, pem, fingerPrint }) {
-    state.key = { keyForge, pem, fingerPrint }
+  [SAVE_KEY](state, { keyForge, pem, fingerprint }) {
+    state.key = { keyForge, pem, fingerprint }
   },
   [SAVE_PROFILE](state, profile) {
     state.profile = profile;
@@ -154,18 +154,48 @@ const actions = {
     );
     const pem = pki.privateKeyToPem(keyForge);
     const fingerprint = pki.getPublicKeyFingerprint(pubKeyForge);
-    commit(SAVE_KEY, { keyForge, pem, fingerprint });
+    const fingerprint64 = Buffer.from(fingerprint.data).toString("base64");
+    commit(SAVE_KEY, { keyForge, pem, fingerprint: fingerprint64 });
 
-    console.log("Niels fix me");
-    // Vue.http.get(`${process.env.API}profile/`).then((resp) => {
-    // })
+    console.log("Looking for profile at: " + fingerprint);
+    return Vue.http.get(process.env.API + "profile" + "/" + fingerprint).then(
+      resp => {
+        console.log("profile found");
+        profile.name = resp.body.name;
+        profile.email = resp.body.email;
+        profile.company = resp.body.company;
+        profile.url = resp.body.url;
+        console.log("commiting profile as: " + profile);
+        commit(SAVE_PROFILE, profile);
+      },
+      err => {
+        console.log(err, "profile not found commiting empty profile ");
+        commit(SAVE_PROFILE, profile);
+      }
+    );
+
   },
   handleProfile({ commit }, profile) {
     console.log("profile posting");
     console.log(profile);
-    console.log("TODOTODO");
     commit(SAVE_PROFILE, profile);
     // TODO: Post profile to backend
+
+    let actualProfile = Object.assign({}, profile);
+    actualProfile.fingerprint = state.key.fingerprint;
+    console.log(state.key.fingerprint);
+    console.log(actualProfile);
+    console.log(`Submitting profile at ${actualProfile.fingerprint}`);
+    Vue.http.post(process.env.API + "profile", actualProfile).then(
+      resp => {
+        console.log(resp);
+        //TODO continue
+      },
+      err => {
+        console.log(err);
+        //TODO error
+        alert("Oops! there was an issue uploading your profile: " + err);
+      });
   },
   signBadge({ dispatch, commit }) {
     return Promise
