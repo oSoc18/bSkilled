@@ -12,8 +12,6 @@
      </div>
     </vue-slide-up-down>
   </div>
-
-
 </template>
 
 <script>

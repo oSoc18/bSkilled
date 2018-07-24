@@ -10,7 +10,7 @@
           <a href="/">About the project</a>
         </li>
         <li class=" l-navigation__menu__item l-navigation__menu__item--state-current">
-          <a href="/">Make a new badge</a>
+          <router-link to="/create/search">Make a new badge</router-link>
         </li>
       </ul>
     </nav>
@@ -40,7 +40,7 @@
 .l-navigation__menu {
   display: flex;
   margin-right: 5px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .l-navigation__menu__item {

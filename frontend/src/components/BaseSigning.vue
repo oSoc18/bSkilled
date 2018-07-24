@@ -1,15 +1,8 @@
 <template>
   <div>
-  <p>Step: {{currentFlowStep}}</p>
-    <div class="row-page">
-    <section class="section-right">
-      <div class="section-right_container section-right_container-center">
-        <keep-alive>
-          <router-view/>
-        </keep-alive>
-      </div>
-    </section>
-    </div>
+  <keep-alive>
+    <router-view/>
+  </keep-alive>
   </div>
 </template>
 

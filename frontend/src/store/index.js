@@ -21,6 +21,7 @@ const state = {
   // sharing: search, recipient, share
   // signing: sign, upload, generate, profile, confirmation, signed
   currentFlowStep: "search",
+  currentProcess: "sharing",
   badge: undefined,
 
   // Sharing
@@ -57,7 +58,7 @@ const SAVE_BADGE = "SAVE_BAKED_BADGE";
 
 const mutations = {
   // General
-  [SET_CURRENT_FLOW_STEP](state, currentFlowStep) {
+  [SET_CURRENT_FLOW_STEP](state, currentFlowStep, currentProcess) {
     state.currentFlowStep = currentFlowStep;
   },
   [SET_FLOW_MODE](state, flowMode) {
@@ -128,6 +129,7 @@ const actions = {
       }
     };
     const next = steps[state.flowMode][state.currentFlowStep](state);
+    state.currentProcess = state.flowMode
     commit(SET_CURRENT_FLOW_STEP, next.nextFlowStep);
     router.push(next.nextRoute);
   },
@@ -186,7 +188,6 @@ const actions = {
           console.log("commiting profile as: " + profile);
           commit(SAVE_PROFILE, profile);
         }
-
       },
       err => {
         console.log(err);

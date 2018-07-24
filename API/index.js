@@ -47,7 +47,7 @@ router.get('/badgeTemplate', function(req, res) {
   if (templates) {
     res.send(templates);
   } else {
-    res.status(404);
+    res.status(404).send();
   }
 });
 
@@ -56,7 +56,7 @@ router.get('/badgeTemplate/:id', function(req, res) {
   if (badgeTemplate) {
     res.send(badgeTemplate);
   } else {
-    res.status(404);
+    res.status(404).send();
   }
 });
 
@@ -89,7 +89,7 @@ router.get('/share/:sid', function(req, res) {
   if (implication) {
     res.send(implication);
   } else {
-    res.status(404);
+    res.status(404).send();
   }
 });
 
@@ -107,7 +107,7 @@ router.get('/profile/:identifier', function(req, res) { //TODO test
   if (profile) {
     res.send(profile);
   } else {
-    res.status(404);
+    res.status(404).send();
   }
 });
 

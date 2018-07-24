@@ -21,6 +21,9 @@ const dict = {
     recipient: {
       required: 'Please fill in an e-mail address',
       email: 'This e-mail address is not valid'
+    },
+    password: {
+      required: 'Please fill in a password'
     }
   }
 };

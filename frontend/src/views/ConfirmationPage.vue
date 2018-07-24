@@ -55,50 +55,6 @@ export default {
         "data:image/png;base64," + base64Data;
       //TODO do something with baked badge
     }
-    // testBake(ev) {
-    //   const file = ev.target.files[0];
-    //   const reader = new FileReader();
-    //   reader.onload = this.imgdataloaded;
-    //   reader.readAsArrayBuffer(file);
-    // },
-    // let context = this;
-    // context.testBake(context, "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png","thisisthejws.dotseperated.code")
-    // this.$store.dispatch("createSignedBadge", this.implication);
-    // try {
-    //   this.$http
-    //     .get(url, { responseType: "blob" })
-    //     .then(response => {
-    //       // resolve to Blob
-    //       return response.blob();
-    //     })
-    //     .then(blob => {
-    //       let imgFile = new File([blob], "badgeimage.png");
-    //       const reader = new FileReader();
-    //       reader.onload = function(ev) {
-    //         let arrayBuffer = ev.target.result;
-    //         let buffer = Buffer.from(arrayBuffer);
-    //         context.bakeDataIntoImage(context, buffer, jws);
-    //       };
-    //       reader.readAsArrayBuffer(imgFile);
-    //     });
-    // } catch (error) {
-    //   alert("There was an issue while baking: " + error);
-    // }
-    // imgdataloaded(ev) {
-    //   //use ev.target.result
-    //   console.log(ev.target.result);
-    //   let arrayBuffer = ev.target.result;
-    //   let buffer = Buffer.from(arrayBuffer);
-    //   console.log(buffer);
-    //   var chunks = extract(buffer);
-    //   chunks.splice(-1, 0, text.encode("hello", "world"));
-    //   var newbuffer = new Buffer(encode(chunks));
-    //   console.log(newbuffer);
-    //   let base64Data = btoa(String.fromCharCode.apply(null, newbuffer));
-    //   console.log(base64Data);
-    //   document.getElementById("EndBadge").src =
-    //     "data:image/png;base64," + base64Data;
-    // }
   },
   activated() {
     this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);

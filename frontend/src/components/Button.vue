@@ -56,4 +56,37 @@ export default {
   border: 1px solid $lightgrey;
   pointer-events: none;
 }
+
+.button--high-margin {
+  padding: 13px 60px;
+}
+
+.button--landing {
+  padding: 15px 45px;
+  font-size: 15px;
+}
+
+.button--line {
+  background: none;
+  border: 2px solid $darkblue;
+  padding: 10px 30px;
+  color: $darkblue;
+
+  &:hover {
+    background: $darkblue;
+    color: $white;
+  }
+}
+
+.button--blue {
+  background: $darkblue;
+
+  &:hover {
+    background: darken($darkblue, 5);
+  }
+}
+
+.button-back {
+  padding: 13px 50px;
+}
 </style>

@@ -27,7 +27,6 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
-  background-size: 100%;
   font-family: 'Cabin', sans-serif;
   font-size: 16px;
 }
@@ -73,7 +72,14 @@ h1 {
 }
 
 a {
+  color: #30355c;
+  font-size: 14px;
+  margin-top: 8px;
   text-decoration: none;
+}
+
+.a--underline {
+  text-decoration: underline;
 }
 
 label {
@@ -176,4 +182,15 @@ input {
   100% {
     opacity: 1;
   }
+}
+
+.h1--blue {
+  color: #30355c;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 93px;
 }

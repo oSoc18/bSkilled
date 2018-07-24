@@ -1,6 +1,5 @@
 <template>
   <div>
-  <p>Step: {{currentFlowStep}}</p>
   <keep-alive>
     <router-view/>
   </keep-alive>

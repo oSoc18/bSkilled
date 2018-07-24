@@ -1,22 +1,37 @@
 <template>
-  <div>
-    <BadgeClassCard :badge-class="implication.badgeTemplate" />
-    <div class="form_generate-key">
-      <form v-if="!submitted">
-        <label>Name</label>
-        <input type="text" v-model.lazy="profile.name" />
-        <label>E-mail adress</label>
-        <input type="text" v-model.lazy="profile.email" />
-        <label>Company name</label>
-        <input type="text" v-model.lazy="profile.company" required />
-        <label>Website url</label>
-        <input type="text" v-model.lazy="profile.url" required />
-        <button v-on:click.prevent="post">Submit your profile</button>
-      </form>
-      <div v-if="submitted">
-        <h1>Lorem Ipsum.</h1>
+  <div class="row-page">
+    <v-introduction :introductionContent="introductionContent"></v-introduction>
+    <section class="section-right">
+      <div class="section-right_container section-right_container-center">
+        <v-indicator :pageVisited="pageVisited"></v-indicator>
+        <div class="container container-animation">
+          <div class="form_generate-key">
+            <form @submit.prevent v-if="!submitted">
+              <div class="input-container">
+                <label>Name</label>
+                <input type="text" v-model.lazy="profile.name" />
+              </div>
+              <div class="input-container">
+                <label>E-mail adress</label>
+                <input type="text" v-model.lazy="profile.email" />
+              </div>
+              <div class="input-container">
+                <label>Company name</label>
+                <input type="text" v-model.lazy="profile.company" required />
+              </div>
+              <div class="input-container">
+                <label>Website url</label>
+                <input type="text" v-model.lazy="profile.url" required />
+              </div>
+              <v-button :onClick="post">Save personal information</v-button>
+            </form>
+            <div v-if="submitted">
+              <h1>Lorem Ipsum.</h1>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -25,11 +40,15 @@ import Header from "Components/TheHeader";
 import Button from "Components/Button";
 import BadgeClassCard from "Components/BadgeClassCard";
 import FileSaver from "file-saver";
+import Introduction from "Components/IntroductionOfPage";
+import Indicator from "Components/StepIndicator";
 
 export default {
   components: {
     "v-header": Header,
     "v-button": Button,
+    "v-introduction": Introduction,
+    "v-indicator": Indicator,
     BadgeClassCard
   },
   data() {
@@ -42,6 +61,19 @@ export default {
     };
     return {
       flowStep: "profile",
+      profile: {
+        name: "",
+        email: "",
+        company: "",
+        url: ""
+      },
+      submitted: false,
+      introductionContent: {
+        title: "Sign the badge with your profile key",
+        text:
+          "We only use your personal information to create your badge and mail it to you."
+      },
+      pageVisited: 2,
       profile: profile,
       submitted: false
     };
@@ -66,17 +98,10 @@ export default {
 
 <style>
 @import "~Vars";
-label {
-  display: block;
-  margin: 20px 0 10px;
-}
-input[type="text"] {
-  display: block;
-  width: 100%;
-  padding: 8px;
-}
 
 .form_generate-key {
-  width: 500px;
+  width: 370px;
+  display: flex;
+  justify-content: center;
 }
 </style>
