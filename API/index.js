@@ -6,7 +6,6 @@ const FileSync = require('lowdb/adapters/FileSync');
 
 const adapter = new FileSync('db.json');
 const db = low(adapter);
-const uuidv1 = require('uuid/v1');
 const shortid = require('shortid');
 
 db.defaults({
@@ -43,14 +42,20 @@ router.get('/', function(req, res) {
 });
 
 router.get('/badgeTemplate', function(req, res) {
-  res.send(db.get('badgeTemplate').value());
+  const templates = db.get('badgeTemplate').value();
+  if (templates) {
+    res.send(templates);
+  } else {
+    res.status(404);
+  }
 });
 
 router.get('/badgeTemplate/:id', function(req, res) {
-  try {
-    res.send(db.get('badgeTemplate').value()[req.params.id]);
-  } catch (error) {
-    res.status(404).send('Not found');
+  const badgeTemplate = db.get('badgeTemplate').value()[req.params.sid];
+  if (badgeTemplate) {
+    res.send(badgeTemplate);
+  } else {
+    res.status(404);
   }
 });
 
@@ -63,7 +68,6 @@ router.post('/implication', function(request, response) {
 });
 
 router.patch('/share/:sid', function(req, res) {
-  console.log(req);
   const sid = req.params.sid;
   const { url, assertion } = req.body;
   const badge = { signed: true, sid, url, assertion };
@@ -72,10 +76,11 @@ router.patch('/share/:sid', function(req, res) {
 });
 
 router.get('/share/:sid', function(req, res) {
-  try {
-    res.send(db.get('implication').value()[req.params.sid]);
-  } catch (error) {
-    res.status(404).send('Not found');
+  const implication = db.get('implication').value()[req.params.sid];
+  if (implication) {
+    res.send(implication);
+  } else {
+    res.status(404);
   }
 });
 
@@ -89,10 +94,11 @@ router.post('/profile', function(request, response) { //TODO test
 });
 
 router.get('/profile/:identifier', function(req, res) { //TODO test
-  try {
-    res.send(db.get('profile').value()[req.params.identifier]);
-  } catch (error) {
-    res.status(404).send('Not found');
+  const profile = db.get('profile').value()[req.params.identifier];
+  if (profile) {
+    res.send(profile);
+  } else {
+    res.status(404);
   }
 });
 
