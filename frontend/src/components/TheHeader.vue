@@ -4,10 +4,10 @@
     <nav class="l-navigation">
       <ul class="l-navigation__menu">
         <li class="l-navigation__menu__item">
-          <a href="/">Practical information</a>
+        <a href="/#practical" v-on:click.prevent="practical()" >Practical information</a>
         </li>
         <li class=" l-navigation__menu__item">
-          <a href="/">About the project</a>
+          <a href="/#about" v-on:click.prevent="about()">About the project</a>
         </li>
         <li class=" l-navigation__menu__item l-navigation__menu__item--state-current">
           <router-link to="/create/search">Make a new badge</router-link>
@@ -16,6 +16,19 @@
     </nav>
   </header>
 </template>
+
+<script>
+export default {
+  methods: {
+    about() {
+      this.$router.push({ name: "about" });
+    },
+    practical(){
+      this.$router.push({ name: "practical" });
+    }
+  }
+};
+</script>
 
 <style lang="scss" scoped>
 @import "~Vars";

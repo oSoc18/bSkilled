@@ -11,7 +11,7 @@
         </router-link>
       </div>
     </section>
-    <section class="section-landing">
+    <section class="section-landing" id="about">
       <img src="../assets/skill_illustration.png" alt="" width="527" height="403">
       <div class="container-landing">
         <h1 class="h1-landing h1-title-text">{{$t("landing.landing.why")}}</h1>
@@ -34,25 +34,25 @@
         </div>
       </div>
     </section>
-    <section class="section-landing">
+    <section class="section-landing" id="practical">
       <img src="../assets/skill_illustration.png" alt="" width="527" height="403">
       <div class="container-landing">
-        <h1 class="h1-landing h1-title-text">{{$t("landing.spotlight.how")}}</h1>
+        <h1 class="h1-landing h1-title-text">{{$t("landing.functionality.how")}}</h1>
         <ul class="p-landing list-landing">
           <li>
-            {{$t("landing.spotlight.make")}}
+            {{$t("landing.functionality.make")}}
           </li>
           <li>
-            {{$t("landing.spotlight.recieve")}}
+            {{$t("landing.functionality.recieve")}}
           </li>
           <li>
-            {{$t("landing.spotlight.sign")}}
+            {{$t("landing.functionality.sign")}}
           </li>
           <li>
-            {{$t("landing.spotlight.download")}}
+            {{$t("landing.functionality.download")}}
           </li>
           <li>
-            {{$t("landing.spotlight.use")}}
+            {{$t("landing.functionality.use")}}
           </li>
         </ul>
       </div>
