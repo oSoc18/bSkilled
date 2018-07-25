@@ -2,7 +2,7 @@
   <div>
     <v-header class="l-header-white"></v-header>
       <!-- <h1>{{$t("landing.welcome")}}</h1> -->
-    <section class="section-intro">
+    <section class="section-intro section-right-bg">
       <div class="intro-text-container">
         <p class="p-landing">My friend is amazing with a guitar, <br> I am good with communication,</p>
         <h1 class="h1-landing">What is your skill?</h1>

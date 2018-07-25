@@ -1,7 +1,7 @@
 <template>
   <div class="row-page">
     <v-introduction :introductionContent="introductionContent"></v-introduction>
-    <section class="section-right">
+    <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div v-if="implication && !implication.signed">

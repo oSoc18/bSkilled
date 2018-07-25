@@ -3,7 +3,7 @@
     <img src="../assets/badge.svg" alt="badge" width="115" height="auto">
     <div class="created-badge-p">
       <p class="created-badge-name">{{badgeClass.name}}</p>
-      <p class="created-badge-recipient">Recipient: {{recipient}}</p>
+      <p class="created-badge-recipient">Recipient: <span>{{recipient}}</span></p>
       <p class="">{{badgeClass.description}}</p>
     </div>
   </div>
@@ -51,6 +51,12 @@ export default {
   font-size: 15px;
   margin-bottom: 3px;
   margin-top: 10px;
+
+  span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+  }
 }
 
 .created-badge-name {

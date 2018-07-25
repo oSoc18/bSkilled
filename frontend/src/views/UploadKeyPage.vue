@@ -1,24 +1,26 @@
 <template>
   <div class="row-page">
     <v-introduction :introductionContent="introductionContent"></v-introduction>
-    <section class="section-right">
+    <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
           <h1 class="h1--blue">Upload your profile key</h1>
-          <div v-if="!getPassword">
+          <div v-if="!getPassword" class="upload-container">
             <FileUploadButton id="uploadKey" :onResult="handleKeyLoad"/>
+            <router-link :to="{name: 'generate'}" class="a--underline">
+              Don't have key yet? Generate one here.
+            </router-link>
           </div>
-          <div v-if="getPassword">
+          <div v-if="getPassword" class="container-password">
             <form @submit.prevent="handleSubmitPassphrase">
-            <label for="passphrase">passphrase</label>
-              <input type="password" id="passphrase" v-model="passphrase">
-              <input type="submit">
+              <div class="input-container">
+                <label for="passphrase">Passphrase</label>
+                <input type="password" id="passphrase" v-model="passphrase" placeholder="Passphrase">
+              </div>
+              <button type="submit" name="button" class="button button--blue">Submit</button>
             </form>
           </div>
-          <router-link :to="{name: 'generate'}" class="a--underline">
-            Don't have key yet? Generate one here.
-          </router-link>
         </div>
       </div>
     </section>
@@ -33,13 +35,15 @@ import { mapState } from "vuex";
 import FileUploadButton from "Components/FileUploadButton";
 import Introduction from "Components/IntroductionOfPage";
 import Indicator from "Components/StepIndicator";
+import Button from "Components/Button";
 //TODO move to signing page, added for testing
 
 export default {
   components: {
     FileUploadButton,
     "v-introduction": Introduction,
-    "v-indicator": Indicator
+    "v-indicator": Indicator,
+    "v-button": Button
   },
   data() {
     return {
@@ -52,7 +56,7 @@ export default {
         text:
           "We only use your personal information to create your badge and mail it to you."
       },
-      pageVisited: 2
+      pageVisited: 1
     };
   },
   methods: {
@@ -104,7 +108,7 @@ export default {
     handleUnlockError(err) {
       console.log(err);
       alert(err);
-    }
+    },
   },
   activated() {
     this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
@@ -113,6 +117,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~Vars";
 $buttonBgColor: #f6c060;
 
 .upload_form {
@@ -143,5 +148,40 @@ $buttonBgColor: #f6c060;
 
 .dropbox:hover {
   background: darken($buttonBgColor, 20);
+}
+
+.button {
+  font-family: 'Cabin', sans-serif;
+  background: $button;
+  border: none;
+  border-radius: 100px;
+  color: #fff;
+  cursor: pointer;
+  padding: 13px 40px;
+  font-size: 13px;
+  transition: background 0.2s ease-in-out;
+
+  &:hover {
+    background: darken($button, 10);
+  }
+}
+
+.button--blue {
+  background: $darkblue;
+
+  &:hover {
+    background: darken($darkblue, 5);
+  }
+}
+
+.container-password {
+  margin-left: 40px;
+  margin-top: 20px;
+}
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
