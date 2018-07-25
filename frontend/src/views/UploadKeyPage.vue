@@ -5,19 +5,19 @@
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
-          <h1 class="h1--blue">Upload your profile key</h1>
+          <h1 class="h1--blue"> {{$t("UploadKeyPage.upload")}} </h1>
           <div v-if="!getPassword">
             <FileUploadButton id="uploadKey" :onResult="handleKeyLoad"/>
           </div>
           <div v-if="getPassword">
             <form @submit.prevent="handleSubmitPassphrase">
-            <label for="passphrase">passphrase</label>
+            <label for="passphrase"> {{$t("UploadKeyPage.upload")}}</label>
               <input type="password" id="passphrase" v-model="passphrase">
               <input type="submit">
             </form>
           </div>
           <router-link :to="{name: 'generate'}" class="a--underline">
-            Don't have key yet? Generate one here.
+              {{$t("UploadKeyPage.nokey")}}
           </router-link>
         </div>
       </div>
@@ -50,9 +50,9 @@ export default {
       keyFile: null,
       getPassword: false,
       introductionContent: {
-        title: "Sign the badge with your profile key",
-        text:
-          "We only use your personal information to create your badge and mail it to you."
+        title: this.$t("UploadKeyPage.introductionTitle"),
+        text: this.$t("UploadKeyPage.introductionDescription")
+          
       },
       pageVisited: 1
     };

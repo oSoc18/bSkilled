@@ -9,13 +9,13 @@
             <Badge :badge-class="implication.badgeTemplate" />
             <p class="created-badge-name">{{implication.badgeTemplate.description}}</p>
             <div class="button-container">
-              <Button class="button--blue" :onClick="sign">Sign the badge</Button>
-              <Button class="button--line" :onClick="dontSign">Go to the homepage</Button>
+              <Button class="button--blue" :onClick="sign"> {{$t("signbadgepage.signbadge")}}   </Button>
+              <Button class="button--line" :onClick="dontSign">   {{$t("signbadgepage.gohome")}}</Button>
             </div>
           </div>
         </div>
         <div v-else>
-          <p>Loading...</p>
+          <p>{{$t("signbadgepage.loading")}}</p>
         </div>
       </div>
     </section>
@@ -40,9 +40,8 @@ export default {
     return {
       flowStep: "sign",
       introductionContent: {
-        title: "Seems like you want to sign a badge",
-        text:
-          "We only use your personal information to create your badge and mail it to you."
+        title:  this.$t("signbadgepage.introductionTitle") ,
+        text:  this.$t("signbadgepage.introductionDescription")
       },
       pageVisited: 0
     };

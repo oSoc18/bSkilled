@@ -108,8 +108,21 @@
       "newbadge": "Make a new badge",
       "introductionTitle": "Share your badge",
       "introductionDescription": "Copy the link and share it with your connections. Your connections can sign your badge by opening the link and filling in some information."
+    },
+    "signbadgepage":{
+      "signbadge":"Sign the badge",
+      "gohome": "Go to the homepage",
+      "loading": "Loading...",
+      "introductionTitle": "Seems like you want to sign a badge",
+      "introductionDescription": "We only use your personal information to create your badge and mail it to you."
+    },
+    "UploadKeyPage":{
+      "upload": "Upload your profile key",
+      "pass": "passphrase",
+      "nokey": "Don't have key yet? Generate one here.",
+      "introductionTitle": "Sign the badge with your profile key",
+      "introductionDescription": "We only use your personal information to create your badge and mail it to you."
     }
-    
   },
   "nl": {
     "landing": {
