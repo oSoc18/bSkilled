@@ -13,7 +13,6 @@ db.defaults({
   version: 'v0.1',
   badgeTemplate: {},
   implication: {},
-  assertion: {},
   profile: {}
 })
 

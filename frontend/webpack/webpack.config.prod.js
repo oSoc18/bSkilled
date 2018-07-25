@@ -7,6 +7,7 @@ module.exports = merge(base, {
   devtool: '#source-map',
   plugins: [
     new webpack.EnvironmentPlugin({
+      'LOCATION': 'http//fixmeiamanurl.com',
       'NODE_ENV': 'production',
       'API': 'http://fixmeiamanapiurl.com'
     }),
