@@ -52,7 +52,6 @@ const routes = [{
     path: '/',
     component: Landing,
     name: 'landing',
-    beforeEnter: flowGuardShare,
   }, {
     path: '/share/:sid/download',
     component: Download,
