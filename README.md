@@ -2,6 +2,9 @@
 
 Open Badges Project for VDAB, Poolstok, CogniZone, ComPas Project, The Learning Hub & Cronos.
 
+This README will be technical documentation.
+Website (with some explanation): [bSkilled.today](https://bSkilled.today)
+
 ## Overview
 
 The platform is split into an [API server](./API) and a [frontend](./frontend).
@@ -63,4 +66,11 @@ yarn start
 
 ## Work To Do
 
-TODO
+* Better error management (both front and backend)
+* Abstract API calls away from Component code
+* Consistent naming and style
+* Following the Vue style guide
+* General wording and explanations
+* Code documentation (specifically the Vuex actions)
+* This project is already starting to get large enough to migrate to TypeScript or Flow
+* Multiple todo's can also be found in the code itself
