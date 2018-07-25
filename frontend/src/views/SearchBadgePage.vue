@@ -33,7 +33,9 @@ export default {
       pageVisited: 0,
       bgimage: {
         img: "./share_step1.png",
-        position: "260px"
+        position: "260px",
+        size: "95%",
+        left: "15px"
       }
     };
   },

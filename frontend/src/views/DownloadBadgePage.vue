@@ -1,6 +1,6 @@
 <template>
   <div class="row-page">
-    <v-introduction :introductionContent="introductionContent"></v-introduction>
+    <v-introduction :introductionContent="introductionContent" :bgimage="bgimage"></v-introduction>
     <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-center">
         <div class="container container-animation">
@@ -60,6 +60,12 @@ export default {
          text:
            "Your skill is verified, you can now download it and share it with other people to show what you're capable of."
        },
+       bgimage: {
+         img: "./signing_step4.png",
+         position: "335px",
+         size: "110%",
+         left: "-30px"
+       }
      };
    },
   computed: {

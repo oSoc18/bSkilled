@@ -88,7 +88,12 @@ export default {
       pageVisited: 2,
       profile: profile,
       submitted: false,
-      bgimage: 'share_step1.png'
+      bgimage: {
+        img: "./signing_step3.png",
+        position: "350px",
+        size: "95%",
+        left: "15px"
+      }
     };
   },
   computed: {

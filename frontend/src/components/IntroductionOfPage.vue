@@ -18,14 +18,16 @@ export default {
     },
     bgimage: {
       img: String,
-      position: String
+      position: String,
+      size: String,
+      left: String
     }
   },
   mounted() {
     this.img_src = images(this.bgimage.img)
 
-    this.$refs.sectionImg.style.background = `#fccd77 url(${this.img_src}) no-repeat 15px ${this.bgimage.position}`;
-    this.$refs.sectionImg.style.backgroundSize = "95%";
+    this.$refs.sectionImg.style.background = `#fccd77 url(${this.img_src}) no-repeat ${this.bgimage.left} ${this.bgimage.position}`;
+    this.$refs.sectionImg.style.backgroundSize = this.bgimage.size
   }
 };
 

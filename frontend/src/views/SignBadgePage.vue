@@ -1,6 +1,6 @@
 <template>
   <div class="row-page">
-    <v-introduction :introductionContent="introductionContent"></v-introduction>
+    <v-introduction :introductionContent="introductionContent" :bgimage="bgimage"></v-introduction>
     <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
@@ -44,7 +44,13 @@ export default {
         text:
           "By signing a badge you verify that this person has mastered the skill displayed in the badge."
       },
-      pageVisited: 0
+      pageVisited: 0,
+      bgimage: {
+        img: "./sign_step1.png",
+        position: "307px",
+        size: "95%",
+        left: "15px"
+      }
     };
   },
   computed: {
