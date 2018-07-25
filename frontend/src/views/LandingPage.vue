@@ -100,7 +100,10 @@ export default {
   components: {
     Button,
     "v-header": Header
-   }
+  },
+  activated() {
+    this.$store.commit("SET_FLOW_MODE", "sharing");
+  }
 };
 </script>
 
@@ -109,14 +112,15 @@ export default {
 
 .l-header-white {
   background: $white;
-  box-shadow: 0 0 40px 0 rgba(14,16,25,0.30);
+  box-shadow: 0 0 40px 0 rgba(14, 16, 25, 0.3);
   position: fixed;
 }
 
 .section-intro {
-  background: $bgyellow url(../assets/skill_illustration.png) center 1403% no-repeat;
+  background: $bgyellow url(../assets/skill_illustration.png) center 1403%
+    no-repeat;
   background-size: 72%;
-  box-shadow: 0 0 40px 0 rgba(48,53,92,0.30);
+  box-shadow: 0 0 40px 0 rgba(48, 53, 92, 0.3);
   height: 810px;
   width: 100vw;
 }
@@ -197,7 +201,7 @@ export default {
   height: 610px;
   margin-top: 115px;
   background: $bgyellow;
-  box-shadow: 0 0 40px 0 rgba(48,53,92,0.30);
+  box-shadow: 0 0 40px 0 rgba(48, 53, 92, 0.3);
   padding-top: 90px;
   padding-left: 130px;
 }
@@ -217,7 +221,7 @@ export default {
 
 .section-slogan {
   height: 405px;
-  background: #0E1019 url(../assets/bg_slogan.svg) right -112% no-repeat;
+  background: #0e1019 url(../assets/bg_slogan.svg) right -112% no-repeat;
   background-size: 54%;
 
   & h1 {
@@ -267,5 +271,4 @@ export default {
   width: 820px;
   margin-right: 80px;
 }
-
 </style>
