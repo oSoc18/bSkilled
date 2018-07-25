@@ -1,6 +1,6 @@
 <template>
   <div class="created-badge-bg">
-    <img src="../assets/badge.svg" alt="badge" width="115" height="auto">
+    <img :src="badgeClass.image" alt="badge" width="115" height="auto">
     <div class="created-badge-p">
       <p class="created-badge-name">{{badgeClass.name}}</p>
       <p class="created-badge-recipient">Recipient: <span>{{recipient}}</span></p>

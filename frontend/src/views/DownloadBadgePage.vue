@@ -109,8 +109,8 @@ export default {
 .verified-img {
   position: absolute;
   pointer-events: none;
-  top: 205px;
-  right: 90px;
+  top: 185px;
+  right: 75px;
 }
 
 .created-badge-bg{
@@ -121,7 +121,7 @@ export default {
   width: 400px;
   border-radius: 5px;
   padding: 25px 40px;
-  margin-top: 40px;
+  margin-top: 30px;
   margin-bottom: 25px;
 }
 
