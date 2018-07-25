@@ -5,9 +5,9 @@
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div v-if="implication && !implication.signed">
-          <div class="container container-animation">
-            <Badge :badge-class="implication.badgeTemplate" />
-            <p class="created-badge-name">{{implication.badgeTemplate.description}}</p>
+          <div class="container container-animation container-more-margin">
+            <h1 class="h1--blue title-sign-confirm">Want to sign this badge?</h1>
+            <Badge :badge-class="implication.badgeTemplate" :recipient="implication.recipient"/>
             <div class="button-container">
               <Button class="button--blue" :onClick="sign">Sign the badge</Button>
               <Button class="button--line" :onClick="dontSign">Go to the homepage</Button>
@@ -91,18 +91,8 @@ export default {
 <style lang="scss" scoped>
 @import "~Vars";
 
-.created-badge-name {
-  color: $darkblue;
-  margin-top: -5px;
+.title-sign-confirm {
   margin-bottom: 30px;
-  font-size: 14px;
-  padding: 15px 20px;
-  text-align: center;
-  box-shadow: 0 0 8px 0 rgba(48, 53, 92, 0.25);
-  position: relative;
-  z-index: 2;
-  line-height: 1.5;
-  width: 310px;
-  border-radius: 5px;
 }
+
 </style>

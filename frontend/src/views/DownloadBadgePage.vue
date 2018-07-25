@@ -1,44 +1,66 @@
 <template>
   <div class="row-page">
+    <v-introduction :introductionContent="introductionContent"></v-introduction>
     <section class="section-right">
       <div class="section-right_container section-right_container-center">
-        <div v-if="badge">
-          <p>SID: {{badge.sid}}</p>
-          <div v-if="badge.signed">
-            <p>SIGNED</p>
-            <p>URL: {{badge.url}}</p>
-            <img :src="imgUrl" alt="badge">
-            <!-- <p>ASSERTION: {{JSON.stringify(badge.assertion)}}</p> -->
-            <router-link to="/">
-              <Button>Download (fix me)</Button>
-            </router-link>
-            <router-link :to="`/`">
-              <Button>Back to home</Button>
-            </router-link>
-          </div>
-          <div v-else>
-            <p>NOT SIGNED YET</p>
-            <router-link :to="`{ name: 'sign', params: { sid: {badge.sid}}`">
-              <Button>Sign</Button>
-            </router-link>
-            <router-link :to="`/`">
-              <Button>Back to home</Button>
-            </router-link>
-          </div>
-        </div>
-        <div v-else>
-          Loading...
+        <v-indicator :pageVisited="pageVisited"></v-indicator>
+        <div class="container container-animation">
+          <section class="section-right">
+            <div class="section-right_container section-right_container-center">
+              <div v-if="badge">
+                <div v-if="badge.signed">
+                  <img :src="imgUrl" alt="badge" width="auto" height="320">
+                  <!-- <p>ASSERTION: {{JSON.stringify(badge.assertion)}}</p> -->
+                  <div class="button-container">
+                    <router-link to="/">
+                      <Button class="button--blue">Download (fix me)</Button>
+                    </router-link>
+                    <router-link :to="`/`">
+                      <Button class="button--line">Back to home</Button>
+                    </router-link>
+                  </div>
+                </div>
+                <div v-else>
+                  <p>NOT SIGNED YET</p>
+                  <router-link :to="`{ name: 'sign', params: { sid: {badge.sid}}`">
+                    <Button>Sign</Button>
+                  </router-link>
+                  <router-link :to="`/`">
+                    <Button>Back to home</Button>
+                  </router-link>
+                </div>
+              </div>
+              <div v-else>
+                Loading...
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </section>
   </div>
+
 </template>
 
 <script>
 import Button from "Components/Button";
+import Introduction from "Components/IntroductionOfPage";
 
 export default {
-  components: { Button },
+  components: {
+    Button,
+    "v-introduction": Introduction,
+
+   },
+   data() {
+     return {
+       introductionContent: {
+         title: "Your badge is signed, download it!",
+         text:
+           "We only use your personal information to create your badge and mail it to you."
+       },
+     };
+   },
   computed: {
     badge() {
       return this.$store.state.badge;

@@ -5,7 +5,7 @@
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container">
-          <Badge :badge-class="share.implication.badgeTemplate" />
+          <Badge :badge-class="share.implication.badgeTemplate"/>
           <h1 class="create-badge-title">You created a badge!</h1>
           <p class="link-description">Share this link with your connections. You’ll get an e-mail once your badge is signed. Then you’ll be able to download your signed badge!</p>
           <div class="container-link">
@@ -32,7 +32,7 @@ import { mapState } from "vuex";
 import Introduction from "Components/IntroductionOfPage";
 import Indicator from "Components/StepIndicator";
 import Button from "Components/Button";
-import Badge from "Components/Badge";
+import Badge from "Components/BadgeToShare";
 
 export default {
   components: {

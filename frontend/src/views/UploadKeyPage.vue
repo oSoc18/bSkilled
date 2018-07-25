@@ -30,7 +30,6 @@ import forge from "node-forge";
 
 import { mapState } from "vuex";
 
-import Header from "Components/TheHeader";
 import FileUploadButton from "Components/FileUploadButton";
 import Introduction from "Components/IntroductionOfPage";
 import Indicator from "Components/StepIndicator";
@@ -39,7 +38,6 @@ import Indicator from "Components/StepIndicator";
 export default {
   components: {
     FileUploadButton,
-    Header,
     "v-introduction": Introduction,
     "v-indicator": Indicator
   },
@@ -54,7 +52,7 @@ export default {
         text:
           "We only use your personal information to create your badge and mail it to you."
       },
-      pageVisited: 1
+      pageVisited: 2
     };
   },
   methods: {
