@@ -86,6 +86,6 @@ export default {
 @import "~Vars";
 
 .title-sign-confirm {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 </style>
