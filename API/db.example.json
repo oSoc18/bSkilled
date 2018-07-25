@@ -1,12 +1,14 @@
 {
   "version": "v0.1",
+  "implication": {},
+  "profile": {},
   "badgeTemplate": {
     "EY3sE2a36": {
       "id": "just an ID",
       "type": "BadgeClass",
       "name": "OPEN SUMMER OF CODE 2018",
       "description": "You were an active member in the 4-week summer programme in July, that provides Belgian based students the training, the network and support necessary to transform open innovation projects into powerful real-world services.\n ",
-      "image": "http://2018.summerofcode.be/img/projects/bitsoftrust.png",
+      "image": "https://i.imgur.com/M6zG34D.png",
       "criteria": {
         "id": "just an ID",
         "narrative": "- You have participated to the Open Summer of Code 2018"
@@ -17,7 +19,7 @@
       "type": "BadgeClass",
       "name": "TEAMWORK",
       "description": "You used to work within a team and you are good at taking the best from every team member to achieve a project",
-      "image": "http://2018.summerofcode.be/img/projects/bitsoftrust.png",
+      "image": "https://i.imgur.com/OiuqC3o.png",
       "criteria": {
         "id": "just an ID",
         "narrative": "- You have already done more than 5 projects involving teamwork\n    • You are honest and straightforward\n    • You shares the load of work between members\n    • You are reliable\n    • You are fair\n    • You have good communication skills\n    • You have a positive attitude"
@@ -28,7 +30,7 @@
       "type": "BadgeClass",
       "name": "PUBLIC SPEAKING",
       "description": "You are very comfortable when speaking in front of a public and you have already experienced it several times",
-      "image": "http://2018.summerofcode.be/img/projects/bitsoftrust.png",
+      "image": "https://i.imgur.com/MMTbcVO.png",
       "criteria": {
         "id": "just an ID",
         "narrative": " – You have already had to do more than 5 public speeches\n    • You have confidence when talking in public\n    • You have passion when you communicate about your subject\n    • You use voice modulations\n    • Using storytelling is something familiar for you\n    • You connect with your audience"
@@ -39,7 +41,7 @@
       "type": "BadgeClass",
       "name": " SOFTWARE DEVELOPMENT ",
       "description": " You are good in every software development process",
-      "image": "http://2018.summerofcode.be/img/projects/bitsoftrust.png",
+      "image": "https://i.imgur.com/yPO4mc7.png",
       "criteria": {
         "id": "just an ID",
         "narrative": "You have already created and maintained applications, frameworks or other software components"
@@ -50,7 +52,7 @@
       "type": "BadgeClass",
       "name": "WRITING SKILLS",
       "description": "You used to write a lot and your good in writing communication",
-      "image": "http://2018.summerofcode.be/img/projects/bitsoftrust.png",
+      "image": "https://i.imgur.com/U3qJJB9.png",
       "criteria": {
         "id": "just an ID",
         "narrative": "- You have at least 5 texts proofs of your writting skills\n    • You master several techniques of writing\n    • You have a good spelling"
@@ -61,7 +63,7 @@
       "type": "BadgeClass",
       "name": "Collaboration with Poolstok",
       "description": "You have worked in collaboration with Poolstok",
-      "image": "http://2018.summerofcode.be/img/projects/bitsoftrust.png",
+      "image": "https://i.imgur.com/Nm7oDWD.png",
       "criteria": {
         "id": "just an ID",
         "narrative": "You have done a project for or with Poolstok"
@@ -72,7 +74,7 @@
       "type": "BadgeClass",
       "name": "Collaboration with The Learning Hub",
       "description": " You have worked in collaboration with The Learning Hub",
-      "image": "http://2018.summerofcode.be/img/projects/bitsoftrust.png",
+      "image": "https://i.imgur.com/iSUFtHW.png",
       "criteria": {
         "id": "just an ID",
         "narrative": "You have done a project for or with The Learning Hub"
@@ -83,7 +85,7 @@
       "type": "BadgeClass",
       "name": "Collaboration with VDAB",
       "description": " You have worked in collaboration with VDAB",
-      "image": "http://2018.summerofcode.be/img/projects/bitsoftrust.png",
+      "image": "https://i.imgur.com/221rXq7.png",
       "criteria": {
         "id": "just an ID",
         "narrative": " You have done a project for or with VDAB"
@@ -94,7 +96,7 @@
       "type": "BadgeClass",
       "name": "Collaboration with Cronos Groep",
       "description": " You have worked in collaboration with Cronos Groep",
-      "image": "http://2018.summerofcode.be/img/projects/bitsoftrust.png",
+      "image": "https://i.imgur.com/0SR4mX8.png",
       "criteria": {
         "id": "just an ID",
         "narrative": " You have done a project for or with Cronos Groep"
@@ -105,7 +107,7 @@
       "type": "BadgeClass",
       "name": "Collaboration with Cognizone",
       "description": " You have worked in collaboration with Cognizone",
-      "image": "http://2018.summerofcode.be/img/projects/bitsoftrust.png",
+      "image": "https://i.imgur.com/3XOzE04.png",
       "criteria": {
         "id": "just an ID",
         "narrative": " You have done a project for or with Cognizone"
@@ -116,7 +118,7 @@
       "type": "BadgeClass",
       "name": "Collaboration with ComPas",
       "description": " You have worked in collaboration with ComPas",
-      "image": "http://2018.summerofcode.be/img/projects/bitsoftrust.png",
+      "image": "https://i.imgur.com/tkCzHPO.png",
       "criteria": {
         "id": "just an ID",
         "narrative": " You have done a project for or with ComPas "
@@ -127,65 +129,10 @@
       "type": "BadgeClass",
       "name": "HackYourFuture",
       "description": " You were taught by the HackYourFuture 6 or 8 months programme. You have learned some programming languages (JavaScript, HTML, CSS, Node, React and Databasing in MySQL/MongoDB) and you are well prepared for the job of Web Developer. ",
-      "image": "http://2018.summerofcode.be/img/projects/bitsoftrust.png",
+      "image": "https://i.imgur.com/SNkcOYu.png",
       "criteria": {
         "id": "just an ID",
         "narrative": " You have participated to the programme ‘HackYourFuture’ "
-      }
-    }
-  },
-  "implication": {
-    "ogh4txW7I": {
-      "@context": "https://w3id.org/openbadges/v2",
-      "id": "50b70c50-850e-11e8-895e-5f20346aa63b",
-      "type": "Assertion",
-      "badgetemplate": "ExampleBadgeTemplate",
-      "recipient": "niels@larmuseau.org"
-    }
-  },
-  "assertion": {
-    "MYVrImZe7": {
-      "@context": "https://w3id.org/openbadges/v2",
-      "type": "Assertion",
-      "id": "urn:uuid:uuid1",
-      "recipient": {
-        "type": "email",
-        "hashed": true,
-        "salt": "deadsea",
-        "identity": "sha256$c7ef86405ba71b85acd8e2e95166c4b111448089f2e1599f42fe1bba46e865c5"
-      },
-      "issuedOn": "2018-12-31T23:59:59Z",
-      "badge": {
-        "id": "urn:uuid:uuid3",
-        "type": "BadgeClass",
-        "name": "badge name",
-        "description": "badge description",
-        "image": "https://example.org/badge.png",
-        "issuer": {
-          "@context": "https://w3id.org/openbadges/v2",
-          "type": "Profile",
-          "id": "urn:uuid:uuid4",
-          "name": "YYY",
-          "url": "https://YYY.YY",
-          "email": "YYY@YYY.YY",
-          "publicKey": {
-            "@context": "https://w3id.org/openbadges/v2",
-            "type": "CryptographicKey",
-            "id": "urn:uuid:uuid5",
-            "owner": "urn:uuid:uuid4",
-            "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBG0BA...OClDQAB\n-----END PUBLIC KEY-----\n"
-          }
-        }
-      },
-      "verification": {
-        "type": "SignedBadge",
-        "creator": {
-          "@context": "https://w3id.org/openbadges/v2",
-          "type": "CryptographicKey",
-          "id": "urn:uuid:uuid5",
-          "owner": "urn:uuid:uuid4",
-          "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBG0BA...OClDQAB\n-----END PUBLIC KEY-----\n"
-        }
       }
     }
   }
