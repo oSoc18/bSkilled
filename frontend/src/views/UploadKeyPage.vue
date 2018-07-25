@@ -5,7 +5,7 @@
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
-          <h1 class="h1--blue">Upload your profile key</h1>
+          <h1 class="h1--blue">Upload your private key</h1>
           <div v-if="!getPassword" class="upload-container">
             <FileUploadButton id="uploadKey" :onResult="handleKeyLoad"/>
             <router-link :to="{name: 'generate'}" class="a--underline">
@@ -52,7 +52,7 @@ export default {
       keyFile: null,
       getPassword: false,
       introductionContent: {
-        title: "Sign the badge with your profile key",
+        title: "Sign the badge with your private key",
         text:
           "We only use your personal information to create your badge and mail it to you."
       },

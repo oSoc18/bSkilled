@@ -8,7 +8,6 @@
 </template>
 
 <script>
- // const ctx = require.context('../assets', true, /.png/);
  var images = require.context('../assets', true,  /.png/);
 
 export default {
@@ -17,7 +16,10 @@ export default {
       title: String,
       text: String,
     },
-    bgimage: String
+    bgimage: {
+      img: String,
+      position: String
+    }
   },
   mounted() {
     this.img_src = images(this.bgimage.img)
@@ -38,7 +40,7 @@ export default {
 .section-introduction {
   width: 37%;
   min-height: 100vh;
-  padding-top: 175px;
+  padding-top: 155px;
   padding-left: 75px;
 }
 

@@ -5,7 +5,7 @@
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
-          <h1 class="h1--blue title-sign-confirm">Confirm you want to sign</h1>
+          <h1 class="h1--blue title-sign-confirm">Confirm you want to sign this badge</h1>
           <Badge :badge-class="implication.badgeTemplate" :recipient="implication.recipient" />
           <div class="button-container">
             <v-button class="button--blue" :onClick="sign">Sign the badge</v-button>
@@ -35,9 +35,9 @@ export default {
     return {
       flowStep: "confirm",
       introductionContent: {
-        title: "Sign the badge with your profile key",
+        title: "Confirm you want to sign this badge ",
         text:
-          "We only use your personal information to create your badge and mail it to you."
+          "By confirming you verify that this person has mastered the skill displayed in the badge."
       },
       pageVisited: 3
     };
@@ -86,6 +86,7 @@ export default {
 @import "~Vars";
 
 .title-sign-confirm {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  text-align: center;
 }
 </style>

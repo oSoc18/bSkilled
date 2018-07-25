@@ -12,7 +12,7 @@
       </div>
     </section>
     <section class="section-landing">
-      <img src="../assets/skill_illustration.png" alt="" width="527" height="403">
+      <img src="../assets/header_why.png" alt="" width="624" height="479">
       <div class="container-landing">
         <h1 class="h1-landing h1-title-text">Why use bSkilled?</h1>
         <p class="p-landing">bSkilled gives you the opportunity to get your skills verified and certified by an employer, a teacher, an organisation… Getting a badge for one of your skills is a symbol of accomplishment, packed with verifiable data that can be shared across the web. This way it allows a future recruiter to trust your skills when seeing the badges that you got from bSkilled. Thanks to bSkilled you are also able to become a little bee, make connections with the others and be part of the open badges community.</p>

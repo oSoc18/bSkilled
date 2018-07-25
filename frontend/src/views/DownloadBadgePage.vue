@@ -58,7 +58,7 @@ export default {
        introductionContent: {
          title: "Your badge is signed, download it!",
          text:
-           "Your skill is verified, you can share it with other people to show what you're capable of"
+           "Your skill is verified, you can now download it and share it with other people to show what you're capable of."
        },
      };
    },

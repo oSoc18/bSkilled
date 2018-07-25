@@ -44,6 +44,9 @@ export default {
     }
   },
   activated() {
+    this.haveHeightSelected = false
+    this.isSelected = false
+
     this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
   }
 };

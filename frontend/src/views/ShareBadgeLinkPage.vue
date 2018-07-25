@@ -7,7 +7,7 @@
         <div class="container">
           <Badge :badge-class="share.implication.badgeTemplate"/>
           <h1 class="create-badge-title">You created a badge!</h1>
-          <p class="link-description">Share this link with your connections. You’ll get an e-mail once your badge is signed. Then you’ll be able to download your signed badge!</p>
+          <p class="link-description">Share this link with your connections. When they have verified it, you’ll be able to download your signed badge!</p>
           <div class="container-link">
             <p class="link"> {{location + "sign/" + share.sid}}</p>
             <button class="button-copy" type="button" name="button"

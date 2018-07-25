@@ -6,7 +6,7 @@
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div v-if="implication && !implication.signed">
           <div class="container container-animation container-more-margin">
-            <h1 class="h1--blue title-sign-confirm">Want to sign this badge?</h1>
+            <h1 class="h1--blue title-sign-confirm">Do you want to sign this badge?</h1>
             <Badge :badge-class="implication.badgeTemplate" :recipient="implication.recipient"/>
             <div class="button-container">
               <Button class="button--blue" :onClick="sign">Sign the badge</Button>
@@ -42,7 +42,7 @@ export default {
       introductionContent: {
         title: "Seems like you want to sign a badge",
         text:
-          "We only use your personal information to create your badge and mail it to you."
+          "By signing a badge you verify that this person has mastered the skill displayed in the badge."
       },
       pageVisited: 0
     };
@@ -93,6 +93,7 @@ export default {
 
 .title-sign-confirm {
   margin-bottom: 30px;
+  text-align: center;
 }
 
 </style>
