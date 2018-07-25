@@ -5,55 +5,57 @@
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
-          <form class="form_generate-key" v-if="!generating">
-            <h1 class="h1--blue">{{$t("GenerateKeyPage.getkey")}}</h1>
-            <p class="information">{{$t("GenerateKeyPage.keyinfo")}}</p>
-            <p class="allert-information">{{$t("GenerateKeyPage.keyimportance")}}</p>
-            <div class="input-container">
-              <label for="password">{{$t("GenerateKeyPage.password")}}<span v-show="errors.has('password')" class="mark-error is-hidden" ref="errorMark">*</span></label>
-              <p v-show="errors.has('password')" class="error is-hidden" ref="errorMessage">{{ errors.first('password') }}</p>
-              <input name="password" type="password" tv-model="password" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('recipient') }" placeholder="password" data-vv-validate-on="none" @input="handlerInputChange">
-            </div>
-            <div class="button-container button-container--small">
-              <button v-on:click="validate" class="button button--blue">{{$t("GenerateKeyPage.generatekey")}}</button>
-              <v-button class="button--line"  :onClick="goBack">{{$t("GenerateKeyPage.back")}}</v-button>
-            </div>
-          </form>
-          <div v-if="generating">
-            <h1 class="h1--blue">{{$t("GenerateKeyPage.isgenerating")}}</h1>
-            <p class="information">{{$t("GenerateKeyPage.keyuse")}}</p>
-            <p class="allert-information">{{$t("GenerateKeyPage.keyimportance")}}</p>
-            <div class="progress_container" v-if="generated === false">
-              <div class="progress progress-striped active">
-                <div class="bar" ref="progressbar"></div>
+          <div class="form_generate-key">
+            <form v-if="!generating">
+              <h1 class="h1--blue">{{$t("GenerateKeyPage.getkey")}}</h1>
+              <p class="information">{{$t("GenerateKeyPage.keyinfo")}}</p>
+              <p class="allert-information">{{$t("GenerateKeyPage.keyimportance")}}</p>
+              <div class="input-container">
+                <label>{{$t("GenerateKeyPage.password")}}</label>
+                <input type="password" v-model.lazy="password" required />
               </div>
+              <div class="button-container button-container--small">
+                <button v-on:click.prevent="post" class="button button--blue">{{$t("GenerateKeyPage.generatekey")}}</button>
+                <v-button class="button--line" :onClick="goBack">{{$t("GenerateKeyPage.back")}}</v-button>
+              </div>
+            </form>
+            <div v-if="generating">
+              <h1 class="h1--blue">{{$t("GenerateKeyPage.isgenerating")}}</h1>
+              <p class="information">{{$t("GenerateKeyPage.keyuse")}}</p>
+              <p class="allert-information">{{$t("GenerateKeyPage.keyimportance")}}</p>
+              <div class="progress_container" v-if="generated === false">
+                <div class="progress progress-striped active">
+                  <div class="bar" ref="progressbar"></div>
+                </div>
+              </div>
+              <p>{{currentaction}}</p>
             </div>
-            <p>{{currentaction}}</p>
-          </div>
-          <div class="container-generated" v-if="generated">
-            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-            <p class="p-generated">{{$t("GenerateKeyPage.generated")}}</p>
-            <v-button :onClick="goBack" class="button--blue button--back">{{$t("GenerateKeyPage.back")}}</v-button>
+            <div class="container-generated" v-if="generated">
+              <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+              <p class="p-generated">{{$t("GenerateKeyPage.generated")}}</p>
+              <v-button :onClick="goBack" class="button--blue button--back">{{$t("GenerateKeyPage.back")}}</v-button>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </div>
+
 </template>
 
 <script>
-import Introduction from "Components/IntroductionOfPage";
-import Indicator from "Components/StepIndicator";
 import Button from "Components/Button";
 import FileSaver from "file-saver";
 import forge from "node-forge";
+import Introduction from "Components/IntroductionOfPage";
+import Indicator from "Components/StepIndicator";
 
 export default {
   name: "app",
   components: {
     "v-introduction": Introduction,
-    "v-indicator": Indicator,
-    "v-button": Button
+      "v-indicator": Indicator,
+      "v-button": Button
   },
   data() {
     return {
@@ -67,28 +69,14 @@ export default {
         text: this.$t("GenerateKeyPage.introductionText")
       },
       pageVisited: 1
-    }
+    };
   },
   methods: {
-    validate(event) {
-      console.log(event);
-      event.preventDefault();
-      this.$validator.validateAll().then((result) => {
-        if (result) {
-          this.post();
-          return;
-        } else {
-          this.$refs.errorMessage.classList.remove('is-hidden');
-          this.$refs.errorMark.classList.remove('is-hidden');
-        }
-      });
-    },
     post: function() {
       this.generating = true;
       this.generate(this);
     },
     generate: function(context) {
-      console.log(this);
       var rsa = forge.pki.rsa;
       var state = rsa.createKeyPairGenerationState(2048, 0x10001);
       var step = function() {
@@ -125,10 +113,6 @@ export default {
     },
     goBack() {
       this.$router.go(-1);
-    },
-    handlerInputChange() {
-      this.$refs.errorMessage.classList.add('is-hidden');
-      this.$refs.errorMark.classList.add('is-hidden');
     }
   }
 };
