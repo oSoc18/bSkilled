@@ -1,6 +1,6 @@
 <template>
   <div class="row-page">
-    <v-introduction :introductionContent="introductionContent"></v-introduction>
+    <v-introduction :introductionContent="introductionContent" :bgimage="bgimage"></v-introduction>
     <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
@@ -68,7 +68,13 @@ export default {
         title: 'Seems like you don\'t have a pesonal key yet',
         text: 'We only use your personal information to create your badge and mail it to you.',
       },
-      pageVisited: 1
+      pageVisited: 1,
+      bgimage: {
+        img: "./signing_step2.png",
+        position: "380px",
+        size: "95%",
+        left: "15px"
+      }
     };
   },
   methods: {
