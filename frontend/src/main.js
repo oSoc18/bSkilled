@@ -27,10 +27,11 @@ const dict = {
     }
   }
 };
-const messages = languages;
+let messages = languages;
 
+console.log(messages);
 const i18n = new VueI18n({
-  locale: 'nl', // set locale
+  locale: 'en', // set locale
   messages, // set locale messages
 })
 

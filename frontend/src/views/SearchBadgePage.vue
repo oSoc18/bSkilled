@@ -27,8 +27,8 @@ export default {
     return {
       flowStep: "search",
       introductionContent: {
-        title: "Search for your skill",
-        text: "Get acknowledged for what you do best!"
+        title: this.$t("search.introductionContent.title"),
+        text: this.$t("search.introductionContent.text")
       },
       pageVisited: 0
     };

@@ -4,55 +4,55 @@
       <!-- <h1>{{$t("landing.welcome")}}</h1> -->
     <section class="section-intro">
       <div class="intro-text-container">
-        <p class="p-landing">My friend is amazing with a guitar, <br> I am good with communication,</p>
-        <h1 class="h1-landing">What is your skill?</h1>
+        <p class="p-landing">{{$t("landing.test")}}{{$t("landing.intro.top")}}</p>
+        <h1 class="h1-landing">{{$t("landing.intro.title")}}</h1>
         <router-link to="/create/search">
-          <Button class="button--landing">Create a badge</Button>
+          <Button class="button--landing">{{$t("landing.intro.button")}}</Button>
         </router-link>
       </div>
     </section>
     <section class="section-landing">
       <img src="../assets/skill_illustration.png" alt="" width="527" height="403">
       <div class="container-landing">
-        <h1 class="h1-landing h1-title-text">Why use bSkilled?</h1>
-        <p class="p-landing">bSkilled gives you the opportunity to get your skills verified and certified by an employer, a teacher, an organisation… Getting a badge for one of your skills is a symbol of accomplishment, packed with verifiable data that can be shared across the web. This way it allows a future recruiter to trust your skills when seeing the badges that you got from bSkilled. Thanks to bSkilled you are also able to become a little bee, make connections with the others and be part of the open badges community.</p>
+        <h1 class="h1-landing h1-title-text">{{$t("landing.landing.why")}}</h1>
+        <p class="p-landing">{{$t("landing.landing.answer")}}</p>
       </div>
     </section>
     <section class="section-spotlight">
       <div class="spotlight">
         <div class="spotlight_item">
           <img src="../assets/badge_icon.svg" alt="" width="35" height="60">
-          <p>You can get your own badge certified by an organisation itself.</p>
+          <p>{{$t("landing.spotlight.certified")}}</p>
         </div>
         <div class="spotlight_item">
           <img src="../assets/save-money_icon.svg" alt="" width="80" height="56">
-          <p>You can have your skills certified without spending one single dollar!</p>
+          <p>{{$t("landing.spotlight.free")}}</p>
         </div>
         <div class="spotlight_item">
           <img src="../assets/backpack_icon.svg" alt="" width="48" height="53">
-          <p>All of you badges are decentralised, no need to depend on a website.</p>
+          <p>{{$t("landing.spotlight.decentralised")}}</p>
         </div>
       </div>
     </section>
     <section class="section-landing">
       <img src="../assets/skill_illustration.png" alt="" width="527" height="403">
       <div class="container-landing">
-        <h1 class="h1-landing h1-title-text">How does bSkilled work?</h1>
+        <h1 class="h1-landing h1-title-text">{{$t("landing.spotlight.how")}}</h1>
         <ul class="p-landing list-landing">
           <li>
-            - Make a badge that represents one of your skills.
+            {{$t("landing.spotlight.make")}}
           </li>
           <li>
-            - Receive a link &amp; send it to one of your connections so they can sign it.
+            {{$t("landing.spotlight.recieve")}}
           </li>
           <li>
-            - This person will be then able to sign your badge with this link.
+            {{$t("landing.spotlight.sign")}}
           </li>
           <li>
-            - Once the badge is signed, download it and save it!
+            {{$t("landing.spotlight.download")}}
           </li>
           <li>
-            - Use the badge wherever you want!
+            {{$t("landing.spotlight.use")}}
           </li>
         </ul>
       </div>
@@ -60,17 +60,17 @@
     <section class="section-cta">
       <img src="../assets/skill_illustration.png" alt="" width="527" height="403">
       <div class="container-landing container-cta">
-        <h1 class="h1-landing h1-title-text">Use bSkilled</h1>
-        <p class="p-landing">Get acknowledged for your skills by letting your connections endorse and verify your qualities with Open Badges in an easy, reliable and standardised way.</p>
+        <h1 class="h1-landing h1-title-text">{{$t("landing.cta.title")}}</h1>
+        <p class="p-landing">{{$t("landing.cta.getacknowledged")}}</p>
         <router-link to="/create/search">
-          <Button class="button--landing">Create a badge</Button>
+          <Button class="button--landing">{{$t("landing.cta.create")}}</Button>
         </router-link>
       </div>
     </section>
     <section class="section-slogan">
-      <h1>bSkilled <br> bVerified <br> bConnected</h1>
+      <h1>{{$t("landing.slogan.skilled")}} <br> {{$t("landing.slogan.verified")}} <br> {{$t("landing.slogan.connected")}}</h1>
       <div class="social-media">
-        <p>Follow us on:</p>
+        <p>{{$t("landing.slogan.follow")}}</p>
         <div class="social-media_icons">
           <img src="../assets/twitter_logo.svg" alt="" width="auto" height="20">
           <img src="../assets/facebook_logo.svg" alt=""  width="auto" height="20">
@@ -79,7 +79,7 @@
       </div>
     </section>
     <section class="section-copyright">
-      <p>&copy; bSkilled </p>
+      <p>&copy; {{$t("landing.slogan.skilled")}} </p>
       <div class="partner-logos">
         <a href="http://www.thelearninghub.be/"><img src="../assets/thelearninghub.svg" alt="" width="auto" height="40"></a>
         <a href="https://www.vdab.be/"><img src="../assets/vdab.svg" alt="logo vdab" width="auto" height="35"></a>

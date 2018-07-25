@@ -51,12 +51,11 @@ export default {
       selectedBoolean: true,
       recipient: "",
       introductionContent: {
-        title: "Fill in your personal information",
-        text:
-          "We only use your personal information to create your badge"
+        title: this.$t("recipeint.introductionContent.title"),
+        text: this.$t("recipeint.introductionContent.text")
       },
       pageVisited: 1
-    }
+    };
   },
   methods: {
     submit: function(event) {
