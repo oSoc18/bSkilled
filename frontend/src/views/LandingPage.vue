@@ -72,9 +72,11 @@
       <div class="social-media">
         <p>Follow us on:</p>
         <div class="social-media_icons">
-          <img src="../assets/twitter_logo.svg" alt="" width="auto" height="20">
-          <img src="../assets/facebook_logo.svg" alt=""  width="auto" height="20">
-          <img src="../assets/linkedin_logo.svg" alt=""  width="auto" height="20">
+          <a href="https://twitter.com/bSkilled1"><img src="../assets/twitter_logo.svg" alt="" width="auto" height="18"></a>
+          <a href="https://www.facebook.com/bskilledd"><img src="../assets/facebook_logo.svg" alt=""  width="auto" height="20"></a>
+          <a href="https://www.linkedin.com/company/bskilled1/"><img src="../assets/linkedin_logo.svg" alt="" width="auto" height="20"></a>
+          <a href="https://github.com/oSoc18/bSkilled"><img src="../assets/github_logo.svg" alt=""  width="auto" height="22">></a>
+
         </div>
       </div>
     </section>
@@ -243,7 +245,7 @@ export default {
     margin-right: 165px;
 
     &_icons {
-      width: 115px;
+      width: 170px;
       display: flex;
       justify-content: space-between;
       margin-left: 30px;
