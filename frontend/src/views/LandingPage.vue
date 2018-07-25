@@ -4,7 +4,10 @@
       <!-- <h1>{{$t("landing.welcome")}}</h1> -->
     <section class="section-intro">
       <div class="intro-text-container">
-        <p class="p-landing">{{$t("landing.test")}}{{$t("landing.intro.top")}}</p>
+        <p class="p-landing">
+          {{$t("landing.intro.top")}}<br>
+          {{$t("landing.intro.top2")}}
+        </p>
         <h1 class="h1-landing">{{$t("landing.intro.title")}}</h1>
         <router-link to="/create/search">
           <Button class="button--landing">{{$t("landing.intro.button")}}</Button>

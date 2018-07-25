@@ -16,6 +16,12 @@ Vue.use(VueClipboard);
 Vue.use(VeeValidate);
 Vue.use(VueI18n)
 
+
+const i18n = new VueI18n({
+  locale: 'en', // set locale
+  messages: languages, // set locale messages
+})
+
 const dict = {
   custom: {
     recipient: {
@@ -27,14 +33,6 @@ const dict = {
     }
   }
 };
-let messages = languages;
-
-console.log(messages);
-const i18n = new VueI18n({
-  locale: 'en', // set locale
-  messages, // set locale messages
-})
-
 
 Validator.localize('en', dict);
 

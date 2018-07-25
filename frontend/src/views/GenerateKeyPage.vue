@@ -16,7 +16,7 @@
             </div>
             <div class="button-container button-container--small">
               <button v-on:click="validate" class="button button--blue">Get your profile key</button>
-              <v-button class="button--line":onClick="goBack">Go back</v-button>
+              <v-button class="button--line" :onClick="goBack">Go back</v-button>
             </div>
           </form>
           <div v-if="generating">
@@ -30,7 +30,7 @@
             </div>
             <p>{{currentaction}}</p>
           </div>
-          <div class="container-generated"v-if="generated">
+          <div class="container-generated" v-if="generated">
             <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
             <p class="p-generated">Your profile key is generated</p>
             <v-button :onClick="goBack" class="button--blue button--back">Go back</v-button>
@@ -63,23 +63,24 @@ export default {
       progress: 0,
       currentaction: "",
       introductionContent: {
-        title: 'Seems like you don\'t have a pesonal key yet',
-        text: 'We only use your personal information to create your badge and mail it to you.',
+        title: "Seems like you don't have a pesonal key yet",
+        text:
+          "We only use your personal information to create your badge and mail it to you."
       },
       pageVisited: 1
-    }
+    };
   },
   methods: {
     validate(event) {
       console.log(event);
       event.preventDefault();
-      this.$validator.validateAll().then((result) => {
+      this.$validator.validateAll().then(result => {
         if (result) {
           this.post();
           return;
         } else {
-          this.$refs.errorMessage.classList.remove('is-hidden');
-          this.$refs.errorMark.classList.remove('is-hidden');
+          this.$refs.errorMessage.classList.remove("is-hidden");
+          this.$refs.errorMark.classList.remove("is-hidden");
         }
       });
     },
@@ -95,16 +96,15 @@ export default {
         // run for 100 ms
         if (!rsa.stepKeyPairGenerationState(state, 100)) {
           setTimeout(step, 1);
-          const clientWidth = context.$refs.progressbar.clientWidth
-          const width = clientWidth + 1
-          if(width < 80) {
-            context.$refs.progressbar.style.width = `${width}%`
+          const clientWidth = context.$refs.progressbar.clientWidth;
+          const width = clientWidth + 1;
+          if (width < 80) {
+            context.$refs.progressbar.style.width = `${width}%`;
           }
-
         } else {
           // done, turn off progress indicator, use state.keys
           context.progress = 100;
-          context.$refs.progressbar.style.width = `${context.progress}%`
+          context.$refs.progressbar.style.width = `${context.progress}%`;
           console.log("finsihed");
           let pem;
           pem = forge.pki.encryptRsaPrivateKey(
@@ -127,8 +127,8 @@ export default {
       this.$router.go(-1);
     },
     handlerInputChange() {
-      this.$refs.errorMessage.classList.add('is-hidden');
-      this.$refs.errorMark.classList.add('is-hidden');
+      this.$refs.errorMessage.classList.add("is-hidden");
+      this.$refs.errorMark.classList.add("is-hidden");
     }
   }
 };
@@ -175,7 +175,16 @@ export default {
 
 .progress-striped .bar {
   background-color: $progressbargrey;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
   background-size: 40px 40px;
 }
 
@@ -188,9 +197,13 @@ export default {
 }
 
 @keyframes progress-bar-stripes {
-  from { background-position: 0 0 }
+  from {
+    background-position: 0 0;
+  }
 
-  to { background-position: 40px 0 }
+  to {
+    background-position: 40px 0;
+  }
 }
 
 .button-container--small {

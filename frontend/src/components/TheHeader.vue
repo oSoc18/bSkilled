@@ -12,10 +12,41 @@
         <li class=" l-navigation__menu__item l-navigation__menu__item--state-current">
           <router-link to="/create/search">Make a new badge</router-link>
         </li>
+        <li @click="changeLang" class=" l-navigation__menu__item l-navigation__menu__item--outlined">
+          <!-- Chloë if you can style this it works too -->
+          <!-- <v-select v-model="$i18n.locale" :options="langs"/> -->
+          <p>{{lang}}</p>
+        </li>
       </ul>
     </nav>
   </header>
 </template>
+
+<script>
+import vSelect from "vue-select";
+
+export default {
+  components: {
+    "v-select": vSelect
+  },
+  data() {
+    return {
+      langs: ["en", "nl"]
+    };
+  },
+  computed: {
+    lang() {
+      return this.$i18n.locale;
+    }
+  },
+  methods: {
+    changeLang() {
+      const current = this.$i18n.locale;
+      this.$i18n.locale = current == "en" ? "nl" : "en";
+    }
+  }
+};
+</script>
 
 <style lang="scss" scoped>
 @import "~Vars";
@@ -31,7 +62,7 @@
   &__brand-logo {
     width: 115px;
     height: 35px;
-    background: url('../assets/bee.svg') no-repeat center center;
+    background: url("../assets/bee.svg") no-repeat center center;
     background-size: contain;
     text-indent: -9999px;
   }
@@ -48,14 +79,25 @@
   padding: 10px 0;
   border-radius: 100px;
   font-size: 14px;
-  transition: all .2s;
+  transition: all 0.2s;
 
   & a {
     padding: 10px 25px;
     color: $darkblue;
   }
 
-  &--state-current, &:hover   {
+  &--outlined {
+    border: 1px solid $orange;
+    & p {
+      padding: 0 20px;
+    }
+    &:hover {
+      color: $white;
+    }
+  }
+
+  &--state-current,
+  &:hover {
     background-color: $orange;
 
     & a {
@@ -63,6 +105,4 @@
     }
   }
 }
-
-
 </style>
