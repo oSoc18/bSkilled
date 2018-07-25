@@ -235,7 +235,7 @@ const actions = {
     return dispatch('urlToBuffer', sourceImgUrl)
       .then((buffer) => {
         var chunks = pngExtract(buffer);
-        chunks.splice(-1, 0, pngText.encode("openbadge", signedAssertion));
+        chunks.splice(-1, 0, pngText.encode("openbadges", signedAssertion));
         const bakedImgBuffer = new Buffer(pngEncode(chunks));
         const base64img = btoa(String.fromCharCode.apply(null, bakedImgBuffer));
         // "data:image/png;base64," + base64Data;
