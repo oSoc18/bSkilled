@@ -1,20 +1,11 @@
 <template>
-  <div class="badge-container">
-    <div class="badge">
-      <img src="../assets/badge.svg" alt="" width="179" height="157">
-      <img class="badge-icon":src="badgeClass.image" alt="" width="70" height="70">
-      <svg class="is-hidden">
-        <filter id="linear">
-          <feColorMatrix
-            type="matrix"
-            values="0.1 -0.5 0 1.8 1.7
-                    0 1 0 0 2.4
-                    0 0 1 0 2
-                    0 0 0 1 0 "/>
-        </filter>
-      </svg>
+  <div class="created-badge-bg">
+    <img :src="badgeClass.image" alt="badge" width="115" height="auto">
+    <div class="created-badge-p">
+      <p class="created-badge-name">{{badgeClass.name}}</p>
+      <p class="created-badge-recipient">Recipient: <span>{{recipient}}</span></p>
+      <p class="">{{badgeClass.description}}</p>
     </div>
-    <p class="created-badge-name">{{badgeClass.name}}</p>
   </div>
 </template>
 
@@ -26,7 +17,8 @@ export default {
       image: String,
       name: String,
       description: String
-    }
+    },
+    recipient: String
   }
 };
 
@@ -35,31 +27,47 @@ export default {
 <style lang="scss" scoped>
 @import "~Vars";
 
-.badge-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.badge {
-  position: relative;
+.created-badge-bg{
   display: flex;
   justify-content: center;
   align-items: center;
+  color: $darkblue;
+  margin-top: -5px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  box-shadow: 0 0 8px 0 rgba(48, 53, 92, 0.25);
+  line-height: 1.5;
+  width: 440px;
+  border-radius: 5px;
+  padding: 40px 20px;
 }
 
-.badge-icon {
-  position: absolute;
-  filter: url('#linear');
-  opacity: 0.6;
+.created-badge-p {
+  margin-left: 30px;
+}
+
+.created-badge-recipient {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+
+  span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+  }
 }
 
 .created-badge-name {
   font-weight: 700;
-  margin-top: 10px;
-  margin-bottom: 25px;
+  font-size: 17px;
   text-transform: lowercase;
   color: $darkblue;
+}
+
+.container-more-margin {
+  margin-left: 140px;
 }
 
 </style>

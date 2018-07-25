@@ -2,7 +2,7 @@
   <div>
     <v-header class="l-header-white"></v-header>
       <!-- <h1>{{$t("landing.welcome")}}</h1> -->
-    <section class="section-intro">
+    <section class="section-intro section-right-bg">
       <div class="intro-text-container">
         <p class="p-landing">My friend is amazing with a guitar, <br> I am good with communication,</p>
         <h1 class="h1-landing">What is your skill?</h1>
@@ -12,7 +12,7 @@
       </div>
     </section>
     <section class="section-landing">
-      <img src="../assets/skill_illustration.png" alt="" width="527" height="403">
+      <img src="" alt="" width="584" height="439">
       <div class="container-landing">
         <h1 class="h1-landing h1-title-text">Why use bSkilled?</h1>
         <p class="p-landing">bSkilled gives you the opportunity to get your skills verified and certified by an employer, a teacher, an organisation… Getting a badge for one of your skills is a symbol of accomplishment, packed with verifiable data that can be shared across the web. This way it allows a future recruiter to trust your skills when seeing the badges that you got from bSkilled. Thanks to bSkilled you are also able to become a little bee, make connections with the others and be part of the open badges community.</p>
@@ -35,7 +35,7 @@
       </div>
     </section>
     <section class="section-landing">
-      <img src="../assets/skill_illustration.png" alt="" width="527" height="403">
+      <img src="../assets/header_how.png" alt="" width="584" height="439">
       <div class="container-landing">
         <h1 class="h1-landing h1-title-text">How does bSkilled work?</h1>
         <ul class="p-landing list-landing">
@@ -58,7 +58,6 @@
       </div>
     </section>
     <section class="section-cta">
-      <img src="../assets/skill_illustration.png" alt="" width="527" height="403">
       <div class="container-landing container-cta">
         <h1 class="h1-landing h1-title-text">Use bSkilled</h1>
         <p class="p-landing">Get acknowledged for your skills by letting your connections endorse and verify your qualities with Open Badges in an easy, reliable and standardised way.</p>
@@ -66,15 +65,18 @@
           <Button class="button--landing">Create a badge</Button>
         </router-link>
       </div>
+      <img src="../assets/header_use.png" alt="" width="400" height="495">
     </section>
     <section class="section-slogan">
       <h1>bSkilled <br> bVerified <br> bConnected</h1>
       <div class="social-media">
         <p>Follow us on:</p>
         <div class="social-media_icons">
-          <img src="../assets/twitter_logo.svg" alt="" width="auto" height="20">
-          <img src="../assets/facebook_logo.svg" alt=""  width="auto" height="20">
-          <img src="../assets/linkedin_logo.svg" alt=""  width="auto" height="20">
+          <a href="https://twitter.com/bSkilled1"><img src="../assets/twitter_logo.svg" alt="" width="auto" height="18"></a>
+          <a href="https://www.facebook.com/bskilledd"><img src="../assets/facebook_logo.svg" alt=""  width="auto" height="20"></a>
+          <a href="https://www.linkedin.com/company/bskilled1/"><img src="../assets/linkedin_logo.svg" alt="" width="auto" height="20"></a>
+          <a href="https://github.com/oSoc18/bSkilled"><img src="../assets/github_logo.svg" alt=""  width="auto" height="22">></a>
+
         </div>
       </div>
     </section>
@@ -117,8 +119,7 @@ export default {
 }
 
 .section-intro {
-  background: $bgyellow url(../assets/skill_illustration.png) center 1403%
-    no-repeat;
+  background: $bgyellow url(../assets/header_bg.png)  60% 2000% no-repeat;
   background-size: 72%;
   box-shadow: 0 0 40px 0 rgba(48, 53, 92, 0.3);
   height: 810px;
@@ -155,12 +156,12 @@ export default {
 
 .section-landing {
   padding-top: 100px;
-  padding-left: 140px;
+  padding-left: 110px;
   display: flex;
 }
 
 .container-landing {
-  margin-left: 90px;
+  margin-left: 60px;
   margin-top: 40px;
 }
 
@@ -168,8 +169,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 100px;
-  margin-top: 235px;
+  margin-bottom: 110px;
+  margin-top: 205px;
 }
 
 .spotlight {
@@ -202,13 +203,13 @@ export default {
   margin-top: 115px;
   background: $bgyellow;
   box-shadow: 0 0 40px 0 rgba(48, 53, 92, 0.3);
-  padding-top: 90px;
-  padding-left: 130px;
+  padding-top: 60px;
+  padding-left: 190px;
 }
 
 .container-cta {
-  margin-left: 60px;
-  margin-top: 80px;
+  margin-right: 120px;
+  margin-top: 130px;
 
   & h1 {
     margin-bottom: 20px;
@@ -243,7 +244,7 @@ export default {
     margin-right: 165px;
 
     &_icons {
-      width: 115px;
+      width: 170px;
       display: flex;
       justify-content: space-between;
       margin-left: 30px;

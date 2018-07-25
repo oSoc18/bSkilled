@@ -1,7 +1,7 @@
 <template>
   <div class="row-page">
-    <v-introduction :introductionContent="introductionContent"></v-introduction>
-    <section class="section-right">
+    <v-introduction :introductionContent="introductionContent" :bgimage="bgimage"></v-introduction>
+    <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
@@ -35,7 +35,7 @@
                 <label>Website url<span class="label-span">(optional)</span></label>
                 <input type="text" v-model.lazy="profile.url" placeholder="https://yourwebsiteurl.be"/>
               </div>
-              <v-button :onClick="validate">Save personal information</v-button>
+              <v-button :onClick="validate" class="button--blue">Save personal information</v-button>
             </form>
             <div v-if="submitted">
               <h1>Lorem Ipsum.</h1>
@@ -81,13 +81,19 @@ export default {
       },
       submitted: false,
       introductionContent: {
-        title: "Sign the badge with your profile key",
+        title: "Fill in your personal information",
         text:
-          "We only use your personal information to create your badge and mail it to you."
+          "We only use your personal information to "
       },
       pageVisited: 2,
       profile: profile,
-      submitted: false
+      submitted: false,
+      bgimage: {
+        img: "./signing_step2.png",
+        position: "380px",
+        size: "95%",
+        left: "15px"
+      }
     };
   },
   computed: {

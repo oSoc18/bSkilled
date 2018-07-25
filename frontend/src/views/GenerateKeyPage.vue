@@ -1,17 +1,17 @@
 <template>
   <div class="row-page">
-    <v-introduction :introductionContent="introductionContent"></v-introduction>
-    <section class="section-right">
+    <v-introduction :introductionContent="introductionContent" :bgimage="bgimage"></v-introduction>
+    <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
           <div class="form_generate-key">
             <form v-if="!generating">
-              <h1 class="h1--blue">Let's get a profile key</h1>
-              <p class="information">You can use this profile key to sign the badge.</p>
+              <h1 class="h1--blue">Let's get a private key</h1>
+              <p class="information">You can use this private key to sign the badge.</p>
               <p class="allert-information">This key is your own responsability, keep it somewhere safe!</p>
               <div class="input-container">
-                <label>password</label>
+                <label>password <span class="label-span">(optional)</span></label>
                 <input type="password" v-model.lazy="password" required />
               </div>
               <div class="button-container button-container--small">
@@ -20,8 +20,8 @@
               </div>
             </form>
             <div v-if="generating">
-              <h1 class="h1--blue">Your profile key pair is currently generating</h1>
-              <p class="information">You can use this profile key to sign the badge.</p>
+              <h1 class="h1--blue">Your private key pair is currently generating</h1>
+              <p class="information">You can use this private key to sign the badge.</p>
               <p class="allert-information">This key is your own responsability, keep it somewhere safe!</p>
               <div class="progress_container" v-if="generated === false">
                 <div class="progress progress-striped active">
@@ -32,7 +32,7 @@
             </div>
             <div class="container-generated"v-if="generated">
               <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-              <p class="p-generated">Your profile key is generated</p>
+              <p class="p-generated">Your private key is generated</p>
               <v-button :onClick="goBack" class="button--blue button--back">Go back</v-button>
             </div>
           </div>
@@ -68,7 +68,13 @@ export default {
         title: 'Seems like you don\'t have a pesonal key yet',
         text: 'We only use your personal information to create your badge and mail it to you.',
       },
-      pageVisited: 1
+      pageVisited: 1,
+      bgimage: {
+        img: "./signing_step2.png",
+        position: "380px",
+        size: "95%",
+        left: "15px"
+      }
     };
   },
   methods: {
@@ -279,5 +285,11 @@ export default {
   100% {
     box-shadow: inset 0px 0px 0px 30px $green;
   }
+}
+
+
+.label-span {
+  font-size: 13px;
+  margin-left: 215px;
 }
 </style>
