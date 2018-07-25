@@ -2,7 +2,7 @@
   <div class="badge-container">
     <div class="badge">
       <img src="../assets/badge.svg" alt="" width="179" height="157">
-      <img class="badge-icon":src="badgeClass.image" alt="" width="70" height="70">
+      <img class="badge-icon" :src="badgeClass.image" alt="" width="70" height="70">
       <svg class="is-hidden">
         <filter id="linear">
           <feColorMatrix

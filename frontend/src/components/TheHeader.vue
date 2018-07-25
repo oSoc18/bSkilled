@@ -4,13 +4,13 @@
     <nav class="l-navigation">
       <ul class="l-navigation__menu">
         <li class="l-navigation__menu__item">
-        <a href="/#practical" v-on:click.prevent="practical()" >Practical information</a>
+        <a href="/#practical" v-on:click.prevent="practical()" >{{$t("TheHeader.practical")}}</a>
         </li>
         <li class=" l-navigation__menu__item">
-          <a href="/#about" v-on:click.prevent="about()">About the project</a>
+          <a href="/#about" v-on:click.prevent="about()">{{$t("TheHeader.about")}}</a>
         </li>
         <li class=" l-navigation__menu__item l-navigation__menu__item--state-current">
-          <router-link to="/create/search">Make a new badge</router-link>
+          <router-link to="/create/search">{{$t("TheHeader.new")}}</router-link>
         </li>
       </ul>
     </nav>

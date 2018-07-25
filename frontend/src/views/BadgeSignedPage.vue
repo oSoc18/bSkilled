@@ -3,7 +3,7 @@
     <BadgeClassCard :badge-class="assertion.badge" />
     <pre>badge: {{JSON.stringify(assertion, undefined, 4)}}</pre>
     <router-link to="/">
-      <v-button :onClick="consoleClick">Go to main app</v-button>
+      <v-button :onClick="consoleClick">{{$t("BadgeSigned.goto")}}</v-button>
     </router-link>
 
   </div>

@@ -6,23 +6,23 @@
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
           <form class="form_generate-key" v-if="!generating">
-            <h1 class="h1--blue">Let's get a profile key</h1>
-            <p class="information">You can use this profile key to sign the badge.</p>
-            <p class="allert-information">This key is your own responsability, keep it somewhere safe!</p>
+            <h1 class="h1--blue">{{$t("GenerateKeyPage.getkey")}}</h1>
+            <p class="information">{{$t("GenerateKeyPage.keyinfo")}}</p>
+            <p class="allert-information">{{$t("GenerateKeyPage.keyimportance")}}</p>
             <div class="input-container">
-              <label for="password">Password<span v-show="errors.has('password')" class="mark-error is-hidden" ref="errorMark">*</span></label>
+              <label for="password">{{$t("GenerateKeyPage.password")}}<span v-show="errors.has('password')" class="mark-error is-hidden" ref="errorMark">*</span></label>
               <p v-show="errors.has('password')" class="error is-hidden" ref="errorMessage">{{ errors.first('password') }}</p>
               <input name="password" type="password" tv-model="password" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('recipient') }" placeholder="password" data-vv-validate-on="none" @input="handlerInputChange">
             </div>
             <div class="button-container button-container--small">
-              <button v-on:click="validate" class="button button--blue">Get your profile key</button>
-              <v-button class="button--line":onClick="goBack">Go back</v-button>
+              <button v-on:click="validate" class="button button--blue">{{$t("GenerateKeyPage.generatekey")}}</button>
+              <v-button class="button--line"  :onClick="goBack">{{$t("GenerateKeyPage.back")}}</v-button>
             </div>
           </form>
           <div v-if="generating">
-            <h1 class="h1--blue">Your profile key pair is currently generating</h1>
-            <p class="information">You can use this profile key to sign the badge.</p>
-            <p class="allert-information">This key is your own responsability, keep it somewhere safe!</p>
+            <h1 class="h1--blue">{{$t("GenerateKeyPage.isgenerating")}}</h1>
+            <p class="information">{{$t("GenerateKeyPage.keyuse")}}</p>
+            <p class="allert-information">{{$t("GenerateKeyPage.keyimportance")}}</p>
             <div class="progress_container" v-if="generated === false">
               <div class="progress progress-striped active">
                 <div class="bar" ref="progressbar"></div>
@@ -30,10 +30,10 @@
             </div>
             <p>{{currentaction}}</p>
           </div>
-          <div class="container-generated"v-if="generated">
+          <div class="container-generated" v-if="generated">
             <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-            <p class="p-generated">Your profile key is generated</p>
-            <v-button :onClick="goBack" class="button--blue button--back">Go back</v-button>
+            <p class="p-generated">{{$t("GenerateKeyPage.generated")}}</p>
+            <v-button :onClick="goBack" class="button--blue button--back">{{$t("GenerateKeyPage.back")}}</v-button>
           </div>
         </div>
       </div>
@@ -63,8 +63,8 @@ export default {
       progress: 0,
       currentaction: "",
       introductionContent: {
-        title: 'Seems like you don\'t have a pesonal key yet',
-        text: 'We only use your personal information to create your badge and mail it to you.',
+        title: this.$t("GenerateKeyPage.introductionTitle"),
+        text: this.$t("GenerateKeyPage.introductionText")
       },
       pageVisited: 1
     }

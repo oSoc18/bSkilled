@@ -8,7 +8,7 @@
           <BadgeClassCard :badge-class="badgeTemplate" :isSelected="selectedBoolean"/>
           <form @submit.prevent>
             <div class="input-container">
-              <label for="recipientEmail">E-mail address recipient<span v-show="errors.has('recipient')" class="mark-error is-hidden" ref="errorMark">*</span></label>
+              <label for="recipientEmail">{{$t("recipient.email")}}<span v-show="errors.has('recipient')" class="mark-error is-hidden" ref="errorMark">*</span></label>
               <p v-show="errors.has('recipient')" class="error is-hidden" ref="errorMessage">{{ errors.first('recipient') }}</p>
               <input name="recipient"
                      v-model="recipient"
@@ -19,7 +19,7 @@
                      data-vv-validate-on="none"
                      @input="handlerInputChange">
             </div>
-            <v-button :onClick="validate">Save personal information</v-button>
+            <v-button :onClick="validate">{{$t("recipient.save")}}</v-button>
           </form>
         </div>
       </div>
@@ -51,8 +51,8 @@ export default {
       selectedBoolean: true,
       recipient: "",
       introductionContent: {
-        title: this.$t("recipeint.introductionContent.title"),
-        text: this.$t("recipeint.introductionContent.text")
+        title: this.$t("recipient.introductionContent.title"),
+        text: this.$t("recipient.introductionContent.text")
       },
       pageVisited: 1
     };

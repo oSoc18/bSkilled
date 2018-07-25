@@ -8,25 +8,25 @@
           <div class="form_generate-key">
             <form @submit.prevent v-if="!submitted">
               <div class="input-container">
-                <label>Name</label>
+                <label>{{$t("CreateProfilePage.name")}}</label>
                 <input type="text" v-model.lazy="profile.name" />
               </div>
               <div class="input-container">
-                <label>E-mail adress</label>
+                <label>{{$t("CreateProfilePage.email")}}</label>
                 <input type="text" v-model.lazy="profile.email" />
               </div>
               <div class="input-container">
-                <label>Company name</label>
+                <label>{{$t("CreateProfilePage.company")}}</label>
                 <input type="text" v-model.lazy="profile.company" required />
               </div>
               <div class="input-container">
-                <label>Website url</label>
+                <label>{{$t("CreateProfilePage.website")}}</label>
                 <input type="text" v-model.lazy="profile.url" required />
               </div>
-              <v-button :onClick="post">Save personal information</v-button>
+              <v-button :onClick="post">{{$t("CreateProfilePage.save")}}</v-button>
             </form>
             <div v-if="submitted">
-              <h1>Lorem Ipsum.</h1>
+              <h1>{{$t("CreateProfilePage.loading")}}</h1>
             </div>
           </div>
         </div>
@@ -69,9 +69,8 @@ export default {
       },
       submitted: false,
       introductionContent: {
-        title: "Sign the badge with your profile key",
-        text:
-          "We only use your personal information to create your badge and mail it to you."
+        title: this.$t("CreateProfilePage.signwithprofile"),
+        text: this.$t("CreateProfilePage.disclaimer")
       },
       pageVisited: 2,
       profile: profile,

@@ -6,20 +6,20 @@
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container">
           <Badge :badge-class="share.implication.badgeTemplate" />
-          <h1 class="create-badge-title">You created a badge!</h1>
-          <p class="link-description">Share this link with your connections. You’ll get an e-mail once your badge is signed. Then you’ll be able to download your signed badge!</p>
+          <h1 class="create-badge-title">{{$t("ShareBadgeLinkPage.title")}}</h1>
+          <p class="link-description">{{$t("ShareBadgeLinkPage.description")}}</p>
           <div class="container-link">
             <p class="link"> {{location + "sign/" + share.sid}}</p>
             <button class="button-copy" type="button" name="button"
             v-clipboard:copy="thingToCopy"
             v-clipboard:success="onCopy"
             v-clipboard:error="onError"
-            >Copy link</button>
+            >{{$t("ShareBadgeLinkPage.copy")}}</button>
           </div>
           <svg class="checkmark" v-if="copySucceeded === true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-          <p class="copy-status" v-if="copySucceeded === true">Link was copied</p>
-          <p class="copy-status" v-if="copySucceeded === false">Press CTRL+C to copy.</p>
-          <v-button :onClick="handlerNewBadge">Make a new badge</v-button>
+          <p class="copy-status" v-if="copySucceeded === true">{{$t("ShareBadgeLinkPage.copied")}}</p>
+          <p class="copy-status" v-if="copySucceeded === false">{{$t("ShareBadgeLinkPage.cntrlc")}}</p>
+          <v-button :onClick="handlerNewBadge">{{$t("ShareBadgeLinkPage.newbadge")}}</v-button>
         </div>
       </div>
     </section>
@@ -48,9 +48,8 @@ export default {
       copySucceeded: null,
       selectedBoolean: true,
       introductionContent: {
-        title: "Share your badge",
-        text:
-          "Copy the link and share it with your connections. Your connections can sign your badge by opening the link and filling in some information."
+        title: this.$t("ShareBadgeLinkPage.introductionTitle"),
+        text: this.$t("ShareBadgeLinkPage.introductionDescription")
       },
       pageVisited: 2
     };

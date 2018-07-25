@@ -2,9 +2,9 @@
   <div class="app">
     <BadgeClassCard :badge-class="implication.badgeTemplate" />
     <p>{{implication.recipient}}</p>
-    <p>Wan't to sign this badge?</p>
-    <v-button :onClick="sign">Sign</v-button>
-    <v-button :onClick="dontSign">Don't sign</v-button>
+    <p>{{$t("ConfirmationPage.questionsign")}}</p>
+    <v-button :onClick="sign">{{$t("ConfirmationPage.sign")}}</v-button>
+    <v-button :onClick="dontSign">{{$t("ConfirmationPage.nosign")}}</v-button>
   </div>
 </template>
 
