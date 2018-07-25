@@ -12,7 +12,7 @@
       </div>
     </section>
     <section class="section-landing">
-      <img src="../assets/header_why.png" alt="" width="624" height="479">
+      <img src="" alt="" width="584" height="439">
       <div class="container-landing">
         <h1 class="h1-landing h1-title-text">Why use bSkilled?</h1>
         <p class="p-landing">bSkilled gives you the opportunity to get your skills verified and certified by an employer, a teacher, an organisation… Getting a badge for one of your skills is a symbol of accomplishment, packed with verifiable data that can be shared across the web. This way it allows a future recruiter to trust your skills when seeing the badges that you got from bSkilled. Thanks to bSkilled you are also able to become a little bee, make connections with the others and be part of the open badges community.</p>
@@ -35,7 +35,7 @@
       </div>
     </section>
     <section class="section-landing">
-      <img src="../assets/skill_illustration.png" alt="" width="527" height="403">
+      <img src="../assets/header_how.png" alt="" width="584" height="439">
       <div class="container-landing">
         <h1 class="h1-landing h1-title-text">How does bSkilled work?</h1>
         <ul class="p-landing list-landing">
@@ -58,7 +58,6 @@
       </div>
     </section>
     <section class="section-cta">
-      <img src="../assets/skill_illustration.png" alt="" width="527" height="403">
       <div class="container-landing container-cta">
         <h1 class="h1-landing h1-title-text">Use bSkilled</h1>
         <p class="p-landing">Get acknowledged for your skills by letting your connections endorse and verify your qualities with Open Badges in an easy, reliable and standardised way.</p>
@@ -66,6 +65,7 @@
           <Button class="button--landing">Create a badge</Button>
         </router-link>
       </div>
+      <img src="../assets/header_use.png" alt="" width="400" height="495">
     </section>
     <section class="section-slogan">
       <h1>bSkilled <br> bVerified <br> bConnected</h1>
@@ -156,12 +156,12 @@ export default {
 
 .section-landing {
   padding-top: 100px;
-  padding-left: 140px;
+  padding-left: 110px;
   display: flex;
 }
 
 .container-landing {
-  margin-left: 90px;
+  margin-left: 60px;
   margin-top: 40px;
 }
 
@@ -169,8 +169,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 100px;
-  margin-top: 235px;
+  margin-bottom: 110px;
+  margin-top: 205px;
 }
 
 .spotlight {
@@ -203,13 +203,13 @@ export default {
   margin-top: 115px;
   background: $bgyellow;
   box-shadow: 0 0 40px 0 rgba(48, 53, 92, 0.3);
-  padding-top: 90px;
-  padding-left: 130px;
+  padding-top: 60px;
+  padding-left: 190px;
 }
 
 .container-cta {
-  margin-left: 60px;
-  margin-top: 80px;
+  margin-right: 120px;
+  margin-top: 130px;
 
   & h1 {
     margin-bottom: 20px;

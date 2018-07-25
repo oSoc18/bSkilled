@@ -59,7 +59,7 @@ export default {
       pageVisited: 1,
       bgimage: {
         img: "./signing_step2.png",
-        position: "360px",
+        position: "380px",
         size: "95%",
         left: "15px"
       }

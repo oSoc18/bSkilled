@@ -46,10 +46,10 @@ export default {
       },
       pageVisited: 0,
       bgimage: {
-        img: "./sign_step1.png",
-        position: "307px",
-        size: "95%",
-        left: "15px"
+        img: "./signing_step1.png",
+        position: "360px",
+        size: "85%",
+        left: "20px"
       }
     };
   },

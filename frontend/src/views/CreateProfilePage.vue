@@ -89,8 +89,8 @@ export default {
       profile: profile,
       submitted: false,
       bgimage: {
-        img: "./signing_step3.png",
-        position: "350px",
+        img: "./signing_step2.png",
+        position: "380px",
         size: "95%",
         left: "15px"
       }
