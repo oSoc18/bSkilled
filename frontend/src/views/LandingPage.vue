@@ -119,8 +119,7 @@ export default {
 }
 
 .section-intro {
-  background: $bgyellow url(../assets/skill_illustration.png) center 1403%
-    no-repeat;
+  background: $bgyellow url(../assets/header_bg.png)  60% 2000% no-repeat;
   background-size: 72%;
   box-shadow: 0 0 40px 0 rgba(48, 53, 92, 0.3);
   height: 810px;

@@ -1,6 +1,6 @@
 <template>
   <div class="row-page">
-    <v-introduction :introductionContent="introductionContent"></v-introduction>
+    <v-introduction :introductionContent="introductionContent"  :bgimage="bgimage"></v-introduction>
     <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-center">
         <v-indicator  :pageVisited="pageVisited"></v-indicator>
@@ -55,7 +55,11 @@ export default {
         text:
           "We only use your personal information to create your badge"
       },
-      pageVisited: 1
+      pageVisited: 1,
+      bgimage: {
+        img: "./share_step2.png",
+        position: "315px"
+      }
     }
   },
   methods: {

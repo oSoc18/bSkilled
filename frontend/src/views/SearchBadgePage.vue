@@ -1,6 +1,6 @@
 <template>
   <div class="row-page">
-    <v-introduction :introductionContent="introductionContent"></v-introduction>
+    <v-introduction :introductionContent="introductionContent"  :bgimage="bgimage" ></v-introduction>
     <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-margin">
         <v-indicator  :pageVisited="pageVisited" ></v-indicator>
@@ -30,7 +30,11 @@ export default {
         title: "Search for your skill",
         text: "Get acknowledged for what you do best!"
       },
-      pageVisited: 0
+      pageVisited: 0,
+      bgimage: {
+        img: "./share_step1.png",
+        position: "260px"
+      }
     };
   },
   methods: {

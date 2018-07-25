@@ -1,5 +1,5 @@
 <template>
-  <section class="section-introduction">
+  <section class="section-introduction" ref="sectionImg">
     <div class="is-fixed introduction-container">
       <h1>{{introductionContent.title}}</h1>
       <p>{{introductionContent.text}}</p>
@@ -8,6 +8,8 @@
 </template>
 
 <script>
+ // const ctx = require.context('../assets', true, /.png/);
+ var images = require.context('../assets', true,  /.png/);
 
 export default {
   props: {
@@ -15,8 +17,17 @@ export default {
       title: String,
       text: String,
     },
+    bgimage: String
+  },
+  mounted() {
+    this.img_src = images(this.bgimage.img)
+
+    this.$refs.sectionImg.style.background = `#fccd77 url(${this.img_src}) no-repeat 15px ${this.bgimage.position}`;
+    this.$refs.sectionImg.style.backgroundSize = "95%";
   }
 };
+
+
 
 </script>
 
@@ -27,9 +38,6 @@ export default {
 .section-introduction {
   width: 37%;
   min-height: 100vh;
-  background: $bgyellow url(../assets/skill_illustration.png) -7% 100% no-repeat;
-  background-attachment: fixed;
-  background-size: 50%;
   padding-top: 175px;
   padding-left: 75px;
 }

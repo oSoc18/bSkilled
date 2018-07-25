@@ -1,6 +1,6 @@
 <template>
   <div class="row-page">
-    <v-introduction :introductionContent="introductionContent"></v-introduction>
+    <v-introduction :introductionContent="introductionContent" :bgimage="bgimage"></v-introduction>
     <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
@@ -87,7 +87,8 @@ export default {
       },
       pageVisited: 2,
       profile: profile,
-      submitted: false
+      submitted: false,
+      bgimage: 'share_step1.png'
     };
   },
   computed: {

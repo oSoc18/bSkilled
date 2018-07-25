@@ -1,6 +1,6 @@
 <template>
   <div class="row-page">
-    <v-introduction :introductionContent="introductionContent"></v-introduction>
+    <v-introduction :introductionContent="introductionContent" :bgimage="bgimage"></v-introduction>
     <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
@@ -52,7 +52,11 @@ export default {
         text:
           "Copy the link and share it with your connections. Your connections can sign your badge by opening the link and filling in some information."
       },
-      pageVisited: 2
+      pageVisited: 2,
+      bgimage: {
+        img: "./share_step3.png",
+        position: "307px"
+      }
     };
   },
   methods: {
