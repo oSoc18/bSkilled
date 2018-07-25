@@ -66,8 +66,7 @@ export default {
       this.$store.dispatch("stepFlow");
     },
     dontSign() {
-      console.log("fuckfuck");
-      alert("TODO don't");
+      this.$router.push({ name: "landing" });
     },
     checkAndRedirect() {
       if (this.shouldRedirect) {

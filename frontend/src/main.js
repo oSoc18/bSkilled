@@ -28,8 +28,6 @@ const dict = {
   }
 };
 let messages = languages;
-
-console.log(messages);
 const i18n = new VueI18n({
   locale: 'en', // set locale
   messages, // set locale messages
