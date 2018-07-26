@@ -260,7 +260,7 @@
       "keyUse": "U kunt deze profielsleutel gebruiken om de badge te ondertekenen.",
       "generated": "Uw privésleutel wordt gegenereerd",
       "introductionTitle": "Het lijkt erop dat je nog geen persoonlijke sleutel hebt",
-      "introductionText": "Wat is een privésleutel? Het is een privé-bestand. Het werkt als een unieke sleutel (zoals een sleutel tot uw huis). We gebruiken het om u te identificeren en de badges te ondertekenen. U kunt uw sleutel ook beveiligen met een wachtwoord."
+      "introductionText": "Wat is een privésleutel? Het is een privé-bestand. Het werkt als een unieke sleutel (zoals een sleutel tot uw huis). We gebruiken het om u te identificeren en de badges officieel te ondertekenen zodat de inhoud niet door anderen kan aangepast worden. U kunt uw sleutel ook beveiligen met een wachtwoord."
     },
     "ShareBadgeLinkPage":{
       "title": "Je hebt een badge gemaakt!",
@@ -270,32 +270,32 @@
       "controlCopy": "Druk op CTRL + C om te kopiëren.",
       "newbadge": "Maak een nieuwe badge",
       "introductionTitle": "Deel je badge",
-      "introductionDescription": "Copy the link and share it with your connections. Your connections can sign your badge by opening the link and filling in some information.",
-      "createdTitle": "You created a badge!",
-      "createdDescription": "Share this link with your connections. When they have verified it, you’ll be able to download your signed badge!"
+      "introductionDescription": "Kopieer de link en deel deze met uw verbindingen. Uw verbindingen kunnen uw badge ondertekenen door de link te openen en enige informatie in te vullen.",
+      "createdTitle": "Je hebt een badge gemaakt!",
+      "createdDescription": "Je deelt deze link met je connecties. Als ze het hebben geverifieerd, kan je er de ondertekende badge downloaden!"
     },
     "SignBadgePage":{
-      "wantToSign":"Do you want to sign this badge?",
-      "signBadge":"Sign Badge",
-      "goHome": "Go to the homepage",
-      "loading": "Loading...",
-      "introductionTitle": "Seems like you want to sign a badge",
-      "introductionDescription": "By signing a badge you verify that this person has mastered the skill displayed in the badge?"
+      "wantToSign":"Wil je deze badge ondertekenen?",
+      "signBadge":"Badge ondertekenen",
+      "gohome": "Ga naar de startpagina",
+      "loading": "Bezig met laden...",
+      "introductionTitle": "Wilt u een badge ondertekenen",
+      "introductionDescription": "Door een badge te ondertekenen, verifieert u dat deze persoon de in de badge getoonde vaardigheid heeft"
     },
     "UploadKeyPage":{
-      "upload": "Upload your private key",
-      "pass": "passphrase",
-      "noKeyYet": "Don't have key yet? Generate one here.",
-      "introductionTitle": "Sign the badge with your private key",
-      "introductionDescription": "What is a private key? It's a private file so keep it to yourself. It acts like a unique key (like a key to your house). We use it to identify you and officially sign the badges "
+      "upload": "Upload uw privésleutel",
+      "pass": "wachtwoord",
+      "noKeyYet": "Heb je nog geen sleutel? Genereer hier één.",
+      "introductionTitle": "Onderteken de badge met uw privésleutel",
+      "introductionDescription": "Wat is een privésleutel? Het is een privé-bestand. Het werkt als een unieke sleutel (zoals een sleutel tot uw huis). We gebruiken het om u te identificeren en de officieel badges te ondertekenen zodat de inhoud niet veranderd kan worden door anderen. U kunt uw sleutel ook beveiligen met een wachtwoord."
     },
     "Download":{
-      "download": "Download your badge",
-      "backhome": "Back to home",
-      "notSigned": "NOT SIGNED YET",
-      "sign": "Sign",
-      "introductionTitle": "Your badge is signed, download it!",
-      "introductionDescription": "Your skill is verified, you can now download it and share it with other people to show what you're capable of."
+      "download": "Download uw badge",
+      "backhome": "Terug naar huis",
+      "notSigned": "Nog niet getekend",
+      "sign": "Onderteken",
+      "introductionTitle": "Je badge is ondertekend, download hem!",
+      "introductionDescription": "Je vaardigheid is geverifieerd, je kunt deze nu downloaden en delen met andere mensen om te laten zien waartoe je in staat bent."
     }
   }
 }
