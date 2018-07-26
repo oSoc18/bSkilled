@@ -88,10 +88,10 @@ export default {
       profile: profile,
       submitted: false,
       bgimage: {
-        img: "./signing_step2.png",
-        position: "380px",
-        size: "35%",
-        left: "15px"
+        img: "./signing_step3.png",
+        position: "310px",
+        size: "28%",
+        left: "37px"
       }
     };
   },
