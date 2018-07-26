@@ -2,7 +2,8 @@
   "en": {
     "landing": {
       "intro": {
-        "top": "My friend is amazing with a guitar, <br> I am good with communication,",
+        "top": "My friend is amazing with a guitar,",
+        "top2": "I am good with communication,",
         "title": "What is your skill?",
         "button": "Create a badge"
       },

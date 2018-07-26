@@ -54,8 +54,8 @@ export default {
   name: "app",
   components: {
     "v-introduction": Introduction,
-      "v-indicator": Indicator,
-      "v-button": Button
+    "v-indicator": Indicator,
+    "v-button": Button
   },
   data() {
     return {
@@ -89,16 +89,15 @@ export default {
         // run for 100 ms
         if (!rsa.stepKeyPairGenerationState(state, 100)) {
           setTimeout(step, 1);
-          const clientWidth = context.$refs.progressbar.clientWidth
-          const width = clientWidth + 1
-          if(width < 80) {
-            context.$refs.progressbar.style.width = `${width}%`
+          const clientWidth = context.$refs.progressbar.clientWidth;
+          const width = clientWidth + 1;
+          if (width < 80) {
+            context.$refs.progressbar.style.width = `${width}%`;
           }
-
         } else {
           // done, turn off progress indicator, use state.keys
           context.progress = 100;
-          context.$refs.progressbar.style.width = `${context.progress}%`
+          context.$refs.progressbar.style.width = `${context.progress}%`;
           console.log("finsihed");
           let pem;
           pem = forge.pki.encryptRsaPrivateKey(
@@ -165,7 +164,16 @@ export default {
 
 .progress-striped .bar {
   background-color: $progressbargrey;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
   background-size: 40px 40px;
 }
 
@@ -178,9 +186,13 @@ export default {
 }
 
 @keyframes progress-bar-stripes {
-  from { background-position: 0 0 }
+  from {
+    background-position: 0 0;
+  }
 
-  to { background-position: 40px 0 }
+  to {
+    background-position: 40px 0;
+  }
 }
 
 .button-container--small {
@@ -286,7 +298,6 @@ export default {
     box-shadow: inset 0px 0px 0px 30px $green;
   }
 }
-
 
 .label-span {
   font-size: 13px;
