@@ -275,12 +275,9 @@ export default {
   width: 820px;
   margin-right: 80px;
 }
-<<<<<<< HEAD
 
 .img-why {
   margin-left: 50px;
   margin-right: 40px;
 }
-=======
->>>>>>> development
 </style>
