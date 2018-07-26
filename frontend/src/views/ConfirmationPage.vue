@@ -35,9 +35,8 @@ export default {
     return {
       flowStep: "confirm",
       introductionContent: {
-        title: "Confirm you want to sign this badge ",
-        text:
-          "By confirming you verify that this person has mastered the skill displayed in the badge."
+        title: this.$t("ConfirmationPage.introductionTitle"),
+         text: this.$t("ConfirmationPage.introductionDescription")
       },
       pageVisited: 3,
       bgimage: {

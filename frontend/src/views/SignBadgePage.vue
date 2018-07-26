@@ -6,7 +6,7 @@
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div v-if="implication && !implication.signed">
           <div class="container container-animation container-more-margin">
-            <h1 class="h1--blue title-sign-confirm">Do you want to sign this badge?</h1>
+            <h1 class="h1--blue title-sign-confirm">{{$t("signbadgepage.whannesign")}}</h1>
             <Badge :badge-class="implication.badgeTemplate" :recipient="implication.recipient"/>
             <div class="button-container">
               <Button class="button--blue" :onClick="sign"> {{$t("signbadgepage.signbadge")}}   </Button>
