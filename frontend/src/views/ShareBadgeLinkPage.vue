@@ -47,10 +47,6 @@ export default {
       location: process.env.LOCATION,
       copySucceeded: null,
       selectedBoolean: true,
-      introductionContent: {
-        title: this.$t("ShareBadgeLinkPage.introductionTitle"),
-        text: this.$t("ShareBadgeLinkPage.introductionDescription")
-      },
       pageVisited: 2,
       bgimage: {
         img: "./share_step3.png",
@@ -72,6 +68,12 @@ export default {
     }
   },
   computed: {
+    introductionContent(){
+      return{
+        title: this.$t("ShareBadgeLinkPage.introductionTitle"),
+        text: this.$t("ShareBadgeLinkPage.introductionDescription")
+      }
+      },
     ...mapState(["share", "badgeTemplate", "recipient"]),
     thingToCopy() {
       return process.env.LOCATION + "#/share/" + this.share.sid;

@@ -51,11 +51,6 @@ export default {
       passphrase: "",
       keyFile: null,
       getPassword: false,
-      introductionContent: {
-        title: this.$t("UploadKeyPage.introductionTitle"),
-        text: this.$t("UploadKeyPage.introductionDescription")
-          
-      },
       pageVisited: 1,
       bgimage: {
         img: "./signing_step2.png",
@@ -119,6 +114,14 @@ export default {
   },
   activated() {
     this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
+  },
+  computed:{
+    introductionContent() {
+      return{
+        title: this.$t("UploadKeyPage.introductionTitle"),
+        text: this.$t("UploadKeyPage.introductionDescription")
+          }
+      }
   }
 };
 </script>

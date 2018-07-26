@@ -26,10 +26,6 @@ export default {
   data() {
     return {
       flowStep: "search",
-      introductionContent: {
-        title: this.$t("search.introductionContent.title"),
-        text: this.$t("search.introductionContent.text")
-      },
       pageVisited: 0,
       bgimage: {
         img: "./share_step1.png",
@@ -38,6 +34,14 @@ export default {
         left: "15px"
       }
     };
+  },
+  computed : {
+    introductionContent(){
+      return  {
+        title: this.$t("search.introductionContent.title"),
+        text: this.$t("search.introductionContent.text")
+      };
+    }
   },
   methods: {
     selectBadgeClass(badgeClass) {

@@ -80,10 +80,6 @@ export default {
         url: ""
       },
       submitted: false,
-      introductionContent: {
-        title: this.$t("CreateProfilePage.signwithprofile"),
-        text: this.$t("CreateProfilePage.disclaimer")
-      },
       pageVisited: 2,
       profile: profile,
       submitted: false,
@@ -98,7 +94,14 @@ export default {
   computed: {
     implication() {
       return this.$store.state.implication;
+    },
+    introductionContent(){ 
+      return{
+        title: this.$t("CreateProfilePage.signwithprofile"),
+        text: this.$t("CreateProfilePage.disclaimer")
+      }
     }
+    
   },
   methods: {
     post: function() {

@@ -43,6 +43,12 @@ export default {
     "v-button": Button
   },
   computed: {
+    introductionContent() {
+      return{
+        title: this.$t("recipient.introductionContent.title"),
+        text: this.$t("recipient.introductionContent.text")
+        }
+      },
     ...mapState(["badgeTemplate"])
   },
   data() {
@@ -50,10 +56,6 @@ export default {
       flowStep: "recipient",
       selectedBoolean: true,
       recipient: "",
-      introductionContent: {
-        title: this.$t("recipient.introductionContent.title"),
-        text: this.$t("recipient.introductionContent.text")
-      },
       pageVisited: 1,
       bgimage: {
         img: "./share_step2.png",
