@@ -65,7 +65,7 @@
       "share": "Share your badge"
     },
     "TheHeader":{
-      "practical": "Practical information",
+      "technical": "Technical information",
       "about": "About the project",
       "new": "Make a new badge"
     },
@@ -138,6 +138,6 @@
     }
   },
   "nl": {
-    
+
   }
 }
