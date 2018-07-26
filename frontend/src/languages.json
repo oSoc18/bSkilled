@@ -64,6 +64,12 @@
       "personal": "Some personal information",
       "share": "Share your badge"
     },
+    "StepIndicatorStepsSigning":{
+      "sign": "Sign the badge",
+      "upload": "Upload your private key",
+      "profile": "Some personal information",
+      "confirm": "confirmation"
+    },
     "TheHeader":{
       "practical": "Practical information",
       "about": "About the project",
@@ -73,11 +79,11 @@
       "goto":"Go to main app"
     },
     "ConfirmationPage":{
-      "questionsign":"Wan't to sign this badge?",
+      "questionsign":"Do you confrim to sign this badge?",
       "sign": "Sign",
       "nosign": "Don't sign",
       "introductionTitle": "Confirm you want to sign this badge ",
-      "introductionText": "By confirming you verify that this person has mastered the skill displayed in the badge."
+      "introductionDescription": "By confirming to sign you verify that this person has mastered the skill displayed in the badge."
     },
     "CreateProfilePage":{
       "name": "Name",
@@ -87,7 +93,7 @@
       "save": "Save personal information",
       "loading": "loading...",
       "signwithprofile": "Sign the badge with your profile key",
-      "disclaimer": "We only use your personal information to create your badge and mail it to you."
+      "disclaimer": "We only use your personal information to sign the badge"
     },
     "GenerateKeyPage":{
       "getkey": "Let's get a profile key",
@@ -100,7 +106,7 @@
       "keyuse": "You can use this profile key to sign the badge.",
       "generated": "Your profile key is generated",
       "introductionTitle": "Seems like you don't have a pesonal key yet",
-      "introductionText": "We only use your personal information to create your badge and mail it to you."
+      "introductionText": "What is a private key? It's a private file so keep it to yourself. It acts like a unique key (like a key to your house). We use it to identify you and officialy sign the badges. You can also protect your key with a password."
     },
     "ShareBadgeLinkPage":{
       "title": "You created a badge!",
@@ -118,14 +124,14 @@
       "gohome": "Go to the homepage",
       "loading": "Loading...",
       "introductionTitle": "Seems like you want to sign a badge",
-      "introductionDescription": "We only use your personal information to create your badge and mail it to you."
+      "introductionDescription": "By signing a badge you verify that this person has mastered the skill displayed in the badge?"
     },
     "UploadKeyPage":{
-      "upload": "Upload your profile key",
+      "upload": "Upload your private key",
       "pass": "passphrase",
       "nokey": "Don't have key yet? Generate one here.",
-      "introductionTitle": "Sign the badge with your profile key",
-      "introductionDescription": "We only use your personal information to create your badge and mail it to you."
+      "introductionTitle": "Sign the badge with your private key",
+      "introductionDescription": "What is a private key? It's a private file so keep it to yourself. It acts like a unique key (like a key to your house). We use it to identify you and officialy sign the badges "
     },
     "Download":{
       "download": "Download your badge",
@@ -138,6 +144,6 @@
     }
   },
   "nl": {
-    
+
   }
 }
