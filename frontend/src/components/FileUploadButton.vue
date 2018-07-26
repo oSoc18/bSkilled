@@ -1,6 +1,6 @@
 <template>
   <div class="container-upload-button">
-    <label :for="inputId"><slot>Upload file</slot></label>
+    <label :for="inputId"><slot>{{$t("FileUploadButton.upload")}}</slot></label>
     <input type="file" :id="inputId" :name="inputId" @change="fileChange"/>
   </div>
 </template>

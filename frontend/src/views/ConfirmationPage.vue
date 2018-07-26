@@ -5,11 +5,11 @@
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
-          <h1 class="h1--blue title-sign-confirm">Confirm you want to sign this badge</h1>
+          <h1 class="h1--blue title-sign-confirm">{{$t("ConfirmationPage.questionsign")}}</h1>
           <Badge :badge-class="implication.badgeTemplate" :recipient="implication.recipient" />
           <div class="button-container">
-            <v-button class="button--blue" :onClick="sign">Sign the badge</v-button>
-            <v-button class="button--line" :onClick="dontSign">Don't sign the badge</v-button>
+            <v-button class="button--blue" :onClick="sign">{{$t("ConfirmationPage.sign")}}</v-button>
+            <v-button class="button--line" :onClick="dontSign">{{$t("ConfirmationPage.nosign")}}</v-button>
           </div>
         </div>
       </div>
