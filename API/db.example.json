@@ -3,11 +3,33 @@
   "implication": {},
   "profile": {},
   "badgeTemplate": {
+    "usElESSiDy": {
+      "id": "just an ID",
+      "type": "BadgeClass",
+      "name": "Good oSoc18 partner",
+      "description": "You have been intensively involved as a partner in the development of one of the oSoc18 project.",
+      "image": "https://i.imgur.com/M6zG34D.png",
+      "criteria": {
+        "id": "just an ID",
+        "narrative": " - You were an official partner of one of the oSoc18 project. \n    - You have played an active role helping the project group during the whole month of July : meeting participation, advisor, feedback giver,… "
+      }
+    },
+    "dUTchBaDg": {
+      "id": "just an ID",
+      "type": "BadgeClass",
+      "name": "Nederlands",
+      "description": "Je kan een tekst of gesprek in het Nederlands goed volgen. Je kan zelf vlot Nederlands spreken en schrijven.",
+      "image": "https://i.imgur.com/U3qJJB9.png",
+      "criteria": {
+          "id": "just an ID",
+          "narrative": "Je beheerst de Nederlandse taal."
+      }
+    },
     "EY3sE2a36": {
       "id": "just an ID",
       "type": "BadgeClass",
       "name": "OPEN SUMMER OF CODE 2018",
-      "description": "You were an active member in the 4-week summer programme in July, that provides Belgian based students the training, the network and support necessary to transform open innovation projects into powerful real-world services.\n ",
+      "description": "You were an active member in the 4-week summer programme of in July, that provides Belgian based students the training, the network and support necessary to transform open innovation projects into powerful real-world services.\n ",
       "image": "https://i.imgur.com/M6zG34D.png",
       "criteria": {
         "id": "just an ID",
@@ -18,7 +40,7 @@
       "id": "just an ID",
       "type": "BadgeClass",
       "name": "TEAMWORK",
-      "description": "You used to work within a team and you are good at taking the best from every team member to achieve a project",
+      "description": "You are used to working with and within a team and you are good at collaborating with every team member to achieve great results",
       "image": "https://i.imgur.com/OiuqC3o.png",
       "criteria": {
         "id": "just an ID",
@@ -29,18 +51,18 @@
       "id": "just an ID",
       "type": "BadgeClass",
       "name": "PUBLIC SPEAKING",
-      "description": "You are very comfortable when speaking in front of a public and you have already experienced it several times",
+      "description": "You are very comfortable when speaking in front of a public and you can impress your public with your fluency",
       "image": "https://i.imgur.com/MMTbcVO.png",
       "criteria": {
         "id": "just an ID",
-        "narrative": " – You have already had to do more than 5 public speeches\n    • You have confidence when talking in public\n    • You have passion when you communicate about your subject\n    • You use voice modulations\n    • Using storytelling is something familiar for you\n    • You connect with your audience"
+        "narrative": "– You have already had to do more than 5 public speeches\n    • You have confidence when talking in public\n    • You have passion when you communicate about your subject\n    • You use voice modulations\n    • Using storytelling is something familiar for you\n    • You connect with your audience"
       }
     },
     "uk_ssmr6YV": {
       "id": "just an ID",
       "type": "BadgeClass",
-      "name": " SOFTWARE DEVELOPMENT ",
-      "description": " You are good in every software development process",
+      "name": " SOFTWARE DEVELOPMENT",
+      "description": "You can work yourself into a tech stack and constructively work on software engineering problems",
       "image": "https://i.imgur.com/yPO4mc7.png",
       "criteria": {
         "id": "just an ID",
@@ -51,11 +73,11 @@
       "id": "just an ID",
       "type": "BadgeClass",
       "name": "WRITING SKILLS",
-      "description": "You used to write a lot and your good in writing communication",
+      "description": "Your written work is easy and fluent to read, it engages the reader and is never boring or complicated.",
       "image": "https://i.imgur.com/U3qJJB9.png",
       "criteria": {
         "id": "just an ID",
-        "narrative": "- You have at least 5 texts proofs of your writting skills\n    • You master several techniques of writing\n    • You have a good spelling"
+        "narrative": "- You have at least 5 texts proofs of your writing skills\n    • You master several techniques of writing\n    • You have a good spelling"
       }
     },
     "-rTGr9B1PQ": {
@@ -88,29 +110,29 @@
       "image": "https://i.imgur.com/221rXq7.png",
       "criteria": {
         "id": "just an ID",
-        "narrative": " You have done a project for or with VDAB"
+        "narrative": "You have done a project for or with VDAB"
       }
     },
     "kb77ik_Q5h": {
       "id": "just an ID",
       "type": "BadgeClass",
       "name": "Collaboration with Cronos Groep",
-      "description": " You have worked in collaboration with Cronos Groep",
+      "description": "You have worked in collaboration with Cronos Groep",
       "image": "https://i.imgur.com/0SR4mX8.png",
       "criteria": {
         "id": "just an ID",
-        "narrative": " You have done a project for or with Cronos Groep"
+        "narrative": "You have done a project for or with Cronos Groep"
       }
     },
     "Twid84baCz": {
       "id": "just an ID",
       "type": "BadgeClass",
       "name": "Collaboration with Cognizone",
-      "description": " You have worked in collaboration with Cognizone",
+      "description": "You have worked in collaboration with Cognizone",
       "image": "https://i.imgur.com/3XOzE04.png",
       "criteria": {
         "id": "just an ID",
-        "narrative": " You have done a project for or with Cognizone"
+        "narrative": "You have done a project for or with Cognizone"
       }
     },
     "g2TrMUaN6f": {
@@ -121,18 +143,18 @@
       "image": "https://i.imgur.com/tkCzHPO.png",
       "criteria": {
         "id": "just an ID",
-        "narrative": " You have done a project for or with ComPas "
+        "narrative": "You have done a project for or with ComPas"
       }
     },
     "C0RxxKIeT2": {
       "id": "just an ID",
       "type": "BadgeClass",
       "name": "HackYourFuture",
-      "description": " You were taught by the HackYourFuture 6 or 8 months programme. You have learned some programming languages (JavaScript, HTML, CSS, Node, React and Databasing in MySQL/MongoDB) and you are well prepared for the job of Web Developer. ",
+      "description": "You were taught by the HackYourFuture 6 or 8 months programme. You have learned some programming languages (JavaScript, HTML, CSS, Node, React and Databasing in MySQL/MongoDB) and you are well prepared for the job of Web Developer.",
       "image": "https://i.imgur.com/SNkcOYu.png",
       "criteria": {
         "id": "just an ID",
-        "narrative": " You have participated to the programme ‘HackYourFuture’ "
+        "narrative": "You have participated to the programme ‘HackYourFuture’"
       }
     }
   }

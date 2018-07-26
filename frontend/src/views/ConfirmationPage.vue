@@ -34,10 +34,6 @@ export default {
   data() {
     return {
       flowStep: "confirm",
-      introductionContent: {
-        title: this.$t("ConfirmationPage.introductionTitle"),
-         text: this.$t("ConfirmationPage.introductionDescription")
-      },
       pageVisited: 3,
       bgimage: {
         img: "./signing_step4.png",
@@ -54,7 +50,14 @@ export default {
     Badge
   },
   computed: {
-    ...mapState(["implication"])
+    
+    ...mapState(["implication"]),
+    introductionContent(){
+      return  {
+        title: this.$t("ConfirmationPage.introductionTitle"),
+        text: this.$t("ConfirmationPage.introductionDescription")
+      };
+  },
   },
   methods: {
     sign() {

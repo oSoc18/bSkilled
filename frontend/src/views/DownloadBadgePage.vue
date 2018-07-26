@@ -55,10 +55,7 @@ export default {
    },
    data() {
      return {
-       introductionContent: {
-         title: this.$t("Download.introductionTitle"),
-         text: this.$t("Download.introductionDescription")
-       },
+       
        bgimage: {
          img: "./signing_step4.png",
          position: "355px",
@@ -68,6 +65,12 @@ export default {
      };
    },
   computed: {
+    introductionContent() {
+      return{
+         title: this.$t("Download.introductionTitle"),
+         text: this.$t("Download.introductionDescription")
+         }
+       },
     badge() {
       return this.$store.state.badge;
     },

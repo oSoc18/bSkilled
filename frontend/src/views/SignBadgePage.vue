@@ -39,10 +39,6 @@ export default {
   data() {
     return {
       flowStep: "sign",
-      introductionContent: {
-        title:  this.$t("signbadgepage.introductionTitle") ,
-        text:  this.$t("signbadgepage.introductionDescription")
-      },
       pageVisited: 0,
       bgimage: {
         img: "./signing_step1.png",
@@ -53,6 +49,12 @@ export default {
     };
   },
   computed: {
+    introductionContent() {
+      return{
+        title:  this.$t("signbadgepage.introductionTitle") ,
+        text:  this.$t("signbadgepage.introductionDescription")
+        }
+    },
     implication() {
       return this.$store.state.implication;
     },

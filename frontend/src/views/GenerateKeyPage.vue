@@ -64,10 +64,6 @@ export default {
       password: "",
       progress: 0,
       currentaction: "",
-      introductionContent: {
-        title: this.$t("GenerateKeyPage.introductionTitle"),
-        text: this.$t("GenerateKeyPage.introductionText")
-      },
       pageVisited: 1,
       bgimage: {
         img: "./signing_step2.png",
@@ -119,6 +115,14 @@ export default {
     goBack() {
       this.$router.go(-1);
     }
+  },
+  computed: {
+    introductionContent() {
+      return{
+        title: this.$t("GenerateKeyPage.introductionTitle"),
+        text: this.$t("GenerateKeyPage.introductionText")
+        }
+      }
   }
 };
 </script>
