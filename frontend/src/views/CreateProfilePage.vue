@@ -33,7 +33,7 @@
               </div>
               <div class="input-container">
                 <label>{{$t("CreateProfilePage.website")}}<span class="label-span">(optional)</span></label>
-                <input type="text" v-model.lazy="profile.url" :placeholder="$t('CreateProfilePage.websitelPlaceholder')"/>
+                <input type="text" v-model.lazy="profile.url" :placeholder="$t('CreateProfilePage.websitePlaceholder')"/>
               </div>
               <v-button :onClick="validate" class="button--blue">{{$t("CreateProfilePage.save")}}</v-button>
             </form>
@@ -95,13 +95,12 @@ export default {
     implication() {
       return this.$store.state.implication;
     },
-    introductionContent(){
-      return{
-        title: this.$t("CreateProfilePage.signwithprofile"),
+    introductionContent() {
+      return {
+        title: this.$t("CreateProfilePage.signWithProfile"),
         text: this.$t("CreateProfilePage.disclaimer")
-      }
+      };
     }
-
   },
   methods: {
     post: function() {
@@ -115,24 +114,23 @@ export default {
           this.post();
           return;
         } else {
-          if(this.errors.has('email')){
+          if (this.errors.has("email")) {
             this.$refs.errorMessageEmail.classList.remove("is-hidden");
             this.$refs.errorMarkEmail.classList.remove("is-hidden");
           }
-          if(this.errors.has('name')){
+          if (this.errors.has("name")) {
             this.$refs.errorMessageName.classList.remove("is-hidden");
             this.$refs.errorMarkName.classList.remove("is-hidden");
           }
-
         }
       });
     },
     handlerInputChange(e) {
-      if(this.errors.has('email') && e.currentTarget.name === 'email'){
+      if (this.errors.has("email") && e.currentTarget.name === "email") {
         this.$refs.errorMessageEmail.classList.add("is-hidden");
         this.$refs.errorMarkEmail.classList.add("is-hidden");
       }
-      if(this.errors.has('name') && e.currentTarget.name === 'name'){
+      if (this.errors.has("name") && e.currentTarget.name === "name") {
         this.$refs.errorMessageName.classList.add("is-hidden");
         this.$refs.errorMarkName.classList.add("is-hidden");
       }
@@ -140,7 +138,7 @@ export default {
   },
   activated() {
     this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
-  },
+  }
 };
 </script>
 

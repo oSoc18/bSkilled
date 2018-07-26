@@ -9,7 +9,7 @@
             <form v-if="!generating">
               <h1 class="h1--blue">{{$t("GenerateKeyPage.getkey")}}</h1>
               <p class="information">{{$t("GenerateKeyPage.keyinfo")}}</p>
-              <p class="allert-information">{{$t("GenerateKeyPage.keyimportance")}}</p>
+              <p class="allert-information">{{$t("GenerateKeyPage.keyImportance")}}</p>
               <div class="input-container">
                 <label>{{$t("GenerateKeyPage.password")}}<span class="label-span">(optional)</span></label>
                 <input type="password" v-model.lazy="password" required />
@@ -20,9 +20,9 @@
               </div>
             </form>
             <div v-if="generating">
-              <h1 class="h1--blue">{{$t("GenerateKeyPage.isgenerating")}}</h1>
-              <p class="information">{{$t("GenerateKeyPage.keyuse")}}</p>
-              <p class="allert-information">{{$t("GenerateKeyPage.keyimportance")}}</p>
+              <h1 class="h1--blue">{{$t("GenerateKeyPage.isGenerating")}}</h1>
+              <p class="information">{{$t("GenerateKeyPage.keyUse")}}</p>
+              <p class="allert-information">{{$t("GenerateKeyPage.keyImportance")}}</p>
               <div class="progress_container" v-if="generated === false">
                 <div class="progress progress-striped active">
                   <div class="bar" ref="progressbar"></div>
@@ -118,11 +118,11 @@ export default {
   },
   computed: {
     introductionContent() {
-      return{
+      return {
         title: this.$t("GenerateKeyPage.introductionTitle"),
         text: this.$t("GenerateKeyPage.introductionText")
-        }
-      }
+      };
+    }
   }
 };
 </script>

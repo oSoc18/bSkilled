@@ -22,7 +22,7 @@
                   </div>
                 </div>
                 <div v-else>
-                  <p>{{$t("Download.notsigned")}}</p>
+                  <p>{{$t("Download.notSigned")}}</p>
                   <router-link :to="`{ name: 'sign', params: { sid: {badge.sid}}`">
                     <Button>{{$t("Download.sign")}}</Button>
                   </router-link>
@@ -50,27 +50,25 @@ import Introduction from "Components/IntroductionOfPage";
 export default {
   components: {
     Button,
-    "v-introduction": Introduction,
-
-   },
-   data() {
-     return {
-       
-       bgimage: {
-         img: "./signing_step4.png",
-         position: "355px",
-         size: "40%",
-         left: "-30px"
-       }
-     };
-   },
+    "v-introduction": Introduction
+  },
+  data() {
+    return {
+      bgimage: {
+        img: "./signing_step4.png",
+        position: "355px",
+        size: "40%",
+        left: "-30px"
+      }
+    };
+  },
   computed: {
     introductionContent() {
-      return{
-         title: this.$t("Download.introductionTitle"),
-         text: this.$t("Download.introductionDescription")
-         }
-       },
+      return {
+        title: this.$t("Download.introductionTitle"),
+        text: this.$t("Download.introductionDescription")
+      };
+    },
     badge() {
       return this.$store.state.badge;
     },
@@ -121,7 +119,7 @@ export default {
   right: 75px;
 }
 
-.created-badge-bg{
+.created-badge-bg {
   color: $darkblue;
   font-size: 14px;
   box-shadow: 0 0 8px 0 rgba(48, 53, 92, 0.25);
@@ -133,7 +131,6 @@ export default {
   margin-bottom: 25px;
 }
 
-
 .created-badge-recipient {
   font-weight: 600;
   font-size: 15px;
@@ -141,7 +138,7 @@ export default {
   margin-top: 10px;
 
   span {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 14px;
     font-weight: 500;
   }
@@ -193,5 +190,4 @@ export default {
     color: $white;
   }
 }
-
 </style>

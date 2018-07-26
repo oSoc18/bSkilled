@@ -19,14 +19,14 @@
       "functionality": {
         "how": "How does bSkilled work?",
         "make": "- Make a badge that represents one of your skills.",
-        "recieve": "- Receive a link &amp; send it to one of your connections so they can sign it.",
+        "receive": "- Receive a link &amp; send it to one of your connections so they can sign it.",
         "sign": "- This person will be then able to sign your badge with this link.",
         "download": "- Once the badge is signed, download it and save it!",
         "use": "- Use the badge wherever you want!"
       },
       "cta": {
         "title": "Use bSkilled",
-        "getacknowledged": "Get acknowledged for your skills by letting your connections endorse and verify your qualities with Open Badges in an easy, reliable and standardised way.",
+        "getAcknowledged": "Get acknowledged for your skills by letting your connections endorse and verify your qualities with Open Badges in an easy, reliable and standardised way.",
         "create": "Create a badge"
       },
       "slogan": {
@@ -81,9 +81,9 @@
       "goto":"Go to main app"
     },
     "ConfirmationPage":{
-      "questionsign":"Do you confrim to sign this badge?",
+      "questionSign":"Do you confrim to sign this badge?",
       "sign": "Sign",
-      "nosign": "Don't sign",
+      "dontSign": "Don't sign",
       "introductionTitle": "Confirm you want to sign this badge ",
       "introductionDescription": "By confirming to sign you verify that this person has mastered the skill displayed in the badge."
     },
@@ -94,21 +94,21 @@
       "emailPlaceholder": "you@email.com",
       "company": "Company name",
       "website": "Website url",
-      "websitelPlaceholder": "https://yourwebsiteurl.be",
+      "websitePlaceholder": "https://yourwebsiteurl.be",
       "save": "Save personal information",
       "loading": "loading...",
-      "signwithprofile": "Sign the badge with your profile key",
+      "signWithProfile": "Sign the badge with your profile key",
       "disclaimer": "We only use your personal information to sign the badge"
     },
     "GenerateKeyPage":{
       "getkey": "Let's get a profile key",
       "keyinfo": "You can use this profile key to sign the badge.",
-      "keyimportance":"This key is your own responsability, keep it somewhere safe!",
+      "keyImportance":"This key is your own responsability, keep it somewhere safe!",
       "password": "Password",
       "generatekey": "Get your profile key",
       "back": "Go back",
-      "isgenerating": "Your profile key pair is currently generating",
-      "keyuse": "You can use this profile key to sign the badge.",
+      "isGenerating": "Your profile key pair is currently generating",
+      "keyUse": "You can use this profile key to sign the badge.",
       "generated": "Your profile key is generated",
       "introductionTitle": "Seems like you don't have a pesonal key yet",
       "introductionText": "What is a private key? It's a private file so keep it to yourself. It acts like a unique key (like a key to your house). We use it to identify you and officialy sign the badges. You can also protect your key with a password."
@@ -118,16 +118,16 @@
       "description": "Share this link with your connections. You’ll get an e-mail once your badge is signed. Then you’ll be able to download your signed badge!",
       "copy": "Copy link",
       "copied": "Link was copied",
-      "cntrlc": "Press CTRL+C to copy.",
+      "controlCopy": "Press CTRL+C to copy.",
       "newbadge": "Make a new badge",
       "introductionTitle": "Share your badge",
       "introductionDescription": "Copy the link and share it with your connections. Your connections can sign your badge by opening the link and filling in some information.",
       "createdTitle": "You created a badge!",
       "createdDescription": "Share this link with your connections. When they have verified it, you’ll be able to download your signed badge!"
     },
-    "signbadgepage":{
-      "whannesign":"Do you want to sign this badge?",
-      "signbadge":"Sign Badge",
+    "SignBadgePage":{
+      "wantToSign":"Do you want to sign this badge?",
+      "signBadge":"Sign Badge",
       "gohome": "Go to the homepage",
       "loading": "Loading...",
       "introductionTitle": "Seems like you want to sign a badge",
@@ -136,14 +136,14 @@
     "UploadKeyPage":{
       "upload": "Upload your private key",
       "pass": "passphrase",
-      "nokey": "Don't have key yet? Generate one here.",
+      "noKeyYet": "Don't have key yet? Generate one here.",
       "introductionTitle": "Sign the badge with your private key",
       "introductionDescription": "What is a private key? It's a private file so keep it to yourself. It acts like a unique key (like a key to your house). We use it to identify you and officialy sign the badges "
     },
     "Download":{
       "download": "Download your badge",
       "backhome": "Back to home",
-      "notsigned": "NOT SIGNED YET",
+      "notSigned": "NOT SIGNED YET",
       "sign": "Sign",
       "introductionTitle": "Your badge is signed, download it!",
       "introductionDescription": "Your skill is verified, you can now download it and share it with other people to show what you're capable of."
