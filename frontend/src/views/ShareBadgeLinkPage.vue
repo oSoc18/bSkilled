@@ -18,7 +18,7 @@
           </div>
           <svg class="checkmark" v-if="copySucceeded === true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
           <p class="copy-status" v-if="copySucceeded === true">{{$t("ShareBadgeLinkPage.copied")}}</p>
-          <p class="copy-status" v-if="copySucceeded === false">{{$t("ShareBadgeLinkPage.cntrlc")}}</p>
+          <p class="copy-status" v-if="copySucceeded === false">{{$t("ShareBadgeLinkPage.controlCopy")}}</p>
           <v-button :onClick="handlerNewBadge">{{$t("ShareBadgeLinkPage.newbadge")}}</v-button>
         </div>
       </div>
@@ -68,12 +68,12 @@ export default {
     }
   },
   computed: {
-    introductionContent(){
-      return{
+    introductionContent() {
+      return {
         title: this.$t("ShareBadgeLinkPage.introductionTitle"),
         text: this.$t("ShareBadgeLinkPage.introductionDescription")
-      }
-      },
+      };
+    },
     ...mapState(["share", "badgeTemplate", "recipient"]),
     thingToCopy() {
       return process.env.LOCATION + "#/share/" + this.share.sid;

@@ -6,16 +6,16 @@
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div v-if="implication && !implication.signed">
           <div class="container container-animation container-more-margin">
-            <h1 class="h1--blue title-sign-confirm">{{$t("signbadgepage.whannesign")}}</h1>
+            <h1 class="h1--blue title-sign-confirm">{{$t("SignBadgePage.wantToSign")}}</h1>
             <Badge :badge-class="implication.badgeTemplate" :recipient="implication.recipient"/>
             <div class="button-container">
-              <Button class="button--blue" :onClick="sign"> {{$t("signbadgepage.signbadge")}}   </Button>
-              <Button class="button--line" :onClick="dontSign">   {{$t("signbadgepage.gohome")}}</Button>
+              <Button class="button--blue" :onClick="sign"> {{$t("SignBadgePage.signBadge")}}   </Button>
+              <Button class="button--line" :onClick="dontSign">   {{$t("SignBadgePage.goHome")}}</Button>
             </div>
           </div>
         </div>
         <div v-else>
-          <p>{{$t("signbadgepage.loading")}}</p>
+          <p>{{$t("SignBadgePage.loading")}}</p>
         </div>
       </div>
     </section>
@@ -50,10 +50,10 @@ export default {
   },
   computed: {
     introductionContent() {
-      return{
-        title:  this.$t("signbadgepage.introductionTitle") ,
-        text:  this.$t("signbadgepage.introductionDescription")
-        }
+      return {
+        title: this.$t("SignBadgePage.introductionTitle"),
+        text: this.$t("SignBadgePage.introductionDescription")
+      };
     },
     implication() {
       return this.$store.state.implication;
@@ -101,5 +101,4 @@ export default {
   margin-bottom: 30px;
   text-align: center;
 }
-
 </style>

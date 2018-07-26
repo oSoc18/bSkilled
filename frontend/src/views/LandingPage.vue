@@ -46,7 +46,7 @@
             {{$t("landing.functionality.make")}}
           </li>
           <li>
-            {{$t("landing.functionality.recieve")}}
+            {{$t("landing.functionality.receive")}}
           </li>
           <li>
             {{$t("landing.functionality.sign")}}
@@ -63,7 +63,7 @@
     <section class="section-cta">
       <div class="container-landing container-cta">
         <h1 class="h1-landing h1-title-text">{{$t("landing.cta.title")}}</h1>
-        <p class="p-landing">{{$t("landing.cta.getacknowledged")}}</p>
+        <p class="p-landing">{{$t("landing.cta.getAcknowledged")}}</p>
         <router-link to="/create/search">
           <Button class="button--landing">{{$t("landing.cta.create")}}</Button>
         </router-link>

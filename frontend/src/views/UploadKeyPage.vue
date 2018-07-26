@@ -9,7 +9,7 @@
           <div class="upload-container">
             <FileUploadButton id="uploadKey" :onResult="handleKeyLoad"/>
             <router-link :to="{name: 'generate'}" class="a--underline">
-              {{$t("UploadKeyPage.nokey")}}
+              {{$t("UploadKeyPage.noKeyYet")}}
             </router-link>
           </div>
           <div v-if="getPassword" class="container-password">
