@@ -31,7 +31,7 @@ const searchOptions = {
   keys: [
     { name: "name", weight: "0.7" },
     { name: "description", weight: "0.3" }
-  ]
+  ],
 };
 
 export default {

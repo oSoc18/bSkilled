@@ -25,6 +25,7 @@ export default {
 @import "~Vars";
 
 .button {
+  font-family: 'Cabin', sans-serif;
   background: $button;
   border: none;
   border-radius: 100px;

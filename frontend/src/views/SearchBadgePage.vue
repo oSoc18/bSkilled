@@ -1,7 +1,7 @@
 <template>
   <div class="row-page">
-    <v-introduction :introductionContent="introductionContent"></v-introduction>
-    <section class="section-right">
+    <v-introduction :introductionContent="introductionContent"  :bgimage="bgimage" ></v-introduction>
+    <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-margin">
         <v-indicator  :pageVisited="pageVisited" ></v-indicator>
         <BadgeClassSearch :selectBadgeClass="selectBadgeClass"/>
@@ -30,7 +30,13 @@ export default {
         title: this.$t("search.introductionContent.title"),
         text: this.$t("search.introductionContent.text")
       },
-      pageVisited: 0
+      pageVisited: 0,
+      bgimage: {
+        img: "./share_step1.png",
+        position: "260px",
+        size: "95%",
+        left: "15px"
+      }
     };
   },
   methods: {
@@ -40,6 +46,9 @@ export default {
     }
   },
   activated() {
+    this.haveHeightSelected = false
+    this.isSelected = false
+
     this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
   }
 };

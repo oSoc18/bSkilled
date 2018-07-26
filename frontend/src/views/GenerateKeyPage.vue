@@ -1,7 +1,7 @@
 <template>
   <div class="row-page">
-    <v-introduction :introductionContent="introductionContent"></v-introduction>
-    <section class="section-right">
+    <v-introduction :introductionContent="introductionContent" :bgimage="bgimage"></v-introduction>
+    <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
@@ -11,7 +11,7 @@
               <p class="information">{{$t("GenerateKeyPage.keyinfo")}}</p>
               <p class="allert-information">{{$t("GenerateKeyPage.keyimportance")}}</p>
               <div class="input-container">
-                <label>{{$t("GenerateKeyPage.password")}}</label>
+                <label>{{$t("GenerateKeyPage.password")}}<span class="label-span">(optional)</span></label>
                 <input type="password" v-model.lazy="password" required />
               </div>
               <div class="button-container button-container--small">
@@ -68,7 +68,13 @@ export default {
         title: this.$t("GenerateKeyPage.introductionTitle"),
         text: this.$t("GenerateKeyPage.introductionText")
       },
-      pageVisited: 1
+      pageVisited: 1,
+      bgimage: {
+        img: "./signing_step2.png",
+        position: "380px",
+        size: "95%",
+        left: "15px"
+      }
     };
   },
   methods: {
@@ -279,5 +285,11 @@ export default {
   100% {
     box-shadow: inset 0px 0px 0px 30px $green;
   }
+}
+
+
+.label-span {
+  font-size: 13px;
+  margin-left: 215px;
 }
 </style>

@@ -42,11 +42,12 @@ export default {
   width: 100%;
 
   &__brand-logo {
-    width: 115px;
-    height: 35px;
-    background: url('../assets/bee.svg') no-repeat center center;
+    width: 145px;
+    height: 50px;
+    background: url('../assets/bskilled-logo.svg') no-repeat center center;
     background-size: contain;
     text-indent: -9999px;
+    margin-top: 0px;
   }
 }
 

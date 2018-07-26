@@ -1,7 +1,7 @@
 <template>
   <div class="row-page">
-    <v-introduction :introductionContent="introductionContent"></v-introduction>
-    <section class="section-right">
+    <v-introduction :introductionContent="introductionContent" :bgimage="bgimage"></v-introduction>
+    <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
@@ -35,7 +35,7 @@
                 <label>{{$t("CreateProfilePage.website")}}<span class="label-span">(optional)</span></label>
                 <input type="text" v-model.lazy="profile.url" placeholder="https://yourwebsiteurl.be"/>
               </div>
-              <v-button :onClick="validate">{{$t("CreateProfilePage.save")}}</v-button>
+              <v-button :onClick="validate" class="button--blue">{{$t("CreateProfilePage.save")}}</v-button>
             </form>
             <div v-if="submitted">
               <h1>{{$t("CreateProfilePage.loading")}}</h1>
@@ -86,7 +86,13 @@ export default {
       },
       pageVisited: 2,
       profile: profile,
-      submitted: false
+      submitted: false,
+      bgimage: {
+        img: "./signing_step2.png",
+        position: "380px",
+        size: "95%",
+        left: "15px"
+      }
     };
   },
   computed: {

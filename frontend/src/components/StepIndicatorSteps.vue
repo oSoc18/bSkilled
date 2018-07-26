@@ -5,9 +5,10 @@
     <li class="progressbar_item" v-bind:class="{'current': currentPageCheck('share'), 'visited': visitedPageCheck('share')}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPageCheck('share')}" href="#">{{$t("StepIndicatorSteps.share")}}</a></li>
   </ul>
   <ul class="progressbar"  v-else="currentProcess === 'signing' || currentFlowStep === 'sign'">
-    <li class="progressbar_item" v-bind:class="{'current': currentPageCheck('sign'), 'visited': visitedPageCheckSigning('sign'), 'visited-animation': checkVisitedSearch(pageVisited)}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPageCheck('sign')}" href="#" @click="$router.go(-1)">{{$t("StepIndicatorSteps.search")}}</a></li>
-    <li class="progressbar_item" v-bind:class="{'current': currentPageCheck('upload'), 'visited': visitedPageCheckSigning('upload'), 'visited-animation': checkVisitedInformation(pageVisited), 'visited-delay': checkVisitedSearch(pageVisited)}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPageCheck('upload')}"  href="#" @click="$router.go(-1)">{{$t("StepIndicatorSteps.personal")}}</a></li>
-    <li class="progressbar_item" v-bind:class="{'current': currentPageCheck('profile'), 'visited': visitedPageCheckSigning('profile')}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPageCheck('profile')}" href="#">{{$t("StepIndicatorSteps.share")}}</a></li>
+    <li class="progressbar_item" v-bind:class="{'current': currentPageCheck('sign'), 'visited': visitedPageCheckSigning('sign'), 'visited-animation': checkVisitedSearch(pageVisited)}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPageCheckSigning('sign')}" href="#" @click="$router.go(-1)">{{$t("StepIndicatorSteps.search")}}</a></li>
+    <li class="progressbar_item" v-bind:class="{'current': currentPageCheck('upload'), 'visited': visitedPageCheckSigning('upload'), 'visited-animation': checkVisitedInformation(pageVisited), 'visited-delay': checkVisitedSearch(pageVisited)}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPageCheckSigning('upload')}"  href="#" @click="$router.go(-1)">{{$t("StepIndicatorSteps.personal")}}</a></li>
+    <li class="progressbar_item" v-bind:class="{'current': currentPageCheck('profile'), 'visited': visitedPageCheckSigning('profile'),'visited-animation': checkVisitedprofile(pageVisited), 'visited-delay': checkVisitedInformation(pageVisited)}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPageCheckSigning('profile')}" href="#"  @click="$router.go(-1)">{{$t("StepIndicatorSteps.share")}}</a></li>
+    <li class="progressbar_item" v-bind:class="{'current': currentPageCheck('confirm'), 'visited': visitedPageCheckSigning('confirm')}"><a class="progressbar_item_link" v-bind:class="{'link--disabled': !visitedPageCheckSigning('confirm')}" href="#">{{$t("StepIndicatorSteps.share")}}</a></li>
   </ul>
 </template>
 
@@ -20,12 +21,15 @@ export default {
   },
   methods: {
     checkVisitedSearch(int) {
-      console.log(int);
       return int === 1;
     },
     checkVisitedInformation(int) {
       return int === 2;
     },
+    checkVisitedprofile(int) {
+      return int === 3;
+    },
+
     currentPageCheck(page) {
       return page === this.currentFlowStep;
     },
@@ -55,17 +59,11 @@ export default {
         return false;
       }
 
-      if (
-        (this.currentFlowStep === "upload" && page === "sign") ||
-        (this.currentFlowStep === "profile" && page === "sign") ||
-        (this.currentFlowStep === "profile" && page === "upload")
-      ) {
+      if(this.currentFlowStep === 'upload' && page === 'sign' || this.currentFlowStep === 'profile' && page === 'sign' || this.currentFlowStep === 'profile' && page === 'upload'  || this.currentFlowStep === 'confirm' && page === 'sign'
+      || this.currentFlowStep === 'confirm' && page === 'upload'  || this.currentFlowStep === 'confirm' && page === 'profile'   ) {
         return true;
       }
     }
-  },
-  mounted() {
-    console.log(this.currentProcess);
   },
   computed: {
     ...mapState(["currentFlowStep", "currentProcess"])
@@ -86,7 +84,7 @@ export default {
     content: "";
     position: absolute;
     left: 17px;
-    height: 90%;
+    height: 98%;
     width: 3px;
     background: $progressbargrey;
   }

@@ -1,13 +1,13 @@
 <template>
   <div class="row-page">
-    <v-introduction :introductionContent="introductionContent"></v-introduction>
-    <section class="section-right">
+    <v-introduction :introductionContent="introductionContent" :bgimage="bgimage"></v-introduction>
+    <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container">
-          <Badge :badge-class="share.implication.badgeTemplate" />
-          <h1 class="create-badge-title">{{$t("ShareBadgeLinkPage.title")}}</h1>
-          <p class="link-description">{{$t("ShareBadgeLinkPage.description")}}</p>
+          <Badge :badge-class="share.implication.badgeTemplate"/>
+          <h1 class="create-badge-title">You created a badge!</h1>
+          <p class="link-description">Share this link with your connections. When they have verified it, you’ll be able to download your signed badge!</p>
           <div class="container-link">
             <p class="link"> {{location + "sign/" + share.sid}}</p>
             <button class="button-copy" type="button" name="button"
@@ -32,7 +32,7 @@ import { mapState } from "vuex";
 import Introduction from "Components/IntroductionOfPage";
 import Indicator from "Components/StepIndicator";
 import Button from "Components/Button";
-import Badge from "Components/Badge";
+import Badge from "Components/BadgeToShare";
 
 export default {
   components: {
@@ -51,7 +51,13 @@ export default {
         title: this.$t("ShareBadgeLinkPage.introductionTitle"),
         text: this.$t("ShareBadgeLinkPage.introductionDescription")
       },
-      pageVisited: 2
+      pageVisited: 2,
+      bgimage: {
+        img: "./share_step3.png",
+        position: "307px",
+        size: "95%",
+        left: "15px"
+      }
     };
   },
   methods: {
