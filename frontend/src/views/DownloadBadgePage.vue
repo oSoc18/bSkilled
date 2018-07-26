@@ -17,17 +17,17 @@
                   </div>
                   <!-- <p>ASSERTION: {{JSON.stringify(badge.assertion)}}</p> -->
                   <div class="button-container button-container-height">
-                    <a :href="imgUrl" download class="button button--blue">Download your badge</a>
-                    <a href="/" class="button button--line">Back to home</a>
+                    <a :href="imgUrl" download class="button button--blue">{{$t("Download.download")}}</a>
+                    <a href="/" class="button button--line">{{$t("Download.backhome")}}</a>
                   </div>
                 </div>
                 <div v-else>
-                  <p>NOT SIGNED YET</p>
+                  <p>{{$t("Download.notsigned")}}</p>
                   <router-link :to="`{ name: 'sign', params: { sid: {badge.sid}}`">
-                    <Button>Sign</Button>
+                    <Button>{{$t("Download.sign")}}</Button>
                   </router-link>
                   <router-link :to="`/`">
-                    <Button>Back to home</Button>
+                    <Button>{{$t("Download.backhome")}}</Button>
                   </router-link>
                 </div>
               </div>
@@ -56,9 +56,8 @@ export default {
    data() {
      return {
        introductionContent: {
-         title: "Your badge is signed, download it!",
-         text:
-           "Your skill is verified, you can now download it and share it with other people to show what you're capable of."
+         title: this.$t("Download.introductionTitle"),
+         text: this.$t("Download.introductionDescription")
        },
        bgimage: {
          img: "./signing_step4.png",
