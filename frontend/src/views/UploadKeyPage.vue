@@ -54,13 +54,13 @@ export default {
       introductionContent: {
         title: this.$t("UploadKeyPage.introductionTitle"),
         text: this.$t("UploadKeyPage.introductionDescription")
-          
+
       },
       pageVisited: 1,
       bgimage: {
         img: "./signing_step2.png",
         position: "380px",
-        size: "95%",
+        size: "35%",
         left: "15px"
       }
 

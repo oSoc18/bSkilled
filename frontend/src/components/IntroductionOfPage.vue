@@ -28,6 +28,8 @@ export default {
 
     this.$refs.sectionImg.style.background = `#fccd77 url(${this.img_src}) no-repeat ${this.bgimage.left} ${this.bgimage.position}`;
     this.$refs.sectionImg.style.backgroundSize = this.bgimage.size
+    this.$refs.sectionImg.style.backgroundAttachment = "fixed";
+
   }
 };
 
