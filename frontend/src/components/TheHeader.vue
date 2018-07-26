@@ -4,10 +4,11 @@
     <nav class="l-navigation">
       <ul class="l-navigation__menu">
         <li class="l-navigation__menu__item">
-        <a href="/#practical" v-on:click.prevent="practical()" >{{$t("TheHeader.practical")}}</a>
+        <a href="http://docs.bSkilled.today" >{{$t("TheHeader.technical")}}</a>
         </li>
         <li class=" l-navigation__menu__item">
-          <a href="/#about" v-on:click.prevent="about()">{{$t("TheHeader.about")}}</a>
+          <router-link to="/">{{$t("TheHeader.about")}}</router-link>
+          <!-- <a href="/#about" v-on:click.prevent="about()">{{$t("TheHeader.about")}}</a> -->
         </li>
         <li class=" l-navigation__menu__item l-navigation__menu__item--state-current">
           <router-link to="/create/search">{{$t("TheHeader.new")}}</router-link>
