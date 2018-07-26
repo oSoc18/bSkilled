@@ -9,7 +9,7 @@
               <div v-if="badge">
                 <div v-if="badge.signed" class="badge-signed-container">
                   <img :src="imgUrl" alt="badge" width="auto" height="250">
-                  <img class="verified-img"src="../assets/checked.svg" alt="" width="auto" height="70">
+                  <img class="verified-img" src="../assets/checked.svg" alt="" width="auto" height="70">
                   <div class="created-badge-bg">
                     <p class="created-badge-name">{{$store.state.badge.implication.badgeTemplate.name}}</p>
                     <p class="created-badge-recipient">Recipient: <span>{{$store.state.badge.implication.recipient}}</span> </p>

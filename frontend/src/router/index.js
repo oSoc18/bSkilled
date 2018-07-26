@@ -48,10 +48,20 @@ const flowGuardSign = (to, from, next) => {
   next();
 }
 
+
+
 const routes = [{
     path: '/',
     component: Landing,
     name: 'landing',
+}, {
+    path: '/#about',
+    component: Landing,
+    name: 'about',
+  }, {
+    path: '/#practical',
+    component: Landing,
+    name: 'practical',
   }, {
     path: '/share/:sid/download',
     component: Download,
@@ -125,5 +135,15 @@ const routes = [{
     redirect: '/'
   }
 ];
+const router = new VueRouter({ routes });
 
-export default new VueRouter({ routes });
+router.afterEach((to, from) => {
+  if (to.name == "about" ) {
+    window.location = ('/#about');
+  }
+  if (to.name == "practical") {
+    window.location = ('/#practical');
+  }
+})
+
+export default router;

@@ -8,7 +8,7 @@
           <div class="form_generate-key">
             <form @submit.prevent v-if="!submitted">
               <div class="input-container">
-                <label for="name">Name<span v-show="errors.has('name')" class="mark-error is-hidden" ref="errorMarkName">*</span></label>
+                <label for="name">{{$t("CreateProfilePage.name")}}<span v-show="errors.has('name')" class="mark-error is-hidden" ref="errorMarkName">*</span></label>
                 <p v-show="errors.has('name')" class="error is-hidden" ref="errorMessageName">{{ errors.first('name') }}</p>
                 <input name="name"
                        v-model="profile.name"
@@ -20,7 +20,7 @@
                        @input="handlerInputChange">
               </div>
               <div class="input-container">
-                <label for="email">E-mail adress<span v-show="errors.has('email')" class="mark-error is-hidden" ref="errorMarkEmail">*</span></label>
+                <label for="email">{{$t("CreateProfilePage.email")}}<span v-show="errors.has('email')" class="mark-error is-hidden" ref="errorMarkEmail">*</span></label>
                 <p v-show="errors.has('email')" class="error is-hidden" ref="errorMessageEmail">{{ errors.first('email') }}</p>
                 <input name="email"
                        v-model="profile.email"
@@ -32,13 +32,13 @@
                        @input="handlerInputChange">
               </div>
               <div class="input-container">
-                <label>Website url<span class="label-span">(optional)</span></label>
+                <label>{{$t("CreateProfilePage.website")}}<span class="label-span">(optional)</span></label>
                 <input type="text" v-model.lazy="profile.url" placeholder="https://yourwebsiteurl.be"/>
               </div>
-              <v-button :onClick="validate" class="button--blue">Save personal information</v-button>
+              <v-button :onClick="validate" class="button--blue">{{$t("CreateProfilePage.save")}}</v-button>
             </form>
             <div v-if="submitted">
-              <h1>Lorem Ipsum.</h1>
+              <h1>{{$t("CreateProfilePage.loading")}}</h1>
             </div>
           </div>
         </div>
@@ -81,9 +81,8 @@ export default {
       },
       submitted: false,
       introductionContent: {
-        title: "Fill in your personal information",
-        text:
-          "We only use your personal information to "
+        title: this.$t("CreateProfilePage.signwithprofile"),
+        text: this.$t("CreateProfilePage.disclaimer")
       },
       pageVisited: 2,
       profile: profile,

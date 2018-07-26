@@ -9,13 +9,13 @@
             <h1 class="h1--blue title-sign-confirm">Do you want to sign this badge?</h1>
             <Badge :badge-class="implication.badgeTemplate" :recipient="implication.recipient"/>
             <div class="button-container">
-              <Button class="button--blue" :onClick="sign">Sign the badge</Button>
-              <Button class="button--line" :onClick="dontSign">Go to the homepage</Button>
+              <Button class="button--blue" :onClick="sign"> {{$t("signbadgepage.signbadge")}}   </Button>
+              <Button class="button--line" :onClick="dontSign">   {{$t("signbadgepage.gohome")}}</Button>
             </div>
           </div>
         </div>
         <div v-else>
-          <p>Loading...</p>
+          <p>{{$t("signbadgepage.loading")}}</p>
         </div>
       </div>
     </section>
@@ -40,9 +40,8 @@ export default {
     return {
       flowStep: "sign",
       introductionContent: {
-        title: "Seems like you want to sign a badge",
-        text:
-          "By signing a badge you verify that this person has mastered the skill displayed in the badge."
+        title:  this.$t("signbadgepage.introductionTitle") ,
+        text:  this.$t("signbadgepage.introductionDescription")
       },
       pageVisited: 0,
       bgimage: {
@@ -72,8 +71,7 @@ export default {
       this.$store.dispatch("stepFlow");
     },
     dontSign() {
-      console.log("fuckfuck");
-      alert("TODO don't");
+      this.$router.push({ name: "landing" });
     },
     checkAndRedirect() {
       if (this.shouldRedirect) {

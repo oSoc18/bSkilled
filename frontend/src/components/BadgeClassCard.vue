@@ -8,7 +8,7 @@
    <vue-slide-up-down :active="!active">
      <div class="badge-description">
        <p id="description">{{ badgeClass.description }}</p>
-       <v-button :onClick="clickHandlerSaveSkill" class="badge-button button--small" v-bind:class="{'is-hidden': isSelected}">Get this skill verified</v-button>
+       <v-button :onClick="clickHandlerSaveSkill" class="badge-button button--small" v-bind:class="{'is-hidden': isSelected}">{{$t("badgeClassCard.save")}}</v-button>
      </div>
     </vue-slide-up-down>
   </div>
