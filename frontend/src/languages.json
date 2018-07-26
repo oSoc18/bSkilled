@@ -38,8 +38,8 @@
     },
     "recipient":{
       "introductionContent":{
-        "title": "Fill in your personal information",
-        "text": "We only use your personal information to create your badge."
+        "title": "Who is this badge for?",
+        "text": "We only use personal information to create your badge."
       },
       "email": "E-mail address recipient",
       "save": "Save personal information",
@@ -101,16 +101,16 @@
       "disclaimer": "We only use your personal information to sign the badge"
     },
     "GenerateKeyPage":{
-      "getkey": "Let's get a profile key",
+      "getkey": "Let's get a private key",
       "keyinfo": "You can use this profile key to sign the badge.",
       "keyImportance":"This key is your own responsibility, keep it somewhere safe!",
       "password": "Password",
-      "generatekey": "Get your profile key",
+      "generatekey": "Get your private key",
       "back": "Go back",
-      "isGenerating": "Your profile key pair is currently generating",
+      "isGenerating": "Your private key pair is currently generating",
       "keyUse": "You can use this profile key to sign the badge.",
-      "generated": "Your profile key is generated",
-      "introductionTitle": "Seems like you don't have a personal key yet",
+      "generated": "Your private key is generated",
+      "introductionTitle": "Seems like you don't have a private key yet",
       "introductionText": "What is a private key? To start: it's a private file, so keep it to yourself. It acts like a unique key (like a key to unlock house). We use it to identify you and officially sign the badges so it's content can not be changed by other parties! You can also protect your key with a password."
     },
     "ShareBadgeLinkPage":{
@@ -126,10 +126,10 @@
     "SignBadgePage":{
       "wantToSign":"Do you want to sign this badge?",
       "signBadge":"Sign Badge",
-      "gohome": "Go to the homepage",
+      "goHome": "Go to the homepage",
       "loading": "Loading...",
       "introductionTitle": "Seems like you want to sign a badge",
-      "introductionDescription": "By signing a badge you verify that this person has mastered the skill displayed in the badge?"
+      "introductionDescription": "By signing a badge you verify that this person has mastered the skill displayed in the badge."
     },
     "UploadKeyPage":{
       "upload": "Upload your private key",
@@ -149,6 +149,154 @@
     }
   },
   "nl": {
+    "landing": {
+      "intro": {
+        "top": "Mijn vriend is geweldig met een gitaar,",
+        "top2": "Ik ben goed in communicatie,",
+        "title": "Wat is jouw vaardigheid?",
+        "button": "Maak een badge"
+      },
+      "landing": {
+        "why": "Waarom zou je bSkilled gebruiken?",
+        "answer": "bSkilled biedt je de mogelijkheid om je vaardigheden te laten verifiëren en certificeren door een werkgever, leraar, organisatie ... Een badge voor één van je vaardigheden behalen is een symbool van prestatie, vol met verifieerbare gegevens die je overal kan delen. Zo kan een toekomstige recruiter vertrouwen op uw vaardigheid bij het zien van je badge. Dankzij bSkilled kun je ook een deel uitmaken van de open badges gemeenschap."
+      },
+      "spotlight": {
+        "certified": "U kunt uw eigen badge laten certificeren door een organisatie.",
+        "free": "Je kunt je vaardigheden gratis laten certificeren!",
+        "decentralised": "Alle badges zijn gedecentraliseerd, u hoeft niet afhankelijk te zijn van een website."
+      },
+      "functionality": {
+        "how": "Hoe werkt bSkilled?",
+        "make": "- Maak een badge die een van je vaardigheden vertegenwoordigt.",
+        "receive": "- Ontvang een link en verstuur de link naar één van uw connecties.",
+        "sign": "- Deze persoon kan nu de badge ondertekenen.",
+        "download": "- Nadat de badge ondertekend is, kan u deze downloaden!",
+        "use": "- Gebruik de badge waar u maar wilt!"
+      },
+      "cta": {
+        "title": "Gebruik bSkilled",
+        "getAcknowledged": "Wordt erkend voor uw vaardigheden op een gemakkelijke, betrouwbare en gestandaardiseerde manier.",
+        "create": "Maak een badge"
+      },
+      "slogan": {
+        "skilled": "bSkilled",
+        "verified": "bVerified",
+        "connected": "bConnected",
+        "follow": "Volg ons op:"
+      }
+    },
+    "recipient":{
+      "introductionContent":{
+        "title": "Voor wie is deze badge",
+        "text": "We gebruiken persoonlijke gegevens alleen om uw badge te maken"
+      },
+      "email": "E-mailadres ontvanger",
+      "save": "Bewaar persoonlijke informatie",
+      "placeholder": "you@gmail.com"
+    },
+    "search":{
+      "introductionContent": {
+        "title":"Zoek naar je vaardigheid",
+        "text":"Krijg erkenning voor wat u het beste doet!"
+      }
+    },
+    "badgeClassCard":{
+      "save": "Bewaar"
+    },
+    "badgeClassSearch":{
+      "what": "Welke vaardigheden wil je verifiëren?",
+      "placeholder": "Zoeken naar een vaardigheid"
+    },
+    "FileUploadButton":{
+      "upload": "Upload bestand"
+    },
+    "StepIndicatorSteps":{
+      "search": "Zoek naar je vaardigheid",
+      "personal": "Persoonlijke informatie",
+      "share": "Deel je badge"
+    },
+    "StepIndicatorStepsSigning":{
+      "sign": "Onderteken de badge",
+      "upload": "Upload uw privésleutel",
+      "profile": "Persoonlijke informatie",
+      "confirm": "Bevestiging"
+    },
+    "TheHeader":{
+      "technical": "Technische informatie",
+      "about": "Over het project",
+      "new": "Maak een nieuwe badge"
+    },
+    "BadgeSigned":{
+      "goto":"Ga naar de hoofd pagina"
+    },
+    "ConfirmationPage":{
+      "questionSign":"Bevestig je om deze badge te ondertekenen?",
+      "sign": "Teken",
+      "dontSign": "Niet tekenen",
+      "introductionTitle": "Bevestig dat u deze badge wilt ondertekenen",
+      "introductionDescription": "Door te tekenen, verifieer je dat deze persoon de vaardigheid heeft die in de badge wordt weergegeven."
+    },
+    "CreateProfilePage":{
+      "name": "Naam",
+      "namePlaceholder": "Naam",
+      "email": "E-mail address",
+      "emailPlaceholder": "you@email.com",
+      "company": "Company name",
+      "website": "Website url",
+      "websitePlaceholder": "https://yourwebsiteurl.be",
+      "save": "Bewaar persoonlijke informatie",
+      "loading": "bezig met laden...",
+      "signWithProfile": "Onderteken de badge met uw sleutel",
+      "disclaimer": "We gebruiken uw persoonlijke gegevens alleen om de badge te ondertekenen"
+    },
+    "GenerateKeyPage":{
+      "getkey": "Laten we een privésleutel krijgen",
+      "keyinfo": "U kunt deze profielsleutel gebruiken om de badge te ondertekenen.",
+      "keyImportance":"Deze sleutel is je eigen verantwoordelijkheid, hou hem ergens veilig!",
+      "password": "Wachtwoord",
+      "generatekey": "Ontvang uw privésleutel",
+      "back": "Ga terug",
+      "isGenerating": "Uw profielsleutelpaar is momenteel aan het genereren",
+      "keyUse": "U kunt deze profielsleutel gebruiken om de badge te ondertekenen.",
+      "generated": "Uw privésleutel wordt gegenereerd",
+      "introductionTitle": "Het lijkt erop dat je nog geen persoonlijke sleutel hebt",
+      "introductionText": "Wat is een privésleutel? Het is een privé-bestand. Het werkt als een unieke sleutel (zoals een sleutel tot uw huis). We gebruiken het om u te identificeren en de badges te ondertekenen. U kunt uw sleutel ook beveiligen met een wachtwoord."
+    },
+    "ShareBadgeLinkPage":{
+      "title": "Je hebt een badge gemaakt!",
+      "description": "Deel deze link met uw connecties. Dan kun je de ondertekende badge downloaden!",
+      "copy": "Kopieer link",
+      "copied": "Link is gekopieerd",
+      "controlCopy": "Druk op CTRL + C om te kopiëren.",
+      "newbadge": "Maak een nieuwe badge",
+      "introductionTitle": "Deel je badge",
+      "introductionDescription": "Copy the link and share it with your connections. Your connections can sign your badge by opening the link and filling in some information.",
+      "createdTitle": "You created a badge!",
+      "createdDescription": "Share this link with your connections. When they have verified it, you’ll be able to download your signed badge!"
+    },
+    "SignBadgePage":{
+      "wantToSign":"Do you want to sign this badge?",
+      "signBadge":"Sign Badge",
+      "goHome": "Go to the homepage",
+      "loading": "Loading...",
+      "introductionTitle": "Seems like you want to sign a badge",
+      "introductionDescription": "By signing a badge you verify that this person has mastered the skill displayed in the badge?"
+    },
+    "UploadKeyPage":{
+      "upload": "Upload your private key",
+      "pass": "passphrase",
+      "noKeyYet": "Don't have key yet? Generate one here.",
+      "introductionTitle": "Sign the badge with your private key",
+      "introductionDescription": "What is a private key? It's a private file so keep it to yourself. It acts like a unique key (like a key to your house). We use it to identify you and officially sign the badges "
+    },
+    "Download":{
+      "download": "Download your badge",
+      "backhome": "Back to home",
+      "notSigned": "NOT SIGNED YET",
+      "sign": "Sign",
+      "introductionTitle": "Your badge is signed, download it!",
+      "introductionDescription": "Your skill is verified, you can now download it and share it with other people to show what you're capable of."
 
+    }
   }
 }

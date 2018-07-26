@@ -10,7 +10,7 @@
             <Badge :badge-class="implication.badgeTemplate" :recipient="implication.recipient"/>
             <div class="button-container">
               <Button class="button--blue" :onClick="sign"> {{$t("SignBadgePage.signBadge")}}   </Button>
-              <Button class="button--line" :onClick="dontSign">   {{$t("SignBadgePage.gohome")}}</Button>
+              <Button class="button--line" :onClick="dontSign">   {{$t("SignBadgePage.goHome")}}</Button>
             </div>
           </div>
         </div>
