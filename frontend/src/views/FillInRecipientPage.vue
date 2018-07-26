@@ -15,7 +15,7 @@
                      v-validate="'required|email'"
                      :class="{'input': true, 'is-danger': errors.has('recipient') }"
                      type="text"
-                     placeholder="you@email.com"
+                     :placeholder="$t('recipient.placeholder')"
                      data-vv-validate-on="none"
                      @input="handlerInputChange">
             </div>
@@ -60,7 +60,7 @@ export default {
       bgimage: {
         img: "./share_step2.png",
         position: "315px",
-        size: "95%",
+        size: "35%",
         left: "15px"
       }
     }

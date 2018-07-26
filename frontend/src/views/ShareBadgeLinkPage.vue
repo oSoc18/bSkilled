@@ -6,8 +6,8 @@
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container">
           <Badge :badge-class="share.implication.badgeTemplate"/>
-          <h1 class="create-badge-title">You created a badge!</h1>
-          <p class="link-description">Share this link with your connections. When they have verified it, you’ll be able to download your signed badge!</p>
+          <h1 class="create-badge-title">{{$t("ShareBadgeLinkPage.createdTitle")}}</h1>
+          <p class="link-description">{{$t("ShareBadgeLinkPage.createdDescription")}}</p>
           <div class="container-link">
             <p class="link"> {{location + "sign/" + share.sid}}</p>
             <button class="button-copy" type="button" name="button"
@@ -51,7 +51,7 @@ export default {
       bgimage: {
         img: "./share_step3.png",
         position: "307px",
-        size: "95%",
+        size: "35%",
         left: "15px"
       }
     };

@@ -15,7 +15,7 @@
       </div>
     </section>
     <section class="section-landing">
-      <img src="" alt="" width="584" height="439">
+      <img src="../assets/header_why.png" alt="" width="464" height="510" class="img-why">
       <div class="container-landing">
         <h1 class="h1-landing h1-title-text">{{$t("landing.landing.why")}}</h1>
         <p class="p-landing">{{$t("landing.landing.answer")}}</p>
@@ -122,7 +122,7 @@ export default {
 }
 
 .section-intro {
-  background: $bgyellow url(../assets/header_bg.png) 60% 2000% no-repeat;
+  background: $bgyellow url(../assets/header_bg.png) 240px 255px no-repeat;
   background-size: 72%;
   box-shadow: 0 0 40px 0 rgba(48, 53, 92, 0.3);
   height: 810px;
@@ -274,5 +274,10 @@ export default {
   align-items: center;
   width: 820px;
   margin-right: 80px;
+}
+
+.img-why {
+  margin-left: 50px;
+  margin-right: 40px;
 }
 </style>

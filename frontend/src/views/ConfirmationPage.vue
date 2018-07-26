@@ -38,7 +38,7 @@ export default {
       bgimage: {
         img: "./signing_step4.png",
         position: "355px",
-        size: "105%",
+        size: "40%",
         left: "-30px"
       }
     };

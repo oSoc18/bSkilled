@@ -30,7 +30,7 @@ export default {
       bgimage: {
         img: "./share_step1.png",
         position: "260px",
-        size: "95%",
+        size: "35%",
         left: "15px"
       }
     };
