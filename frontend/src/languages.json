@@ -9,19 +9,19 @@
       },
       "landing": {
         "why": "Why use bSkilled?",
-        "answer": "bSkilled gives you the opportunity to get your skills verified and certified by an employer, a teacher, an organisation… Getting a badge for one of your skills is a symbol of accomplishment, packed with verifiable data that can be shared across the web. This way it allows a future recruiter to trust your skills when seeing the badges that you got from bSkilled. Thanks to bSkilled you are also able to become a little bee, make connections with the others and be part of the open badges community."
+        "answer": "bSkilled gives you the opportunity to get your skills verified and certified by an employer, a teacher, an organisation… Getting a badge for one of your skills is a symbol of accomplishment, packed with verifiable data that can be shared across the web. This way it allows a future recruiter to trust your skills when seeing the badges that you got from bSkilled. Thanks to bSkilled you are also able to become a busy little bee, make connections with the others and be part of the open badges community."
       },
       "spotlight": {
-        "certified": "You can get your own badge certified by an organisation itself.",
-        "free": "You can have your skills certified without spending one single dollar!",
+        "certified": "You can get your own badge certified by an organisation.",
+        "free": "You can have your skills certified without spending one dollar!",
         "decentralised": "All of you badges are decentralised, no need to depend on a website."
       },
       "functionality": {
         "how": "How does bSkilled work?",
         "make": "- Make a badge that represents one of your skills.",
-        "receive": "- Receive a link &amp; send it to one of your connections so they can sign it.",
-        "sign": "- This person will be then able to sign your badge with this link.",
-        "download": "- Once the badge is signed, download it and save it!",
+        "receive": "- Receive a link & send it to one of your connections.",
+        "sign": "- This person will then be able to sign your badge when visiting this link.",
+        "download": "- Once the badge is signed, download and save it!",
         "use": "- Use the badge wherever you want!"
       },
       "cta": {
@@ -43,12 +43,12 @@
       },
       "email": "E-mail address recipient",
       "save": "Save personal information",
-      "placeholder": "you@gmail.com"
+      "placeholder": "you@mail.com"
     },
     "search":{
       "introductionContent": {
-        "title":"Search for your skill",
-        "text":"Get acknowledged for what you do best!"
+        "title": "What are you good at?",
+        "text": "Get acknowledged for what you do best!"
       }
     },
     "badgeClassCard":{
@@ -81,16 +81,16 @@
       "goto":"Go to main app"
     },
     "ConfirmationPage":{
-      "questionSign":"Do you confrim to sign this badge?",
+      "questionSign":"Do you confirm to sign this badge?",
       "sign": "Sign",
       "dontSign": "Don't sign",
       "introductionTitle": "Confirm you want to sign this badge ",
-      "introductionDescription": "By confirming to sign you verify that this person has mastered the skill displayed in the badge."
+      "introductionDescription": "By confirming to sign you agree that this person has mastered the skill displayed in the badge."
     },
     "CreateProfilePage":{
       "name": "Name",
       "namePlaceholder": "Name",
-      "email": "E-mail adress",
+      "email": "E-mail address",
       "emailPlaceholder": "you@email.com",
       "company": "Company name",
       "website": "Website url",
@@ -103,19 +103,17 @@
     "GenerateKeyPage":{
       "getkey": "Let's get a profile key",
       "keyinfo": "You can use this profile key to sign the badge.",
-      "keyImportance":"This key is your own responsability, keep it somewhere safe!",
+      "keyImportance":"This key is your own responsibility, keep it somewhere safe!",
       "password": "Password",
       "generatekey": "Get your profile key",
       "back": "Go back",
       "isGenerating": "Your profile key pair is currently generating",
       "keyUse": "You can use this profile key to sign the badge.",
       "generated": "Your profile key is generated",
-      "introductionTitle": "Seems like you don't have a pesonal key yet",
-      "introductionText": "What is a private key? It's a private file so keep it to yourself. It acts like a unique key (like a key to your house). We use it to identify you and officialy sign the badges. You can also protect your key with a password."
+      "introductionTitle": "Seems like you don't have a personal key yet",
+      "introductionText": "What is a private key? To start: it's a private file, so keep it to yourself. It acts like a unique key (like a key to unlock house). We use it to identify you and officially sign the badges so it's content can not be changed by other parties! You can also protect your key with a password."
     },
     "ShareBadgeLinkPage":{
-      "title": "You created a badge!",
-      "description": "Share this link with your connections. You’ll get an e-mail once your badge is signed. Then you’ll be able to download your signed badge!",
       "copy": "Copy link",
       "copied": "Link was copied",
       "controlCopy": "Press CTRL+C to copy.",
@@ -138,12 +136,12 @@
       "pass": "passphrase",
       "noKeyYet": "Don't have key yet? Generate one here.",
       "introductionTitle": "Sign the badge with your private key",
-      "introductionDescription": "What is a private key? It's a private file so keep it to yourself. It acts like a unique key (like a key to your house). We use it to identify you and officialy sign the badges "
+      "introductionDescription": "What is a private key? To start: it's a private file, so keep it to yourself. It acts like a unique key (like a key to unlock your house). We use it to identify you and officially sign the badges so it's content can not be changed by other parties!"
     },
     "Download":{
       "download": "Download your badge",
       "backhome": "Back to home",
-      "notSigned": "NOT SIGNED YET",
+      "notSigned": "Not signed yet",
       "sign": "Sign",
       "introductionTitle": "Your badge is signed, download it!",
       "introductionDescription": "Your skill is verified, you can now download it and share it with other people to show what you're capable of."
