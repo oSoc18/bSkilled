@@ -2,7 +2,8 @@
   "en": {
     "landing": {
       "intro": {
-        "top": "My friend is amazing with a guitar, <br> I am good with communication,",
+        "top": "My friend is amazing with a guitar,",
+        "top2": "I am good with communication,",
         "title": "What is your skill?",
         "button": "Create a badge"
       },
@@ -74,7 +75,9 @@
     "ConfirmationPage":{
       "questionsign":"Wan't to sign this badge?",
       "sign": "Sign",
-      "nosign": "Don't sign"
+      "nosign": "Don't sign",
+      "introductionTitle": "Confirm you want to sign this badge ",
+      "introductionText": "By confirming you verify that this person has mastered the skill displayed in the badge."
     },
     "CreateProfilePage":{
       "name": "Name",
@@ -110,7 +113,8 @@
       "introductionDescription": "Copy the link and share it with your connections. Your connections can sign your badge by opening the link and filling in some information."
     },
     "signbadgepage":{
-      "signbadge":"Sign the badge",
+      "whannesign":"Do you want to sign this badge?",
+      "signbadge":"Sign Badge",
       "gohome": "Go to the homepage",
       "loading": "Loading...",
       "introductionTitle": "Seems like you want to sign a badge",
@@ -122,6 +126,15 @@
       "nokey": "Don't have key yet? Generate one here.",
       "introductionTitle": "Sign the badge with your profile key",
       "introductionDescription": "We only use your personal information to create your badge and mail it to you."
+    },
+    "Download":{
+      "download": "Download your badge",
+      "backhome": "Back to home",
+      "notsigned": "NOT SIGNED YET",
+      "sign": "Sign",
+      "introductionTitle": "Your badge is signed, download it!",
+      "introductionDescription": "Your skill is verified, you can now download it and share it with other people to show what you're capable of."
+
     }
   },
   "nl": {
