@@ -39,19 +39,93 @@
     "recipient":{
       "introductionContent":{
         "title": "Fill in your personal information",
-        "text": "TODO lost some text here"
-      }
+        "text": "We only use your personal information to create your badge."
+      },
+      "email": "E-mail address recipient",
+      "save": "Save personal information"
     },
     "search":{
       "introductionContent": {
         "title":"Search for your skill",
         "text":"Get acknowledged for what you do best!"
       }
+    },
+    "badgeClassCard":{
+      "save": "Save skill"
+    },
+    "badgeClassSearch":{
+      "what": "What skill do you want to verify?"
+    },
+    "FileUploadButton":{
+      "upload": "Upload file"
+    },
+    "StepIndicatorSteps":{
+      "search": "Search for your skill",
+      "personal": "Some personal information",
+      "share": "Share your badge"
+    },
+    "TheHeader":{
+      "practical": "Practical information",
+      "about": "About the project",
+      "new": "Make a new badge"
+    },
+    "BadgeSigned":{
+      "goto":"Go to main app"
+    },
+    "ConfirmationPage":{
+      "questionsign":"Wan't to sign this badge?",
+      "sign": "Sign",
+      "nosign": "Don't sign"
+    },
+    "CreateProfilePage":{
+      "name": "Name",
+      "email": "E-mail adress",
+      "company": "Company name",
+      "website": "Website url",
+      "save": "Save personal information",
+      "loading": "loading...",
+      "signwithprofile": "Sign the badge with your profile key",
+      "disclaimer": "We only use your personal information to create your badge and mail it to you."
+    },
+    "GenerateKeyPage":{
+      "getkey": "Let's get a profile key",
+      "keyinfo": "You can use this profile key to sign the badge.",
+      "keyimportance":"This key is your own responsability, keep it somewhere safe!",
+      "password": "Password",
+      "generatekey": "Get your profile key",
+      "back": "Go back",
+      "isgenerating": "Your profile key pair is currently generating",
+      "keyuse": "You can use this profile key to sign the badge.",
+      "generated": "Your profile key is generated",
+      "introductionTitle": "Seems like you don't have a pesonal key yet",
+      "introductionText": "We only use your personal information to create your badge and mail it to you."
+    },
+    "ShareBadgeLinkPage":{
+      "title": "You created a badge!",
+      "description": "Share this link with your connections. You’ll get an e-mail once your badge is signed. Then you’ll be able to download your signed badge!",
+      "copy": "Copy link",
+      "copied": "Link was copied",
+      "cntrlc": "Press CTRL+C to copy.",
+      "newbadge": "Make a new badge",
+      "introductionTitle": "Share your badge",
+      "introductionDescription": "Copy the link and share it with your connections. Your connections can sign your badge by opening the link and filling in some information."
+    },
+    "signbadgepage":{
+      "signbadge":"Sign the badge",
+      "gohome": "Go to the homepage",
+      "loading": "Loading...",
+      "introductionTitle": "Seems like you want to sign a badge",
+      "introductionDescription": "We only use your personal information to create your badge and mail it to you."
+    },
+    "UploadKeyPage":{
+      "upload": "Upload your profile key",
+      "pass": "passphrase",
+      "nokey": "Don't have key yet? Generate one here.",
+      "introductionTitle": "Sign the badge with your profile key",
+      "introductionDescription": "We only use your personal information to create your badge and mail it to you."
     }
   },
   "nl": {
-    "landing": {
-      "welcome": "welkom bij bSkilled!"
-    }
+    
   }
 }

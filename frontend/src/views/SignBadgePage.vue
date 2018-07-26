@@ -1,21 +1,21 @@
 <template>
   <div class="row-page">
-    <v-introduction :introductionContent="introductionContent"></v-introduction>
-    <section class="section-right">
+    <v-introduction :introductionContent="introductionContent" :bgimage="bgimage"></v-introduction>
+    <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-center">
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div v-if="implication && !implication.signed">
-          <div class="container container-animation">
-            <Badge :badge-class="implication.badgeTemplate" />
-            <p class="created-badge-name">{{implication.badgeTemplate.description}}</p>
+          <div class="container container-animation container-more-margin">
+            <h1 class="h1--blue title-sign-confirm">Do you want to sign this badge?</h1>
+            <Badge :badge-class="implication.badgeTemplate" :recipient="implication.recipient"/>
             <div class="button-container">
-              <Button class="button--blue" :onClick="sign">Sign the badge</Button>
-              <Button class="button--line" :onClick="dontSign">Go to the homepage</Button>
+              <Button class="button--blue" :onClick="sign"> {{$t("signbadgepage.signbadge")}}   </Button>
+              <Button class="button--line" :onClick="dontSign">   {{$t("signbadgepage.gohome")}}</Button>
             </div>
           </div>
         </div>
         <div v-else>
-          <p>Loading...</p>
+          <p>{{$t("signbadgepage.loading")}}</p>
         </div>
       </div>
     </section>
@@ -40,11 +40,16 @@ export default {
     return {
       flowStep: "sign",
       introductionContent: {
-        title: "Seems like you want to sign a badge",
-        text:
-          "We only use your personal information to create your badge and mail it to you."
+        title:  this.$t("signbadgepage.introductionTitle") ,
+        text:  this.$t("signbadgepage.introductionDescription")
       },
-      pageVisited: 0
+      pageVisited: 0,
+      bgimage: {
+        img: "./signing_step1.png",
+        position: "360px",
+        size: "85%",
+        left: "20px"
+      }
     };
   },
   computed: {
@@ -66,8 +71,7 @@ export default {
       this.$store.dispatch("stepFlow");
     },
     dontSign() {
-      console.log("fuckfuck");
-      alert("TODO don't");
+      this.$router.push({ name: "landing" });
     },
     checkAndRedirect() {
       if (this.shouldRedirect) {
@@ -91,18 +95,9 @@ export default {
 <style lang="scss" scoped>
 @import "~Vars";
 
-.created-badge-name {
-  color: $darkblue;
-  margin-top: -5px;
+.title-sign-confirm {
   margin-bottom: 30px;
-  font-size: 14px;
-  padding: 15px 20px;
   text-align: center;
-  box-shadow: 0 0 8px 0 rgba(48, 53, 92, 0.25);
-  position: relative;
-  z-index: 2;
-  line-height: 1.5;
-  width: 310px;
-  border-radius: 5px;
 }
+
 </style>

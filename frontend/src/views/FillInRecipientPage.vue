@@ -1,14 +1,14 @@
 <template>
   <div class="row-page">
-    <v-introduction :introductionContent="introductionContent"></v-introduction>
-    <section class="section-right">
+    <v-introduction :introductionContent="introductionContent"  :bgimage="bgimage"></v-introduction>
+    <section class="section-right section-right-bg">
       <div class="section-right_container section-right_container-center">
         <v-indicator  :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
           <BadgeClassCard :badge-class="badgeTemplate" :isSelected="selectedBoolean"/>
           <form @submit.prevent>
             <div class="input-container">
-              <label for="recipientEmail">E-mail address recipient<span v-show="errors.has('recipient')" class="mark-error is-hidden" ref="errorMark">*</span></label>
+              <label for="recipientEmail">{{$t("recipient.email")}}<span v-show="errors.has('recipient')" class="mark-error is-hidden" ref="errorMark">*</span></label>
               <p v-show="errors.has('recipient')" class="error is-hidden" ref="errorMessage">{{ errors.first('recipient') }}</p>
               <input name="recipient"
                      v-model="recipient"
@@ -19,7 +19,7 @@
                      data-vv-validate-on="none"
                      @input="handlerInputChange">
             </div>
-            <v-button :onClick="validate">Save personal information</v-button>
+            <v-button :onClick="validate">{{$t("recipient.save")}}</v-button>
           </form>
         </div>
       </div>
@@ -51,11 +51,17 @@ export default {
       selectedBoolean: true,
       recipient: "",
       introductionContent: {
-        title: this.$t("recipeint.introductionContent.title"),
-        text: this.$t("recipeint.introductionContent.text")
+        title: this.$t("recipient.introductionContent.title"),
+        text: this.$t("recipient.introductionContent.text")
       },
-      pageVisited: 1
-    };
+      pageVisited: 1,
+      bgimage: {
+        img: "./share_step2.png",
+        position: "315px",
+        size: "95%",
+        left: "15px"
+      }
+    }
   },
   methods: {
     submit: function(event) {

@@ -4,13 +4,13 @@
     <nav class="l-navigation">
       <ul class="l-navigation__menu">
         <li class="l-navigation__menu__item">
-          <a href="/">Practical information</a>
+        <a href="/#practical" v-on:click.prevent="practical()" >{{$t("TheHeader.practical")}}</a>
         </li>
         <li class=" l-navigation__menu__item">
-          <a href="/">About the project</a>
+          <a href="/#about" v-on:click.prevent="about()">{{$t("TheHeader.about")}}</a>
         </li>
         <li class=" l-navigation__menu__item l-navigation__menu__item--state-current">
-          <router-link to="/create/search">Make a new badge</router-link>
+          <router-link to="/create/search">{{$t("TheHeader.new")}}</router-link>
         </li>
         <li @click="changeLang" class=" l-navigation__menu__item l-navigation__menu__item--outlined">
           <!-- Chloë if you can style this it works too -->
@@ -43,6 +43,12 @@ export default {
     changeLang() {
       const current = this.$i18n.locale;
       this.$i18n.locale = current == "en" ? "nl" : "en";
+    },
+    about() {
+      this.$router.push({ name: "about" });
+    },
+    practical() {
+      this.$router.push({ name: "practical" });
     }
   }
 };
@@ -60,11 +66,11 @@ export default {
   width: 100%;
 
   &__brand-logo {
-    width: 115px;
-    height: 35px;
-    background: url("../assets/bee.svg") no-repeat center center;
-    background-size: contain;
+    width: 145px;
+    height: 50px;
+    background: url("../assets/bskilled-logo.svg") no-repeat center center;
     text-indent: -9999px;
+    margin-top: 0px;
   }
 }
 

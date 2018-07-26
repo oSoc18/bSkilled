@@ -1,14 +1,14 @@
 <template>
  <div class="badge-temp">
    <div class="badge-row" @click="toggle">
-     <img :src="badgeClass.image" alt="Badge Icon" width="30" height="30">
+     <img :src="badgeClass.image" alt="Badge Icon" width="50" height="50">
      <h1 class="badge-name" id="name">{{ badgeClass.name }}</h1>
      <img class="arrow_down" src="../assets/arrow_down.svg" alt="" width="13" height="8">
    </div>
    <vue-slide-up-down :active="!active">
      <div class="badge-description">
        <p id="description">{{ badgeClass.description }}</p>
-       <v-button :onClick="clickHandlerSaveSkill" class="badge-button button--small" v-bind:class="{'is-hidden': isSelected}">Save skill</v-button>
+       <v-button :onClick="clickHandlerSaveSkill" class="badge-button button--small" v-bind:class="{'is-hidden': isSelected}">{{$t("badgeClassCard.save")}}</v-button>
      </div>
     </vue-slide-up-down>
   </div>
@@ -99,7 +99,7 @@ export default {
   align-items: center;
   box-shadow: 0 0 8px 0 rgba($darkblue, 0.25);
   border-radius: 5px 5px 0 0;
-  padding: 20px 30px;
+  padding: 20px 30px 20px 20px;
   width: 310px;
   margin-left: 15px;
 }
@@ -149,4 +149,5 @@ export default {
   margin-top: 4px;
   transition: all 0.2s;
 }
+
 </style>

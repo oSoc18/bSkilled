@@ -1,7 +1,7 @@
 <template>
   <div class="container container-margin">
     <div class="input-container">
-      <label for="skill">What skill do you want to verify?</label>
+      <label for="skill">{{$t("badgeClassSearch.what")}}</label>
       <input class="search" id="skill" type="text" placeholder="Search for a skill" v-model="query" required/>
     </div>
     <ul>
@@ -31,7 +31,7 @@ const searchOptions = {
   keys: [
     { name: "name", weight: "0.7" },
     { name: "description", weight: "0.3" }
-  ]
+  ],
 };
 
 export default {

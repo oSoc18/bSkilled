@@ -28,9 +28,16 @@ const dict = {
       required: 'Please fill in an e-mail address',
       email: 'This e-mail address is not valid'
     },
+    email: {
+      required: 'Please fill in an e-mail address',
+      email: 'This e-mail address is not valid'
+    },
+    name: {
+      required: 'Please fill in a name'
+    },
     password: {
       required: 'Please fill in a password'
-    }
+    },
   }
 };
 
