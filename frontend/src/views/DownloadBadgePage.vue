@@ -17,7 +17,7 @@
                   </div>
                   <!-- <p>ASSERTION: {{JSON.stringify(badge.assertion)}}</p> -->
                   <div class="button-container button-container-height">
-                    <a :href="imgUrl" download class="button button--blue">{{$t("Download.download")}}</a>
+                    <a :href="imgUrl" :download="$store.state.badge.implication.badgeTemplate.name.replace(/\s/g, '').toLowerCase() + '_badge.png'" class="button button--blue">{{$t("Download.download")}}</a>
                     <a href="/" class="button button--line">{{$t("Download.backhome")}}</a>
                   </div>
                 </div>
