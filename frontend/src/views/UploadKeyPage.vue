@@ -6,7 +6,7 @@
         <v-indicator :pageVisited="pageVisited"></v-indicator>
         <div class="container container-animation">
           <h1 class="h1--blue"> {{$t("UploadKeyPage.upload")}} </h1>
-          <div v-if="!getPassword" class="upload-container">
+          <div class="upload-container">
             <FileUploadButton id="uploadKey" :onResult="handleKeyLoad"/>
             <router-link :to="{name: 'generate'}" class="a--underline">
               {{$t("UploadKeyPage.nokey")}}
@@ -58,7 +58,6 @@ export default {
         size: "35%",
         left: "15px"
       }
-
     };
   },
   methods: {
@@ -70,6 +69,7 @@ export default {
           this.passphrase
         );
         if (privateKeyForge) {
+          this.getPassword = false;
           this.keyFound(privateKeyForge);
         } else {
           this.getPassword = true;
@@ -110,18 +110,18 @@ export default {
     handleUnlockError(err) {
       console.log(err);
       alert(err);
-    },
+    }
   },
   activated() {
     this.$store.commit("SET_CURRENT_FLOW_STEP", this.flowStep);
   },
-  computed:{
+  computed: {
     introductionContent() {
-      return{
+      return {
         title: this.$t("UploadKeyPage.introductionTitle"),
         text: this.$t("UploadKeyPage.introductionDescription")
-          }
-      }
+      };
+    }
   }
 };
 </script>
@@ -161,7 +161,7 @@ $buttonBgColor: #f6c060;
 }
 
 .button {
-  font-family: 'Cabin', sans-serif;
+  font-family: "Cabin", sans-serif;
   background: $button;
   border: none;
   border-radius: 100px;

@@ -50,14 +50,13 @@ export default {
     Badge
   },
   computed: {
-    
     ...mapState(["implication"]),
-    introductionContent(){
-      return  {
+    introductionContent() {
+      return {
         title: this.$t("ConfirmationPage.introductionTitle"),
         text: this.$t("ConfirmationPage.introductionDescription")
       };
-  },
+    }
   },
   methods: {
     sign() {
@@ -68,7 +67,7 @@ export default {
         .catch(err => console.log(err));
     },
     dontSign() {
-      alert("Don't sign!");
+      this.$router.push({ name: "landing" });
     },
     testBake(context, url, jws) {},
     bakeDataIntoImage(context, buffer, jws) {
