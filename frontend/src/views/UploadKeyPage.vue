@@ -51,10 +51,6 @@ export default {
       passphrase: "",
       keyFile: null,
       getPassword: false,
-      introductionContent: {
-        title: this.$t("UploadKeyPage.introductionTitle"),
-        text: this.$t("UploadKeyPage.introductionDescription")
-      },
       pageVisited: 1,
       bgimage: {
         img: "./signing_step2.png",

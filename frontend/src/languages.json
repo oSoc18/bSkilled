@@ -42,7 +42,8 @@
         "text": "We only use your personal information to create your badge."
       },
       "email": "E-mail address recipient",
-      "save": "Save personal information"
+      "save": "Save personal information",
+      "placeholder": "you@gmail.com"
     },
     "search":{
       "introductionContent": {
@@ -54,7 +55,8 @@
       "save": "Save skill"
     },
     "badgeClassSearch":{
-      "what": "What skill do you want to verify?"
+      "what": "What skill do you want to verify?",
+      "placeholder": "Search for a skill"
     },
     "FileUploadButton":{
       "upload": "Upload file"
@@ -87,9 +89,12 @@
     },
     "CreateProfilePage":{
       "name": "Name",
+      "namePlaceholder": "Name",
       "email": "E-mail adress",
+      "emailPlaceholder": "you@email.com",
       "company": "Company name",
       "website": "Website url",
+      "websitelPlaceholder": "https://yourwebsiteurl.be",
       "save": "Save personal information",
       "loading": "loading...",
       "signwithprofile": "Sign the badge with your profile key",
@@ -116,7 +121,9 @@
       "cntrlc": "Press CTRL+C to copy.",
       "newbadge": "Make a new badge",
       "introductionTitle": "Share your badge",
-      "introductionDescription": "Copy the link and share it with your connections. Your connections can sign your badge by opening the link and filling in some information."
+      "introductionDescription": "Copy the link and share it with your connections. Your connections can sign your badge by opening the link and filling in some information.",
+      "createdTitle": "You created a badge!",
+      "createdDescription": "Share this link with your connections. When they have verified it, you’ll be able to download your signed badge!"
     },
     "signbadgepage":{
       "whannesign":"Do you want to sign this badge?",

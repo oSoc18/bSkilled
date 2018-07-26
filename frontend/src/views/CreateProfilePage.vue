@@ -15,7 +15,7 @@
                        v-validate="'required'"
                        :class="{'input': true, 'is-danger': errors.has('name') }"
                        type="text"
-                       placeholder="name"
+                       :placeholder="$t('CreateProfilePage.namePlaceholder')"
                        data-vv-validate-on="none"
                        @input="handlerInputChange">
               </div>
@@ -27,13 +27,13 @@
                        v-validate="'required|email'"
                        :class="{'input': true, 'is-danger': errors.has('email') }"
                        type="text"
-                       placeholder="you@email.com"
+                       :placeholder="$t('CreateProfilePage.emailPlaceholder')"
                        data-vv-validate-on="none"
                        @input="handlerInputChange">
               </div>
               <div class="input-container">
                 <label>{{$t("CreateProfilePage.website")}}<span class="label-span">(optional)</span></label>
-                <input type="text" v-model.lazy="profile.url" placeholder="https://yourwebsiteurl.be"/>
+                <input type="text" v-model.lazy="profile.url" :placeholder="$t('CreateProfilePage.websitelPlaceholder')"/>
               </div>
               <v-button :onClick="validate" class="button--blue">{{$t("CreateProfilePage.save")}}</v-button>
             </form>
@@ -95,13 +95,13 @@ export default {
     implication() {
       return this.$store.state.implication;
     },
-    introductionContent(){ 
+    introductionContent(){
       return{
         title: this.$t("CreateProfilePage.signwithprofile"),
         text: this.$t("CreateProfilePage.disclaimer")
       }
     }
-    
+
   },
   methods: {
     post: function() {

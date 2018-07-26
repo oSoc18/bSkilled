@@ -15,7 +15,7 @@
                      v-validate="'required|email'"
                      :class="{'input': true, 'is-danger': errors.has('recipient') }"
                      type="text"
-                     placeholder="you@email.com"
+                     :placeholder="$t('recipient.placeholder')"
                      data-vv-validate-on="none"
                      @input="handlerInputChange">
             </div>
