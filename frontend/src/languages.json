@@ -42,7 +42,7 @@
         "text": "We only use personal information to create your badge."
       },
       "email": "E-mail address recipient",
-      "save": "Save personal information",
+      "save": "Use this address",
       "placeholder": "you@mail.com"
     },
     "search":{
@@ -111,7 +111,7 @@
       "keyUse": "You can use this profile key to sign the badge.",
       "generated": "Your private key is generated",
       "introductionTitle": "Seems like you don't have a private key yet",
-      "introductionText": "What is a private key? To start: it's a private file, so keep it to yourself. It acts like a unique key (like a key to unlock house). We use it to identify you and officially sign the badges so it's content can not be changed by other parties! You can also protect your key with a password."
+      "introductionText": "What is a private key? To start: it's a private file, so keep it to yourself. We use it to identify you and officially sign the badges so it's content can not be changed by other parties! You can also protect your key with a password."
     },
     "ShareBadgeLinkPage":{
       "copy": "Copy link",
@@ -136,7 +136,7 @@
       "pass": "passphrase",
       "noKeyYet": "Don't have key yet? Generate one here.",
       "introductionTitle": "Sign the badge with your private key",
-      "introductionDescription": "What is a private key? To start: it's a private file, so keep it to yourself. It acts like a unique key (like a key to unlock your house). We use it to identify you and officially sign the badges so it's content can not be changed by other parties!"
+      "introductionDescription": "What is a private key? To start: it's a private file, so keep it to yourself. We use it to identify you and officially sign the badges so it's content can not be changed by other parties!"
     },
     "Download":{
       "download": "Download your badge",
@@ -191,7 +191,7 @@
         "text": "We gebruiken persoonlijke gegevens alleen om uw badge te maken"
       },
       "email": "E-mailadres ontvanger",
-      "save": "Bewaar persoonlijke informatie",
+      "save": "Gebruik dit adres",
       "placeholder": "you@gmail.com"
     },
     "search":{
@@ -231,7 +231,7 @@
     },
     "ConfirmationPage":{
       "questionSign":"Bevestig je om deze badge te ondertekenen?",
-      "sign": "Teken",
+      "sign": "Onderteken",
       "dontSign": "Niet tekenen",
       "introductionTitle": "Bevestig dat u deze badge wilt ondertekenen",
       "introductionDescription": "Door te tekenen, verifieer je dat deze persoon de vaardigheid heeft die in de badge wordt weergegeven."
@@ -239,7 +239,7 @@
     "CreateProfilePage":{
       "name": "Naam",
       "namePlaceholder": "Naam",
-      "email": "E-mail address",
+      "email": "E-mail adres",
       "emailPlaceholder": "you@email.com",
       "company": "Company name",
       "website": "Website url",
@@ -260,7 +260,7 @@
       "keyUse": "U kunt deze profielsleutel gebruiken om de badge te ondertekenen.",
       "generated": "Uw privésleutel wordt gegenereerd",
       "introductionTitle": "Het lijkt erop dat je nog geen persoonlijke sleutel hebt",
-      "introductionText": "Wat is een privésleutel? Het is een privé-bestand. Het werkt als een unieke sleutel (zoals een sleutel tot uw huis). We gebruiken het om u te identificeren en de badges officieel te ondertekenen zodat de inhoud niet door anderen kan aangepast worden. U kunt uw sleutel ook beveiligen met een wachtwoord."
+      "introductionText": "Wat is een privésleutel? Om te beginnen: het is een privé-bestand, dus hou het voor jezelf. We gebruiken het om u te identificeren en de badges officieel te ondertekenen zodat de inhoud niet door anderen kan aangepast worden. U kunt uw sleutel ook beveiligen met een wachtwoord."
     },
     "ShareBadgeLinkPage":{
       "title": "Je hebt een badge gemaakt!",
@@ -277,7 +277,7 @@
     "SignBadgePage":{
       "wantToSign":"Wil je deze badge ondertekenen?",
       "signBadge":"Badge ondertekenen",
-      "gohome": "Ga naar de startpagina",
+      "goHome": "Ga naar de startpagina",
       "loading": "Bezig met laden...",
       "introductionTitle": "Wilt u een badge ondertekenen",
       "introductionDescription": "Door een badge te ondertekenen, verifieert u dat deze persoon de in de badge getoonde vaardigheid heeft"
@@ -287,7 +287,7 @@
       "pass": "wachtwoord",
       "noKeyYet": "Heb je nog geen sleutel? Genereer hier één.",
       "introductionTitle": "Onderteken de badge met uw privésleutel",
-      "introductionDescription": "Wat is een privésleutel? Het is een privé-bestand. Het werkt als een unieke sleutel (zoals een sleutel tot uw huis). We gebruiken het om u te identificeren en de officieel badges te ondertekenen zodat de inhoud niet veranderd kan worden door anderen. U kunt uw sleutel ook beveiligen met een wachtwoord."
+      "introductionDescription": "Wat is een privésleutel? Om te beginnen: het is een privé-bestand, dus hou het voor jezelf. We gebruiken het om u te identificeren en de officieel badges te ondertekenen zodat de inhoud niet veranderd kan worden door anderen. U kunt uw sleutel ook beveiligen met een wachtwoord."
     },
     "Download":{
       "download": "Download uw badge",

@@ -1,6 +1,6 @@
 <template>
   <div class="container-upload-button">
-    <label :for="inputId"><slot>{{$t("FileUploadButton.upload")}}</slot></label>
+    <label :for="inputId"><slot>Uploaden..</slot></label>
     <input type="file" :id="inputId" :name="inputId" @change="fileChange"/>
   </div>
 </template>
@@ -56,7 +56,8 @@ label {
   color: transparent;
 
   &:hover {
-    background: darken($button, 10) url(../assets/upload_icon.svg) center no-repeat;
+    background: darken($button, 10) url(../assets/upload_icon.svg) center
+      no-repeat;
     background-size: 48%;
   }
   &:focus {
