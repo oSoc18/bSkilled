@@ -7,9 +7,9 @@ module.exports = merge(base, {
   devtool: '#source-map',
   plugins: [
     new webpack.EnvironmentPlugin({
-      'LOCATION': 'http//fixmeiamanurl.com',
+      'LOCATION': 'https://bskilled.today/',
       'NODE_ENV': 'production',
-      'API': 'http://fixmeiamanapiurl.com'
+      'API': 'https://api.larmuseau.org/api/'
     }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,

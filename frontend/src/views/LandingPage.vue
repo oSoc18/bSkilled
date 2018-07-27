@@ -88,7 +88,7 @@
       <div class="partner-logos">
         <a href="http://www.thelearninghub.be/"><img src="../assets/thelearninghub.svg" alt="" width="auto" height="40"></a>
         <a href="https://www.vdab.be/"><img src="../assets/vdab.svg" alt="logo vdab" width="auto" height="35"></a>
-        <a href="https://cronos-groep.be/"><img src="../assets/compas.svg" alt="logo compas" width="auto" height="25"></a>
+        <a href="https://www.compasbreda.nl/"><img src="../assets/compas.svg" alt="logo compas" width="auto" height="25"></a>
         <a href="https://cronos-groep.be/"><img src="../assets/cronos.svg" alt="logo cronos" width="auto" height="55"></a>
         <a href="https://www.poolstok.be/"><img src="../assets/poolstok.svg" alt="logo poolstok" width="auto" height="55"></a>
         <a href="http://cogni.zone/"><img src="../assets/cognizone.svg" alt="logo cognizone" width="auto" height="55"></a>
