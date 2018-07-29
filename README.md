@@ -13,7 +13,7 @@ The frontend is a single page application written in JavaScript with Vue as a fr
 
 The API is a simple JavaScript (Node) webserver using the Express.js library. It exposes few endpoints, and only acts as a simple datastore (getting badge classes, posting and getting badges, ...).
 
-Front- and back-end talk to each other over HTTP with the specific endpoints and format documented in [api.yaml](api.yaml), which is an Open API specification. You can use an online editor like [Swagger](https://editor.swagger.io/) to have a nice view of the spec. All communication is in JSON.
+Front- and back-end talk to each other over HTTP with the specific endpoints and format documented in [api.yaml](api.yaml), which is an Open API specification. You can use an online editor like [Swagger](https://editor.swagger.io/) to have a nice view of the spec. All communication is in JSON. **NOTE: The API spec is currently severly out of date.**
 
 ## Frontend
 
