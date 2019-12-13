@@ -16,7 +16,7 @@
     "install": "^0.12.1",
     "jws": "^3.1.5",
     "node-forge": "^0.7.5",
-    "npm": "^6.2.0",
+    "npm": "^6.13.4",
     "png-chunk-text": "^1.0.0",
     "png-chunks-encode": "^1.0.0",
     "png-chunks-extract": "^1.0.0",
